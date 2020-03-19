@@ -1,15 +1,16 @@
 package com.example.redis.controller;
 
-import org.springframework.dao.DataAccessException;
-import org.springframework.data.redis.connection.RedisConnection;
+import com.example.redis.service.RedisService;
+import com.example.redis.service.TestService;
 import org.springframework.data.redis.core.RedisCallback;
-import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import javax.annotation.Resource;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 /**
  * <pre>
@@ -25,32 +26,49 @@ import java.nio.charset.StandardCharsets;
 public class RedisController {
 
     @Resource
-    private StringRedisTemplate redisTemplate;
+    private RedisTemplate<String, String> redisTemplate;
+
+    @Resource
+    private TestService testService;
 
     @GetMapping("set")
     public Object set(String key, String value) {
-        Boolean b = redisTemplate.execute((RedisCallback<Boolean>) connection ->
+        return redisTemplate.execute((RedisCallback<Boolean>) connection ->
                 connection.set(key.getBytes(StandardCharsets.UTF_8), value.getBytes(StandardCharsets.UTF_8)));
-        return b;
     }
 
 
     @GetMapping("get")
     public Object get(String key) {
-        String s = redisTemplate.execute(new RedisCallback<String>() {
-                        @Override
-                        public String doInRedis(RedisConnection connection) throws DataAccessException {
-                            byte[] bytes = connection.get(key.getBytes(StandardCharsets.UTF_8));
+        return redisTemplate.execute(connection -> {
+            byte[] bytes = connection.get(key.getBytes(StandardCharsets.UTF_8));
 
-                            if (null != bytes) {
-                                return new String(bytes, StandardCharsets.UTF_8);
-                            }
-                            return null;
-                        }
-                    });
-
-        return s;
+            if (null != bytes) {
+                return new String(bytes, StandardCharsets.UTF_8);
+            }
+            return null;
+        }, true);
     }
+
+    @GetMapping("transaction")
+    public Object transaction(String key, String value) {
+        List<Object> object = redisTemplate.execute(connection -> {
+            connection.watch(key.getBytes(StandardCharsets.UTF_8));
+            connection.multi();
+            connection.set("abc".getBytes(StandardCharsets.UTF_8), "sdfs".getBytes(StandardCharsets.UTF_8));
+            connection.set(key.getBytes(StandardCharsets.UTF_8), value.getBytes(StandardCharsets.UTF_8));
+            connection.get(key.getBytes(StandardCharsets.UTF_8));
+            return connection.exec();
+        }, true);
+
+        return object;
+    }
+
+    @GetMapping("transcantionAnnotionTest")
+    public Object transcantionAnnotionTest(String key, String value, String key1, String value1, Integer e) {
+        return testService.redisTranscantionTest(key, value, key1, value1, e);
+    }
+
 
 
 }
