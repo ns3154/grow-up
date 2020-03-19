@@ -20,10 +20,13 @@
 
     <modules>
         <module>redis</module>
+	    <module>async</module>
     </modules>
 
     <properties>
         <java.version>1.8</java.version>
+        <google.guava.version>20.0</google.guava.version>
+        <apache-commons-lang3.version>3.4</apache-commons-lang3.version>
     </properties>
 
 
@@ -46,6 +49,18 @@
                     <artifactId>junit-vintage-engine</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+    
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${google.guava.version}</version>
+        </dependency>
+    
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${apache-commons-lang3.version}</version>
         </dependency>
     </dependencies>
 
