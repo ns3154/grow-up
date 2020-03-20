@@ -33,8 +33,9 @@ public class RedisController {
 
     @GetMapping("set")
     public Object set(String key, String value) {
-        return redisTemplate.execute((RedisCallback<Boolean>) connection ->
-                connection.set(key.getBytes(StandardCharsets.UTF_8), value.getBytes(StandardCharsets.UTF_8)));
+        return redisTemplate.execute(connection ->
+                connection.set(key.getBytes(StandardCharsets.UTF_8), value.getBytes(StandardCharsets.UTF_8)),
+                true);
     }
 
 

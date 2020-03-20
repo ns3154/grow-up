@@ -13,7 +13,6 @@ import org.springframework.scheduling.annotation.EnableAsync;
  * @date 2020/03/19 19:07
  **/
 @SpringBootApplication
-@EnableAsync
 public class AsyncApplication {
 
     public static void main(String[] args) {

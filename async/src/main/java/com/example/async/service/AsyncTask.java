@@ -26,6 +26,7 @@ public class AsyncTask {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        int i = Integer.parseInt(s);
         logger.info("********** test :{}*********", s + "asyncTest");
         return s + "asyncTest";
     }
