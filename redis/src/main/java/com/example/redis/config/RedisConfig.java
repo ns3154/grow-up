@@ -44,7 +44,7 @@ public class RedisConfig {
         redisTemplate.setValueSerializer(RedisSerializer.string());
         redisTemplate.setHashKeySerializer(RedisSerializer.string());
         redisTemplate.setHashValueSerializer(RedisSerializer.string());
-//        redisTemplate.setEnableTransactionSupport(true);
+        redisTemplate.setEnableTransactionSupport(true);
         return redisTemplate;
     }
 

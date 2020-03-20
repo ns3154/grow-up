@@ -2,6 +2,8 @@ package com.example.redis.controller;
 
 import com.example.redis.service.RedisService;
 import com.example.redis.service.TestService;
+import org.springframework.dao.DataAccessException;
+import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.util.CollectionUtils;
@@ -68,6 +70,39 @@ public class RedisController {
     @GetMapping("transcantionAnnotionTest")
     public Object transcantionAnnotionTest(String key, String value, String key1, String value1, Integer e) {
         return testService.redisTranscantionTest(key, value, key1, value1, e);
+    }
+
+    @GetMapping("pipelineSet")
+    public Object pipelineSet() {
+        List<Object> objects = redisTemplate.executePipelined(new RedisCallback<Object>() {
+            @Override
+            public Object doInRedis(RedisConnection connection) throws DataAccessException {
+                for (int i = 0;i < 100; i++) {
+                    String key = "key" + i;
+                    String value = "value" + i;
+                    connection.set(key.getBytes(), value.getBytes());
+                }
+                return null;
+            }
+        }, redisTemplate.getStringSerializer());
+
+        return null;
+    }
+
+    @GetMapping("pipelineGet")
+    public Object pipelineGet() {
+        List<Object> objects = redisTemplate.executePipelined(new RedisCallback<Object>() {
+            @Override
+            public Object doInRedis(RedisConnection connection) throws DataAccessException {
+                for (int i = 0;i < 100; i++) {
+                    String key = "key" + i;
+                    connection.get(key.getBytes());
+                }
+                return null;
+            }
+        }, redisTemplate.getStringSerializer());
+
+        return objects;
     }
 
 
