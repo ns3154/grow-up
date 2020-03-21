@@ -1,7 +1,5 @@
 package com.example.async.service;
 
-import java.util.concurrent.CompletableFuture;
-
 /**
  * <pre>
  *
@@ -11,5 +9,7 @@ import java.util.concurrent.CompletableFuture;
  * @date 2020/03/19 19:08
  **/
 public interface AsyncService {
+
+    String interfaceAsyncTest(String s);
 
 }

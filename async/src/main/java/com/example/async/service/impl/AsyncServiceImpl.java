@@ -1,5 +1,6 @@
 package com.example.async.service.impl;
 
+import com.example.async.annotation.MyAsync;
 import com.example.async.service.AsyncService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,5 +22,16 @@ public class AsyncServiceImpl implements AsyncService {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
 
-
+    @Override
+//    @MyAsync("myExecutor")
+    @Async("myExecutor")
+    public String interfaceAsyncTest(String s) {
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        logger.info("********** myExecutor :{}*********", s + "-myExecutor");
+        return s + "-myExecutor";
+    }
 }

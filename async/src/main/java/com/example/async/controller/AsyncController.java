@@ -4,6 +4,7 @@ import com.example.async.service.AsyncService;
 import com.example.async.service.AsyncTask;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,10 +29,24 @@ public class AsyncController {
     @Resource
     private AsyncTask asyncTask;
 
-    @RequestMapping
-    public Object test(String s) {
-        String s1 = asyncTask.asyncTest(s);
-        logger.info("********** test :{}*********", s1);
+    @Resource
+    private AsyncService asyncService;
+
+    @GetMapping("cglib")
+    public Object cglib(String s) {
+        asyncTask.abc(s);
+        logger.info("********** cglib controller 执行完毕 返回 *********");
         return s;
     }
+
+    @GetMapping("jdk")
+    public Object jdk(String s) {
+        asyncService.interfaceAsyncTest(s);
+        logger.info("********** jdk controller 执行完毕 返回 *********");
+        return s;
+    }
+
+
+
+
 }

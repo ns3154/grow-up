@@ -1,9 +1,13 @@
 package com.example.async.service;
 
+import com.example.async.annotation.MyAsync;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
+
+import java.util.concurrent.CompletableFuture;
 
 /**
  * <pre>
@@ -13,14 +17,15 @@ import org.springframework.stereotype.Component;
  * @since 1.0
  * @date 2020/03/19 19:28
  **/
-@Component
-@Async("asyncTest")
+@Configuration
+@Async("myExecutor")
+//@MyAsync("myExecutor")
 public class AsyncTask {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
 
 
-    public String asyncTest(String s) {
+    public void asyncTest(String s) {
         try {
             Thread.sleep(10000);
         } catch (InterruptedException e) {
@@ -28,9 +33,17 @@ public class AsyncTask {
         }
         int i = Integer.parseInt(s);
         logger.info("********** test :{}*********", s + "asyncTest");
-        return s + "asyncTest";
     }
 
+    public void abc(String s) {
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        int i = Integer.parseInt(s);
+        logger.info("********** test :{}*********", s + "abc");
+    }
 
 
 }
