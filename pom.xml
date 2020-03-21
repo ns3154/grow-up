@@ -23,7 +23,6 @@
 	    <module>async</module>
 	    <module>proxy</module>
         <module>mvc</module>
-        <module>jdk8</module>
         <module>jdk_8</module>
         <module>concurrent</module>
     </modules>
