@@ -1,0 +1,13 @@
+
+spring:
+  application:
+    name: dubbo-consumer
+
+dubbo:
+  application:
+    name: consumer-demo
+    id: consumer-demo
+  registry:
+    address: zookeeper://10.1.11.147:2888
+  consumer:
+    check: false

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<parent>
+		<artifactId>learn</artifactId>
+		<groupId>org.example</groupId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	
+	<artifactId>dubbo</artifactId>
+	<packaging>pom</packaging>
+	<modules>
+		<module>consumer</module>
+		<module>provider</module>
+		<module>dubbo-common-api</module>
+	</modules>
+	
+	<properties>
+		<dubbo.version>2.7.5</dubbo.version>
+		<spring-boot.version>2.2.5.RELEASE</spring-boot.version>
+		<zookeeper.version>3.4.10</zookeeper.version>
+		<curator.framework.version>4.2.0</curator.framework.version>
+		<curator.recipes.version>2.13.0</curator.recipes.version>
+	</properties>
+	
+	<dependencies>
+		
+		<dependency>
+			<artifactId>dubbo-common-api</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>guava</artifactId>
+					<groupId>com.google.guava</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>curator-framework</artifactId>
+					<groupId>org.apache.curator</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>curator-recipes</artifactId>
+					<groupId>org.apache.curator</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>zookeeper</artifactId>
+					<groupId>org.apache.zookeeper</groupId>
+				</exclusion>
+			</exclusions>
+			<groupId>org.example</groupId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.curator</groupId>
+			<artifactId>curator-framework</artifactId>
+			<version>${curator.framework.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>guava</artifactId>
+					<groupId>com.google.guava</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.curator</groupId>
+			<artifactId>curator-recipes</artifactId>
+			<version>${curator.recipes.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>curator-framework</artifactId>
+					<groupId>org.apache.curator</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.zookeeper</groupId>
+			<artifactId>zookeeper</artifactId>
+			<version>${zookeeper.version}</version>
+		</dependency>
+	</dependencies>
+	
+	<dependencyManagement>
+		<dependencies>
+			
+			<!-- Dubbo Spring Boot Starter -->
+			<dependency>
+				<groupId>org.apache.dubbo</groupId>
+				<artifactId>dubbo-spring-boot-starter</artifactId>
+				<version>${dubbo.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.apache.dubbo</groupId>
+				<artifactId>dubbo</artifactId>
+			</dependency>
+			
+			<dependency>
+				<artifactId>dubbo-common-api</artifactId>
+				<groupId>org.example</groupId>
+				<version>1.0-SNAPSHOT</version>
+				<exclusions>
+					<exclusion>
+						<artifactId>fastjson</artifactId>
+						<groupId>com.alibaba</groupId>
+					</exclusion>
+					<exclusion>
+						<artifactId>commons-lang3</artifactId>
+						<groupId>org.apache.commons</groupId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<version>${spring-boot.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			
+			<!-- Apache Dubbo  -->
+			<dependency>
+				<groupId>org.apache.dubbo</groupId>
+				<artifactId>dubbo-dependencies-bom</artifactId>
+				<version>${dubbo.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.apache.dubbo</groupId>
+				<artifactId>dubbo</artifactId>
+				<version>${dubbo.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>javax.servlet</groupId>
+						<artifactId>servlet-api</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>log4j</groupId>
+						<artifactId>log4j</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			
+			<!-- Zookeeper dependencies -->
+<!--			<dependency>-->
+<!--				<groupId>org.apache.dubbo</groupId>-->
+<!--				<artifactId>dubbo-dependencies-zookeeper</artifactId>-->
+<!--				<version>${dubbo.version}</version>-->
+<!--				<type>pom</type>-->
+<!--				<exclusions>-->
+<!--					<exclusion>-->
+<!--						<groupId>org.slf4j</groupId>-->
+<!--						<artifactId>slf4j-log4j12</artifactId>-->
+<!--					</exclusion>-->
+<!--				</exclusions>-->
+<!--			</dependency>-->
+		</dependencies>
+	</dependencyManagement>
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+	
+	
+</project>
