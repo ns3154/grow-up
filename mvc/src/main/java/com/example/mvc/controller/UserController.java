@@ -1,8 +1,8 @@
 package com.example.mvc.controller;
-
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.mvc.annotation.Secret;
+import com.example.mvc.model.ModelMessge;
+import com.example.mvc.model.dto.UserDTO;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <pre>
@@ -20,4 +20,17 @@ public class UserController {
     public String index(String s) {
         return s;
     }
+
+    @PostMapping("advicePostTest")
+    @Secret
+    public ModelMessge<UserDTO> adviceTest(@RequestBody UserDTO userDTO) {
+        return new ModelMessge<UserDTO>().ok(userDTO);
+    }
+
+    @GetMapping("adviceGetTest")
+    @Secret
+    public ModelMessge<UserDTO> adviceGetTest(UserDTO userDTO) {
+        return new ModelMessge<UserDTO>().ok(userDTO);
+    }
+
 }

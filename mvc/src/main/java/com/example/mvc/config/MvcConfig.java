@@ -42,6 +42,7 @@ public class MvcConfig implements WebMvcConfigurer {
     @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
         resolvers.add(new HeaderResolver());
+//        resolvers.add(new SecretResolver());
     }
 
 
