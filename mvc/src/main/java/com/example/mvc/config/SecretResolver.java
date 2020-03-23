@@ -1,31 +1,21 @@
 package com.example.mvc.config;
 
 import com.example.mvc.annotation.Secret;
+import com.example.mvc.model.dto.UserDTO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.TypeMismatchException;
 import org.springframework.core.MethodParameter;
-import org.springframework.util.Assert;
-import org.springframework.validation.BindException;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.annotation.ModelAttributeMethodProcessor;
-import org.springframework.web.method.annotation.ModelFactory;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
-import java.beans.ConstructorProperties;
-import java.lang.reflect.Constructor;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
-
 /**
  * <pre>
- *
+ *      controller 无 @requestBody 操作 解密 resolver
+ *      例如:{@link com.example.mvc.controller.UserController#adviceGetTest(UserDTO)} 需 和注解
+ *      {@link Secret} 配合使用
  * </pre>
  * @author 杨帮东
  * @since 1.0
