@@ -26,6 +26,7 @@
         <module>jdk_8</module>
         <module>concurrent</module>
 	    <module>dubbo</module>
+        <module>demo</module>
     </modules>
 
     <properties>

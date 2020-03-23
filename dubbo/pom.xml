@@ -27,28 +27,28 @@
 	
 	<dependencies>
 		
-		<dependency>
-			<artifactId>dubbo-common-api</artifactId>
-			<exclusions>
-				<exclusion>
-					<artifactId>guava</artifactId>
-					<groupId>com.google.guava</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>curator-framework</artifactId>
-					<groupId>org.apache.curator</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>curator-recipes</artifactId>
-					<groupId>org.apache.curator</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>zookeeper</artifactId>
-					<groupId>org.apache.zookeeper</groupId>
-				</exclusion>
-			</exclusions>
-			<groupId>org.example</groupId>
-		</dependency>
+<!--		<dependency>-->
+<!--			<artifactId>dubbo-common-api</artifactId>-->
+<!--			<groupId>org.example</groupId>-->
+<!--			<exclusions>-->
+<!--				<exclusion>-->
+<!--					<artifactId>guava</artifactId>-->
+<!--					<groupId>com.google.guava</groupId>-->
+<!--				</exclusion>-->
+<!--				<exclusion>-->
+<!--					<artifactId>curator-framework</artifactId>-->
+<!--					<groupId>org.apache.curator</groupId>-->
+<!--				</exclusion>-->
+<!--				<exclusion>-->
+<!--					<artifactId>curator-recipes</artifactId>-->
+<!--					<groupId>org.apache.curator</groupId>-->
+<!--				</exclusion>-->
+<!--				<exclusion>-->
+<!--					<artifactId>zookeeper</artifactId>-->
+<!--					<groupId>org.apache.zookeeper</groupId>-->
+<!--				</exclusion>-->
+<!--			</exclusions>-->
+<!--		</dependency>-->
 		
 		<dependency>
 			<groupId>org.apache.curator</groupId>
@@ -106,6 +106,18 @@
 					<exclusion>
 						<artifactId>commons-lang3</artifactId>
 						<groupId>org.apache.commons</groupId>
+					</exclusion>
+					<exclusion>
+						<artifactId>curator-framework</artifactId>
+						<groupId>org.apache.curator</groupId>
+					</exclusion>
+					<exclusion>
+						<artifactId>curator-recipes</artifactId>
+						<groupId>org.apache.curator</groupId>
+					</exclusion>
+					<exclusion>
+						<artifactId>zookeeper</artifactId>
+						<groupId>org.apache.zookeeper</groupId>
 					</exclusion>
 				</exclusions>
 			</dependency>
