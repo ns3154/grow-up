@@ -21,5 +21,27 @@ public interface DubboTestServiceApi {
      */
     ModelMessage<UserDTO> getUserById(Long userId);
 
+    /**
+     * 故障转移测试接口
+     * @param userId
+     * @return
+     */
+    ModelMessage<UserDTO> byZero(Long userId);
+
+    /**
+     * 故障转移测试接口
+     * @param userId
+     * @return
+     */
+    ModelMessage<UserDTO> timeOut(Long userId);
+
+    /**
+     * 故障转移测试接口
+     * @param userId
+     * @return
+     */
+    ModelMessage<UserDTO> randomTimeOut(Long userId);
+
+
 
 }

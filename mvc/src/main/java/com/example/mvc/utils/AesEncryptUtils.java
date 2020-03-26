@@ -83,6 +83,7 @@ public class AesEncryptUtils {
 
         String s = encrypt(JSON.toJSONString(user));
         System.out.println(s);
+        System.out.println("T9XS6B bLIaCoXHMhzX7gxsQ1NUJHvZUnzwrefSLgS0=");
         System.out.println(decrypt(s));
 
         System.out.println("--------------------------");

@@ -4,13 +4,16 @@ import com.example.redis.service.RedisService;
 import com.example.redis.service.TestService;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.RedisConnection;
+import org.springframework.data.redis.core.Cursor;
 import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ScanOptions;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -102,6 +105,21 @@ public class RedisController {
         }, redisTemplate.getStringSerializer());
 
         return objects;
+    }
+
+    @GetMapping("scan")
+    public List<String> scan(String key) {
+        List<String> result =  redisTemplate.execute((connection -> {
+            Cursor<byte[]> scan = connection.scan(ScanOptions.scanOptions().count(1).match(key).build());
+            List<String> list = new ArrayList<>();
+            while (scan.hasNext()) {
+                list.add(new String(scan.next(), StandardCharsets.UTF_8));
+            }
+            return list;
+        }), true);
+
+        System.out.println(result.size());
+        return result;
     }
 
 

@@ -1,13 +1,20 @@
 package com.example.mvc.config;
 
+import com.alibaba.fastjson.JSON;
 import com.example.mvc.annotation.Secret;
+import com.example.mvc.exception.MyException;
 import com.example.mvc.model.dto.UserDTO;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.TypeMismatchException;
+import com.example.mvc.utils.AesEncryptUtils;
+import com.example.mvc.utils.Constants;
+import org.apache.catalina.connector.RequestFacade;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.core.MethodParameter;
+import org.springframework.http.HttpRequest;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.annotation.ModelAttributeMethodProcessor;
+import org.springframework.web.method.annotation.ModelFactory;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
@@ -34,8 +41,24 @@ public class SecretResolver  implements HandlerMethodArgumentResolver {
 
     @Override
     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
-        ModelAttributeMethodProcessor processor = new ModelAttributeMethodProcessor(true);
-        return processor.resolveArgument(parameter, mavContainer, webRequest, binderFactory);
+
+        String ciphertext = webRequest.getParameter("data");
+        Class<?> type = parameter.getParameter().getType();
+        webRequest.getNativeRequest();
+        Object nativeRequest = webRequest.getNativeRequest();
+        RequestFacade facade = (RequestFacade) webRequest.getNativeRequest();
+        facade.getParameter("data");
+        if (StringUtils.isBlank(ciphertext)) {
+            throw new MyException(Constants.ConstantsEnum.PARAMETER_EXCEPTION);
+        }
+
+        String data = AesEncryptUtils.decrypt(ciphertext);
+
+        if (StringUtils.isBlank(data)) {
+            throw new MyException(Constants.ConstantsEnum.ENCRYPTION_ERROR);
+        }
+
+        return JSON.parse(data);
     }
 
 

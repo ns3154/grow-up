@@ -20,6 +20,10 @@ public class ModelMessage<T> implements Serializable {
 
     private String message;
 
+    public ModelMessage() {
+        this.code = 200;
+        this.message = "ok";
+    }
 
 
     public Integer getCode() {

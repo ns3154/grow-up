@@ -12,5 +12,9 @@ dubbo:
   protocol:
     name: dubbo
     port: 12345
+    accesslog: true
 
+logging:
+  config: C:\projects\demo\learn\logback.xml
 
+num: 1
