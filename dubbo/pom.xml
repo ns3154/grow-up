@@ -20,7 +20,7 @@
 	<properties>
 		<dubbo.version>2.7.5</dubbo.version>
 		<spring-boot.version>2.2.5.RELEASE</spring-boot.version>
-		<zookeeper.version>3.4.10</zookeeper.version>
+		<zookeeper.version>3.4.14</zookeeper.version>
 		<curator.framework.version>4.2.0</curator.framework.version>
 		<curator.recipes.version>2.13.0</curator.recipes.version>
 	</properties>
