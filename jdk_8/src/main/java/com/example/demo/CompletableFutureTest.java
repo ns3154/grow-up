@@ -371,4 +371,33 @@ public class CompletableFutureTest {
         }));
         System.out.println("thenCompose result : "+f.get());
     }
+
+    @Test
+    public void completeTest() throws ExecutionException, InterruptedException {
+        CompletableFuture<Long> future = CompletableFuture.supplyAsync(new Supplier<Long>() {
+            @Override
+            public Long get() {
+                try {
+                    TimeUnit.SECONDS.sleep(4);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                return 0L;
+            }
+        });
+
+        future.complete(4L);
+
+        future.whenComplete(new BiConsumer<Long, Throwable>() {
+            @Override
+            public void accept(Long aLong, Throwable throwable) {
+                System.out.println(aLong);
+            }
+        });
+
+        System.out.println(future.get());
+
+
+
+    }
 }
