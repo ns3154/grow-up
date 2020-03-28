@@ -18,4 +18,6 @@ public interface AsyncDubboServiceTestApi {
     CompletableFuture<ModelMessage<UserDTO>> getUserIdByAsync(Long userId);
 
     CompletableFuture<Void> noVoidAsync(Long userId);
+
+    CompletableFuture<ModelMessage<UserDTO>> getUserByAsyncForMyThread(Long userId);
 }

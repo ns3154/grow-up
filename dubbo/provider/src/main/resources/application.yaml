@@ -5,6 +5,8 @@ dubbo:
   application:
     name: provider-demo
     id: provider-demo
+    logger: slf4j
+    dump-directory: /dubbo/tmp
   registry:
     address: zookeeper://10.1.11.147:2888
   scan:

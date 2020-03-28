@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.naming.Name;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
+import java.util.function.BiConsumer;
 
 /**
  * <pre>
@@ -32,7 +34,7 @@ public class DubboController {
 
 //    @Reference(mock = "com.example.dubbo.consumer.mock.DubboServiceTestMock") 先调用远程 如果 失败 在执行 mock
 //    @Reference(mock = "force:com.example.dubbo.consumer.mock.DubboServiceTestMock") // 直接强制执行 mock
-    @Reference
+    @Reference(methods = {@Method(name = "getUserById", cache = "lru")})
     private DubboTestServiceApi dubboTestServiceApi;
 
     @Reference(methods = {@Method(name = "noVoidAsync", async = true, isReturn = false)})
@@ -89,4 +91,14 @@ public class DubboController {
         return new ModelMessage<>();
 
     }
+
+    @GetMapping("getUserByAsyncForMyThread")
+    public ModelMessage<UserDTO> getUserByAsyncForMyThread(Long userId) throws ExecutionException, InterruptedException {
+        CompletableFuture<ModelMessage<UserDTO>> userByAsyncForMyThread =
+                asyncDubboServiceTestApi.getUserByAsyncForMyThread(userId);
+        logger.info("*** getUserByAsyncForMyThread consumer start");
+        return userByAsyncForMyThread.get();
+    }
+
+
 }

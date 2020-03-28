@@ -3,11 +3,13 @@ package com.example.dubbo.provider.service.dubbo.impl;
 import com.example.common.api.AsyncDubboServiceTestApi;
 import com.example.common.model.ModelMessage;
 import com.example.common.model.dto.UserDTO;
+import com.google.common.base.Joiner;
+import org.apache.commons.lang3.concurrent.BasicThreadFactory;
 import org.apache.dubbo.config.annotation.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.*;
 
 /**
  * <pre>
@@ -22,13 +24,19 @@ public class AsyncUserServiceImpl implements AsyncDubboServiceTestApi {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
 
+    private ExecutorService executorService =  new ThreadPoolExecutor(5, 30,
+            60, TimeUnit.SECONDS,
+            new LinkedBlockingDeque<>(200),
+            new BasicThreadFactory.Builder()
+                    .namingPattern(Joiner.on("-")
+                            .join("my-dubbo-handle", "%s"))
+                    .build(),
+            new ThreadPoolExecutor.CallerRunsPolicy());
+
     @Override
     public CompletableFuture<ModelMessage<UserDTO>> getUserIdByAsync(Long userId) {
 
         logger.info("*** invoker getUserIdByAsync start ****");
-        CompletableFuture.runAsync(() ->{
-
-        });
         try {
             Thread.sleep(10001);
         } catch (InterruptedException e) {
@@ -52,5 +60,25 @@ public class AsyncUserServiceImpl implements AsyncDubboServiceTestApi {
         }
         logger.info("*** invoker noVoidAsync end ****");
         return new CompletableFuture<>();
+    }
+
+    @Override
+    public CompletableFuture<ModelMessage<UserDTO>> getUserByAsyncForMyThread(Long userId) {
+
+        logger.info("*** invoker getUserByAsyncForMyThread start ****");
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                Thread.sleep(10001);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            ModelMessage<UserDTO> model = new ModelMessage<>();
+            model.setCode(200);
+            model.setMessage("ok");
+            model.setData(UserDTO.newBuilder().withAge(1).withUserName("yang").withSex(3).build());
+            logger.info("*** invoker getUserByAsyncForMyThread end ****");
+            return model;
+        }, executorService);
     }
 }

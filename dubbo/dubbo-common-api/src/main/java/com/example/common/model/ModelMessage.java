@@ -25,6 +25,10 @@ public class ModelMessage<T> implements Serializable {
         this.message = "ok";
     }
 
+    public ModelMessage(T data) {
+        this.data = data;
+    }
+
 
     public Integer getCode() {
         return code;
