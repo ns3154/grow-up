@@ -9,11 +9,10 @@ dubbo:
     id: consumer-demo
   registry:
     address: zookeeper://10.1.11.147:2888
-  provider:
-    delay: -1
   consumer:
     check: false
     timeout: 100000
     retries: 0
+    filter: -myFilter
 logging:
   config: C:\projects\demo\learn\logback.xml

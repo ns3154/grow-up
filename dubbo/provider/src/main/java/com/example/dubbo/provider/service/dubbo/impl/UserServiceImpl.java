@@ -26,7 +26,7 @@ public class UserServiceImpl implements DubboTestServiceApi {
     private Integer num;
 
     @Override
-    public ModelMessage<UserDTO> getUserById(Long userId) {
+    public ModelMessage<UserDTO> userById(Long userId) {
         logger.info("*** invoker getUserById ****");
         ModelMessage<UserDTO> model = new ModelMessage<>();
         model.setCode(200);

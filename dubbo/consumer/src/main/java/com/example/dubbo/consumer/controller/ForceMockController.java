@@ -28,6 +28,6 @@ public class ForceMockController {
 
     @GetMapping("getUserById")
     public ModelMessage<UserDTO> getUserById(Long userId) {
-        return dubboTestServiceApi.getUserById(userId);
+        return dubboTestServiceApi.userById(userId);
     }
 }

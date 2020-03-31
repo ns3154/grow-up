@@ -19,7 +19,7 @@ public interface DubboTestServiceApi {
      * @param userId 用户id
      * @return
      */
-    ModelMessage<UserDTO> getUserById(Long userId);
+    ModelMessage<UserDTO> userById(Long userId);
 
     /**
      * 故障转移测试接口

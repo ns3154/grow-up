@@ -13,10 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.naming.Name;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
-import java.util.function.BiConsumer;
 
 /**
  * <pre>
@@ -34,7 +32,7 @@ public class DubboController {
 
 //    @Reference(mock = "com.example.dubbo.consumer.mock.DubboServiceTestMock") 先调用远程 如果 失败 在执行 mock
 //    @Reference(mock = "force:com.example.dubbo.consumer.mock.DubboServiceTestMock") // 直接强制执行 mock
-    @Reference(methods = {@Method(name = "getUserById", cache = "lru")})
+    @Reference(methods = {@Method(name = "userById", cache = "lru")})
     private DubboTestServiceApi dubboTestServiceApi;
 
     @Reference(methods = {@Method(name = "noVoidAsync", async = true, isReturn = false)})
@@ -43,7 +41,7 @@ public class DubboController {
 
     @GetMapping("getUserById")
     public ModelMessage<UserDTO> getUserById(Long userId) {
-        return dubboTestServiceApi.getUserById(userId);
+        return dubboTestServiceApi.userById(userId);
     }
 
     @GetMapping("byZero")

@@ -8,6 +8,7 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.BeanFactoryAware;
 import org.springframework.beans.factory.FactoryBean;
+import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,11 +29,11 @@ import javax.annotation.Resource;
 public class EchoController {
 
     @Resource
-    private ApplicationContext applicationContext;
+    private DubboTestServiceApi dubboTestServiceApi;
 
     @GetMapping("test")
     public ModelMessage<String> echo() {
-        EchoService  echoService = applicationContext.getBean("dubboTestServiceApi", EchoService.class);
+        EchoService  echoService = (EchoService) dubboTestServiceApi;
         Object o =  echoService.$echo("ok");
         return new ModelMessage<>(o.toString());
     }

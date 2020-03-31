@@ -20,7 +20,7 @@ public class DubboServiceTestMock implements DubboTestServiceApi {
     }
 
     @Override
-    public ModelMessage<UserDTO> getUserById(Long userId) {
+    public ModelMessage<UserDTO> userById(Long userId) {
         ModelMessage<UserDTO> model = new ModelMessage<>();
         model.setData(UserDTO.newBuilder().withSex(1).withUserName("mock").withAge(111).build());
         model.setCode(200);
