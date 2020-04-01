@@ -32,7 +32,8 @@ public class DubboController {
 
 //    @Reference(mock = "com.example.dubbo.consumer.mock.DubboServiceTestMock") 先调用远程 如果 失败 在执行 mock
 //    @Reference(mock = "force:com.example.dubbo.consumer.mock.DubboServiceTestMock") // 直接强制执行 mock
-    @Reference(methods = {@Method(name = "userById", cache = "lru")})
+//    @Reference(methods = {@Method(name = "userById", cache = "lru")})
+    @Reference
     private DubboTestServiceApi dubboTestServiceApi;
 
     @Reference(methods = {@Method(name = "noVoidAsync", async = true, isReturn = false)})

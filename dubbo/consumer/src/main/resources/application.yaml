@@ -13,6 +13,6 @@ dubbo:
     check: false
     timeout: 100000
     retries: 0
-    filter: -myFilter
+#    filter: -myFilter
 logging:
   config: C:\projects\demo\learn\logback.xml

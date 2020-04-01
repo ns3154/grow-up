@@ -1,6 +1,0 @@
-jwt:
-  token:
-    secret: Hsvg9jZbN
-
-exclude:
-  list: "/asdf,/asdfs,/user"

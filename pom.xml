@@ -22,11 +22,11 @@
         <module>redis</module>
 	    <module>async</module>
 	    <module>proxy</module>
-        <module>mvc</module>
         <module>jdk_8</module>
         <module>concurrent</module>
 	    <module>dubbo</module>
         <module>demo</module>
+	    <module>spring</module>
     </modules>
 
     <properties>
