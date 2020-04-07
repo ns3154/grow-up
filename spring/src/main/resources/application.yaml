@@ -1,4 +1,29 @@
 
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    druid:
+      url: jdbc:mysql://10.1.11.110:3310/test?zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=GMT%2B8
+      username: baojia_xm
+      password: DgisNKhg
+      initial-size: 1
+      min-idle: 1
+      max-active: 20
+      max-wait: 3000
+      use-unfair-lock: true
+      validation-query: SELECT 1 FROM DUAL
+      test-on-borrow: false
+      test-while-idle: true
+      time-between-eviction-runs-millis: 60000
+      use-global-data-source-stat: true
+      web-stat-filter:
+        enabled: true
+        url-pattern: /druid/*
+      stat-view-servlet:
+        enabled: true
+        reset-enable: false
+        login-username: admin
+        login-password: admin
 
 management:
   endpoints:
@@ -7,7 +32,9 @@ management:
         include: "*"
 
 
-
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.example.mybatis.domain
 
 
 jwt:
@@ -16,3 +43,4 @@ jwt:
 
 exclude:
   list: "/asdf,/asdfs,/user"
+

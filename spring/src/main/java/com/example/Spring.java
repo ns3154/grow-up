@@ -1,5 +1,6 @@
 package com.example;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -12,6 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date 2020/03/23 16:00
  **/
 @SpringBootApplication
+@MapperScan(basePackages = "com.example.mybatis.dao")
 public class Spring {
 
     public static void main(String[] args) {

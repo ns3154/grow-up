@@ -8,7 +8,7 @@ package com.example.model;
  * @since 1.0
  * @date 2020/03/23 19:15
  **/
-public class ModelMessge<T> {
+public class ModelMessge <T> {
 
     private String message;
 

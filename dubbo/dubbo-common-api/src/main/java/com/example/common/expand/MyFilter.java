@@ -22,7 +22,7 @@ import java.util.function.BiConsumer;
  * @since 1.0
  * @date 2020/03/31 14:31
  **/
-@Activate(group = {CommonConstants.PROVIDER, CommonConstants.CONSUMER})
+@Activate(group = {CommonConstants.CONSUMER})
 public class MyFilter implements Filter {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
@@ -42,6 +42,7 @@ public class MyFilter implements Filter {
         logger.info("*** 自定义扩展接口 start, 调用方法:{}#{}, 传递参数:{}*****",
                 invocation.getServiceName(), invocation.getMethodName(), invocation.getArguments());
         Result result = invoker.invoke(invocation);
+
 
         if ((InvokeMode.SYNC == ((RpcInvocation) invocation).getInvokeMode())) {
             logger.info("*** 自定义扩展接口 end, 返回体:{} *****", result.getValue());
