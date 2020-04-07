@@ -16,6 +16,8 @@ public class User {
 
     private Integer age;
 
+    private String desc;
+
     private User(Builder builder) {
         setId(builder.id);
         setUserName(builder.userName);
@@ -23,7 +25,6 @@ public class User {
     }
 
     public User() {
-
     }
 
     public static Builder newBuilder() {
@@ -61,6 +62,14 @@ public class User {
 
     public void setAge(Integer age) {
         this.age = age;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
     /**
@@ -114,5 +123,10 @@ public class User {
         public User build() {
             return new User(this);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "User{" + "id=" + id + ", userName='" + userName + '\'' + ", age=" + age + ", desc='" + desc + '\'' + '}';
     }
 }

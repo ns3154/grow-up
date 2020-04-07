@@ -2,6 +2,8 @@ package com.example.experiment;
 
 import com.example.model.bean.Order;
 import com.example.model.bean.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -16,15 +18,14 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ConfigurationExp {
 
+    private Logger logger = LoggerFactory.getLogger(getClass());
 
     @Bean
     public User user() {
+        logger.info("******** user() 初始化 *********");
         return User.newBuilder().withId(1L).withUserName("杨").withAge(2).build();
     }
 
-    @Bean
-    public Order order() {
-        return Order.newBuilder().withOrderId(1L).withOrderNo("1234").withUserId(2L).build();
-    }
+
 
 }
