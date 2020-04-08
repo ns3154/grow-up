@@ -1,0 +1,18 @@
+{
+  "properties": [
+    {
+      "name": "test.user.name",
+      "type": "java.lang.String",
+      "description": "Description for test.user.name."
+    },
+    {
+      "name": "test.user.id",
+      "type": "java.lang.String",
+      "description": "Description for test.user.id."
+    },
+    {
+      "name": "test.user.sex",
+      "type": "java.lang.String",
+      "description": "Description for test.user.sex."
+    }
+  ] }

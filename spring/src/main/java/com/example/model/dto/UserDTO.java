@@ -1,5 +1,8 @@
 package com.example.model.dto;
 
+import java.math.BigDecimal;
+import java.util.Date;
+
 /**
  * <pre>
  *
@@ -20,23 +23,8 @@ public class UserDTO {
 
     private Integer sex;
 
-    private UserDTO(Builder builder) {
-        setName(builder.name);
-        setAge(builder.age);
-        setSex(builder.sex);
-    }
+    private Date createTime;
 
-    public static Builder newBuilder() {
-        return new Builder();
-    }
-
-    public static Builder newBuilder(UserDTO copy) {
-        Builder builder = new Builder();
-        builder.name = copy.getName();
-        builder.age = copy.getAge();
-        builder.sex = copy.getSex();
-        return builder;
-    }
 
 
     public String getName() {
@@ -63,55 +51,11 @@ public class UserDTO {
         this.sex = sex;
     }
 
-    /**
-     * {@code UserDTO} builder static inner class.
-     */
-    @SuppressWarnings("PMD.AvoidFieldNameMatchingMethodName")
-    public static final class Builder {
-        private String name;
-        private Integer age;
-        private Integer sex;
+    public Date getCreateTime() {
+        return createTime;
+    }
 
-        private Builder() {
-        }
-
-        /**
-         * Sets the {@code name} and returns a reference to this Builder so that the methods can be chained together.
-         * @param name the {@code name} to set
-         * @return a reference to this Builder
-         */
-        public Builder withName(String name) {
-            this.name = name;
-            return this;
-        }
-
-        /**
-         * Sets the {@code age} and returns a reference to this Builder so that the methods can be chained together.
-         * @param age the {@code age} to set
-         * @return a reference to this Builder
-         */
-        public Builder withAge(Integer age) {
-            this.age = age;
-            return this;
-        }
-
-        /**
-         * Sets the {@code sex} and returns a reference to this Builder so that the methods can be chained together.
-         * @param sex the {@code sex} to set
-         * @return a reference to this Builder
-         */
-        public Builder withSex(Integer sex) {
-            this.sex = sex;
-            return this;
-        }
-
-        /**
-         * Returns a {@code UserDTO} built from the parameters previously set.
-         *
-         * @return a {@code UserDTO} built with parameters of this {@code UserDTO.Builder}
-         */
-        public UserDTO build() {
-            return new UserDTO(this);
-        }
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 }

@@ -1,5 +1,8 @@
 package com.example.utils;
 
+import java.util.Arrays;
+import java.util.stream.Stream;
+
 /**
  * <pre>
  *     常量
@@ -66,6 +69,59 @@ public interface Constants {
 
     }
 
+    enum Sex {
+        /****** 注释说明:  男 *********************************/
+        NAN(1, "男"),
+
+        /****** 注释说明: 女 *********************************/
+        NV(2, "女"),
+
+        /****** 注释说明: 未知 *********************************/
+        UNKNOWN(-1, "未知");
+
+        Sex(int code, String str) {
+            this.code = code;
+            this.str = str;
+        }
+
+        private int code;
+
+        private String str;
+
+        public int getCode() {
+            return code;
+        }
+
+        public String getStr() {
+            return str;
+        }
+    }
+
+    class SexConverter {
+
+
+        /**
+         * @author 杨帮东
+         * @param code
+         * @since 1.0
+         * @date 2020/4/8 17:36
+         * @return com.example.utils.Constants.Sex
+         * @throws
+         */
+        public static Sex getSexEnumByCode(Integer code) {
+            if (null == code) {
+                return Sex.UNKNOWN;
+            }
+            Sex[] values = Sex.values();
+            for (Sex value : values) {
+                if (value.getCode() == code) {
+                    return value;
+                }
+            }
+            return Sex.UNKNOWN;
+        }
+    }
+
     /**
      * <pre>
      *     公共常量
@@ -119,15 +175,6 @@ public interface Constants {
         public static final String UNIFORM_CREDIT_CODE = "^[0-9a-zA-Z]{0,35}$";
     }
 
-    /**
-     * websocket 专用常量
-     */
-    class WebSocket {
-        /**
-         * 登录类型
-         */
-        public static final int LOGIN_TYPE = 10000;
-    }
 
     class RedisDbIndex {
 

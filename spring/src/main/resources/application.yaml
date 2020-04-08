@@ -36,7 +36,11 @@ mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.example.mybatis.domain
 
-
+test:
+  user:
+    id: 1
+    name: 杨
+    sex: 1
 jwt:
   token:
     secret: Hsvg9jZbN

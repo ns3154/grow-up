@@ -1,6 +1,8 @@
 package com.example.utils;
+import java.math.BigDecimal;
 
 import com.alibaba.fastjson.JSON;
+import com.example.model.vo.UserVO;
 import com.example.mvc.exception.MyException;
 import com.example.model.dto.UserDTO;
 import org.apache.commons.codec.binary.Base64;
@@ -76,7 +78,8 @@ public class AesEncryptUtils {
 
 
     public static void main(String[] args) throws Exception {
-        UserDTO user =  UserDTO.newBuilder().withAge(1).withName("杨").withSex(3).build();
+        UserDTO user =  new UserDTO();
+        UserVO vo = new UserVO();
 
         Map<String, Object> map = new HashMap<>(2);
         map.put("requestData", user);

@@ -1,6 +1,7 @@
 package com.example;
 
 import com.example.aware.MyHolderAware;
+import com.example.config.MyPropertry;
 import com.example.model.bean.User;
 import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.Logger;
@@ -31,6 +32,8 @@ public class Spring {
         ConfigurableApplicationContext run = SpringApplication.run(Spring.class, args);
         ConfigurableListableBeanFactory beanFactory = run.getBeanFactory();
         User user = beanFactory.getBean("user", User.class);
+        MyPropertry propertry = beanFactory.getBean("myPropertry", MyPropertry.class);
         logger.error(user.toString());
+        logger.error(propertry.toString());
     }
 }
