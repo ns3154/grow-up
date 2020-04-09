@@ -37,6 +37,7 @@ mybatis:
   type-aliases-package: com.example.mybatis.domain
 
 test:
+  constructor: false
   user:
     id: 1
     name: 杨

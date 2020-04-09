@@ -2,7 +2,9 @@ package com.example;
 
 import com.example.aware.MyHolderAware;
 import com.example.config.MyPropertry;
+import com.example.ioc.cyclicdependency.filed.A;
 import com.example.model.bean.User;
+import com.example.model.dto.UserDTO;
 import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,7 +35,9 @@ public class Spring {
         ConfigurableListableBeanFactory beanFactory = run.getBeanFactory();
         User user = beanFactory.getBean("user", User.class);
         MyPropertry propertry = beanFactory.getBean("myPropertry", MyPropertry.class);
+        A a = beanFactory.getBean("a", A.class);
         logger.error(user.toString());
         logger.error(propertry.toString());
+        logger.error(a.toString());
     }
 }

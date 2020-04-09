@@ -4,10 +4,21 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.*;
-import org.springframework.context.EnvironmentAware;
+import org.springframework.context.*;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.weaving.LoadTimeWeaverAware;
 import org.springframework.core.env.Environment;
+import org.springframework.core.io.ResourceLoader;
+import org.springframework.instrument.classloading.LoadTimeWeaver;
+import org.springframework.jca.context.BootstrapContextAware;
+import org.springframework.jmx.export.notification.NotificationPublisher;
+import org.springframework.jmx.export.notification.NotificationPublisherAware;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.ServletConfigAware;
+import org.springframework.web.context.ServletContextAware;
+
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 
 
 /**
@@ -19,8 +30,11 @@ import org.springframework.stereotype.Component;
  * @date 2020/04/07 14:59
  **/
 @Configuration
-public class MyHolderAware implements BeanNameAware , BeanClassLoaderAware,
-        BeanFactoryAware, EnvironmentAware, InitializingBean, SmartInitializingSingleton, DisposableBean {
+public class MyHolderAware implements BeanNameAware , BeanClassLoaderAware, BeanFactoryAware, EnvironmentAware,
+        InitializingBean, SmartInitializingSingleton, DisposableBean, LoadTimeWeaverAware,
+        ResourceLoaderAware, ServletConfigAware, ServletContextAware, MessageSourceAware,
+        ApplicationEventPublisherAware, NotificationPublisherAware /**,BootstrapContextAware*/
+{
 
     private Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -44,6 +58,10 @@ public class MyHolderAware implements BeanNameAware , BeanClassLoaderAware,
         this.beanName = name;
     }
 
+    /**
+     * 加载Spring Bean的类加载器
+     * @param classLoader
+     */
     @Override
     public void setBeanClassLoader(ClassLoader classLoader) {
         this.classLoader = classLoader;
@@ -66,7 +84,7 @@ public class MyHolderAware implements BeanNameAware , BeanClassLoaderAware,
 
     @Override
     public void afterSingletonsInstantiated() {
-        logger.info("*** MyHolderAware#afterSingletonsInstantiated()**** ");
+        logger.info("*** MyHolderAware#afterSingletonsInstantiated()#desc:{}**** ", desc);
     }
 
     @Override
@@ -85,5 +103,57 @@ public class MyHolderAware implements BeanNameAware , BeanClassLoaderAware,
     @Override
     public String toString() {
         return "MyHolderAware{" + "desc='" + desc + '\'' + '}';
+    }
+
+    /**
+     * 加载Spring Bean时织入第三方模块，如AspectJ
+     * @param loadTimeWeaver
+     */
+    @Override
+    public void setLoadTimeWeaver(LoadTimeWeaver loadTimeWeaver) {
+        logger.info("*** MyHolderAware#setLoadTimeWeaver***");
+    }
+
+//    /**
+//     * 资源适配器BootstrapContext，如JCA,CCI
+//     * @param bootstrapContext
+//     */
+//    @Override
+//    public void setBootstrapContext(javax.resource.spi.BootstrapContext bootstrapContext) {
+//        logger.info("*** MyHolderAware#setBootstrapContext***");
+//    }
+
+    /**
+     * 底层访问资源的加载器
+     * @param resourceLoader
+     */
+    @Override
+    public void setResourceLoader(ResourceLoader resourceLoader) {
+        logger.info("*** MyHolderAware#setResourceLoader***");
+    }
+
+    @Override
+    public void setServletConfig(ServletConfig servletConfig) {
+        logger.info("*** MyHolderAware#setServletConfig***");
+    }
+
+    @Override
+    public void setServletContext(ServletContext servletContext) {
+        logger.info("*** MyHolderAware#setServletContext***");
+    }
+
+    @Override
+    public void setApplicationEventPublisher(ApplicationEventPublisher applicationEventPublisher) {
+        logger.info("*** MyHolderAware#setApplicationEventPublisher***");
+    }
+
+    @Override
+    public void setMessageSource(MessageSource messageSource) {
+        logger.info("*** MyHolderAware#setMessageSource***");
+    }
+
+    @Override
+    public void setNotificationPublisher(NotificationPublisher notificationPublisher) {
+        logger.info("*** MyHolderAware#setNotificationPublisher***");
     }
 }
