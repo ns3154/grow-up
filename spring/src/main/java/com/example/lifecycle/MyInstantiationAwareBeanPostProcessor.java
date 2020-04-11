@@ -6,13 +6,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.MutablePropertyValues;
 import org.springframework.beans.PropertyValues;
-import org.springframework.beans.factory.SmartInitializingSingleton;
 import org.springframework.beans.factory.config.InstantiationAwareBeanPostProcessor;
-import org.springframework.beans.factory.config.SmartInstantiationAwareBeanPostProcessor;
 import org.springframework.stereotype.Component;
 
-import java.beans.PropertyDescriptor;
-import java.lang.reflect.Constructor;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -29,14 +25,15 @@ public class MyInstantiationAwareBeanPostProcessor implements InstantiationAware
 
     private Logger logger = LoggerFactory.getLogger(getClass());
 
-    private static Set<String> myBeanNames = new HashSet<>();
+    private static final Set<String> MY_BEAN_NAMES = new HashSet<>();
 
     static {
-        myBeanNames.add("a");
-        myBeanNames.add("b");
-        myBeanNames.add("c");
-        myBeanNames.add("user");
+        MY_BEAN_NAMES.add("a");
+        MY_BEAN_NAMES.add("b");
+        MY_BEAN_NAMES.add("c");
+        MY_BEAN_NAMES.add("user");
     }
+
     /**
      * bean 实例化之前操作
      *
@@ -60,7 +57,7 @@ public class MyInstantiationAwareBeanPostProcessor implements InstantiationAware
 //            return User.newBuilder().withAge(22222).withUserName("yang").withId(1L).build();
         }
 
-        if (myBeanNames.contains(beanName)) {
+        if (MY_BEAN_NAMES.contains(beanName)) {
             logger.info("***beanName:{} , MyInstantiationAwareBeanPostProcessor#postProcessBeforeInstantiation****",
                     beanName);
         }
@@ -70,7 +67,7 @@ public class MyInstantiationAwareBeanPostProcessor implements InstantiationAware
 
     @Override
     public boolean postProcessAfterInstantiation(Object bean, String beanName) throws BeansException {
-        if (myBeanNames.contains(beanName)) {
+        if (MY_BEAN_NAMES.contains(beanName)) {
             logger.info("***beanName:{} , MyInstantiationAwareBeanPostProcessor#postProcessAfterInstantiation****",
                     beanName);
         }
@@ -79,7 +76,7 @@ public class MyInstantiationAwareBeanPostProcessor implements InstantiationAware
 
     @Override
     public PropertyValues postProcessProperties(PropertyValues pvs, Object bean, String beanName) throws BeansException {
-        if (myBeanNames.contains(beanName)) {
+        if (MY_BEAN_NAMES.contains(beanName)) {
             logger.info("***beanName:{} ,MyInstantiationAwareBeanPostProcessor#postProcessProperties****", beanName);
         }
 
@@ -101,7 +98,7 @@ public class MyInstantiationAwareBeanPostProcessor implements InstantiationAware
 
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
-        if (myBeanNames.contains(beanName)) {
+        if (MY_BEAN_NAMES.contains(beanName)) {
             logger.info("***beanName:{} ,MyInstantiationAwareBeanPostProcessor#postProcessBeforeInitialization****",
                     beanName);
         }
@@ -110,7 +107,7 @@ public class MyInstantiationAwareBeanPostProcessor implements InstantiationAware
 
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-        if (myBeanNames.contains(beanName)) {
+        if (MY_BEAN_NAMES.contains(beanName)) {
             logger.info("***beanName:{} ,MyInstantiationAwareBeanPostProcessor#postProcessAfterInitialization****",
                     beanName);
 

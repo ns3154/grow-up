@@ -1,7 +1,13 @@
 package com.example.ioc.cyclicdependency.filed;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.SmartInitializingSingleton;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.DefaultApplicationArguments;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -18,7 +24,9 @@ import javax.annotation.Resource;
  **/
 @Component
 //@Scope(scopeName = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-public class A implements SmartInitializingSingleton {
+public class A implements SmartInitializingSingleton , CommandLineRunner, ApplicationRunner {
+
+    private Logger logger = LoggerFactory.getLogger(getClass());
 
     @Resource
     private B b;
@@ -28,6 +36,16 @@ public class A implements SmartInitializingSingleton {
     public A() {
         this.name = "A";
         System.out.println("实例化 A .....");
+    }
+
+    @Override
+    public void run(String... args) throws Exception {
+        logger.info("*** CommandLineRunner.A#run, args:{}***", args);
+    }
+
+    @Override
+    public void run(ApplicationArguments args) throws Exception {
+        logger.info("*** ApplicationRunner.A#run, args:{}***", args.getNonOptionArgs());
     }
 
     @Override

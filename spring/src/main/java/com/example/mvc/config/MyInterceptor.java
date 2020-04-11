@@ -1,5 +1,7 @@
 package com.example.mvc.config;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -15,6 +17,8 @@ import javax.servlet.http.HttpServletResponse;
  * @date 2020/03/23 16:19
  **/
 public class MyInterceptor implements HandlerInterceptor {
+
+    private Logger logger = LoggerFactory.getLogger(getClass());
 
     /**
      * 拦截逻辑处理
@@ -35,6 +39,8 @@ public class MyInterceptor implements HandlerInterceptor {
     public void postHandle(HttpServletRequest request, HttpServletResponse response,
                            Object handler, ModelAndView modelAndView)  {
         // nothing
+
+        logger.info("***MyInterceptor#postHandle***");
     }
 
     /**
