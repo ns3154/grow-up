@@ -39,5 +39,6 @@ public class Spring {
         logger.error(user.toString());
         logger.error(propertry.toString());
         logger.error(a.toString());
+        logger.error(a.toString());
     }
 }
