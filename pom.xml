@@ -27,6 +27,7 @@
 	    <module>dubbo</module>
         <module>demo</module>
 	    <module>spring</module>
+	    <module>design</module>
     </modules>
 
     <properties>
