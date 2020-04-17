@@ -24,7 +24,13 @@ spring:
         reset-enable: false
         login-username: admin
         login-password: admin
-
+  kafka:
+    bootstrap-servers:
+      - localhost:9092
+    consumer:
+      group-id: learn
+    listener:
+      missing-topics-fatal: false
 management:
   endpoints:
     web:

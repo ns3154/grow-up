@@ -1,5 +1,6 @@
 package com.example.mvc.config;
 
+import com.example.utils.TrackUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -39,6 +40,7 @@ public class ControllerAspect {
             throwable.printStackTrace();
         }
         logger.info("***** 切面:代码执行后 ******");
+        TrackUtils.printTrack("controller aop ....");
         return proceed;
     }
 }
