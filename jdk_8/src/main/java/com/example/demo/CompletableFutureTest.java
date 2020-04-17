@@ -1,12 +1,11 @@
 package com.example.demo;
 
+import com.google.common.base.Joiner;
+import org.apache.commons.lang3.concurrent.BasicThreadFactory;
 import org.junit.Test;
 
 import java.util.Random;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CompletionStage;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 import java.util.function.*;
 
 /**
@@ -18,6 +17,14 @@ import java.util.function.*;
  * @date 2020/03/27 00:47
  **/
 public class CompletableFutureTest {
+
+    private ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(5, 30, 60,TimeUnit.SECONDS,
+            new LinkedBlockingDeque<>(200),
+            new BasicThreadFactory.Builder()
+                    .namingPattern(Joiner.on("-")
+                            .join("my-executor-pool-", "%s"))
+                    .build(),
+            new ThreadPoolExecutor.CallerRunsPolicy());
 
 
     /**
@@ -40,12 +47,24 @@ public class CompletableFutureTest {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            System.out.println("runAsync线程:" + Thread.currentThread().getName());
             System.out.println("run end ...");
-        });
+        }, threadPoolExecutor);
 
         System.out.println("-----------------");
 
-        future.whenComplete((t, action) -> System.out.println("执行完成！"));
+        future.whenComplete((t, action) -> {
+            System.out.println("whenComplete线程:" + Thread.currentThread().getName());
+            System.out.println("执行完成！");
+        });
+
+        future.whenCompleteAsync(new BiConsumer<Void, Throwable>() {
+            @Override
+            public void accept(Void aVoid, Throwable throwable) {
+                System.out.println("whenCompleteAsync线程:" + Thread.currentThread().getName());
+                System.out.println("执行完成！");
+            }
+        });
         future.exceptionally(t -> {
             System.out.println("执行失败！"+t.getMessage());
             return null;

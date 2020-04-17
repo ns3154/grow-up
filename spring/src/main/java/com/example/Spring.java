@@ -2,6 +2,7 @@ package com.example;
 
 import com.example.aware.MyHolderAware;
 import com.example.config.MyPropertry;
+import com.example.event.EventBusCenter;
 import com.example.ioc.cyclicdependency.filed.A;
 import com.example.model.bean.User;
 import com.example.model.dto.UserDTO;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.Bean;
 
 import javax.annotation.Resource;
 
