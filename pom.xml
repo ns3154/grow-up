@@ -28,6 +28,7 @@
         <module>demo</module>
 	    <module>spring</module>
 	    <module>design</module>
+	    <module>algorithm</module>
     </modules>
 
     <properties>
