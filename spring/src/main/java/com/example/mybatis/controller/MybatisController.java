@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import javax.annotation.Resource;
 
 /**
@@ -40,7 +39,7 @@ public class MybatisController {
 
     @GetMapping("select")
     public ModelMessge<Test> select(Long id) {
-        Test test = testMapper.selectByPrimaryKey(id);
+        Test test = userService.select(id);
         return new ModelMessge<Test>().ok(test);
     }
 

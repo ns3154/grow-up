@@ -19,4 +19,11 @@ public interface UserService {
      * @return
      */
     Test create(Integer counts, Integer pNums);
+
+    /**
+     * 查询用户
+     * @param id 根据id
+     * @return
+     */
+    Test select(Long id);
 }

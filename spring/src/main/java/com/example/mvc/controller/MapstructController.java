@@ -5,13 +5,12 @@ import com.example.model.ModelMessge;
 import com.example.model.bo.UserBO;
 import com.example.model.dto.UserDTO;
 import com.example.model.vo.UserVO;
-import com.example.utils.Constants;
 import com.example.utils.TrackUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.Date;
@@ -32,8 +31,13 @@ public class MapstructController {
     @Resource
     private UserConverter userConverter;
 
+    @Value("${test.user.name}")
+    private String name;
+
     @GetMapping("dtoTovo")
     public ModelMessge<UserVO> dtoToVo(UserDTO dto) {
+        TrackUtils.printTrack("dtoToVo");
+        System.out.println(name);
         dto.setCreateTime(new Date());
         UserVO userVO = userConverter.dtoToVo(dto);
         return new ModelMessge<UserVO>().ok(userVO);
@@ -41,6 +45,8 @@ public class MapstructController {
 
     @GetMapping("monyToOne")
     public ModelMessge<UserVO> monyToOne(UserDTO dto, UserBO bo) {
+        TrackUtils.printTrack("monyToOne");
+        System.out.println(this.name);
         UserVO vo = userConverter.monyToOne(dto, bo);
         return new ModelMessge<UserVO>().ok(vo);
     }
