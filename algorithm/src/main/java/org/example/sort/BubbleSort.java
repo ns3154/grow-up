@@ -16,7 +16,11 @@ public class BubbleSort {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
-    private final int[] args = {8, 7, 5, 6, 4, 3, 2, 1, 0};
+    private final int[] args = {8,7, 5, 11, 4, 3, 2, 1, 0};
+
+    int loopCount = 0;
+
+    int changeCount = 0;
 
     public int manYiYouXuDu() {
         int lenght = args.length;
@@ -49,29 +53,29 @@ public class BubbleSort {
      * @date 2020/4/20 14:32
      * @return void
      */
+    // 45 66
     @Test
     public void maoPao() {
         int i1 = manYiYouXuDu();
         int i2 = youxudu();
         logger.info("需交换次数:{}", i1 - i2);
-        int counts = 0;
-        int changeNum = 0;
         for (int i = 0,size = args.length;i < size; i++) {
+            loopCount++;
             for (int j = i + 1; j < size; j++) {
                 int ii = args[i];
                 int jj = args[j];
                 if (ii > jj) {
                     args[i] = jj;
                     args[j] = ii;
-                    changeNum++;
+                    changeCount += 2;
                 }
-                counts++;
+                loopCount++;
             }
         }
 
 
         logger.info("排序完成:{}", args);
-        logger.info("实际循环次数:{}", counts);
-        logger.info("实际交换次数:{}", changeNum);
+        logger.info("实际循环次数:{}", loopCount);
+        logger.info("实际交换次数:{}", changeCount);
     }
 }
