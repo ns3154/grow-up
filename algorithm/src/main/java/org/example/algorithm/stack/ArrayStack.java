@@ -37,7 +37,7 @@ public class ArrayStack<T> {
         return (T) array[--count];
     }
 
-    public int count() {
+    public int size() {
         return count;
     }
 

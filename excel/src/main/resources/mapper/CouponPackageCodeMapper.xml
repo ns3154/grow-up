@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.excel.dao.CouponPackageCodeMapper">
+  <resultMap id="BaseResultMap" type="org.example.excel.domain.CouponPackageCode">
+    <!--@mbg.generated-->
+    <!--@Table baojia_bike.coupon_package_code-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="package_id" jdbcType="BIGINT" property="packageId" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="allow_multi_exchange" jdbcType="INTEGER" property="allowMultiExchange" />
+    <result column="exchanged_times" jdbcType="BIGINT" property="exchangedTimes" />
+    <result column="is_card" jdbcType="INTEGER" property="isCard" />
+    <result column="creator_id" jdbcType="BIGINT" property="creatorId" />
+    <result column="creator_name" jdbcType="VARCHAR" property="creatorName" />
+    <result column="creator_mobile" jdbcType="VARCHAR" property="creatorMobile" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, package_id, code, remark, allow_multi_exchange, exchanged_times, is_card, creator_id, 
+    creator_name, creator_mobile, create_time, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from baojia_bike.coupon_package_code
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from baojia_bike.coupon_package_code
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="org.example.excel.domain.CouponPackageCode" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into baojia_bike.coupon_package_code (package_id, code, remark, 
+      allow_multi_exchange, exchanged_times, is_card, 
+      creator_id, creator_name, creator_mobile, 
+      create_time, modify_time)
+    values (#{packageId,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{allowMultiExchange,jdbcType=INTEGER}, #{exchangedTimes,jdbcType=BIGINT}, #{isCard,jdbcType=INTEGER}, 
+      #{creatorId,jdbcType=BIGINT}, #{creatorName,jdbcType=VARCHAR}, #{creatorMobile,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="org.example.excel.domain.CouponPackageCode" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into baojia_bike.coupon_package_code
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="packageId != null">
+        package_id,
+      </if>
+      <if test="code != null and code != ''">
+        code,
+      </if>
+      <if test="remark != null and remark != ''">
+        remark,
+      </if>
+      <if test="allowMultiExchange != null">
+        allow_multi_exchange,
+      </if>
+      <if test="exchangedTimes != null">
+        exchanged_times,
+      </if>
+      <if test="isCard != null">
+        is_card,
+      </if>
+      <if test="creatorId != null">
+        creator_id,
+      </if>
+      <if test="creatorName != null and creatorName != ''">
+        creator_name,
+      </if>
+      <if test="creatorMobile != null and creatorMobile != ''">
+        creator_mobile,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="packageId != null">
+        #{packageId,jdbcType=BIGINT},
+      </if>
+      <if test="code != null and code != ''">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null and remark != ''">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="allowMultiExchange != null">
+        #{allowMultiExchange,jdbcType=INTEGER},
+      </if>
+      <if test="exchangedTimes != null">
+        #{exchangedTimes,jdbcType=BIGINT},
+      </if>
+      <if test="isCard != null">
+        #{isCard,jdbcType=INTEGER},
+      </if>
+      <if test="creatorId != null">
+        #{creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="creatorName != null and creatorName != ''">
+        #{creatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorMobile != null and creatorMobile != ''">
+        #{creatorMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.example.excel.domain.CouponPackageCode">
+    <!--@mbg.generated-->
+    update baojia_bike.coupon_package_code
+    <set>
+      <if test="packageId != null">
+        package_id = #{packageId,jdbcType=BIGINT},
+      </if>
+      <if test="code != null and code != ''">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null and remark != ''">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="allowMultiExchange != null">
+        allow_multi_exchange = #{allowMultiExchange,jdbcType=INTEGER},
+      </if>
+      <if test="exchangedTimes != null">
+        exchanged_times = #{exchangedTimes,jdbcType=BIGINT},
+      </if>
+      <if test="isCard != null">
+        is_card = #{isCard,jdbcType=INTEGER},
+      </if>
+      <if test="creatorId != null">
+        creator_id = #{creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="creatorName != null and creatorName != ''">
+        creator_name = #{creatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorMobile != null and creatorMobile != ''">
+        creator_mobile = #{creatorMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.example.excel.domain.CouponPackageCode">
+    <!--@mbg.generated-->
+    update baojia_bike.coupon_package_code
+    set package_id = #{packageId,jdbcType=BIGINT},
+      code = #{code,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      allow_multi_exchange = #{allowMultiExchange,jdbcType=INTEGER},
+      exchanged_times = #{exchangedTimes,jdbcType=BIGINT},
+      is_card = #{isCard,jdbcType=INTEGER},
+      creator_id = #{creatorId,jdbcType=BIGINT},
+      creator_name = #{creatorName,jdbcType=VARCHAR},
+      creator_mobile = #{creatorMobile,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into baojia_bike.coupon_package_code
+    (package_id, code, remark, allow_multi_exchange, exchanged_times, is_card, creator_id, 
+      creator_name, creator_mobile, create_time, modify_time)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.packageId,jdbcType=BIGINT}, #{item.code,jdbcType=VARCHAR}, #{item.remark,jdbcType=VARCHAR}, 
+        #{item.allowMultiExchange,jdbcType=INTEGER}, #{item.exchangedTimes,jdbcType=BIGINT}, 
+        #{item.isCard,jdbcType=INTEGER}, #{item.creatorId,jdbcType=BIGINT}, #{item.creatorName,jdbcType=VARCHAR}, 
+        #{item.creatorMobile,jdbcType=VARCHAR}, #{item.createTime,jdbcType=TIMESTAMP}, 
+        #{item.modifyTime,jdbcType=TIMESTAMP})
+    </foreach>
+  </insert>
+</mapper>
