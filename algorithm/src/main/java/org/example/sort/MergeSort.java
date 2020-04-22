@@ -4,11 +4,9 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.logging.Level;
-
 /**
  * <pre>
- *   归并排序
+ *   归并排序 --- 我的智商收到了极大地侮辱  一天没写出来
  * </pre>
  * @author 杨帮东
  * @since 1.0
@@ -18,7 +16,7 @@ public class MergeSort {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
-    private final int[] args = {8,7, 5, 11, 4, 3, 2, 9, 1,0};
+    private final int[] args = {8,7, 5, 11, 4, 3, 2, 1, 0};
 
     int loopCount = 0;
 
@@ -27,44 +25,59 @@ public class MergeSort {
 
     @Test
     public void mergeSort() {
-        mergeSort(args);
+
+        int[] tmp = new int[args.length];
+        sort(args, tmp);
+        logger.info("{}", tmp);
     }
 
-    private int[] mergeSort(int[] args) {
-        if  (args.length < 2) {
-            return args;
-        }
-        int length = args.length;
-        int m = length / 2;
-        int[] a1;
-        int[] a2;
-        a1 = new int[m];
-        System.arraycopy(args, 0, a1, 0, m);
-        if (length % 2 == 0) {
-            a2 = new int[m];
-            System.arraycopy(args, m, a2, 0, m);
-        } else {
-            a2 = new int[m + 1];
-            System.arraycopy(args, m, a2, 0, m + 1);
-        }
 
-        return mergeSort(a1, a2);
+    private void sort(int[] args, int[] tmp) {
+        sort(0, args.length - 1, args, tmp, "首次触发");
     }
 
-    public int[] mergeSort(int[] a1, int[] a2) {
-        int[] a = mergeSort(a1);
-        int[] b = mergeSort(a2);
 
-        int[] ab = new int[a1.length + a2.length];
-        if (a.length <= 2) {
-            for (int i = 0;i<a.length;i++) {
+    private void sort(int left, int right, int[] args, int[] tmp, String source) {
+        if (left < right) {
+            int mid = (left + right) / 2;
+            sort(left, mid, args, tmp, "left");
+            sort(mid + 1, right, args, tmp, "right");
+            merge(args, left, mid, right, tmp);
+            logger.info("递归:{}, left:{}, mid:{}, right:{}",source, left, mid, right);
+        }
 
+    }
+
+    private void merge(int[] args, int left, int mid, int right, int[] tmp) {
+        int l = left;
+        int r = mid + 1;
+        int t = 0;
+        while (l <= mid && r <= right) {
+            if (args[l] <= args[r]) {
+                tmp[t++] = args[l++];
+            } else {
+                tmp[t++] = args[r++];
             }
         }
 
-        return mergeSort(a, b);
-    }
+        ///将左边剩余元素填充进tmp中
+        while (l <= mid) {
+            tmp[t++] = args[l++];
+        }
 
+        // 将右序列剩余元素填充进tmp中
+        while (r <= right) {
+            tmp[t++] = args[r++];
+        }
+
+        t = 0;
+        while(left <= right){
+            args[left++] = tmp[t++];
+        }
+
+
+
+    }
 
 
 }
