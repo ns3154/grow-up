@@ -27,7 +27,7 @@ import java.util.List;
  **/
 public class ExcelUtil {
 
-    private Logger logger = LoggerFactory.getLogger(getClass());
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     private final String suf = ".xlsx";
 
@@ -43,7 +43,7 @@ public class ExcelUtil {
 
     ArrayList<Long> repeat = new ArrayList<>();
 
-    @Test
+//    @Test
     public void create() {
         WriteCellStyle headWriteCellStyle = new WriteCellStyle();
         headWriteCellStyle.setFillForegroundColor(IndexedColors.WHITE.getIndex());
@@ -67,11 +67,10 @@ public class ExcelUtil {
     public void check() {
         List<String> list = fileList();
         logger.info("文件数量:{}", list.size());
-//        for (String s : list) {
-//            logger.info("执行校验:{}", s);
-//            EasyExcel.read(s, RenRen.class, new ReadListener()).sheet().doRead();
-//        }
-        EasyExcel.read(list.get(0), RenRen.class, new ReadCheckListener()).sheet().doRead();
+        for (String s : list) {
+            logger.info("执行校验:{}", s);
+            EasyExcel.read(s, RenRen.class, new ReadCheckListener()).sheet().doRead();
+        }
 
     }
 
