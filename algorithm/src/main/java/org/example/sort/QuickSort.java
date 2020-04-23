@@ -4,6 +4,8 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 /**
  * <pre>
  *      快排
@@ -18,50 +20,63 @@ public class QuickSort {
 
     private final int[] args = {8, 7, 5, 11, 4, 3, 2, 1, 0};
 
+    AtomicInteger loopCount = new AtomicInteger(0);
+
+    AtomicInteger changeCount = new AtomicInteger(0);
+
     @Test
     public void sort() {
         int length = args.length;
-        quickSort(args, 0 , length - 1);
+        AtomicInteger counts = new AtomicInteger(0);
+        quickSort(args, 0 , length - 1, "开始", counts);
         logger.info("{}", args);
+        logger.info("循环次数:{}, 交换次数:{}", loopCount.get(), changeCount.get());
     }
 
-    private void quickSort(int[] args, int l, int r) {
+    private void quickSort(int[] args, int l, int r, String source, AtomicInteger counts) {
+        logger.info("当前source:{}, left:{}, right:{}, lenght:{}, counts:{}",source,  l ,r, args.length, counts.getAndIncrement());
+        int start = partition(args, l, r, source);
 
-        if (l > r) {
-            return;
+        if (l < start - 1) {
+            quickSort(args, l, start - 1, "left", counts);
         }
+        if (start + 1 < r) {
+            quickSort(args,  start + 1, r, "right", counts);
+        }
+    }
 
-        int sl = l;
-        int sr = r;
+    private int partition(int[] args, int l, int r, String source) {
+        logger.warn("处理:{}", source);
+        int start = l;
+        int end = r;
         int tmp = args[l];
 
-        while (sl < sr) {
-
+        while (start < end) {
             // 找出 右边 小于 tmp 的 下标
-            while (tmp <= args[sr] && sl < sr) {
-                sr--;
+            while (tmp <= args[end] && start < end) {
+                end--;
+                loopCount.incrementAndGet();
             }
 
             // 从左边递增 找出大于tmp的下标
-            while (tmp >= args[sl] && sl < sr) {
-                sl++;
+            while (tmp >= args[start] && start < end) {
+                start++;
+                loopCount.incrementAndGet();
             }
             // 数据交换
-            int t = args[sl];
-            args[sl] = args[sr];
-            args[sr] = t;
+            int t = args[start];
+            args[start] = args[end];
+            args[end] = t;
+            loopCount.incrementAndGet();
+            changeCount.addAndGet(2);
         }
 
         // 基准数 调换
-        args[l] = args[sl];
-        args[sl] = tmp;
-
-        quickSort(args, l, sl - 1);
-        quickSort(args,  sr + 1, r);
-
-
+        args[l] = args[start];
+        args[start] = tmp;
+        changeCount.addAndGet(2);
+        return start;
     }
-
 
 
 }
