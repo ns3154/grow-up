@@ -1,0 +1,126 @@
+package org.example.search;
+
+import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ * <pre>
+ *
+ * </pre>
+ * @author 杨帮东
+ * @since 1.0
+ * @date 2020/04/26 15:43
+ **/
+public class BinarySearch {
+
+    private final Logger logger = LoggerFactory.getLogger(getClass());
+
+    private final int[] array = {9,9,9,9,9,9,9,13,15};
+
+    @Test
+    public void search() {
+        int searchNum = 9;
+        logger.info("待查找数组:{}, 目标数:{}", array, searchNum);
+
+        int p = searchByLoop(array, searchNum);
+        logger.info("searchByLoop下标:{}", p);
+
+        p = searchByRecursion(array, searchNum, 0, array.length - 1, 0);
+        logger.info("searchByRecursion下标:{}", p);
+
+        p = searchLast(array, searchNum, 0, array.length - 1);
+        logger.info("searchFirst下标:{}", p);
+
+        p = searchFirst_1(array, searchNum, 0, array.length - 1);
+        logger.info("searchFirst_1下标:{}", p);
+    }
+
+    private int searchByLoop(int[] array, int searchNum) {
+        int left = 0;
+        int right = array.length - 1;
+        int count = 0;
+        while (left <= right) {
+            count++;
+            int p =  (left + right) >> 1;
+            if (array[p] == searchNum) {
+                logger.info("执行次数:{}", count);
+                logger.info("找到了,下标为:{}", p);
+                return p;
+            } else if (array[p] < searchNum) {
+                left = p + 1;
+            } else {
+                right = p - 1;
+            }
+        }
+        logger.info("执行次数:{}", count);
+        return -1;
+    }
+
+
+    private int searchByRecursion(int[] array, int searchNum, int left, int right, int count) {
+        if (left > right) {
+            return - 1;
+        }
+        count++;
+        int p =  (left + right) >> 1;
+        if (array[p] == searchNum) {
+            logger.info("执行次数:{}", count);
+            logger.info("找到了,下标为:{}", p);
+            return p;
+        } else if (array[p] < searchNum) {
+            left = p + 1;
+        } else {
+            right = p - 1;
+        }
+        logger.info("执行次数:{}", count);
+        return searchByRecursion(array, searchNum, left, right, count);
+    }
+
+    /**
+     * 查找第一个出现的目标值
+     * @author 杨帮东
+     * @since 1.0
+     * @date 2020/4/26 17:15
+     * @return int
+     */
+    private int searchLast(int[] array, int searchNum, int left, int right) {
+        if (left > right) {
+            return - 1;
+        }
+        int p =  (left + right) >> 1;
+
+
+        if (array[p] > searchNum) {
+            right = p - 1;
+        } else if (array[p] < searchNum){
+            left = p + 1;
+        } else {
+            if (array[p + 1] != searchNum || p == array.length - 1) {
+                return p;
+            } else {
+                left = p + 1;
+            }
+        }
+        return searchLast(array, searchNum, left, right);
+    }
+
+    private int searchFirst_1(int[] array, int searchNum, int left, int right) {
+        if (left > right) {
+            return - 1;
+        }
+        int p =  (left + right) >> 1;
+
+
+        if (array[p] >= searchNum) {
+            right = p - 1;
+        } else {
+            left = p + 1;
+        }
+
+        if(array[left] == searchNum) {
+            return left;
+        }
+        return searchFirst_1(array, searchNum, left, right);
+    }
+}

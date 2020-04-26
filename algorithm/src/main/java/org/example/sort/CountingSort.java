@@ -30,37 +30,28 @@ public class CountingSort {
             }
         }
         int[] c = new int[max + 1];
-        logger.info("{}", args);
+        logger.info("待排序数据:{}", args);
         // 将数组的参数作为 c数组的下标,多个相同则++
         for (int arg : args) {
             c[arg]++;
         }
-
-        logger.info("c:{}", c);
-        // 计算 a[i] 比 a[i-1] 多出多少
+        logger.info("以数据为下标,并计算个数,新数组:c:{}", c);
+        // 计算 a[i] 比 a[i-1] 多出多少 包涵自身
         for (int i = 1; i <= max; i++) {
             c[i] = c[i - 1] + c[i];
         }
+        logger.info("计算 下标n 比 n-1 多多少:{}", c);
+
         int[] newArray = new int[args.length];
 
-        logger.info("c:{}", c);
-
-        for (int i = args.length - 1; i >= 0; --i) {
-            int index = c[args[i]] - 1;
-            newArray[index] = args[i];
-            c[args[i]]--;
+        int le = args.length;
+        while (--le >= 0) {
+            int t = c[args[le]] -1;
+            newArray[t] = args[le];
+            c[args[le]]--;
         }
 
-//
-//        int index = 0;
-//        for (int i = 0;i < c.length;i++) {
-//            int tmp = c[i];
-//            while (tmp > 0) {
-//                newArray[index++] = i;
-//                tmp--;
-//            }
-//        }
-        logger.info("{}", newArray);
+        logger.info("排序后数据:{}", newArray);
 
     }
 
