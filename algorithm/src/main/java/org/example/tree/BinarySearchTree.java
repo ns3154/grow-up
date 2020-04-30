@@ -15,6 +15,10 @@ public class BinarySearchTree {
 
     private Node root;
 
+    public Node getRoot() {
+        return root;
+    }
+
     public BinarySearchTree(int index) {
         root = new Node(index);
     }
@@ -71,6 +75,15 @@ public class BinarySearchTree {
 
 
 
+    }
+
+    public int height(Node root) {
+        if (null == root) {
+            return 0;
+        }
+        int left = height(root.getLeft());
+        int right = height(root.getRight());
+        return Math.max(left, right) + 1;
     }
 
     /**

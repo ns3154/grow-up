@@ -30,7 +30,8 @@ public class TreeTest {
 
         set.forEach(tree::insert);
 
-        List<String> show = tree.preOrder();
-        show.forEach(System.out::println);
+//        List<String> show = tree.preOrder();
+//        show.forEach(System.out::println);
+        System.out.println(tree.height(tree.getRoot()));
     }
 }
