@@ -22,7 +22,7 @@
         <module>redis</module>
 	    <module>async</module>
 	    <module>proxy</module>
-        <module>jdk_8</module>
+        <module>basics</module>
         <module>concurrent</module>
 	    <module>dubbo</module>
         <module>demo</module>

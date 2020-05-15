@@ -9,11 +9,17 @@
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	
-	<artifactId>jdk_8</artifactId>
+	<artifactId>basics</artifactId>
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.jetbrains</groupId>
+			<artifactId>annotations</artifactId>
+			<version>15.0</version>
+			<scope>compile</scope>
 		</dependency>
 	</dependencies>
 

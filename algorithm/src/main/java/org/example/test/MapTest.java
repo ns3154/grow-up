@@ -1,9 +1,11 @@
-package org.example;
+package org.example.test;
 
 import org.junit.Test;
 
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.TreeSet;
 
 /**
  * <pre>
@@ -18,7 +20,7 @@ public class MapTest {
 
     @Test
     public void linkedHashMapTest() {
-        // 顺序打印
+//         顺序打印
         Map<Integer, Integer> linked = new LinkedHashMap<>();
         linked.put(1, 11);
         linked.put(7, 11);
