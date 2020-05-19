@@ -31,19 +31,21 @@ public class ExcelUtil {
 
     private final String suf = ".xlsx";
 
-    private final String name = "汉源-人民4系-" + NUM + suf;
+    private final String name = "电子兑换码-" + NUM + suf;
 
-    private static final Integer NUM = 9500;
+    private static final Integer NUM = 10010;
 
-    private final String source = "C:\\Users\\Ns\\Desktop\\90w\\source\\" + name;
+    private final String source = "C:\\Users\\Ns\\Desktop\\1w\\source\\" + name;
 
-    private static final String USE = "C:\\Users\\Ns\\Desktop\\90w\\use";
+    private static final String USE = "C:\\Users\\Ns\\Desktop\\1w\\use";
 
-    HashSet<Long> set = new HashSet<>(10000);
+    HashSet<Long> set = new HashSet<>(20000);
 
     ArrayList<Long> repeat = new ArrayList<>();
 
-//    @Test
+    private static final  String PACKAGE_ID = "4";
+
+    @Test
     public void create() {
         WriteCellStyle headWriteCellStyle = new WriteCellStyle();
         headWriteCellStyle.setFillForegroundColor(IndexedColors.WHITE.getIndex());
@@ -57,7 +59,7 @@ public class ExcelUtil {
                 contentWriteCellStyle);
         EasyExcel.write(source, RenRen.class)
                 .registerWriteHandler(horizontalCellStyleStrategy)
-                .sheet("新手优惠券券包兑换码").doWrite(data());
+                .sheet("电子兑换码").doWrite(data());
 
         logger.info("生成:{}, 重复:{}", set.size(), repeat.size());
         logger.info("生成文件:{}", source);
@@ -79,9 +81,9 @@ public class ExcelUtil {
         for (int i = 0; i < NUM; i++) {
             Long id = SnowflakeUtil.getId();
             RenRen renren = new RenRen();
-            renren.setPackageId("3");
+            renren.setPackageId(PACKAGE_ID);
             renren.setCode(id + "");
-            renren.setCreateTime("2020-04-21");
+            renren.setCreateTime("2020-05-20");
             renren.setCreator("大雄");
             list.add(renren);
             if (set.contains(id)) {

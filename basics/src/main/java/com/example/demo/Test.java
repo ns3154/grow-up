@@ -2,6 +2,10 @@ package com.example.demo;
 
 import com.example.demo.singleton.Singleton;
 
+import javax.swing.undo.CannotUndoException;
+import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
+
 /**
  * <pre>
  *
@@ -13,8 +17,8 @@ import com.example.demo.singleton.Singleton;
 public class Test {
 
     public static void main(String[] args) {
-        System.out.println(test1());
-//        System.out.println(test2().getCode());
+        ConcurrentHashMap<String, String> map = new ConcurrentHashMap<>();
+        map.put("sss", "ddd");
     }
 
     private static int test() {

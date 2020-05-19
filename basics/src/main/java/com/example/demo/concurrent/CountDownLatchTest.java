@@ -29,11 +29,11 @@ public class CountDownLatchTest {
         for (int i = 0;i < 5;i++) {
             int finalI = i;
             executor.execute(() -> {
-                try {
-                    Thread.sleep(2000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+//                try {
+//                    Thread.sleep(2000);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
                 cdl.countDown();
                 logger.info("执行:{}", finalI);
 
