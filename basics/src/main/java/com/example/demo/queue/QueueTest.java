@@ -24,15 +24,15 @@ public class QueueTest {
         LinkedBlockingQueue<String> queue = new LinkedBlockingQueue<>(10);
         queue.add("a");
         boolean sss = queue.offer("b");
-        logger.info("offer:{}", sss);
+        logger.error("offer:{}", sss);
 
         try {
             queue.put("c");
             String take = queue.take();
-            logger.info("take:{}", take);
+            logger.error("take:{}", take);
             String poll = queue.poll();
-            logger.info("poll:{}", poll);
-            logger.info("queue:{}", queue.size());
+            logger.error("poll:{}", poll);
+            logger.error("queue:{}", queue.size());
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

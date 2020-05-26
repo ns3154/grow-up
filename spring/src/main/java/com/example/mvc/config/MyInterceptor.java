@@ -40,7 +40,7 @@ public class MyInterceptor implements HandlerInterceptor {
                            Object handler, ModelAndView modelAndView)  {
         // nothing
 
-        logger.info("***MyInterceptor#postHandle***");
+        logger.error("***MyInterceptor#postHandle***");
     }
 
     /**

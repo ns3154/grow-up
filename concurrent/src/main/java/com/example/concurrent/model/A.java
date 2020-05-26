@@ -24,13 +24,13 @@ public class A {
 
     public void sss() {
         synchronized (lock) {
-            logger.info("开始....");
+            logger.error("开始....");
             try {
                 lock.wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            logger.info("结束...");
+            logger.error("结束...");
         }
     }
 

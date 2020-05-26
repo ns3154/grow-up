@@ -55,7 +55,7 @@ public class ReadToDbListener extends AnalysisEventListener<RenRen> {
         }
         ExcelService bean = SpringContextUtil.getBean();
         int i = bean.create(useList);
-        logger.info("要插入:{}, 实际插入:{}", list.size(), i);
+        logger.error("要插入:{}, 实际插入:{}", list.size(), i);
     }
 
     /**

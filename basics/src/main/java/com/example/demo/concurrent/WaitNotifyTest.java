@@ -45,8 +45,8 @@ public class WaitNotifyTest {
 
         private void a() {
             synchronized (lock) {
-                logger.info("进入{}, 方法代码块", "a");
-                logger.info("a 执行唤醒");
+                logger.error("进入{}, 方法代码块", "a");
+                logger.error("a 执行唤醒");
                 lock.notify();
             }
         }
@@ -64,13 +64,13 @@ public class WaitNotifyTest {
 
         private void b() {
             synchronized (lock) {
-                logger.info("进入{}, 方法代码块", "b");
+                logger.error("进入{}, 方法代码块", "b");
                 try {
                     lock.wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                logger.info("b 被唤醒");
+                logger.error("b 被唤醒");
             }
         }
     }

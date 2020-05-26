@@ -27,7 +27,7 @@ public class UserServiceImpl implements DubboTestServiceApi {
 
     @Override
     public ModelMessage<UserDTO> userById(Long userId) {
-        logger.info("*** invoker getUserById ****");
+        logger.error("*** invoker getUserById ****");
         ModelMessage<UserDTO> model = new ModelMessage<>();
         model.setCode(200);
         model.setMessage("ok");
@@ -37,7 +37,7 @@ public class UserServiceImpl implements DubboTestServiceApi {
 
     @Override
     public ModelMessage<UserDTO> byZero(Long userId) {
-        logger.info("************ byZero: {}", userId);
+        logger.error("************ byZero: {}", userId);
         int i = 1 / 0;
 //        if (failover == 1) {
 //            try {
@@ -55,7 +55,7 @@ public class UserServiceImpl implements DubboTestServiceApi {
 
     @Override
     public ModelMessage<UserDTO> timeOut(Long userId) {
-        logger.info("************ byZero: {}", userId);
+        logger.error("************ byZero: {}", userId);
         try {
             Thread.sleep(10000);
         } catch (InterruptedException e) {
@@ -70,7 +70,7 @@ public class UserServiceImpl implements DubboTestServiceApi {
 
     @Override
     public ModelMessage<UserDTO> randomTimeOut(Long userId) {
-        logger.info("************ randomTimeOut: {}", userId);
+        logger.error("************ randomTimeOut: {}", userId);
 
         if (num == 1) {
             try {

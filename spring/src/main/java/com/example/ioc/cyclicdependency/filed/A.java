@@ -40,12 +40,12 @@ public class A implements SmartInitializingSingleton , CommandLineRunner, Applic
 
     @Override
     public void run(String... args) throws Exception {
-        logger.info("*** CommandLineRunner.A#run, args:{}***", args);
+        logger.error("*** CommandLineRunner.A#run, args:{}***", args);
     }
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        logger.info("*** ApplicationRunner.A#run, args:{}***", args.getNonOptionArgs());
+        logger.error("*** ApplicationRunner.A#run, args:{}***", args.getNonOptionArgs());
     }
 
     @Override

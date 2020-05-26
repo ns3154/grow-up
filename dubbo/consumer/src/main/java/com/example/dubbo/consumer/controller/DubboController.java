@@ -48,31 +48,31 @@ public class DubboController {
     @GetMapping("byZero")
     public ModelMessage<UserDTO> byZero(Long userId) {
         ModelMessage<UserDTO> failover = dubboTestServiceApi.byZero(userId);
-        logger.info("*** byZero result:{}", JSON.toJSONString(failover));
+        logger.error("*** byZero result:{}", JSON.toJSONString(failover));
         return failover;
     }
 
     @GetMapping("timeOut")
     public ModelMessage<UserDTO> timeOut(Long userId) {
         ModelMessage<UserDTO> failover = dubboTestServiceApi.timeOut(userId);
-        logger.info("*** timeOut result:{}", JSON.toJSONString(failover));
+        logger.error("*** timeOut result:{}", JSON.toJSONString(failover));
         return failover;
     }
 
     @GetMapping("randomTimeOut")
     public ModelMessage<UserDTO> randomTimeOut(Long userId) {
         ModelMessage<UserDTO> failover = dubboTestServiceApi.randomTimeOut(userId);
-        logger.info("*** randomTimeOut result:{}", JSON.toJSONString(failover));
+        logger.error("*** randomTimeOut result:{}", JSON.toJSONString(failover));
         return failover;
     }
 
     @GetMapping("getUserByAsync")
     public ModelMessage<UserDTO> getUserByAsync(Long userId) {
         CompletableFuture<ModelMessage<UserDTO>> userIdByAsync = asyncDubboServiceTestApi.getUserIdByAsync(userId);
-        logger.info("**** getUserByAsync 执行完成 *********");
+        logger.error("**** getUserByAsync 执行完成 *********");
         try {
             ModelMessage<UserDTO> userDTOModelMessage = userIdByAsync.get();
-            logger.info("*** getUserByAsync result:{}", JSON.toJSONString(userDTOModelMessage));
+            logger.error("*** getUserByAsync result:{}", JSON.toJSONString(userDTOModelMessage));
             return userDTOModelMessage;
         } catch (InterruptedException e) {
             logger.error("*** error : {}", e);
@@ -86,7 +86,7 @@ public class DubboController {
     @GetMapping("noVoidByAsync")
     public ModelMessage<UserDTO> noVoidByAsync(Long userId) {
         asyncDubboServiceTestApi.noVoidAsync(userId);
-        logger.info("*** noVoidByAsync ok");
+        logger.error("*** noVoidByAsync ok");
         return new ModelMessage<>();
 
     }
@@ -95,7 +95,7 @@ public class DubboController {
     public ModelMessage<UserDTO> getUserByAsyncForMyThread(Long userId) throws ExecutionException, InterruptedException {
         CompletableFuture<ModelMessage<UserDTO>> userByAsyncForMyThread =
                 asyncDubboServiceTestApi.getUserByAsyncForMyThread(userId);
-        logger.info("*** getUserByAsyncForMyThread consumer start");
+        logger.error("*** getUserByAsyncForMyThread consumer start");
         return userByAsyncForMyThread.get();
     }
 

@@ -32,7 +32,7 @@ public class AsyncTask {
             e.printStackTrace();
         }
         int i = Integer.parseInt(s);
-        logger.info("********** test :{}*********", s + "asyncTest");
+        logger.error("********** test :{}*********", s + "asyncTest");
     }
 
     public void abc(String s) {
@@ -42,7 +42,7 @@ public class AsyncTask {
             e.printStackTrace();
         }
         int i = Integer.parseInt(s);
-        logger.info("********** test :{}*********", s + "abc");
+        logger.error("********** test :{}*********", s + "abc");
     }
 
 

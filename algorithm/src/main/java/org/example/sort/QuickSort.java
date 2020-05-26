@@ -29,12 +29,12 @@ public class QuickSort {
         int length = args.length;
         AtomicInteger counts = new AtomicInteger(0);
         quickSort(args, 0, length - 1, "开始", counts);
-        logger.info("{}", args);
-        logger.info("循环次数:{}, 交换次数:{}", loopCount.get(), changeCount.get());
+        logger.error("{}", args);
+        logger.error("循环次数:{}, 交换次数:{}", loopCount.get(), changeCount.get());
     }
 
     private void quickSort(int[] args, int l, int r, String source, AtomicInteger counts) {
-        logger.info("当前source:{}, left:{}, right:{}, lenght:{}, counts:{}", source, l, r, args.length,
+        logger.error("当前source:{}, left:{}, right:{}, lenght:{}, counts:{}", source, l, r, args.length,
                 counts.getAndIncrement());
         int start = partition(args, l, r, source);
 

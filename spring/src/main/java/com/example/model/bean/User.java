@@ -1,5 +1,10 @@
 package com.example.model.bean;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.SmartInitializingSingleton;
+
+
 /**
  * <pre>
  *
@@ -8,7 +13,9 @@ package com.example.model.bean;
  * @since 1.0
  * @date 2020/03/31 16:30
  **/
-public class User {
+public class User implements SmartInitializingSingleton {
+
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     private Long id;
 
@@ -19,6 +26,7 @@ public class User {
     private String desc;
 
     private User(Builder builder) {
+        logger.error("user 实例化");
         setId(builder.id);
         setUserName(builder.userName);
         setAge(builder.age);
@@ -128,5 +136,16 @@ public class User {
     @Override
     public String toString() {
         return "User{" + "id=" + id + ", userName='" + userName + '\'' + ", age=" + age + ", desc='" + desc + '\'' + '}';
+    }
+
+    /**
+     * 在单例预实例化阶段的末尾调用，并保证已经创建了所有常规的单例bean。ListableBeanFactory。
+     * 该方法中的getBeansOfType调用不会在引导过程中引发意外的副作用。
+     * 注意:这个回调不会在BeanFactory引导后按需延迟初始化单例bean，也不会在任何其他bean作用域触发。
+     *      对于仅具有特定引导语义的bean，请小心使用它
+     */
+    @Override
+    public void afterSingletonsInstantiated() {
+        logger.error("user.afterSingletonsInstantiated()");
     }
 }

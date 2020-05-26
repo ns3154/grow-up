@@ -24,7 +24,7 @@ public class KafkaListenerService {
     @KafkaListener(topics = "TEST")
     private void listener(ConsumerRecord<String, String> consumerRecord) {
         TrackUtils.printTrack("listener");
-        logger.info("**** listener:{}****", consumerRecord);
+        logger.error("**** listener:{}****", consumerRecord);
     }
 
 }

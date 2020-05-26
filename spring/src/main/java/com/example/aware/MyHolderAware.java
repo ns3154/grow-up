@@ -4,16 +4,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.*;
+import org.springframework.beans.factory.config.*;
 import org.springframework.context.*;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.weaving.LoadTimeWeaverAware;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.instrument.classloading.LoadTimeWeaver;
-import org.springframework.jca.context.BootstrapContextAware;
 import org.springframework.jmx.export.notification.NotificationPublisher;
 import org.springframework.jmx.export.notification.NotificationPublisherAware;
-import org.springframework.stereotype.Component;
 import org.springframework.web.context.ServletConfigAware;
 import org.springframework.web.context.ServletContextAware;
 
@@ -30,10 +29,12 @@ import javax.servlet.ServletContext;
  * @date 2020/04/07 14:59
  **/
 @Configuration
-public class MyHolderAware implements BeanNameAware , BeanClassLoaderAware, BeanFactoryAware, EnvironmentAware,
-        InitializingBean, SmartInitializingSingleton, DisposableBean, LoadTimeWeaverAware,
+public class MyHolderAware implements BeanFactoryPostProcessor, BeanPostProcessor, DestructionAwareBeanPostProcessor,
+        BeanNameAware , BeanClassLoaderAware,InitializingBean, InstantiationAwareBeanPostProcessor,
+        BeanFactoryAware, EnvironmentAware, SmartInitializingSingleton, DisposableBean, LoadTimeWeaverAware,
         ResourceLoaderAware, ServletConfigAware, ServletContextAware, MessageSourceAware,
         ApplicationEventPublisherAware, NotificationPublisherAware /**,BootstrapContextAware*/
+
 {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
@@ -50,11 +51,12 @@ public class MyHolderAware implements BeanNameAware , BeanClassLoaderAware, Bean
 
     public MyHolderAware() {
         this.desc = "desc 1";
-        logger.info("***** MyHolderAware 初始化***");
+        logger.error("***** MyHolderAware 初始化***");
     }
 
     @Override
     public void setBeanName(String name) {
+        logger.error("MyHolderAware.setBeanName");
         this.beanName = name;
     }
 
@@ -64,32 +66,35 @@ public class MyHolderAware implements BeanNameAware , BeanClassLoaderAware, Bean
      */
     @Override
     public void setBeanClassLoader(ClassLoader classLoader) {
+        logger.error("MyHolderAware.setBeanClassLoader");
         this.classLoader = classLoader;
     }
 
     @Override
     public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
+        logger.error("MyHolderAware.setBeanFactory");
         this.beanFactory = beanFactory;
     }
 
     @Override
     public void setEnvironment(Environment environment) {
+        logger.error("MyHolderAware.setEnvironment");
         this.environment = environment;
     }
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        logger.info("*** MyHolderAware#afterPropertiesSet()**** ");
+        logger.error("*** MyHolderAware#afterPropertiesSet()**** ");
     }
 
     @Override
     public void afterSingletonsInstantiated() {
-        logger.info("*** MyHolderAware#afterSingletonsInstantiated()#desc:{}**** ", desc);
+        logger.error("*** MyHolderAware#afterSingletonsInstantiated()#desc:{}**** ", desc);
     }
 
     @Override
     public void destroy() throws Exception {
-        logger.info("*** MyHolderAware#destroy()**** ");
+        logger.error("*** MyHolderAware#destroy()**** ");
     }
 
     public String getDesc() {
@@ -111,7 +116,7 @@ public class MyHolderAware implements BeanNameAware , BeanClassLoaderAware, Bean
      */
     @Override
     public void setLoadTimeWeaver(LoadTimeWeaver loadTimeWeaver) {
-        logger.info("*** MyHolderAware#setLoadTimeWeaver***");
+        logger.error("*** MyHolderAware#setLoadTimeWeaver***");
     }
 
 //    /**
@@ -120,7 +125,7 @@ public class MyHolderAware implements BeanNameAware , BeanClassLoaderAware, Bean
 //     */
 //    @Override
 //    public void setBootstrapContext(javax.resource.spi.BootstrapContext bootstrapContext) {
-//        logger.info("*** MyHolderAware#setBootstrapContext***");
+//        logger.error("*** MyHolderAware#setBootstrapContext***");
 //    }
 
     /**
@@ -129,31 +134,60 @@ public class MyHolderAware implements BeanNameAware , BeanClassLoaderAware, Bean
      */
     @Override
     public void setResourceLoader(ResourceLoader resourceLoader) {
-        logger.info("*** MyHolderAware#setResourceLoader***");
+        logger.error("*** MyHolderAware#setResourceLoader***");
     }
 
     @Override
     public void setServletConfig(ServletConfig servletConfig) {
-        logger.info("*** MyHolderAware#setServletConfig***");
+        logger.error("*** MyHolderAware#setServletConfig***");
     }
 
     @Override
     public void setServletContext(ServletContext servletContext) {
-        logger.info("*** MyHolderAware#setServletContext***");
+        logger.error("*** MyHolderAware#setServletContext***");
     }
 
     @Override
     public void setApplicationEventPublisher(ApplicationEventPublisher applicationEventPublisher) {
-        logger.info("*** MyHolderAware#setApplicationEventPublisher***");
+        logger.error("*** MyHolderAware#setApplicationEventPublisher***");
     }
 
     @Override
     public void setMessageSource(MessageSource messageSource) {
-        logger.info("*** MyHolderAware#setMessageSource***");
+        logger.error("*** MyHolderAware#setMessageSource***");
     }
 
     @Override
     public void setNotificationPublisher(NotificationPublisher notificationPublisher) {
-        logger.info("*** MyHolderAware#setNotificationPublisher***");
+        logger.error("*** MyHolderAware#setNotificationPublisher***");
+    }
+
+
+    @Override
+    public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
+        logger.error("*** MyHolderAware#postProcessBeanFactory***");
+    }
+
+    @Override
+    public void postProcessBeforeDestruction(Object bean, String beanName) throws BeansException {
+        if (beanName.equals("user")) {
+            logger.error("*** MyHolderAware#postProcessBeforeDestruction***");
+        }
+    }
+
+    @Override
+    public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+        if (beanName.equals("user")) {
+            logger.error("*** MyHolderAware#postProcessBeforeInitialization***");
+        }
+        return bean;
+    }
+
+    @Override
+    public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+        if (beanName.equals("user")) {
+            logger.error("*** MyHolderAware#postProcessAfterInitialization***");
+        }
+        return bean;
     }
 }

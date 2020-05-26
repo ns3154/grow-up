@@ -22,7 +22,7 @@ public class MyDestructionAwareBeanPostProcessor implements DestructionAwareBean
 
     @Override
     public void postProcessBeforeDestruction(Object bean, String beanName) throws BeansException {
-        logger.info("** {}:销毁前***", beanName);
+        logger.error("** {}:销毁前***", beanName);
     }
 
     @Override

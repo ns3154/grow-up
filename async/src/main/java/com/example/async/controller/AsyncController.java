@@ -35,14 +35,14 @@ public class AsyncController {
     @GetMapping("cglib")
     public Object cglib(String s) {
         asyncTask.abc(s);
-        logger.info("********** cglib controller 执行完毕 返回 *********");
+        logger.error("********** cglib controller 执行完毕 返回 *********");
         return s;
     }
 
     @GetMapping("jdk")
     public Object jdk(String s) {
         asyncService.interfaceAsyncTest(s);
-        logger.info("********** jdk controller 执行完毕 返回 *********");
+        logger.error("********** jdk controller 执行完毕 返回 *********");
         return s;
     }
 

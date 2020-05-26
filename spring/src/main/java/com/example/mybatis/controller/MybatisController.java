@@ -28,7 +28,7 @@ public class MybatisController {
 
     public MybatisController() {
         //nothing
-        logger.info("mybatisController 初始化....");
+        logger.error("mybatisController 初始化....");
     }
 
     @Resource

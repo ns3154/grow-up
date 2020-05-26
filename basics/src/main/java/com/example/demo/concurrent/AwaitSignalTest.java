@@ -48,14 +48,14 @@ public class AwaitSignalTest {
         private void a() {
             lock.lock();
             try {
-                logger.info("a() 进入await().....");
+                logger.error("a() 进入await().....");
                 condition.await();
-                logger.info("a() 被唤醒.....");
+                logger.error("a() 被唤醒.....");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } finally {
                 lock.unlock();
-                logger.info("a() 释放锁.....");
+                logger.error("a() 释放锁.....");
             }
         }
 
@@ -74,12 +74,12 @@ public class AwaitSignalTest {
         private void b() {
             lock.lock();
             try {
-                logger.info("进入b() 方法,准备唤醒A.a()....");
+                logger.error("进入b() 方法,准备唤醒A.a()....");
                 condition.signal();
-                logger.info("b方法执行完唤醒...");
+                logger.error("b方法执行完唤醒...");
             } finally {
                 lock.unlock();
-                logger.info("b方法释放锁...");
+                logger.error("b方法释放锁...");
             }
         }
     }

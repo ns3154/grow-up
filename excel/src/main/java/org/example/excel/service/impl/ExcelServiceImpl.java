@@ -40,13 +40,13 @@ public class ExcelServiceImpl implements ExcelService {
                 int j = couponPackageCodeMapper.batchInsert(l);
                 num += j;
                 l.clear();
-                logger.info("执行分页插入,当前插入:{}, 总插入:{}, 总共需要插入:{}", j, num, size);
+                logger.error("执行分页插入,当前插入:{}, 总插入:{}, 总共需要插入:{}", j, num, size);
             }
 
             if (i == size -1 && !l.isEmpty()) {
                 int j = couponPackageCodeMapper.batchInsert(l);
                 num += j;
-                logger.info("执行分页插入,当前插入:{}, 总插入:{}, 总共需要插入:{}", j, num, size);
+                logger.error("执行分页插入,当前插入:{}, 总插入:{}, 总共需要插入:{}", j, num, size);
             }
         }
         return num;

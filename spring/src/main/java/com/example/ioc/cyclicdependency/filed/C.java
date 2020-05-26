@@ -17,7 +17,7 @@ import javax.annotation.Resource;
  * @since 1.0
  * @date 2020/04/09 15:03
  **/
-@Component
+//@Component
 //@Scope(scopeName = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class C implements SmartInitializingSingleton {
 

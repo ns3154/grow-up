@@ -45,9 +45,9 @@ public class JdkProxy implements InvocationHandler {
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        logger.info("*** JdkProxy 开始执行 ***********");
+        logger.error("*** JdkProxy 开始执行 ***********");
         Object invoke = method.invoke(target, args);
-        logger.info("*** JdkProxy 执行结束,返回参数:{}", JSON.toJSONString(invoke));
+        logger.error("*** JdkProxy 执行结束,返回参数:{}", JSON.toJSONString(invoke));
         return invoke;
     }
 }

@@ -26,7 +26,7 @@ public class CyclicBarrierTest {
 
         int threadSize = 5;
         CyclicBarrier cb = new CyclicBarrier(threadSize, () -> {
-            logger.info("开始执行前 先执行该方法");
+            logger.error("开始执行前 先执行该方法");
         });
 
         cyclic(cb, executor, threadSize);
@@ -38,7 +38,7 @@ public class CyclicBarrierTest {
 
 //        cb.reset();
         TimeUnit.SECONDS.sleep(3);
-        logger.info("------------------------------------");
+        logger.error("------------------------------------");
         cyclic(cb, executor, threadSize);
 
         executor.shutdown();
@@ -46,13 +46,13 @@ public class CyclicBarrierTest {
     }
 
     private static void cyclic(CyclicBarrier cb, Executor executor, int threadSize) {
-        logger.info("开始");
+        logger.error("开始");
         integer.set(0);
         for (int i = 0; i < threadSize;i++) {
             int finalI = i;
             executor.execute(() -> {
                 try {
-                    logger.info("执行await前:{}", finalI);
+                    logger.error("执行await前:{}", finalI);
                     cb.await();
                     integer.addAndGet(1);
                 } catch (InterruptedException e) {
@@ -60,7 +60,7 @@ public class CyclicBarrierTest {
                 } catch (BrokenBarrierException e) {
                     e.printStackTrace();
                 }
-                logger.info("执行完成:{}", finalI);
+                logger.error("执行完成:{}", finalI);
             });
         }
     }

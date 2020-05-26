@@ -39,19 +39,19 @@ public class MyFilter implements Filter {
     @Override
     public Result invoke(Invoker<?> invoker, Invocation invocation) throws RpcException {
 
-        logger.info("*** 自定义扩展接口 start, 调用方法:{}#{}, 传递参数:{}*****",
+        logger.error("*** 自定义扩展接口 start, 调用方法:{}#{}, 传递参数:{}*****",
                 invocation.getServiceName(), invocation.getMethodName(), invocation.getArguments());
         Result result = invoker.invoke(invocation);
 
 
         if ((InvokeMode.SYNC == ((RpcInvocation) invocation).getInvokeMode())) {
-            logger.info("*** 自定义扩展接口 end, 返回体:{} *****", result.getValue());
+            logger.error("*** 自定义扩展接口 end, 返回体:{} *****", result.getValue());
         } else {
             AsyncRpcResult asyncRpcResult = (AsyncRpcResult) result;
             asyncRpcResult
                     .getResponseFuture()
                     .whenCompleteAsync((appResponse, throwable) ->
-                            logger.info("*** 自定义扩展接口 end, 返回体:{} *****",
+                            logger.error("*** 自定义扩展接口 end, 返回体:{} *****",
                                     appResponse.getValue()), executorService);
         }
         return result;

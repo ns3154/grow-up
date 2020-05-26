@@ -24,7 +24,7 @@ public class TrackUtils {
         StackTraceElement[] st = Thread.currentThread().getStackTrace();
 
         if (null == st) {
-            logger.info("invalid stack");
+            logger.error("invalid stack");
             return;
         }
 
@@ -40,7 +40,7 @@ public class TrackUtils {
                     e.getLineNumber()));
         }
 
-        logger.info("\n{} " +
+        logger.error("\n{} " +
                 "\n****************************************************************\n {} " +
                 "\n****************************************************************",
                 prefix, sb);

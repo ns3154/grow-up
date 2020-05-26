@@ -28,7 +28,7 @@ public class MergeSort {
 
         int[] tmp = new int[args.length];
         sort(args, tmp);
-        logger.info("{}", tmp);
+        logger.error("{}", tmp);
     }
 
 
@@ -43,7 +43,7 @@ public class MergeSort {
             sort(left, mid, args, tmp, "left");
             sort(mid + 1, right, args, tmp, "right");
             merge(args, left, mid, right, tmp);
-            logger.info("递归:{}, left:{}, mid:{}, right:{}",source, left, mid, right);
+            logger.error("递归:{}, left:{}, mid:{}, right:{}",source, left, mid, right);
         }
 
     }

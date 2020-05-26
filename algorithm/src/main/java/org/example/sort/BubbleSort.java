@@ -25,7 +25,7 @@ public class BubbleSort {
     public int manYiYouXuDu() {
         int lenght = args.length;
         int num = lenght * (lenght - 1) / 2;
-        logger.info("满意有序度:{}",  num);
+        logger.error("满意有序度:{}",  num);
         return num;
     }
 
@@ -38,7 +38,7 @@ public class BubbleSort {
                 }
             }
         }
-        logger.info("当前有序度为:{}",  num);
+        logger.error("当前有序度为:{}",  num);
         return num;
     }
 
@@ -58,7 +58,7 @@ public class BubbleSort {
     public void maoPao() {
         int i1 = manYiYouXuDu();
         int i2 = youxudu();
-        logger.info("需交换次数:{}", i1 - i2);
+        logger.error("需交换次数:{}", i1 - i2);
         for (int i = 0,size = args.length;i < size; i++) {
             loopCount++;
             for (int j = i + 1; j < size; j++) {
@@ -74,8 +74,8 @@ public class BubbleSort {
         }
 
 
-        logger.info("排序完成:{}", args);
-        logger.info("实际循环次数:{}", loopCount);
-        logger.info("实际交换次数:{}", changeCount);
+        logger.error("排序完成:{}", args);
+        logger.error("实际循环次数:{}", loopCount);
+        logger.error("实际交换次数:{}", changeCount);
     }
 }

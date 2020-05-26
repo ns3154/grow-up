@@ -31,7 +31,7 @@ public class AsyncServiceImpl implements AsyncService {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        logger.info("********** myExecutor :{}*********", s + "-myExecutor");
+        logger.error("********** myExecutor :{}*********", s + "-myExecutor");
         return s + "-myExecutor";
     }
 }

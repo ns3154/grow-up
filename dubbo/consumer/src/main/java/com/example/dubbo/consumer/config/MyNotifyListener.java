@@ -60,7 +60,7 @@ public class MyNotifyListener implements CommandLineRunner, NotifyListener {
                 host = "127.0.0.1";
             }
         }
-        logger.info("**** proxyProtocol host:{} ****", host);
+        logger.error("**** proxyProtocol host:{} ****", host);
         DubboRegistryFactory.getRegistries().iterator().next().subscribe(createUrl(host), this);
     }
 

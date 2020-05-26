@@ -35,28 +35,28 @@ public class ControllerAspect {
 
     @Around(value = "controller()")
     public Object controllerHandler(ProceedingJoinPoint joinPoint) {
-        logger.info("***** controller 切面:代码执行前 ******");
+        logger.error("***** controller 切面:代码执行前 ******");
         Object proceed = null;
         try {
             proceed = joinPoint.proceed();
         } catch (Throwable throwable) {
             throwable.printStackTrace();
         }
-        logger.info("***** controller 切面:代码执行后 ******");
+        logger.error("***** controller 切面:代码执行后 ******");
         TrackUtils.printTrack("controller aop ....");
         return proceed;
     }
 
     @Around(value = "service()")
     public Object serviceHandler(ProceedingJoinPoint joinPoint) {
-        logger.info("***** service 切面:代码执行前 ******");
+        logger.error("***** service 切面:代码执行前 ******");
         Object proceed = null;
         try {
             proceed = joinPoint.proceed();
         } catch (Throwable throwable) {
             throwable.printStackTrace();
         }
-        logger.info("***** service 切面:代码执行后 ******");
+        logger.error("***** service 切面:代码执行后 ******");
         TrackUtils.printTrack("service aop ....");
         return proceed;
     }

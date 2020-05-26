@@ -25,7 +25,7 @@ public class CountDownLatchTest {
             }
         });
         CountDownLatch cdl = new CountDownLatch(5);
-        logger.info("开始");
+        logger.error("开始");
         for (int i = 0;i < 5;i++) {
             int finalI = i;
             executor.execute(() -> {
@@ -35,14 +35,14 @@ public class CountDownLatchTest {
 //                    e.printStackTrace();
 //                }
                 cdl.countDown();
-                logger.info("执行:{}", finalI);
+                logger.error("执行:{}", finalI);
 
             });
         }
 
         cdl.await();
 
-        logger.info("执行完毕...");
+        logger.error("执行完毕...");
         executor.shutdown();
 
 

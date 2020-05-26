@@ -3,6 +3,7 @@ spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     druid:
+     #jdbc:mysql://10.1.11.134:3310/baojia_bike?zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=GMT%2B8
       url: jdbc:mysql://10.1.11.110:3310/baojia_bike?zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=GMT%2B8
       username: baojia_xm
       password: DgisNKhg

@@ -40,9 +40,9 @@ public class CgLibProxy implements MethodInterceptor {
 
     @Override
     public Object intercept(Object o, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable {
-        logger.info("*** 开始执行 cglib, 执行方法:{}, 执行参数:{} *****", method, objects);
+        logger.error("*** 开始执行 cglib, 执行方法:{}, 执行参数:{} *****", method, objects);
         Object result = methodProxy.invokeSuper(o, objects);
-        logger.info("*** 执行完成 cglib, 返回参数:{}", result);
+        logger.error("*** 执行完成 cglib, 返回参数:{}", result);
         return result;
     }
 }

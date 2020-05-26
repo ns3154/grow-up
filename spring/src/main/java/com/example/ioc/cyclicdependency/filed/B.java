@@ -21,7 +21,7 @@ import javax.annotation.Resource;
 public class B implements SmartInitializingSingleton {
 
     @Resource
-    private C c;
+    private A a;
 
     private String name;
 

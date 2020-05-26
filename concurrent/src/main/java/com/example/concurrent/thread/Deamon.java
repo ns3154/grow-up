@@ -33,7 +33,7 @@ public class Deamon {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        logger.info("执行test方法了, {}" , i);
+        logger.error("执行test方法了, {}" , i);
         System.out.println("守护线程, 当main方法执行完毕,该线程也随之消亡,所以此处的话不会打印出来的");
         return i++;
     }

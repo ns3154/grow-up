@@ -61,16 +61,16 @@ public class ExcelUtil {
                 .registerWriteHandler(horizontalCellStyleStrategy)
                 .sheet("电子兑换码").doWrite(data());
 
-        logger.info("生成:{}, 重复:{}", set.size(), repeat.size());
-        logger.info("生成文件:{}", source);
+        logger.error("生成:{}, 重复:{}", set.size(), repeat.size());
+        logger.error("生成文件:{}", source);
 
     }
 
     public void check() {
         List<String> list = fileList();
-        logger.info("文件数量:{}", list.size());
+        logger.error("文件数量:{}", list.size());
         for (String s : list) {
-            logger.info("执行校验:{}", s);
+            logger.error("执行校验:{}", s);
             EasyExcel.read(s, RenRen.class, new ReadCheckListener()).sheet().doRead();
         }
 

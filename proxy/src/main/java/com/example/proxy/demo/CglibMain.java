@@ -25,7 +25,7 @@ public class CglibMain {
         boolean b = instance.addUser(new UserPO.Builder().id(1L).name("杨").sex(2).build());
         UserPO user = instance.getUserById(1L);
         boolean b1 = instance.delUser(1L);
-        logger.info("** main 返回参数:{},{}, {}", b, JSON.toJSONString(user), b1);
+        logger.error("** main 返回参数:{},{}, {}", b, JSON.toJSONString(user), b1);
 
     }
 }

@@ -61,17 +61,17 @@ public class ExcelController {
                 continue;
             }
             threadPoolExecutor.execute(() -> {
-                logger.info("需要插入:{}", s);
+                logger.error("需要插入:{}", s);
                 EasyExcel.read(s, RenRen.class, new ReadToDbListener()).sheet().doRead();
                 set.add(s);
-                logger.info("{} 执行完成", s);
+                logger.error("{} 执行完成", s);
             });
         }
         threadPoolExecutor.shutdown();
 
         for (;;) {
             if (threadPoolExecutor.isTerminated()) {
-                logger.info("执行完毕.....时间:{}, 插入文件数:{}", System.currentTimeMillis() - start, set.size());
+                logger.error("执行完毕.....时间:{}, 插入文件数:{}", System.currentTimeMillis() - start, set.size());
                 break;
             }
             try {

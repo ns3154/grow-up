@@ -44,11 +44,11 @@ public class ExchangerTest {
 
         @Override
         public void run() {
-            logger.info("test1方法交换前数据:{}", context);
+            logger.error("test1方法交换前数据:{}", context);
             try {
                 TimeUnit.SECONDS.sleep(20);
                 String exchange = exchanger.exchange(context);
-                logger.info("test1方法交换后数据:{}", exchange);
+                logger.error("test1方法交换后数据:{}", exchange);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -68,10 +68,10 @@ public class ExchangerTest {
 
         @Override
         public void run() {
-            logger.info("test2方法交换前数据:{}", context);
+            logger.error("test2方法交换前数据:{}", context);
             try {
                 String exchange = exchanger.exchange(context);
-                logger.info("test2方法交换后数据:{}", exchange);
+                logger.error("test2方法交换后数据:{}", exchange);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

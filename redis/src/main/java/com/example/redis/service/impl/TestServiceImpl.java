@@ -38,7 +38,7 @@ public class TestServiceImpl implements TestService {
         Object aBoolean = redisService.transactionAnnoTationSetA(key, value);
         String abc = redisTemplate.opsForValue().get("abc");
         redisTemplate.opsForValue().set(key + key1, value + value1);
-        logger.info("** 获取 value:{}", abc);
+        logger.error("** 获取 value:{}", abc);
         Object aBoolean1 = redisService.trancactionAnnoTationSetB(key1, value1);
         list.add(aBoolean);
         list.add(aBoolean1);

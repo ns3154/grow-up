@@ -58,7 +58,7 @@ public class MyInstantiationAwareBeanPostProcessor implements InstantiationAware
         }
 
         if (MY_BEAN_NAMES.contains(beanName)) {
-            logger.info("***beanName:{} , MyInstantiationAwareBeanPostProcessor#postProcessBeforeInstantiation****",
+            logger.error("***beanName:{} , MyInstantiationAwareBeanPostProcessor#postProcessBeforeInstantiation****",
                     beanName);
         }
 
@@ -68,7 +68,7 @@ public class MyInstantiationAwareBeanPostProcessor implements InstantiationAware
     @Override
     public boolean postProcessAfterInstantiation(Object bean, String beanName) throws BeansException {
         if (MY_BEAN_NAMES.contains(beanName)) {
-            logger.info("***beanName:{} , MyInstantiationAwareBeanPostProcessor#postProcessAfterInstantiation****",
+            logger.error("***beanName:{} , MyInstantiationAwareBeanPostProcessor#postProcessAfterInstantiation****",
                     beanName);
         }
         return true;
@@ -77,7 +77,7 @@ public class MyInstantiationAwareBeanPostProcessor implements InstantiationAware
     @Override
     public PropertyValues postProcessProperties(PropertyValues pvs, Object bean, String beanName) throws BeansException {
         if (MY_BEAN_NAMES.contains(beanName)) {
-            logger.info("***beanName:{} ,MyInstantiationAwareBeanPostProcessor#postProcessProperties****", beanName);
+            logger.error("***beanName:{} ,MyInstantiationAwareBeanPostProcessor#postProcessProperties****", beanName);
         }
 
         if ("user".equals(beanName)) {
@@ -87,7 +87,7 @@ public class MyInstantiationAwareBeanPostProcessor implements InstantiationAware
             } else {
                 propertyValues = new MutablePropertyValues();
             }
-            logger.info("***InstantiationAwareBeanPostProcessor#postProcessPropertie#desc:{}s***",
+            logger.error("***MyInstantiationAwareBeanPostProcessor#postProcessProperties#desc:{}s***",
                     propertyValues.get("desc"));
             propertyValues.add("desc", "InstantiationAwareBeanPostProcessor#postProcessPropertiesv2");
             return propertyValues;
@@ -99,7 +99,7 @@ public class MyInstantiationAwareBeanPostProcessor implements InstantiationAware
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
         if (MY_BEAN_NAMES.contains(beanName)) {
-            logger.info("***beanName:{} ,MyInstantiationAwareBeanPostProcessor#postProcessBeforeInitialization****",
+            logger.error("***beanName:{} ,MyInstantiationAwareBeanPostProcessor#postProcessBeforeInitialization****",
                     beanName);
         }
         return bean;
@@ -108,14 +108,14 @@ public class MyInstantiationAwareBeanPostProcessor implements InstantiationAware
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
         if (MY_BEAN_NAMES.contains(beanName)) {
-            logger.info("***beanName:{} ,MyInstantiationAwareBeanPostProcessor#postProcessAfterInitialization****",
+            logger.error("***beanName:{} ,MyInstantiationAwareBeanPostProcessor#postProcessAfterInitialization****",
                     beanName);
 
         }
 
         if ("user".equals(beanName) && User.class.equals(bean.getClass())) {
             User user = (User) bean;
-            user.setDesc("BeanPostProcessor#postProcessAfterInitializationV3");
+            user.setDesc("MyInstantiationAwareBeanPostProcessor#postProcessAfterInitializationV3");
             return user;
         }
         return bean;

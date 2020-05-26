@@ -24,11 +24,11 @@ public class interruptTest {
             while (!Thread.interrupted()) {
 
             }
-            logger.info("线程被中断了");
+            logger.error("线程被中断了");
         });
         thread.start();
         TimeUnit.SECONDS.sleep(5);
-        logger.info("准备中断线程");
+        logger.error("准备中断线程");
         thread.interrupt();
     }
 }

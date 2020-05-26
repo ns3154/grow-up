@@ -45,8 +45,8 @@ public class ShellSort {
 
         }
 
-        logger.info("排序后:{}", args);
-        logger.info("循环次数:{}", loopCount);
-        logger.info("交换次数:{}", changeCount);
+        logger.error("排序后:{}", args);
+        logger.error("循环次数:{}", loopCount);
+        logger.error("交换次数:{}", changeCount);
     }
 }

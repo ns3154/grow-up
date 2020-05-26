@@ -23,7 +23,7 @@ public class RadixSort {
     @Test
     public void sort() {
         int[] array = args;
-        logger.info("原数组:{}", array);
+        logger.error("原数组:{}", array);
         int maxValue = maxValue(array);
         int digit = maxDigit(maxValue);
 
@@ -39,7 +39,7 @@ public class RadixSort {
                 bucket[i] = bucket[i] + bucket[i - 1];
             }
 
-            logger.info("计算后结果:{}", bucket);
+            logger.error("计算后结果:{}", bucket);
 
             int[] newArray = new int[array.length];
 
@@ -51,7 +51,7 @@ public class RadixSort {
             }
 
             array = newArray;
-            logger.info("{}", array);
+            logger.error("{}", array);
         }
 
 

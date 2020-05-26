@@ -231,7 +231,7 @@ public class DoubleExpand {
                 Map<String, ReferenceConfig<?>> referenceConfigMap = DUBBO_URL_INTERFACE.get(interfaceName);
                 if (!CollectionUtils.isEmpty(referenceConfigMap)) {
                     referenceConfigMap.forEach((k, v) ->  v.destroy());
-                    logger.info("** 释放实例:{}", interfaceName);
+                    logger.error("** 释放实例:{}", interfaceName);
                 }
                 DUBBO_URL_INTERFACE.remove(interfaceName);
                 DUBBO_PROVIDER_URL.remove(url.getServiceInterface());
@@ -252,7 +252,7 @@ public class DoubleExpand {
                 Map<String, ReferenceConfig<?>> referenceConfigMap = DUBBO_URL_INTERFACE.get(entry.getKey());
                 referenceConfigMap.forEach((k,v) -> {
                     v.destroy();
-                    logger.info("** 释放实例:{} **", entry.getKey());
+                    logger.error("** 释放实例:{} **", entry.getKey());
                 });
                 DUBBO_URL_INTERFACE.remove(entry.getKey());
                 continue;
@@ -275,7 +275,7 @@ public class DoubleExpand {
             while (iterator.hasNext()) {
                 Map.Entry<String, ReferenceConfig<?>> next = iterator.next();
                 if (!mKey.contains(next.getKey())) {
-                    logger.info("** 释放实例:{} *** ", next.getKey());
+                    logger.error("** 释放实例:{} *** ", next.getKey());
                     ReferenceConfigCache cache = ReferenceConfigCache.getCache();
                     cache.destroy(next.getValue());
                     iterator.remove();

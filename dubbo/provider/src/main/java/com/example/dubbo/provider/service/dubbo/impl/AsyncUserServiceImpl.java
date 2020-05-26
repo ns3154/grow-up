@@ -36,7 +36,7 @@ public class AsyncUserServiceImpl implements AsyncDubboServiceTestApi {
     @Override
     public CompletableFuture<ModelMessage<UserDTO>> getUserIdByAsync(Long userId) {
 
-        logger.info("*** invoker getUserIdByAsync start ****");
+        logger.error("*** invoker getUserIdByAsync start ****");
         try {
             Thread.sleep(10001);
         } catch (InterruptedException e) {
@@ -46,26 +46,26 @@ public class AsyncUserServiceImpl implements AsyncDubboServiceTestApi {
         model.setCode(200);
         model.setMessage("ok");
         model.setData(UserDTO.newBuilder().withAge(1).withUserName("yang").withSex(3).build());
-        logger.info("*** invoker getUserIdByAsync end ****");
+        logger.error("*** invoker getUserIdByAsync end ****");
         return CompletableFuture.completedFuture(model);
     }
 
     @Override
     public CompletableFuture<Void>  noVoidAsync(Long userId) {
-        logger.info("*** invoker noVoidAsync start ****");
+        logger.error("*** invoker noVoidAsync start ****");
         try {
             Thread.sleep(10001);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        logger.info("*** invoker noVoidAsync end ****");
+        logger.error("*** invoker noVoidAsync end ****");
         return new CompletableFuture<>();
     }
 
     @Override
     public CompletableFuture<ModelMessage<UserDTO>> getUserByAsyncForMyThread(Long userId) {
 
-        logger.info("*** invoker getUserByAsyncForMyThread start ****");
+        logger.error("*** invoker getUserByAsyncForMyThread start ****");
         return CompletableFuture.supplyAsync(() -> {
             try {
                 Thread.sleep(10001);
@@ -77,7 +77,7 @@ public class AsyncUserServiceImpl implements AsyncDubboServiceTestApi {
             model.setCode(200);
             model.setMessage("ok");
             model.setData(UserDTO.newBuilder().withAge(1).withUserName("yang").withSex(3).build());
-            logger.info("*** invoker getUserByAsyncForMyThread end ****");
+            logger.error("*** invoker getUserByAsyncForMyThread end ****");
             return model;
         }, executorService);
     }

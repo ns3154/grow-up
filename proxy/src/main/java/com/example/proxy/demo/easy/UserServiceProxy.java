@@ -27,17 +27,17 @@ public class UserServiceProxy implements UserService {
 
     @Override
     public boolean addUser(UserPO user) {
-        logger.info("******* proxy 开始执行 **********");
+        logger.error("******* proxy 开始执行 **********");
         boolean b = userService.addUser(user);
-        logger.info("******* proxy 执行结束,返回参数:{} **********", b);
+        logger.error("******* proxy 执行结束,返回参数:{} **********", b);
         return b;
     }
 
     @Override
     public UserPO getUserById(Long id) {
-        logger.info("******* proxy 开始执行 **********");
+        logger.error("******* proxy 开始执行 **********");
         UserPO user = userService.getUserById(id);
-        logger.info("******* proxy 执行结束,返回参数:{} **********", JSON.toJSONString(user));
+        logger.error("******* proxy 执行结束,返回参数:{} **********", JSON.toJSONString(user));
         return user;
     }
 }

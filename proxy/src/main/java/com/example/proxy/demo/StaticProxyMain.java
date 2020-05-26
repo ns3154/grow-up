@@ -30,7 +30,7 @@ public class StaticProxyMain {
         boolean b = proxy.addUser(user);
         UserPO userById = proxy.getUserById(1L);
 
-        logger.info("**** mian 执行,结果: {} , {}", b, JSON.toJSONString(userById));
+        logger.error("**** mian 执行,结果: {} , {}", b, JSON.toJSONString(userById));
 
 
     }

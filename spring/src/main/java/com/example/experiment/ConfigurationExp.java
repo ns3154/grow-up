@@ -22,7 +22,7 @@ public class ConfigurationExp {
 
     @Bean
     public User user() {
-        logger.info("******** user() 初始化 *********");
+        logger.error("******** @Bean User 执行 *********");
         return User.newBuilder().withId(1L).withUserName("杨").withAge(2).build();
     }
 

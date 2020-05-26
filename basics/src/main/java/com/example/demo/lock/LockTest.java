@@ -31,14 +31,14 @@ public class LockTest {
 
         Lock lock = new ReentrantLock();
         Util.executor.execute(() -> {
-            logger.info("加锁1");
+            logger.error("加锁1");
             lock.lock();
-            logger.info("获得到锁1");
+            logger.error("获得到锁1");
             try {
                 TimeUnit.SECONDS.sleep(200);
             } catch (InterruptedException e) {
                 e.printStackTrace();
-                logger.info("error:{}", e);
+                logger.error("error:{}", e);
             } finally {
                 lock.unlock();
             }
@@ -47,11 +47,11 @@ public class LockTest {
 
 
         Util.executor.execute(() -> {
-            logger.info("准备加锁2");
+            logger.error("准备加锁2");
             lock.lock();
-            logger.info("获得到锁2");
+            logger.error("获得到锁2");
             lock.unlock();
-            logger.info("释放锁2");
+            logger.error("释放锁2");
 
         });
 
@@ -64,24 +64,24 @@ public class LockTest {
         Lock lock = new ReentrantLock();
 
         Util.executor.execute(() -> {
-            logger.info("准备加锁1");
+            logger.error("准备加锁1");
             try {
                 Thread.currentThread().interrupt();
                 lock.lockInterruptibly();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            logger.info("获得到锁1");
+            logger.error("获得到锁1");
             try {
 
                 TimeUnit.SECONDS.sleep(20);
             } catch (InterruptedException e) {
                 e.printStackTrace();
-                logger.info("error:{}", e);
+                logger.error("error:{}", e);
             } finally {
                 if (!Thread.currentThread().isInterrupted()) {
                     lock.unlock();
-                    logger.info("释放锁1");
+                    logger.error("释放锁1");
                 }
 
 
@@ -92,15 +92,15 @@ public class LockTest {
         TimeUnit.SECONDS.sleep(1);
 
         Util.executor.execute(() -> {
-            logger.info("准备加锁2");
+            logger.error("准备加锁2");
             try {
                 lock.lockInterruptibly();
-                logger.info("获得到锁2");
+                logger.error("获得到锁2");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } finally {
                 lock.unlock();
-                logger.info("释放锁2");
+                logger.error("释放锁2");
             }
         });
 
@@ -115,16 +115,16 @@ public class LockTest {
         Util.executor.execute(() -> {
             if (lock.tryLock()) {
                 try {
-                    logger.info("获取到锁 1");
+                    logger.error("获取到锁 1");
                     TimeUnit.SECONDS.sleep(10);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } finally {
                     lock.unlock();
-                    logger.info("释放锁1");
+                    logger.error("释放锁1");
                 }
             } else {
-                logger.info("没有拿到锁1");
+                logger.error("没有拿到锁1");
             }
 
         });
@@ -134,13 +134,13 @@ public class LockTest {
             try {
                 if (lock.tryLock(25, TimeUnit.SECONDS)) {
                     try {
-                        logger.info("获取到锁 2");
+                        logger.error("获取到锁 2");
                     } finally {
                         lock.unlock();
-                        logger.info("释放锁2");
+                        logger.error("释放锁2");
                     }
                 } else {
-                    logger.info("没有拿到锁2");
+                    logger.error("没有拿到锁2");
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -165,28 +165,28 @@ public class LockTest {
         Util.executor.execute(() -> {
             write.lock();
             try {
-                logger.info("write 1 lock");
+                logger.error("write 1 lock");
                 list.add(1);
                 TimeUnit.SECONDS.sleep(10);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } finally {
                 write.unlock();
-                logger.info("write 1 unlock");
+                logger.error("write 1 unlock");
             }
         });
 
         Util.executor.execute(() -> {
             read.lock();
             try {
-                logger.info("read 1 lock");
-                logger.info("size:{}", list.size());
+                logger.error("read 1 lock");
+                logger.error("size:{}", list.size());
                 TimeUnit.SECONDS.sleep(10);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } finally {
                 read.unlock();
-                logger.info("read 1 unlock");
+                logger.error("read 1 unlock");
             }
         });
         TimeUnit.SECONDS.sleep(1);
@@ -194,14 +194,14 @@ public class LockTest {
         Util.executor.execute(() -> {
             write.lock();
             try {
-                logger.info("write 2 lock");
+                logger.error("write 2 lock");
                 list.add(1);
                 TimeUnit.SECONDS.sleep(10);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } finally {
                 write.unlock();
-                logger.info("write 2 unlock");
+                logger.error("write 2 unlock");
             }
         });
 
@@ -210,11 +210,11 @@ public class LockTest {
             Util.executor.execute(() -> {
                 read.lock();
                 try {
-                    logger.info("read 2 lock");
-                    logger.info("size:{}", list.size());
+                    logger.error("read 2 lock");
+                    logger.error("size:{}", list.size());
                 }finally {
                     read.unlock();
-                    logger.info("read 2 unlock");
+                    logger.error("read 2 unlock");
                 }
             });
         }

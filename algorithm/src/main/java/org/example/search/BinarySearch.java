@@ -21,19 +21,19 @@ public class BinarySearch {
     @Test
     public void search() {
         int searchNum = 9;
-        logger.info("待查找数组:{}, 目标数:{}", array, searchNum);
+        logger.error("待查找数组:{}, 目标数:{}", array, searchNum);
 
         int p = searchByLoop(array, searchNum);
-        logger.info("searchByLoop下标:{}", p);
+        logger.error("searchByLoop下标:{}", p);
 
         p = searchByRecursion(array, searchNum, 0, array.length - 1, 0);
-        logger.info("searchByRecursion下标:{}", p);
+        logger.error("searchByRecursion下标:{}", p);
 
         p = searchLast(array, searchNum, 0, array.length - 1);
-        logger.info("searchFirst下标:{}", p);
+        logger.error("searchFirst下标:{}", p);
 
         p = searchFirst_1(array, searchNum, 0, array.length - 1);
-        logger.info("searchFirst_1下标:{}", p);
+        logger.error("searchFirst_1下标:{}", p);
     }
 
     private int searchByLoop(int[] array, int searchNum) {
@@ -44,8 +44,8 @@ public class BinarySearch {
             count++;
             int p =  (left + right) >> 1;
             if (array[p] == searchNum) {
-                logger.info("执行次数:{}", count);
-                logger.info("找到了,下标为:{}", p);
+                logger.error("执行次数:{}", count);
+                logger.error("找到了,下标为:{}", p);
                 return p;
             } else if (array[p] < searchNum) {
                 left = p + 1;
@@ -53,7 +53,7 @@ public class BinarySearch {
                 right = p - 1;
             }
         }
-        logger.info("执行次数:{}", count);
+        logger.error("执行次数:{}", count);
         return -1;
     }
 
@@ -65,15 +65,15 @@ public class BinarySearch {
         count++;
         int p =  (left + right) >> 1;
         if (array[p] == searchNum) {
-            logger.info("执行次数:{}", count);
-            logger.info("找到了,下标为:{}", p);
+            logger.error("执行次数:{}", count);
+            logger.error("找到了,下标为:{}", p);
             return p;
         } else if (array[p] < searchNum) {
             left = p + 1;
         } else {
             right = p - 1;
         }
-        logger.info("执行次数:{}", count);
+        logger.error("执行次数:{}", count);
         return searchByRecursion(array, searchNum, left, right, count);
     }
 

@@ -24,11 +24,11 @@ public class MyListener implements InvokerListener {
 
     @Override
     public void referred(Invoker<?> invoker) throws RpcException {
-        logger.info("********** referred interface:{}, url:{} ******", invoker.getInterface(), invoker.getUrl());
+        logger.error("********** referred interface:{}, url:{} ******", invoker.getInterface(), invoker.getUrl());
     }
 
     @Override
     public void destroyed(Invoker<?> invoker) {
-        logger.info("********** destroyed interface:{}, url:{} ******", invoker.getInterface(), invoker.getUrl());
+        logger.error("********** destroyed interface:{}, url:{} ******", invoker.getInterface(), invoker.getUrl());
     }
 }
