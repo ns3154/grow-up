@@ -13,7 +13,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 
@@ -33,7 +35,7 @@ public class ExcelUtil {
 
     private final String name = "电子兑换码-" + NUM + suf;
 
-    private static final Integer NUM = 10010;
+    private static final Integer NUM = 10000;
 
     private final String source = "C:\\Users\\Ns\\Desktop\\1w\\source\\" + name;
 
@@ -78,12 +80,14 @@ public class ExcelUtil {
 
     private List data() {
         List<RenRen> list = new ArrayList<>();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String dateStr = sdf.format(new Date());
         for (int i = 0; i < NUM; i++) {
             Long id = SnowflakeUtil.getId();
             RenRen renren = new RenRen();
             renren.setPackageId(PACKAGE_ID);
             renren.setCode(id + "");
-            renren.setCreateTime("2020-05-20");
+            renren.setCreateTime(dateStr);
             renren.setCreator("大雄");
             list.add(renren);
             if (set.contains(id)) {
@@ -96,6 +100,10 @@ public class ExcelUtil {
     }
 
 
+    @Test
+    public void test() {
+
+    }
 
 
     public static List<String> fileList() {

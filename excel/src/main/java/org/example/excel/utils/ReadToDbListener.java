@@ -40,7 +40,7 @@ public class ReadToDbListener extends AnalysisEventListener<RenRen> {
         List<CouponPackageCode> useList = new ArrayList<>(list.size());
         for (RenRen r : list) {
             CouponPackageCode cpc = new CouponPackageCode();
-            cpc.setPackageId(4L);
+            cpc.setPackageId(Long.parseLong(r.getPackageId()));
             cpc.setCode(r.getCode());
             cpc.setRemark("新手优惠券");
             cpc.setAllowMultiExchange(0);
