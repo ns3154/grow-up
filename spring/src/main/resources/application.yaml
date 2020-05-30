@@ -55,3 +55,4 @@ jwt:
 exclude:
   list: "/asdf,/asdfs,/user"
 
+value: ssss
