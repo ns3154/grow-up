@@ -3,12 +3,14 @@ package com.example.dubbo.provider.service.dubbo.impl;
 import com.example.common.api.AsyncDubboServiceTestApi;
 import com.example.common.model.ModelMessage;
 import com.example.common.model.dto.UserDTO;
+import com.example.dubbo.provider.bean.UserBean;
 import com.google.common.base.Joiner;
 import org.apache.commons.lang3.concurrent.BasicThreadFactory;
 import org.apache.dubbo.config.annotation.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.annotation.Resource;
 import java.util.concurrent.*;
 
 /**
@@ -24,6 +26,9 @@ public class AsyncUserServiceImpl implements AsyncDubboServiceTestApi {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
 
+    @Resource
+    private UserBean userBean;
+
     private ExecutorService executorService =  new ThreadPoolExecutor(5, 30,
             60, TimeUnit.SECONDS,
             new LinkedBlockingDeque<>(200),
@@ -37,6 +42,9 @@ public class AsyncUserServiceImpl implements AsyncDubboServiceTestApi {
     public CompletableFuture<ModelMessage<UserDTO>> getUserIdByAsync(Long userId) {
 
         logger.error("*** invoker getUserIdByAsync start ****");
+        if (null != userId) {
+            userBean.test(String.valueOf(userId));
+        }
         try {
             Thread.sleep(10001);
         } catch (InterruptedException e) {

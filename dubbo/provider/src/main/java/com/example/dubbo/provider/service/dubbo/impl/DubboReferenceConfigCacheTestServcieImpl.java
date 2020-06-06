@@ -1,8 +1,12 @@
 package com.example.dubbo.provider.service.dubbo.impl;
 
+import com.example.common.api.AsyncDubboServiceTestApi;
 import com.example.common.api.DubboReferenceConfigCacheTestServcie;
 import com.example.common.model.ModelMessage;
 import org.apache.dubbo.config.annotation.DubboService;
+import org.apache.dubbo.config.spring.ServiceBean;
+
+import javax.annotation.Resource;
 
 /**
  * <pre>
