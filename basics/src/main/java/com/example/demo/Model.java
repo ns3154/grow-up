@@ -10,6 +10,14 @@ package com.example.demo;
  **/
 public class Model {
 
+    public Model() {
+        // nothing
+    }
+
+    public Model(int code) {
+        this.code = code;
+    }
+
     private int code;
 
     public int getCode() {

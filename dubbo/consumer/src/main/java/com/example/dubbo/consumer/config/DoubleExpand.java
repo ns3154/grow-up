@@ -46,6 +46,9 @@ public class DoubleExpand {
      */
     private static final Map<String, List<URL>> DUBBO_PROVIDER_URL = new ConcurrentHashMap<>();
 
+    private static final Object LOCK = new Object();
+
+
     public static <T> T getInterface(String group, Class<T> clz) {
         return getInterface(group, "3.0.0", clz);
     }
@@ -73,6 +76,7 @@ public class DoubleExpand {
             reference.setGroup(group);
             reference.setInterface(clz);
             reference.setVersion(version);
+            reference.get();
             ReferenceConfigCache cache = ReferenceConfigCache.getCache();
             T o = cache.get(reference);
             DUBBO_INTERFACE.putIfAbsent(key, o);
@@ -217,33 +221,35 @@ public class DoubleExpand {
     }
 
     public static void notifiy(List<URL> urls) {
-        if (CollectionUtils.isEmpty(urls)) {
-            return;
-        }
-
-        List<URL> list = new ArrayList<>();
-        String interfaceName = null;
-        for (URL url : urls) {
-            if (StringUtils.isBlank(interfaceName)) {
-                interfaceName = url.getServiceInterface();
+        synchronized (LOCK) {
+            if (CollectionUtils.isEmpty(urls)) {
+                return;
             }
-            if ("empty".equals(url.getProtocol())) {
-                Map<String, ReferenceConfig<?>> referenceConfigMap = DUBBO_URL_INTERFACE.get(interfaceName);
-                if (!CollectionUtils.isEmpty(referenceConfigMap)) {
-                    referenceConfigMap.forEach((k, v) ->  v.destroy());
-                    logger.error("** 释放实例:{}", interfaceName);
+
+            List<URL> list = new ArrayList<>();
+            String interfaceName = null;
+            for (URL url : urls) {
+                if (StringUtils.isBlank(interfaceName)) {
+                    interfaceName = url.getServiceInterface();
                 }
-                DUBBO_URL_INTERFACE.remove(interfaceName);
-                DUBBO_PROVIDER_URL.remove(url.getServiceInterface());
-            } else {
-                list.add(url);
+                if ("empty".equals(url.getProtocol())) {
+                    Map<String, ReferenceConfig<?>> referenceConfigMap = DUBBO_URL_INTERFACE.get(interfaceName);
+                    if (!CollectionUtils.isEmpty(referenceConfigMap)) {
+                        referenceConfigMap.forEach((k, v) ->  v.destroy());
+                        logger.error("** 释放实例:{}", interfaceName);
+                    }
+                    DUBBO_URL_INTERFACE.remove(interfaceName);
+                    DUBBO_PROVIDER_URL.remove(url.getServiceInterface());
+                } else {
+                    list.add(url);
+                }
             }
-        }
 
-        if (!CollectionUtils.isEmpty(list)) {
-            DUBBO_PROVIDER_URL.put(interfaceName, list);
+            if (!CollectionUtils.isEmpty(list)) {
+                DUBBO_PROVIDER_URL.put(interfaceName, list);
+            }
+            clearByNotifiy();
         }
-        clearByNotifiy();
     }
 
     private static void clearByNotifiy() {

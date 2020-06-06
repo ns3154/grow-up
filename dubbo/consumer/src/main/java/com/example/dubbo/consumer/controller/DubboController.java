@@ -2,18 +2,25 @@ package com.example.dubbo.consumer.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.example.common.api.AsyncDubboServiceTestApi;
+import com.example.common.api.DubboReferenceConfigCacheTestServcie;
 import com.example.common.api.DubboTestServiceApi;
 import com.example.common.model.ModelMessage;
 import com.example.common.model.dto.UserDTO;
+import com.example.dubbo.consumer.config.DoubleExpand;
+import org.apache.dubbo.config.ReferenceConfig;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.apache.dubbo.config.annotation.Method;
 import org.apache.dubbo.config.annotation.Reference;
+import org.apache.dubbo.config.utils.ReferenceConfigCache;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -33,10 +40,10 @@ public class DubboController {
 //    @Reference(mock = "com.example.dubbo.consumer.mock.DubboServiceTestMock") 先调用远程 如果 失败 在执行 mock
 //    @Reference(mock = "force:com.example.dubbo.consumer.mock.DubboServiceTestMock") // 直接强制执行 mock
 //    @Reference(methods = {@Method(name = "userById", cache = "lru")})
-    @Reference
+    @DubboReference(loadbalance = "roundrobin")
     private DubboTestServiceApi dubboTestServiceApi;
 
-    @Reference(methods = {@Method(name = "noVoidAsync", async = true, isReturn = false)})
+    @DubboReference(methods = {@Method(name = "noVoidAsync", async = true, isReturn = false)})
     private AsyncDubboServiceTestApi asyncDubboServiceTestApi;
 
 
@@ -99,5 +106,24 @@ public class DubboController {
         return userByAsyncForMyThread.get();
     }
 
+    Map<String,ReferenceConfig<?>> map = new ConcurrentHashMap<>();
+
+    @GetMapping("generic")
+    public ModelMessage<String> generic() {
+        ReferenceConfig<?> reference = map.computeIfAbsent("genericTest", k -> {
+            ReferenceConfig<?> ref = new ReferenceConfig<>();
+            ref.setInterface(DubboReferenceConfigCacheTestServcie.class);
+            return ref;
+        });
+        DubboReferenceConfigCacheTestServcie  service =
+                (DubboReferenceConfigCacheTestServcie) ReferenceConfigCache.getCache().get(reference);
+        return service.hello("ssss");
+    }
+
+    public ModelMessage<String> genericPtp() {
+
+
+        return null;
+    }
 
 }

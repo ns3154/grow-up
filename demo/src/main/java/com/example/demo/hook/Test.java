@@ -37,4 +37,13 @@ public class Test {
     public static void add(String name, InterFaceTest<?> test) {
         map.put("a", test);
     }
+
+    @org.junit.Test
+    public void test() {
+        String b = "sss";
+        System.out.println(System.identityHashCode(b));
+        System.out.println(System.identityHashCode(b));
+        System.out.println(System.identityHashCode(b));
+        System.out.println(System.identityHashCode("ssss"));
+    }
 }

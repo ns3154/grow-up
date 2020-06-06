@@ -1,5 +1,8 @@
 package com.example.dubbo.consumer;
 
+import org.apache.curator.framework.CuratorFramework;
+import org.apache.curator.framework.CuratorFrameworkFactory;
+import org.apache.curator.retry.ExponentialBackoffRetry;
 import org.apache.dubbo.common.extension.ExtensionLoader;
 import org.apache.dubbo.registry.RegistryFactory;
 
@@ -13,10 +16,5 @@ import org.apache.dubbo.registry.RegistryFactory;
  **/
 public class Test {
 
-    public static void main(String[] args) {
-        RegistryFactory adaptiveExtension =
-                ExtensionLoader.getExtensionLoader(RegistryFactory.class).getAdaptiveExtension();
 
-        System.out.println(adaptiveExtension.hashCode());
-    }
 }

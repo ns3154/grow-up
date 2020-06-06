@@ -30,9 +30,9 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class MyNotifyListener implements CommandLineRunner, NotifyListener {
 
-    private static Logger logger = LoggerFactory.getLogger(MyNotifyListener.class);
+    private static final Logger logger = LoggerFactory.getLogger(MyNotifyListener.class);
 
-    private ThreadPoolExecutor singleThreadExecutor =
+    private final ThreadPoolExecutor singleThreadExecutor =
             new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS,
             new LinkedBlockingQueue<>(), new BasicThreadFactory.Builder().namingPattern(Joiner.on("-").join(
             "dubbo-notify-listener", "%s")).build());

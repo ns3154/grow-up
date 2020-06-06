@@ -3,6 +3,7 @@ package com.example.dubbo.provider.service.dubbo.impl;
 import com.example.common.api.DubboTestServiceApi;
 import com.example.common.model.ModelMessage;
 import com.example.common.model.dto.UserDTO;
+import org.apache.dubbo.config.annotation.DubboService;
 import org.apache.dubbo.config.annotation.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +18,7 @@ import org.springframework.stereotype.Component;
  * @since 1.0
  * @date 2020/03/23 11:08
  **/
-@Service
+@DubboService(loadbalance = "")
 public class UserServiceImpl implements DubboTestServiceApi {
 
     private Logger logger = LoggerFactory.getLogger(getClass());

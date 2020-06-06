@@ -8,6 +8,7 @@ dubbo:
     logger: slf4j
     dump-directory: /dubbo/tmp
   registry:
+#    address: zookeeper://127.0.0.1:2181
     address: zookeeper://10.1.11.147:2888
   scan:
     base-packages: com.example.dubbo.provider.service.dubbo.impl
