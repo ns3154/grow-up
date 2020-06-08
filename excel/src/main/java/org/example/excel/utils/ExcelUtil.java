@@ -35,16 +35,17 @@ public class ExcelUtil {
 
     private final String name = "电子兑换码-" + NUM + suf;
 
-    private static final Integer NUM = 10000;
+    private static final Integer NUM = 1000;
 
-    private final String source = "C:\\Users\\Ns\\Desktop\\1w\\source\\" + name;
+    private final String source = "C:\\Users\\Ns\\Desktop\\1000\\source\\" + name;
 
-    private static final String USE = "C:\\Users\\Ns\\Desktop\\1w\\use";
+    private static final String USE = "C:\\Users\\Ns\\Desktop\\1000\\use";
 
     HashSet<Long> set = new HashSet<>(20000);
 
     ArrayList<Long> repeat = new ArrayList<>();
 
+    // TODO 优惠券批次号 必填项
     private static final  String PACKAGE_ID = "4";
 
     @Test
