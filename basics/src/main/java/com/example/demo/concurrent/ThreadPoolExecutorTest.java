@@ -8,10 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import java.lang.management.ManagementFactory;
 import java.lang.management.ThreadMXBean;
-import java.util.concurrent.LinkedBlockingDeque;
-import java.util.concurrent.SynchronousQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 /**
  * <pre>
@@ -27,35 +24,88 @@ public class ThreadPoolExecutorTest {
 
     @Test
     public void test() {
-        ThreadMXBean threadMXBean = ManagementFactory.getThreadMXBean();
-        ThreadPoolExecutor executor = new ThreadPoolExecutor(5, 30, 10, TimeUnit.SECONDS,
+        ExecutorService executorService = Executors.newCachedThreadPool();
+        ThreadPoolExecutor executor = new ThreadPoolExecutor(2, 5, 1000, TimeUnit.SECONDS,
                 new SynchronousQueue<>(),
                 new BasicThreadFactory.Builder()
                         .namingPattern(Joiner.on("-")
                                 .join("test-thread-pool", "%s"))
                         .build(),
                 new ThreadPoolExecutor.CallerRunsPolicy());
-        int i = 0;
-        for (;;) {
-            executor.execute(() -> {
+        executor.execute(() -> {
+            try {
+                TimeUnit.HOURS.sleep(1);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+
+        executor.execute(() -> {
+            try {
+                TimeUnit.HOURS.sleep(1);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+
+        executor.execute(() -> {
+            try {
+                TimeUnit.HOURS.sleep(1);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+
+        executor.execute(() -> {
+            try {
+                TimeUnit.HOURS.sleep(1);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+
+        executor.execute(() -> {
+//            try {
+//                TimeUnit.HOURS.sleep(1);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+        });
+        try {
+            TimeUnit.SECONDS.sleep(2);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        executor.execute(() -> {
+            try {
+                TimeUnit.HOURS.sleep(1);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+
+
+        try {
+            TimeUnit.HOURS.sleep(1);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+//        int i = 0;
+//        for (;;) {
+//            executor.execute(() -> {
+//                logger.info("当前线程名:{}, 活跃线程数:{}, 当前线程数:{}, 线程总数:{}", Thread.currentThread().getName(),
+//                        executor.getActiveCount(), executor.getPoolSize(), threadMXBean.getTotalStartedThreadCount());
+//            });
+//
+//            if (i > 25) {
 //                try {
-//                    TimeUnit.MILLISECONDS.sleep(200);
+//                    TimeUnit.SECONDS.sleep(1);
 //                } catch (InterruptedException e) {
 //                    e.printStackTrace();
 //                }
-                logger.info("当前线程名:{}, 活跃线程数:{}, 当前线程数:{}, 线程总数:{}", Thread.currentThread().getName(),
-                        executor.getActiveCount(), executor.getPoolSize(), threadMXBean.getTotalStartedThreadCount());
-            });
-
-            if (i > 25) {
-                try {
-                    TimeUnit.SECONDS.sleep(1);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-            ++i;
-        }
+//            }
+//            ++i;
+//        }
 
     }
 }
