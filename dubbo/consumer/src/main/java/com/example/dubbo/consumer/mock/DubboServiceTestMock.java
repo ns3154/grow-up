@@ -54,4 +54,13 @@ public class DubboServiceTestMock implements DubboTestServiceApi {
         model.setMessage("mock");
         return model;
     }
+
+    @Override
+    public ModelMessage<UserDTO> timeWait(Long time) {
+        ModelMessage<UserDTO> model = new ModelMessage<>();
+        model.setData(UserDTO.newBuilder().withSex(1).withUserName("mock").withAge(111).build());
+        model.setCode(200);
+        model.setMessage("mock");
+        return model;
+    }
 }

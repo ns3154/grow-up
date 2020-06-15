@@ -43,5 +43,5 @@ public interface DubboTestServiceApi {
     ModelMessage<UserDTO> randomTimeOut(Long userId);
 
 
-
+    ModelMessage<UserDTO> timeWait(Long time);
 }

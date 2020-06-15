@@ -86,4 +86,9 @@ public class UserServiceImpl implements DubboTestServiceApi {
         model.setData(UserDTO.newBuilder().withAge(1).withUserName("failover").withSex(3).build());
         return model;
     }
+
+    @Override
+    public ModelMessage<UserDTO> timeWait(Long time) {
+        return null;
+    }
 }

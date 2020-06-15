@@ -52,6 +52,11 @@ public class DubboController {
         return dubboTestServiceApi.userById(userId);
     }
 
+    @GetMapping("timeWait")
+    public ModelMessage<UserDTO> timeWait(Long time) {
+        return dubboTestServiceApi.timeWait(time);
+    }
+
     @GetMapping("byZero")
     public ModelMessage<UserDTO> byZero(Long userId) {
         ModelMessage<UserDTO> failover = dubboTestServiceApi.byZero(userId);
