@@ -12,4 +12,8 @@ public interface TransactionServiceB {
 
     int update(long id);
 
+    void tranSaction1();
+
+    void tranSaction2();
+
 }

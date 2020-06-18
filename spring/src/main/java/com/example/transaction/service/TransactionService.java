@@ -16,4 +16,5 @@ public interface TransactionService {
 
     int createWithTransaction();
 
+    String tranSaction();
 }

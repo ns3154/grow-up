@@ -42,5 +42,10 @@ public class Controller {
         return new ModelMessge<String>().ok(i + "");
     }
 
+    @PostMapping("tranSaction")
+    public ModelMessge<String> tranSaction() {
+        return new ModelMessge<String>().ok(transactionService.tranSaction());
+    }
+
 
 }

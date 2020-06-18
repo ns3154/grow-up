@@ -46,6 +46,15 @@ public class TransactionServiceImpl implements TransactionService {
         return i;
     }
 
+    /**
+     * 会回滚 transactionServiceB.update(1012); 已被标记回滚了
+     * @author 杨帮东
+     * @param
+     * @since 1.0
+     * @date 2020/6/15 16:54
+     * @return int
+     * @throws
+     */
     @Override
     @Transactional(rollbackFor = Exception.class)
     public int createWithTransaction() {
@@ -60,4 +69,18 @@ public class TransactionServiceImpl implements TransactionService {
         }
         return i;
     }
+
+    /**
+     * 都会回滚
+     * @return
+     */
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public String tranSaction() {
+        transactionServiceB.tranSaction1();
+        transactionServiceB.tranSaction2();
+
+        return "ok";
+    }
+
 }

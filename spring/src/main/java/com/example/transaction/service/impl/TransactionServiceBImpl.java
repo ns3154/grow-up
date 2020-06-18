@@ -33,4 +33,29 @@ public class TransactionServiceBImpl implements TransactionServiceB {
         int z = 1 / 0;
         return i;
     }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void tranSaction1() {
+        try {
+            Test test = new Test();
+            test.setId(1000L);
+            test.setCounts(123);
+            testMapper.updateByPrimaryKeySelective(test);
+            int b = 1 / 0;
+        } catch (Exception e) {
+            System.out.println("异常捕获");
+        }
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void tranSaction2() {
+        Test test = new Test();
+        test.setId(1001L);
+        test.setCounts(123);
+        testMapper.updateByPrimaryKeySelective(test);
+
+        int b = 1 / 0;
+    }
 }

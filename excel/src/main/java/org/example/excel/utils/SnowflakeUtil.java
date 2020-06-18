@@ -69,4 +69,14 @@ public class SnowflakeUtil {
         return System.currentTimeMillis();
     }
 
+    public static void main(String[] args) {
+        for (int i = 0;i < 5;i++) {
+
+            String s = "insert into baojia_bike.coupon_package_code ( package_id, code, remark, allow_multi_exchange," +
+                    " exchanged_times, is_card, creator_id, creator_name, creator_mobile)\n" + " values (6,"+SnowflakeUtil.getId()+",'50" +
+                    "元优惠券',0,0,0,0,'大雄','15101010101');";
+            System.out.println( s);
+        }
+    }
+
 }
