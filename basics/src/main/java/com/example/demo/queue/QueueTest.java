@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.LinkedTransferQueue;
 
 /**
  * <pre>
@@ -36,6 +37,15 @@ public class QueueTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
 
+    @Test
+    public void LinkedTranferQueue() {
+        LinkedTransferQueue<String> queue = new LinkedTransferQueue<>();
+        for (int i = 0; i < 10;i++) {
+            queue.put("ss" + i);
+        }
+
+        System.out.println(111);
     }
 }

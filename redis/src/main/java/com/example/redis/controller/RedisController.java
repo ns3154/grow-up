@@ -2,19 +2,22 @@ package com.example.redis.controller;
 
 import com.example.redis.service.RedisService;
 import com.example.redis.service.TestService;
+import org.junit.Test;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.RedisConnection;
-import org.springframework.data.redis.core.Cursor;
-import org.springframework.data.redis.core.RedisCallback;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.ScanOptions;
+import org.springframework.data.redis.core.*;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+
 import javax.annotation.Resource;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <pre>
@@ -31,6 +34,9 @@ public class RedisController {
 
     @Resource
     private RedisTemplate<String, String> redisTemplate;
+
+    @Resource
+    private StringRedisTemplate stringRedisTemplate;
 
     @Resource
     private TestService testService;
@@ -122,6 +128,42 @@ public class RedisController {
         return result;
     }
 
+    @GetMapping("test")
+    public void test() {
+        Map<Object, Object> entries = stringRedisTemplate.opsForHash().entries("batteryBinding:" + "imei");
+        Map map = new HashMap();
+        Object batteryImei = null;
+        Object feLi = null;
+        Object batteryNo = null;
+        Object r48a15h = "234";
+        map.put("batteryImei", batteryImei);
+        map.put("isFeLiCore", feLi);
+        map.put("batteryNo", batteryNo);
+        map.put("is48V15Ah", r48a15h);
+        stringRedisTemplate.opsForHash().putAll("batteryBinding:" + "imei", map);
+    }
+
+
+    @Test
+    public void test11() {
+        RestTemplate restTemplate = new RestTemplate();
+
+        Map map = new HashMap();
+        Object batteryImei = "312312312";
+        Object feLi = 1;
+        Object batteryNo = 1;
+        Object r48a15h = 0;
+        map.put("batteryImei", batteryImei);
+        map.put("isFeLiCore", feLi);
+        map.put("batteryNo", batteryNo);
+        map.put("is48V15Ah", r48a15h);
+        map.put("carId", "2342");
+        HttpEntity<Map<String, Object>> requestEntity = new HttpEntity<Map<String, Object>>(map);
+        ResponseEntity<Map> response = restTemplate.exchange("http://localhost:8108/api/calc/reset", HttpMethod.POST, requestEntity, Map.class);
+
+        System.out.println(response.getBody());
+
+    }
 
 
 }
