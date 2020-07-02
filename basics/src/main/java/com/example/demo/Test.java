@@ -1,9 +1,8 @@
 package com.example.demo;
 
-import com.example.demo.singleton.Singleton;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import javax.swing.undo.CannotUndoException;
-import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -16,7 +15,18 @@ import java.util.concurrent.ConcurrentHashMap;
  **/
 public class Test {
 
+    private static final Logger logger = LoggerFactory.getLogger(Test.class);
+
     public static void main(String[] args) {
+
+        try {
+            int i = 1/0;
+        } catch (Exception e) {
+            logger.error("{},{}", "1", e.getMessage(), e);
+        }
+
+
+
         ConcurrentHashMap<String, String> map = new ConcurrentHashMap<>();
         map.put("sss", "ddd");
     }
