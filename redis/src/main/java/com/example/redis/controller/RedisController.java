@@ -1,8 +1,11 @@
 package com.example.redis.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.example.redis.service.RedisService;
 import com.example.redis.service.TestService;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.*;
@@ -14,10 +17,7 @@ import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * <pre>
@@ -31,6 +31,8 @@ import java.util.Map;
 @RestController
 @RequestMapping("redis")
 public class RedisController {
+
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Resource
     private RedisTemplate<String, String> redisTemplate;
@@ -143,6 +145,29 @@ public class RedisController {
         stringRedisTemplate.opsForHash().putAll("batteryBinding:" + "imei", map);
     }
 
+    @GetMapping("zSet")
+    public void zSet(String key, String value, Double score) {
+        Long aLong = redisTemplate.opsForZSet().removeRangeByScore(key, score, score);
+
+
+//        redisTemplate.opsForZSet().zCard("cacheZSetKey:842533678900242")
+        logger.info("{}", aLong);
+//        redisTemplate.opsForZSet().add(key, value, score);
+//        Long len = redisTemplate.opsForZSet().zCard(key);
+//
+//        if (len > 10) {
+//            Set<String> range = redisTemplate.opsForZSet().range(key, 0, -1);
+//            redisTemplate.opsForZSet().remove(key, range);
+//
+//            for (String str: range) {
+//                logger.info("计算:{}", str);
+//            }
+//        }
+//
+//        Long cur_len = redisTemplate.opsForZSet().zCard(key);
+//        logger.info("当前长度:{}", cur_len);
+    }
+
 
     @Test
     public void test11() {
@@ -164,6 +189,7 @@ public class RedisController {
         System.out.println(response.getBody());
 
     }
+
 
 
 }

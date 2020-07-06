@@ -13,17 +13,17 @@ import java.math.BigDecimal;
 public class Atest {
 
     public static void main(String[] args) {
+
         //868120227184311
-        BigDecimal startSoc = new BigDecimal("99.59898");
-        BigDecimal startDistance = new BigDecimal("22750.3431");
+        BigDecimal startSoc = new BigDecimal("51.20509");
+        BigDecimal startDistance = new BigDecimal("4.2576");
 
 //        //868120220774324
-//        BigDecimal startSoc = new BigDecimal("33.74611");
-//        BigDecimal startDistance = new BigDecimal("47.337");
+//        BigDecimal startSoc = new BigDecimal("92.34343");
+//        BigDecimal startDistance = new BigDecimal("3.6611");
 
-
-        BigDecimal endSoc = new BigDecimal("40.83675");
-        BigDecimal enddistance = new BigDecimal("22757.4718");
+        BigDecimal endSoc = new BigDecimal("47.75756");
+        BigDecimal enddistance = new BigDecimal("6.1537");
 
 
         BigDecimal ss = enddistance.subtract(startDistance);
