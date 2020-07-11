@@ -15,15 +15,15 @@ public class Atest {
     public static void main(String[] args) {
 
         //868120227184311
-        BigDecimal startSoc = new BigDecimal("51.20509");
-        BigDecimal startDistance = new BigDecimal("4.2576");
+        BigDecimal startSoc = new BigDecimal("86.95631");
+        BigDecimal startDistance = new BigDecimal("6.624");
 
 //        //868120220774324
 //        BigDecimal startSoc = new BigDecimal("92.34343");
 //        BigDecimal startDistance = new BigDecimal("3.6611");
 
-        BigDecimal endSoc = new BigDecimal("47.75756");
-        BigDecimal enddistance = new BigDecimal("6.1537");
+        BigDecimal endSoc = new BigDecimal("81.01053");
+        BigDecimal enddistance = new BigDecimal("9.8942");
 
 
         BigDecimal ss = enddistance.subtract(startDistance);

@@ -101,12 +101,6 @@ public class ExcelUtil {
     }
 
 
-    @Test
-    public void test() {
-
-    }
-
-
     public static List<String> fileList() {
         List<String> list = new ArrayList<>(100);
         File file = new File(USE);
