@@ -1,16 +1,11 @@
 package org.example.excel.utils;
 
-import com.alibaba.excel.EasyExcel;
-import com.alibaba.excel.write.metadata.style.WriteCellStyle;
-import com.alibaba.excel.write.metadata.style.WriteFont;
-import com.alibaba.excel.write.style.HorizontalCellStyleStrategy;
-import org.apache.poi.ss.usermodel.HorizontalAlignment;
-import org.apache.poi.ss.usermodel.IndexedColors;
-import org.apache.poi.ss.usermodel.VerticalAlignment;
 import org.example.excel.model.ChongZhiKaModel;
-import org.example.excel.model.RenRen;
 import org.junit.Test;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -35,14 +30,27 @@ public class ChongZhikaUtils {
     SimpleDateFormat yyyyMMdd = new SimpleDateFormat("yyyyMMdd");
     String cardyyyyMMdd = yyyyMMdd.format(date);
     Double cash = 20.0d;
-    String name = "20元充值卡-100张.xlsx";
-    String source = "/Users/yang/Downloads/" + name;
+    static String name = "20元充值卡-100张.xlsx";
+
+    static String prePath = "";
+
+    static {
+        String os = System.getProperty("os.name");
+        if (os.startsWith("Windows")) {
+            prePath =  "C:\\Users\\Ns\\Desktop\\充值卡\\";
+        } else {
+            prePath = "/Users/yang/Downloads/";
+        }
+    }
+
+    static String outPath = prePath + name;
 
     @Test
-    public void chognzhika() {
+    public void chognzhika() throws IOException {
         List<ChongZhiKaModel> list = new ArrayList<>();
         String batchnumber = yyyyMM.format(date);
         DecimalFormat decimalFormat = new DecimalFormat("0000");
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i <= 100; i++) {
             String serialnum = decimalFormat.format(i);
             String cardno = cardyyyyMMdd + serialnum;
@@ -53,23 +61,21 @@ public class ChongZhikaUtils {
             czk.setCardNo(cardno);
             czk.setCash(cash.toString());
 
-            String s = "INSERT INTO meboth_qiye.t_cards (cardno, password, cash, serialnum, batchnumber, createtime, "
-                    + "isused) VALUES ('" + cardno + "', '" + password + "', " + cash + ", " + serialnum + ", '" + batchnumber + "', now(),  0);";
+            String sql = "INSERT INTO meboth_qiye.t_cards (cardno, password, cash, serialnum, batchnumber, createtime, "
+                    + "isused) VALUES ('" + cardno + "', '" + password + "', " + cash + ", " + serialnum + ", '" + batchnumber + "', now(),  0);" + "\n";
             list.add(czk);
-            System.out.println(s);
+            sb.append(sql);
+
         }
 
-        WriteCellStyle headWriteCellStyle = new WriteCellStyle();
-        headWriteCellStyle.setFillForegroundColor(IndexedColors.WHITE.getIndex());
-        headWriteCellStyle.setVerticalAlignment(VerticalAlignment.CENTER);
-        WriteCellStyle contentWriteCellStyle = new WriteCellStyle();
-        contentWriteCellStyle.setHorizontalAlignment(HorizontalAlignment.CENTER);
-        WriteFont contentWriteFont = new WriteFont();
-        contentWriteFont.setFontHeightInPoints((short) 12);
-        contentWriteCellStyle.setWriteFont(contentWriteFont);
-        HorizontalCellStyleStrategy horizontalCellStyleStrategy = new HorizontalCellStyleStrategy(headWriteCellStyle,
-                contentWriteCellStyle);
-        EasyExcel.write(source, ChongZhiKaModel.class).registerWriteHandler(horizontalCellStyleStrategy).sheet("20" +
-                "元充值卡").doWrite(list);
+        File file = new File(prePath + "sql.txt");
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+        FileWriter fw = new FileWriter(file, true);
+        fw.write(sb.toString());
+        fw.close();
+
+        ExcelUtils.create(name.split("\\.")[0], list , outPath, ChongZhiKaModel.class);
     }
 }

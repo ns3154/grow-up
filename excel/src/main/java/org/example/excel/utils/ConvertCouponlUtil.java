@@ -27,7 +27,7 @@ import java.util.List;
  * @since 1.0
  * @date 2020/04/20 16:12
  **/
-public class ExcelUtil {
+public class ConvertCouponlUtil {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 

@@ -5,8 +5,7 @@ import com.google.common.base.Joiner;
 import org.apache.commons.lang3.concurrent.BasicThreadFactory;
 import org.example.excel.model.RenRen;
 import org.example.excel.service.ExcelService;
-import org.example.excel.utils.ExcelUtil;
-import org.example.excel.utils.ReadCheckListener;
+import org.example.excel.utils.ConvertCouponlUtil;
 import org.example.excel.utils.ReadToDbListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,7 +51,7 @@ public class ExcelController {
                                 .join("create-db-", "%s"))
                         .build(),
                 new ThreadPoolExecutor.CallerRunsPolicy());
-        List<String> allFile = ExcelUtil.fileList();
+        List<String> allFile = ConvertCouponlUtil.fileList();
         long start = System.currentTimeMillis();
         for (String s : allFile) {
 
