@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerA
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
@@ -37,14 +38,17 @@ public class RedisConfig {
      * @throws
      */
     @Bean
-    public RedisTemplate<String, String> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
+    public RedisTemplate<String, String> redisTemplate(LettuceConnectionFactory redisConnectionFactory) {
+        // 在切库时出现 : Selecting a new database not supported due to shared connection
+        // 关闭共享连接
+        redisConnectionFactory.setShareNativeConnection(false);
         RedisTemplate<String, String> redisTemplate = new RedisTemplate<>();
         redisTemplate.setConnectionFactory(redisConnectionFactory);
         redisTemplate.setKeySerializer(RedisSerializer.string());
         redisTemplate.setValueSerializer(RedisSerializer.string());
         redisTemplate.setHashKeySerializer(RedisSerializer.string());
         redisTemplate.setHashValueSerializer(RedisSerializer.string());
-        redisTemplate.setEnableTransactionSupport(true);
+//        redisTemplate.setEnableTransactionSupport(true);
         return redisTemplate;
     }
 

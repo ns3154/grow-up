@@ -9,11 +9,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.*;
+import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+import redis.clients.jedis.Protocol;
+import redis.clients.jedis.util.SafeEncoder;
 
 import javax.annotation.Resource;
 import java.nio.charset.StandardCharsets;
@@ -168,27 +171,42 @@ public class RedisController {
 //        logger.info("当前长度:{}", cur_len);
     }
 
-
-    @Test
-    public void test11() {
-        RestTemplate restTemplate = new RestTemplate();
-
-        Map map = new HashMap();
-        Object batteryImei = "312312312";
-        Object feLi = 1;
-        Object batteryNo = 1;
-        Object r48a15h = 0;
-        map.put("batteryImei", batteryImei);
-        map.put("isFeLiCore", feLi);
-        map.put("batteryNo", batteryNo);
-        map.put("is48V15Ah", r48a15h);
-        map.put("carId", "2342");
-        HttpEntity<Map<String, Object>> requestEntity = new HttpEntity<Map<String, Object>>(map);
-        ResponseEntity<Map> response = restTemplate.exchange("http://localhost:8108/api/calc/reset", HttpMethod.POST, requestEntity, Map.class);
-
-        System.out.println(response.getBody());
-
+    @GetMapping("set/nx/ex")
+    public Boolean nx(String key,String value,Long secondsTimer) {
+        Boolean b = redisTemplate.execute((RedisCallback<Boolean>) connection -> {
+            RedisSerializer valueSerializer = redisTemplate.getValueSerializer();
+            RedisSerializer keySerializer = redisTemplate.getKeySerializer();
+            Object obj = connection.execute("set", keySerializer.serialize(key),
+                    valueSerializer.serialize(value),
+                    SafeEncoder.encode("NX"),
+                    SafeEncoder.encode("EX"),
+                    Protocol.toByteArray(secondsTimer));
+            return obj != null;
+        });
+        return b;
     }
+
+    @GetMapping("rPush")
+    public void ss() {
+        final String key = "prod:boxxan";
+        final String value = "{\"gsm\":0,\"latitude\":30.50298,\"gpsTime\":1595641091,\"speed\":0," +
+                "\"carId\":\"861230042925561\",\"voltage\":\"50.092\",\"mode\":0,\"course\":0,\"cmd\":\"batteryGps\"," +
+                "\"time\":1595648441736,\"longitude\":114.42896}";
+
+
+        redisTemplate.execute((RedisCallback<Object>) connection -> {
+            connection.select(2);
+            for (int i = 0; i < 999;i++) {
+                connection.rPush(key.getBytes(StandardCharsets.UTF_8),
+                        value.getBytes(StandardCharsets.UTF_8));
+            }
+            return null;
+        });
+    }
+
+
+
+
 
 
 
