@@ -1,21 +1,19 @@
 package com.example.demo.lambda;
 
 import com.example.demo.Model;
-import com.example.demo.extend.A;
 import com.google.common.base.Joiner;
 import org.apache.commons.lang3.concurrent.BasicThreadFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
+import java.awt.*;
+import java.util.*;
 import java.util.List;
 import java.util.concurrent.*;
-import java.util.function.BiPredicate;
-import java.util.function.Function;
-import java.util.function.Predicate;
-import java.util.function.ToIntFunction;
+import java.util.function.*;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * <pre>
@@ -36,18 +34,32 @@ public class Test {
 
     Function<Integer, Model> integerModelFunction = Model::new;
 
-    ThreadPoolExecutor executor = new ThreadPoolExecutor(20, 100, 1000, TimeUnit.SECONDS,
-            new SynchronousQueue<>(),
-            new BasicThreadFactory.Builder()
-                    .namingPattern(Joiner.on("-")
-                            .join("test-thread-pool", "%s"))
-                    .build(),
+    ThreadPoolExecutor executor = new ThreadPoolExecutor(20, 100, 1000, TimeUnit.SECONDS, new SynchronousQueue<>(),
+            new BasicThreadFactory.Builder().namingPattern(Joiner.on("-").join("test-thread-pool", "%s")).build(),
             new ThreadPoolExecutor.CallerRunsPolicy());
+
+    List<Dish> menu = Arrays.asList(
+            new Dish("pork", false, 800, Dish.Type.MEAT),
+            new Dish("beef", true, 700, Dish.Type.MEAT),
+            new Dish("chicken", false, 400, Dish.Type.MEAT),
+            new Dish("french", false, 530, Dish.Type.OTHER),
+            new Dish("rice", true, 350, Dish.Type.OTHER),
+            new Dish("season friot", true, 120, Dish.Type.OTHER),
+            new Dish("pizza", true, 550, Dish.Type.OTHER),
+            new Dish("prawns", false, 300, Dish.Type.FISH),
+            new Dish("salmon", false, 450, Dish.Type.FISH));
+
+
+    @org.junit.Test
+    public void test() {
+        Map<Dish.Type, List<Dish>> collect = menu.stream().collect(Collectors.groupingBy(Dish::getType));
+        System.out.println(collect.size());
+    }
 
     @org.junit.Test
     public void sort() {
 
-        List<Integer> list = Arrays.asList(6,21,9,3,10);
+        List<Integer> list = Arrays.asList(6, 21, 9, 3, 10);
 
         list.sort((o1, o2) -> o2 - o1);
         list.forEach(System.out::println);
@@ -62,7 +74,7 @@ public class Test {
         System.out.println(biPredicate.and((strings, s) -> "t".equals(s)).test(strList, str));
 
         List<Future<Model>> futures = new ArrayList<>(100);
-        for (int i = 0;i < 100;i++) {
+        for (int i = 0; i < 100; i++) {
             int finalI = i;
             Future<Model> submit = executor.submit(() -> integerModelFunction.apply(finalI));
             futures.add(submit);
@@ -80,10 +92,10 @@ public class Test {
 
         List<Apple> apples = new ArrayList<>();
 
-        for (int i = 0;i < 10;i++) {
+        for (int i = 0; i < 10; i++) {
             Apple apple = new Apple();
             apple.setWeight(0);
-            apple.setName((char)(Math.random() * 26 + 'a') + "");
+            apple.setName((char) (Math.random() * 26 + 'a') + "");
             apples.add(apple);
         }
 
@@ -119,10 +131,50 @@ public class Test {
         apple1.setWeight(165);
         apple1.setName("搜索");
         apple1.setColor("RED");
-        logger.info("红色的并且重量>150,{},颜色:{}, 重量:{}", redAndHeavyApple.test(apple1), apple1.getColor(), apple1.getWeight());
+        logger.info("红色的并且重量>150,{},颜色:{}, 重量:{}", redAndHeavyApple.test(apple1), apple1.getColor(),
+                apple1.getWeight());
+
+
+    }
+
+    @org.junit.Test
+    public void menu() {
+
+        BiFunction<Integer, Boolean, Boolean> bf = (i,b) -> i > 300 && b;
+        List<String> collect = menu.stream().filter(d -> {
+            System.out.println("---------------------");
+            System.out.println("caloriees > 300:" + d.getName());
+
+            return d.getCalories() > 300;
+        }).filter(d -> {
+            System.out.println("vegetarian:" + d.getName());
+            return d.isVegetarian();
+        }).map(d -> {
+            System.out.println("map:" + d.getName());
+            return d.getName();
+        }).collect(Collectors.toList());
+        System.out.println(collect);
+
+        ;
+        List<String> collect1 = menu.stream().filter(d -> bf.apply(d.getCalories(), d.isVegetarian())).map(d -> {
+            System.out.println("map:" + d.getName());
+            return d.getName();
+        }).collect(Collectors.toList());
+        System.out.println(collect1);
+    }
+
+    @org.junit.Test
+    public void distinct() {
+        List<String> list = Arrays.asList("2", "b", "c", "b", "2");
+        list.stream().distinct().forEach(System.out::println);
 
 
 
+    }
+
+    @org.junit.Test
+    public void groupBy() {
+        menu.stream().collect(Collectors.groupingBy(Dish::getName));
 
     }
 }
