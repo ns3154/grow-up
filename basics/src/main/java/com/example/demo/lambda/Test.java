@@ -174,7 +174,21 @@ public class Test {
 
     @org.junit.Test
     public void groupBy() {
-        menu.stream().collect(Collectors.groupingBy(Dish::getName));
+        Map<Dish.Type, Map<Boolean, List<Dish>>> collect = menu.stream().collect(Collectors.groupingBy(Dish::getType,
+                Collectors.groupingBy(Dish::isVegetarian)));
+        System.out.println(collect.size());
 
+        Map<Dish.Type, Dish> collect1 = menu.stream().collect(Collectors.toMap(Dish::getType, Function.identity(),
+                BinaryOperator.maxBy(Comparator.comparingInt(Dish::getCalories))));
+        System.out.println(collect1.size());
+
+        List<Dish> list = new ArrayList<>();
+        ArrayList<Dish> collect2 = menu.stream().collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    @org.junit.Test
+    public void customCollector() {
+        List<Dish> collect = menu.stream().collect(new ToListCollector<>());
+        collect.forEach(System.out::println);
     }
 }

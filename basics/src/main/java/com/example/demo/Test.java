@@ -61,4 +61,12 @@ public class Test {
             model.setCode(11);
         }
     }
+
+    @org.junit.jupiter.api.Test
+    public void sss() {
+        int t = 3;
+        int z = 5;
+        System.out.println(t & z);
+
+    }
 }

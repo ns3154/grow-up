@@ -66,7 +66,7 @@ public class WaitNotifyTest {
             synchronized (lock) {
                 logger.error("进入{}, 方法代码块", "b");
                 try {
-                    lock.wait();
+                        lock.wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
