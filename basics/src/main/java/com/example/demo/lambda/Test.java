@@ -191,4 +191,21 @@ public class Test {
         List<Dish> collect = menu.stream().collect(new ToListCollector<>());
         collect.forEach(System.out::println);
     }
+
+    @org.junit.jupiter.api.Test
+    public void test1() {
+        int a = 40;
+        Runnable runnable = () -> {
+//            int a = 2;
+            System.out.println(a);
+        };
+
+        Runnable r1 = new Runnable() {
+            @Override
+            public void run() {
+                int a = 3;
+                System.out.println(a);
+            }
+        };
+    }
 }

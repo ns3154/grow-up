@@ -1,5 +1,8 @@
 package org.example.excel.utils;
 
+import com.alibaba.fastjson.JSONObject;
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * <pre>
  *
@@ -18,5 +21,17 @@ public class Test {
         System.out.println( s1);
 
         System.out.println("81978855".length());
+
+        JSONObject data = new JSONObject();
+        String frm = String.valueOf("sdfsdf");
+        data.put("imei", "sdfsdf");
+        data.put("key", "sdfsaf");
+        data.put("frm", frm);
+        data.put("rt", "sfsfd");
+        data.put("serverTime", System.currentTimeMillis());
+        data.put("type", "emit");
+
+
+        System.out.println(data.getLongValue("serverTime"));
     }
 }
