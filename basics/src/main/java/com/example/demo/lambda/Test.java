@@ -6,14 +6,11 @@ import org.apache.commons.lang3.concurrent.BasicThreadFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.awt.*;
 import java.util.*;
 import java.util.List;
 import java.util.concurrent.*;
 import java.util.function.*;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * <pre>
@@ -192,7 +189,7 @@ public class Test {
         collect.forEach(System.out::println);
     }
 
-    @org.junit.jupiter.api.Test
+    @org.junit.Test
     public void test1() {
         int a = 40;
         Runnable runnable = () -> {
@@ -207,5 +204,68 @@ public class Test {
                 System.out.println(a);
             }
         };
+    }
+
+
+    @org.junit.Test
+    public void pointTest() {
+        Point p1 = new Point(3, 45);
+        Point p2 = new Point(3, 45);
+        int compare = Point.COMPARATOR.compare(p1, p2);
+        System.out.println(compare);
+
+    }
+
+    @org.junit.Test
+    public void pointNullTest() {
+        List<Point> list = Arrays.asList(new Point(1,2), new Point(3,4), null);
+        list.stream()
+                .map(Point::getX)
+                .forEach(System.out::println);
+    }
+
+    @org.junit.Test
+    public void peek() {
+        BikeBatteryStandardModel normalStandard = new BikeBatteryStandardModel(45.0,
+                LackPowerStatusEnum.normal.getCode());
+
+        BikeBatteryStandardModel lowStandard = new BikeBatteryStandardModel(35.0,
+                LackPowerStatusEnum.low.getCode());
+        // brandsId = 5 蜜蜂
+        BikeBatteryStandardModel lackmfStandard = new BikeBatteryStandardModel(25.0,
+                LackPowerStatusEnum.lack.getCode());
+        // 其他品牌
+        BikeBatteryStandardModel lackStandard = new BikeBatteryStandardModel(15.0,
+                LackPowerStatusEnum.lack.getCode());
+
+        BikeBatteryStandardModel pinchStandard = new BikeBatteryStandardModel(0.0,
+                LackPowerStatusEnum.pinch.getCode());
+
+        BikeBatteryStandardModel zeroStandard = new BikeBatteryStandardModel(-1.0,
+                LackPowerStatusEnum.zero.getCode());
+
+        List<BikeBatteryStandardModel> standardMfTemplate = new ArrayList<>();
+        standardMfTemplate.add(normalStandard);
+        standardMfTemplate.add(lowStandard);
+        standardMfTemplate.add(lackmfStandard);
+        standardMfTemplate.add(pinchStandard);
+        standardMfTemplate.add(zeroStandard);
+
+        BikeBatteryCacheModel bikeBatteryCacheModel = new BikeBatteryCacheModel(54545L, standardMfTemplate, "45-35-25");
+
+        double power = 78D;
+
+
+        Function<BikeBatteryCacheModel, Integer> function = (bcm) -> bcm.getBikeBatteryStandards()
+                .stream()
+                .filter(d -> power > d.getPower())
+                .peek(d -> System.out.println( "模版电量:"+d.getPower() + ",模版状态" + d.getBatteryStatus() + ",店里标准:" + bcm.getPowerStr()))
+                .findFirst()
+                .orElse(zeroStandard)
+                .getBatteryStatus();
+
+
+        System.out.println(function.apply(bikeBatteryCacheModel));
+
     }
 }
