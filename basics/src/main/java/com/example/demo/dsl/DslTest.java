@@ -1,7 +1,6 @@
 package com.example.demo.dsl;
 
 import org.junit.Test;
-import org.mockito.internal.matchers.Or;
 
 /**
  * <pre>

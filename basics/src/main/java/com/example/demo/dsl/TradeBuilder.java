@@ -14,7 +14,7 @@ public class TradeBuilder {
 
     public final Trade trade = new Trade();
 
-    public TradeBuilder(MethodChainingOrderBuidler methodChainingOrderBuidler, Trade.Type type, int quantity) {
+    public  TradeBuilder(MethodChainingOrderBuidler methodChainingOrderBuidler, Trade.Type type, int quantity) {
         this.methodChainingOrderBuidler = methodChainingOrderBuidler;
         trade.setType(type);
         trade.setQuantity(quantity);
