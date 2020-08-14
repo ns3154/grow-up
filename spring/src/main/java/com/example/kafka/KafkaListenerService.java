@@ -1,6 +1,5 @@
 package com.example.kafka;
 
-import com.alibaba.fastjson.JSON;
 import com.example.utils.TrackUtils;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.slf4j.Logger;
@@ -19,7 +18,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class KafkaListenerService {
 
-    private Logger logger = LoggerFactory.getLogger(getClass());
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @KafkaListener(topics = "TEST")
     private void listener(ConsumerRecord<String, String> consumerRecord) {

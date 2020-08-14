@@ -268,4 +268,8 @@ public class Test {
         System.out.println(function.apply(bikeBatteryCacheModel));
 
     }
+
+    void ssss(List<Object> objects) {
+        List<String> list = objects.stream().filter(o -> o instanceof String).map(o -> ((String) o).toLowerCase()).collect(Collectors.toList());
+    }
 }
