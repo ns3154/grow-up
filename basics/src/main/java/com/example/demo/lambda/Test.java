@@ -3,6 +3,8 @@ package com.example.demo.lambda;
 import com.example.demo.Model;
 import com.google.common.base.Joiner;
 import org.apache.commons.lang3.concurrent.BasicThreadFactory;
+import org.jetbrains.annotations.TestOnly;
+import org.junit.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,10 +13,11 @@ import java.util.List;
 import java.util.concurrent.*;
 import java.util.function.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * <pre>
- *
+ *      https://www.jianshu.com/p/461429a5edc9
  * </pre>
  * @author 杨帮东
  * @since 1.0
@@ -47,10 +50,16 @@ public class Test {
             new Dish("salmon", false, 450, Dish.Type.FISH));
 
 
+    DoubleUnaryOperator a = (double x) -> x * 0.1 + 1;
+    DoubleUnaryOperator b = (double x) -> x * 0.2 + 2;
+    DoubleUnaryOperator c = (double x) -> x * 0.3 + 3;
+
+
     @org.junit.Test
     public void test() {
         Map<Dish.Type, List<Dish>> collect = menu.stream().collect(Collectors.groupingBy(Dish::getType));
         System.out.println(collect.size());
+
     }
 
     @org.junit.Test
@@ -272,4 +281,56 @@ public class Test {
     void ssss(List<Object> objects) {
         List<String> list = objects.stream().filter(o -> o instanceof String).map(o -> ((String) o).toLowerCase()).collect(Collectors.toList());
     }
+
+    @org.junit.Test
+    public void closeRange() {
+        int reduce = IntStream.rangeClosed(1, 10)
+                .peek(System.out::println)
+                .reduce(1, (x, y) ->{
+                    System.out.println("x:" + x + ",y:" + y);
+                    return x * y;
+                });
+        System.out.println(reduce);
+    }
+
+    @org.junit.Test
+    public void gao() {
+        System.out.println(a.applyAsDouble(1234.0));
+        System.out.println(b.applyAsDouble(1234.0));
+        System.out.println(c.applyAsDouble(1234.0));
+        System.out.println(a.andThen(b).andThen(c).applyAsDouble(1000));
+    }
+
+
+    @org.junit.Test
+    public void tt() {
+//        long z = tt(30000);
+        long z = tt(1, 25000);
+        System.out.println(z);
+    }
+
+    @org.junit.Test
+    public void testConcat() {
+        IntStream a = IntStream.range(10, 20);
+        IntStream b = IntStream.range(40, 50);
+        long count = IntStream.concat(a, b).count();
+        // 两个流合并后总元素为20
+        Assert.assertEquals(20, count);
+    }
+
+    @org.junit.Test
+    public void testFlatMap() {
+        // 这里根据上游的元素扩展出了更多的元素
+        IntStream.of(1, 2, 3).flatMap(e -> IntStream.rangeClosed(0, e)).forEach(System.out::println);
+    }
+
+    private long tt(long y) {
+        return y == 1 ? 1 : y * tt(y - 1);
+    }
+
+    // 尾递  目前 jvm 不支持 下边代码 理论上占用一个栈帧
+    private long tt(long x, long y) {
+        return y == 1 ? x : tt(x * y, y - 1);
+    }
+
 }

@@ -8,9 +8,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  *
@@ -36,18 +35,18 @@ public class ChongZhikaUtils {
 
     /*************************** 必填参数 ****************************/
     // 金额
-    static final Double CASH = 100.0d;
+    static final Double CASH = 20.0d;
     // 充值卡数量
-    static final int CREATE_NUMS = 32;
-    static final String EXCEL_NAME = "100元充值卡-1张.xlsx";
-    static final String SQL_NAME = "100元sql.txt";
+    static final int CREATE_NUMS = 4;
+    static final String EXCEL_NAME = "20元充值卡-" + CREATE_NUMS + "张.xlsx";
+    static final String SQL_NAME = "20元sql.txt";
     /*************************** 必填参数 ****************************/
 
     /**
      * 默认初始值为0
      * 设置条件,1天之内生成超过多个批次数据时修改
      */
-    static int serialnum = 0;
+    static int serialnum = 56;
 
     static String prePath = "";
 
@@ -72,8 +71,8 @@ public class ChongZhikaUtils {
             String serialnumStr = decimalFormat.format(serialnum);
             String cardno = cardyyyyMMdd + serialnumStr;
             ChongZhiKaModel czk = new ChongZhiKaModel();
-            long password = SnowflakeUtil.getId();
-            czk.setPassword(password + "");
+            String password = password();
+            czk.setPassword(password);
             czk.setBatchNum(batchnumber);
             czk.setCardNo(cardno);
             czk.setCash(CASH.toString());
@@ -94,5 +93,22 @@ public class ChongZhikaUtils {
         fw.close();
 
         ExcelUtils.create(EXCEL_NAME.split("\\.")[0], list , outPath, ChongZhiKaModel.class);
+    }
+
+
+    public String password() {
+        StringBuilder sb = new StringBuilder();
+        for (int t = 0;t < 18;t++) {
+            int z = random();
+            while (t == 0 && z == 0) {
+                z = random();
+            }
+            sb.append(z);
+        }
+        return sb.toString();
+    }
+
+    private int random() {
+        return ThreadLocalRandom.current().nextInt(10);
     }
 }

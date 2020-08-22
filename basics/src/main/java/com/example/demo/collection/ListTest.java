@@ -1,14 +1,8 @@
 package com.example.demo.collection;
 
-import com.sun.org.apache.regexp.internal.RE;
-import org.junit.Before;
 import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.function.Predicate;
-import java.util.function.UnaryOperator;
 
 /**
  * <pre>
