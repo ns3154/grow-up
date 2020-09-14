@@ -37,7 +37,7 @@ public class ChongZhikaUtils {
     // 金额
     static final Double CASH = 20.0d;
     // 充值卡数量
-    static final int CREATE_NUMS = 4;
+    static final int CREATE_NUMS = 100;
     static final String EXCEL_NAME = "20元充值卡-" + CREATE_NUMS + "张.xlsx";
     static final String SQL_NAME = "20元sql.txt";
     /*************************** 必填参数 ****************************/
@@ -46,7 +46,7 @@ public class ChongZhikaUtils {
      * 默认初始值为0
      * 设置条件,1天之内生成超过多个批次数据时修改
      */
-    static int serialnum = 56;
+    static int serialnum = 0;
 
     static String prePath = "";
 
