@@ -21,10 +21,14 @@ public class MapTest {
 
 
         Model model1 = map.computeIfPresent("ked", (key, value) -> {
-            System.out.println(value.getCode());
+//            System.out.println(value.getCode());
             return new Model(2322);
         });
-        System.out.println(model.getCode());
-        System.out.println(model1.getCode());
+
+        String ss = "929870599880241251";
+        String substring = ss.substring(17, 18);
+        String sss = ss.substring(ss.length() - 1);
+        System.out.println(substring);
+        System.out.println(sss);
     }
 }
