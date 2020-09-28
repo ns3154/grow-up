@@ -30,6 +30,7 @@
 	    <module>design</module>
 	    <module>algorithm</module>
 	    <module>excel</module>
+        <module>wx</module>
     </modules>
 
     <properties>
