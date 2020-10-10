@@ -35,11 +35,11 @@ public class ChongZhikaUtils {
 
     /*************************** 必填参数 ****************************/
     // 金额
-    static final Double CASH = 20.0d;
+    static final Double CASH = 1.0d;
     // 充值卡数量
-    static final int CREATE_NUMS = 100;
-    static final String EXCEL_NAME = "20元充值卡-" + CREATE_NUMS + "张.xlsx";
-    static final String SQL_NAME = "20元sql.txt";
+    static final int CREATE_NUMS = 12;
+    static final String EXCEL_NAME = "1元充值卡-" + CREATE_NUMS + "张.xlsx";
+    static final String SQL_NAME = "1元sql.txt";
     /*************************** 必填参数 ****************************/
 
     /**

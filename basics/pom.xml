@@ -26,6 +26,10 @@
 			<artifactId>netty-all</artifactId>
 			<version>4.1.19.Final</version>
 		</dependency>
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+		</dependency>
 	</dependencies>
 
 
