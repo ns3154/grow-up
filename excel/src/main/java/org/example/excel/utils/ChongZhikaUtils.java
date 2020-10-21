@@ -26,10 +26,6 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class ChongZhikaUtils {
 
-    Date date = new Date();
-    SimpleDateFormat yyyyMM = new SimpleDateFormat("yyyyMM");
-    SimpleDateFormat yyyyMMdd = new SimpleDateFormat("yyyyMMdd");
-    String cardyyyyMMdd = yyyyMMdd.format(date);
 
 
 
@@ -63,6 +59,11 @@ public class ChongZhikaUtils {
 
     @Test
     public void chognzhika() throws IOException {
+        Date date = new Date();
+        SimpleDateFormat yyyyMM = new SimpleDateFormat("yyyyMM");
+        SimpleDateFormat yyyyMMdd = new SimpleDateFormat("yyyyMMdd");
+        String cardyyyyMMdd = yyyyMMdd.format(date);
+
         List<ChongZhiKaModel> list = new ArrayList<>();
         String batchnumber = yyyyMM.format(date);
         DecimalFormat decimalFormat = new DecimalFormat("0000");
