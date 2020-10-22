@@ -1,4 +1,4 @@
-package com.example.event;
+package com.example.event.google;
 
 import com.example.model.ModelMessge;
 import org.springframework.web.bind.annotation.GetMapping;

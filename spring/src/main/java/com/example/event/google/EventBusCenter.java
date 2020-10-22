@@ -1,4 +1,4 @@
-package com.example.event;
+package com.example.event.google;
 
 import com.example.annotation.EventBusListener;
 import com.google.common.eventbus.AsyncEventBus;
