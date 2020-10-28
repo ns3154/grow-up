@@ -1,0 +1,4 @@
+org.springframework.context.ApplicationListener=\
+com.example.event.springboot.ApplicationStartingEventTest
+org.springframework.boot.diagnostics.FailureAnalyzer=\
+com.example.analyzer.FailureAnalyzerTest
