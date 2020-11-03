@@ -22,17 +22,14 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.Types;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
  * <pre>
  *
- * 不支持并发
+ * 只支持单线程,代码也是单线程模式下开发,无任何同步操作.
  * 使用说明:
  * 1. {@link #BASE_PATH} 程序会自动创建根目录,请确保路径是文件夹
  *
@@ -62,12 +59,17 @@ public class MibiToJiangLiJIn {
     /**
      * sql.txt 文件输出的目录
      */
-    private static final String OUT_SQL_TXT_PATH = BASE_PATH+ "sql.txt";
+    private static final String OUT_SQL_TXT = BASE_PATH + "sql.txt";
 
     /**
      * 数据校验不通过 或者问题数据
      */
-    private static final String OUT_ERROR_TXT_PATH = BASE_PATH + "error.txt";
+    private static final String OUT_ERROR_TXT = BASE_PATH + "error.txt";
+
+    /**
+     * 非线程安全
+     */
+    private static final StringBuilder ERROR_STRING = new StringBuilder();
 
     /**
      * 读取的excel文件
@@ -75,6 +77,8 @@ public class MibiToJiangLiJIn {
     private static final String IN_EXCEL = "C:\\Users\\Ns\\Desktop\\111.xlsx";
 
     private static final Pattern USERID_PATTERN = Pattern.compile("\\{USERID}");
+
+    private static final Pattern NUMBERS_PATTERN = Pattern.compile("^\\d+(\\.\\d+)?$");
 
     private static final String MONEY = "{money}";
 
@@ -137,9 +141,16 @@ public class MibiToJiangLiJIn {
                 .stream()
                 .map(MibiToJiangLiJIn::createSql)
                 .collect(Collectors.joining());
-        File file = new File(OUT_SQL_TXT_PATH);
-        try(FileWriter fw = new FileWriter(file, true)) {
+        File sqlFile = new File(OUT_SQL_TXT);
+        try(FileWriter fw = new FileWriter(sqlFile, true)) {
             fw.write(sb);
+        } catch (IOException e) {
+            LOGGER.error("创建文件或写入时,发生IO错误", e);
+        }
+
+        File errorFile = new File(OUT_ERROR_TXT);
+        try(FileWriter fw = new FileWriter(errorFile, true)) {
+            fw.write(ERROR_STRING.toString());
         } catch (IOException e) {
             LOGGER.error("创建文件或写入时,发生IO错误", e);
         }
@@ -243,7 +254,15 @@ public class MibiToJiangLiJIn {
 
         @Override
         public void invoke(ExcelModel data, AnalysisContext context) {
-            excelList.add(data);
+            if (NUMBERS_PATTERN.matcher(data.getMoney()).matches()) {
+                excelList.add(data);
+            } else {
+                ERROR_STRING.append("#")
+                        .append("excel_Id:").append(data.getId()).append("  ")
+                        .append("mobile:").append(data.getMobile()).append("  ")
+                        .append("money:").append(data.getMoney()).append("\n");
+            }
+
         }
 
         @Override
@@ -251,7 +270,7 @@ public class MibiToJiangLiJIn {
         }
 
         public List<ExcelModel> getList() {
-            return excelList;
+            return Collections.unmodifiableList(excelList);
         }
     }
 
