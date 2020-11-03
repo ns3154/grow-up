@@ -257,9 +257,6 @@ public class MibiToJiangLiJIn {
 
     static class QueryModel {
 
-        public QueryModel() {
-            //nothing
-        }
         /**
          * 赋值时 id 为空代表没查得到数据
          * 如果user_profit_total表 没数据，执行下面1、2、3条sql，有数据只执行2、3
@@ -321,11 +318,6 @@ public class MibiToJiangLiJIn {
     }
 
     public static class ExcelModel {
-
-        public ExcelModel() {
-            //nothing
-        }
-
 
         @ExcelProperty(value = "id", index = 0, converter = CustomStringStringConverter.class)
         private String id;
