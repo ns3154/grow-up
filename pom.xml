@@ -11,7 +11,7 @@
         <version>2.3.4.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-
+    
     <packaging>pom</packaging>
 
     <groupId>org.example</groupId>
@@ -41,6 +41,7 @@
         <apache-commons-lang3.version>3.4</apache-commons-lang3.version>
         <fastjson.version>1.2.67</fastjson.version>
         <jmh.version>1.23</jmh.version>
+        <spring-boot.version>2.3.4.RELEASE</spring-boot.version>
     </properties>
     
     <dependencies>

@@ -13,6 +13,10 @@ public class ThreadLocalTest {
 
 	public static void main(String[] args) {
 		ThreadLocal<Integer> threadLocal = new ThreadLocal<>();
+//		ThreadLocal<Map<String, String>> mapThreadLocal = ThreadLocal.withInitial(HashMap::new);
 		threadLocal.set(1);
+		Integer integer = threadLocal.get();
+		System.out.println(integer);
+		threadLocal.remove();
 	}
 }
