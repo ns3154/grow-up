@@ -32,7 +32,7 @@ import java.util.stream.Collectors;
 /**
  * <pre>
  *
- * 不支持并发搞
+ * 不支持并发
  * 使用说明:
  * 1. {@link #BASE_PATH} 程序会自动创建根目录,请确保路径是文件夹
  *
@@ -74,9 +74,15 @@ public class MibiToJiangLiJIn {
      */
     private static final String IN_EXCEL = "C:\\Users\\Ns\\Desktop\\111.xlsx";
 
+    private static final Pattern USERID_PATTERN = Pattern.compile("\\{USERID}");
+
+    private static final String MONEY = "{money}";
+
+    private static final String USERID = "{USERID}";
+
     private static final Map<Integer, String> SQL = new HashMap<>();
 
-    private static final JdbcTemplate jdbcTemplate;
+    private static final JdbcTemplate JDBC_TEMPLATE;
 
     private static final String JDBC_URL = "jdbc:mysql://10.1.11.14:3310/baojia_bike?zeroDateTimeBehavior" +
             "=convertToNull" +
@@ -107,8 +113,8 @@ public class MibiToJiangLiJIn {
         dataSource.setUsername("readonly");
         dataSource.setPassword("m965soD6tLdnF3MF");
         dataSource.setValidationQuery("SELECT 1 FROM DUAL");
-        jdbcTemplate = new JdbcTemplate(dataSource);
-        jdbcTemplate.afterPropertiesSet();
+        JDBC_TEMPLATE = new JdbcTemplate(dataSource);
+        JDBC_TEMPLATE.afterPropertiesSet();
 
         File file = new File(BASE_PATH);
         boolean exists = file.exists();
@@ -118,15 +124,6 @@ public class MibiToJiangLiJIn {
             LOGGER.info("初始化........ 创建文件夹:{}", mkdir);
         }
     }
-
-
-
-
-    private static final Pattern USERID_PATTERN = Pattern.compile("\\{USERID}");
-
-    private static final String MONEY = "{money}";
-
-    private static final String USERID = "{USERID}";
 
     public static void main(String[] args)  {
         List<ExcelModel> dataByExcel = getDateByExcel();
@@ -186,7 +183,7 @@ public class MibiToJiangLiJIn {
      */
     private static List<QueryModel> userProfiTotalSql(String mobile) {
         Object[] qArgs = new Object[]{mobile};
-        return jdbcTemplate.query(SQL.get(0), qArgs, new int[]{Types.VARCHAR}, (ResultSet rs, int rowNum) -> {
+        return JDBC_TEMPLATE.query(SQL.get(0), qArgs, new int[]{Types.VARCHAR}, (ResultSet rs, int rowNum) -> {
             QueryModel queryModel = new QueryModel();
             queryModel.setId(rs.getLong("id"));
             queryModel.setShareRewardTotal(rs.getDouble("share_reward_total"));
@@ -197,7 +194,7 @@ public class MibiToJiangLiJIn {
 
     private static Long queryUserIdByMobile(String mobile) {
         Object[] qArgs = new Object[]{mobile};
-        return jdbcTemplate.query(SQL.get(4), qArgs, new int[]{Types.VARCHAR}, (ResultSet rs) -> {
+        return JDBC_TEMPLATE.query(SQL.get(4), qArgs, new int[]{Types.VARCHAR}, (ResultSet rs) -> {
                     long userId = -1L;
             while (rs.next()) {
                 userId = rs.getLong(1);
@@ -209,18 +206,19 @@ public class MibiToJiangLiJIn {
     private static String createSql(QueryModel queryModel) {
         StringBuilder sb = new StringBuilder();
         String mobile = queryModel.getMobile();
-        sb.append("#")
-                .append("mobile:").append(mobile).append("    ")
-                .append("excel_Id:").append(queryModel.getExcelId()).append("    ")
-                .append("money:").append(queryModel.getExcelMoney()).append("\n");
         String userId = queryModel.getUserId().toString();
+        sb.append("#")
+                .append("excel_Id:").append(queryModel.getExcelId()).append("  ")
+                .append("mobile:").append(mobile).append("  ")
+                .append("user_id:").append(userId).append("  ")
+                .append("money:").append(queryModel.getExcelMoney()).append("\n");
         if (null == queryModel.getId()) {
             sb.append(SQL.get(1).replace(USERID, userId)).append("\n");
         }
         String sql2 = USERID_PATTERN.matcher(SQL.get(2)).replaceAll(userId)
-                .replace(MONEY, queryModel.getExcelMoney() + "");
+                .replace(MONEY, queryModel.getExcelMoney());
         sb.append(sql2).append("\n");
-        String sql3 = SQL.get(3).replace(USERID, userId).replace(MONEY, queryModel.getExcelMoney() + "");
+        String sql3 = SQL.get(3).replace(USERID, userId).replace(MONEY, queryModel.getExcelMoney());
         sb.append(sql3);
         sb.append("\n").append("\n");
         return sb.toString();
@@ -365,7 +363,7 @@ public class MibiToJiangLiJIn {
 
     public static class CustomStringStringConverter implements Converter<String> {
 
-        private static final DecimalFormat df = new DecimalFormat("#");
+        private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("#");
 
         @Override
         public Class supportJavaTypeKey() {
@@ -393,7 +391,7 @@ public class MibiToJiangLiJIn {
                                         GlobalConfiguration globalConfiguration) {
             String value = cellData.getStringValue();
             if (StringUtils.isEmpty(value)) {
-                value = df.format(cellData.getDoubleValue());
+                value = DECIMAL_FORMAT.format(cellData.getDoubleValue());
             }
 
             return value;
