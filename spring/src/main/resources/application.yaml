@@ -1,4 +1,6 @@
 spring:
+  profiles:
+    active: prod
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     druid:
@@ -44,8 +46,8 @@ mybatis:
 test:
   constructor: false
   user:
-    id: 1
-    name: 杨
+    id: 12
+    name: asdf
     sex: 1
 jwt:
   token:

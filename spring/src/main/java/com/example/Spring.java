@@ -1,6 +1,7 @@
 package com.example;
 
 import com.example.config.MyPropertry;
+import com.example.enable.MyEnable;
 import com.example.ioc.cyclicdependency.filed.A;
 import com.example.model.bean.User;
 import org.mybatis.spring.annotation.MapperScan;
@@ -21,6 +22,7 @@ import org.springframework.context.ConfigurableApplicationContext;
  **/
 @SpringBootApplication
 @MapperScan(basePackages = "com.example.mybatis.dao")
+@MyEnable
 public class Spring {
 
     private static final Logger logger = LoggerFactory.getLogger(Spring.class);
@@ -35,5 +37,15 @@ public class Spring {
         logger.error(user.toString());
         logger.error(propertry.toString());
         logger.error(a.toString());
+
+        // @MyEnable
+        String enableTestImport = beanFactory.getBean("enableTestImport", String.class);
+        String enableImportSelectorTest = beanFactory.getBean("enableImportSelectorTest", String.class);
+        String beanDefinitionRegistrarTestStr = beanFactory.getBean("beanDefinitionRegistrarTestStr", String.class);
+        logger.error(enableTestImport);
+        logger.error(enableImportSelectorTest);
+        logger.error(beanDefinitionRegistrarTestStr);
+
+
     }
 }

@@ -3,7 +3,7 @@
     {
       "name": "test.user.name",
       "type": "java.lang.String",
-      "description": "Description for test.user.name."
+      "description": "用户名称"
     },
     {
       "name": "test.user.id",
@@ -14,5 +14,15 @@
       "name": "test.user.sex",
       "type": "java.lang.String",
       "description": "Description for test.user.sex."
+    },
+    {
+      "name": "test.constructor",
+      "type": "java.lang.String",
+      "description": "Description for test.constructor."
+    },
+    {
+      "name": "jwt.token.secret",
+      "type": "java.lang.String",
+      "description": "Description for jwt.token.secret."
     }
   ] }
