@@ -12,6 +12,9 @@ package com.example;
 public class ThreadLocalTest {
 
 	public static void main(String[] args) {
-
+		ThreadLocal<Integer> threadNum = new ThreadLocal<>();
+		threadNum.set(1);
+		threadNum.get();
+		threadNum.remove();
 	}
 }
