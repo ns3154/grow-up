@@ -14,8 +14,8 @@ public class GotoTest {
 
     public static void main(String[] args) throws InterruptedException {
         int i = 0;
-        key:
-        for (;;) {
+
+        key: for (;;) {
             TimeUnit.SECONDS.sleep(1);
             System.out.println("最外层循环:" + i);
             if (i < 10) {

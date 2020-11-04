@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.util.CollectionUtils;
 
+import javax.swing.filechooser.FileSystemView;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -31,7 +32,7 @@ import java.util.stream.Collectors;
  *
  * 只支持单线程,代码也是单线程模式下开发,无任何同步操作.
  * 使用说明:
- * 1. {@link #BASE_PATH} 程序会自动创建根目录,请确保路径是文件夹
+ *  {@link #BASE_PATH} 程序会自动创建根目录,请确保路径是文件夹
  *
  * 程序由来
  * -------------------------------------------------------------------------------------------------------------------
@@ -39,9 +40,9 @@ import java.util.stream.Collectors;
  * |   查询 select id, share_reward_total, user_id from user_profit_total
  * |            where user_id = (select user_id from users where mobile = '17610209982');
  * |
- * |    1. insert into `baojia_bike`.`user_profit_total` (`user_id`) values (5390504);
+ * |    1. insert into user_profit_total (`user_id`) values (5390504);
  * |
- * |    2.insert into `baojia_bike`.`adopt_balance_log` (`user_id`, `change_amount`, `current_amount`, `change_type`)
+ * |    2.insert into adopt_balance_log (`user_id`, `change_amount`, `current_amount`, `change_type`)
  * |         values (5390504, 176.9, (select share_reward_total from user_profit_total where user_id = 5390504), 21);
  * |
  * |    3.update user_profit_total set share_reward_total=share_reward_total + 176.9 where user_id = 5390504;
@@ -98,9 +99,9 @@ public class MibiToJiangLiJIn {
         SQL.put(0,"select id, share_reward_total, user_id from user_profit_total where user_id = (select user_id from" +
                 " users where mobile = ?)");
         // 1. 插入user_profit_total表数据
-        SQL.put(1, "insert into `user_profit_total` (`user_id`) values ({USERID});");
+        SQL.put(1, "insert into user_profit_total (`user_id`) values ({USERID});");
         // 2. 插入 adopt_balance_log表数据
-        SQL.put(2, "insert into `adopt_balance_log` (`user_id`, `change_amount`, `current_amount`, `change_type`) " +
+        SQL.put(2, "insert into adopt_balance_log (`user_id`, `change_amount`, `current_amount`, `change_type`) " +
                 "values ({USERID}, {money}, " +
                 "(select share_reward_total from user_profit_total where user_id = {USERID}), 21);");
         // 3. 更新 user_profit_total 表数据
