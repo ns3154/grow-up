@@ -43,6 +43,10 @@ mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.example.mybatis.domain
 
+my:
+  yaml:
+    file:
+      path: ss/ssd/sdsd.yaml
 test:
   constructor: false
   user:
