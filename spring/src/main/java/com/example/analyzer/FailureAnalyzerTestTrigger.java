@@ -12,11 +12,11 @@ import org.springframework.stereotype.Component;
  * @version 1.0
  * @date 2020/10/28 23:25
  **/
-@Component
+//@Component
 public class FailureAnalyzerTestTrigger implements SmartInitializingSingleton {
 
 	@Override
 	public void afterSingletonsInstantiated() {
-		throw new MyException("测试");
+		throw new MyException("FailureAnalyzerTestTrigger测试.............");
 	}
 }
