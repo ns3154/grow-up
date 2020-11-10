@@ -3,7 +3,6 @@ package com.example;
 import com.example.annotation.MyAutowired;
 import com.example.config.MyPropertry;
 import com.example.enable.MyEnable;
-import com.example.ioc.UserBean;
 import com.example.ioc.cyclicdependency.filed.A;
 import com.example.model.bean.User;
 import org.mybatis.spring.annotation.MapperScan;
@@ -14,9 +13,6 @@ import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.Bean;
-
-import java.awt.SystemColor;
 
 /**
  * <pre>
@@ -60,11 +56,9 @@ public class Spring {
         logger.error(enableTestImport);
         logger.error(enableImportSelectorTest);
         logger.error(beanDefinitionRegistrarTestStr);
-    }
 
 
-    @Bean
-    public UserBean userBean() {
-        return new UserBean();
+
     }
+
 }

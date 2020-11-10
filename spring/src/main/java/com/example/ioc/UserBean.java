@@ -1,6 +1,9 @@
 package com.example.ioc;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 /**
  * <pre>
@@ -10,11 +13,13 @@ import org.springframework.beans.factory.annotation.Value;
  * @since 1.0
  * @date 2020/11/09 15:28
  **/
+@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+@Component
 public class UserBean {
 
-    @Value("${value}")
+    @Value("${value:UserBean}")
     private String value;
-
+    
     public UserBean() {
         System.out.println("instantiation [ɪnˌstænʃiˈeɪʃən] start.....");
     }

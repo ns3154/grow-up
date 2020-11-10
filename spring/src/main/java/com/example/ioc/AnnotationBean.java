@@ -1,7 +1,9 @@
 package com.example.ioc;
 
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Scope;
 import org.springframework.core.env.StandardEnvironment;
 
 /**
@@ -19,17 +21,23 @@ public class AnnotationBean {
         AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext();
         applicationContext.register(AnnotationBean.class);
         applicationContext.refresh();
-        StandardEnvironment environment = new StandardEnvironment();
+        applicationContext.registerBean("userBean", UserBean.class);
 
-        UserBean bean = applicationContext.getBean(UserBean.class);
-        System.out.println(bean.toString());
+        AutowiredBean bean = applicationContext.getBean(AutowiredBean.class);
+        for (int i = 0;i < 10;i++) {
+            bean.out();
+        }
         bean.out();
 
         applicationContext.close();
     }
 
-
     @Bean
+    public AutowiredBean autowiredBean() {
+        return new AutowiredBean();
+    }
+
+
     public UserBean userBean() {
         return new UserBean();
     }
