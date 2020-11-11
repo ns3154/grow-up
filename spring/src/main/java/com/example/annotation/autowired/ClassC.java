@@ -1,4 +1,4 @@
-package com.example.autowired;
+package com.example.annotation.autowired;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,18 +10,18 @@ import org.springframework.stereotype.Component;
  * </pre>
  * @author 杨帮东
  * @since 1.0
- * @date 2020/11/10 17:09
+ * @date 2020/11/10 16:36
  **/
 @Component
-public class ClassD {
+public class ClassC {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
-    public ClassD() {
-        logger.info("ClassD instantiation.............");
+    public ClassC() {
+        logger.info("ClassC instantiation.............");
     }
 
     public void out() {
-        logger.error("call ClassD.out()..................");
+        logger.error("call ClassC.out()..................");
     }
 }

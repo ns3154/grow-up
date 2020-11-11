@@ -1,4 +1,4 @@
-package com.example.autowired;
+package com.example.annotation.autowired;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +17,7 @@ public class Main {
     private static final Logger logger = LoggerFactory.getLogger(Main.class);
 
     public static void main(String[] args) {
-        AnnotationConfigApplicationContext an = new AnnotationConfigApplicationContext("com.example.autowired");
+        AnnotationConfigApplicationContext an = new AnnotationConfigApplicationContext("com.example.annotation.autowired");
         an.register(Main.class);
         ClassA classA = an.getBean(ClassA.class);
         logger.error("------------------- LOOKUP------------------------");

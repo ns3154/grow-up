@@ -1,4 +1,4 @@
-package com.example.autowired;
+package com.example.annotation.autowired;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
