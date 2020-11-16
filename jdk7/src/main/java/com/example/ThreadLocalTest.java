@@ -1,5 +1,7 @@
 package com.example;
 
+import java.util.WeakHashMap;
+
 /**
  * <pre>
  *
@@ -16,5 +18,8 @@ public class ThreadLocalTest {
 		threadNum.set(1);
 		threadNum.get();
 		threadNum.remove();
+
+		WeakHashMap<String, String> m = new WeakHashMap<>();
+		m.put("a", "b");
 	}
 }
