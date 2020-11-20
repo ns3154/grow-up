@@ -2,8 +2,7 @@ package com.example.demo;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * <pre>
@@ -18,7 +17,15 @@ public class Test {
     private static final Logger logger = LoggerFactory.getLogger(Test.class);
 
     public static void main(String[] args) {
-
+        ReentrantLock lock = new ReentrantLock();
+        lock.lock();
+        try {
+            System.out.println(2222);
+        } catch (Exception e) {
+            logger.error("sss:", e);
+        } finally {
+            lock.unlock();
+        }
     }
 
 }
