@@ -32,7 +32,6 @@
 	    <module>excel</module>
         <module>wx</module>
 	    <module>leetcode</module>
-        <module>jdk7</module>
     </modules>
 
     <properties>
