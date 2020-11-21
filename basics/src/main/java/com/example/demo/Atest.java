@@ -4,8 +4,9 @@ import org.junit.jupiter.api.Test;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.LockSupport;
 
 /**
  * <pre>
@@ -31,23 +32,6 @@ public class Atest {
 
     @Test
     public void t1() {
-
-        new Thread(() -> {
-            try {
-                TimeUnit.SECONDS.sleep(4);
-                b = false;
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }).start();
-
-        while (b) {
-            new Thread(() -> {
-                System.out.println(1111);
-            }).start();
-        }
-
-
 
 
 
