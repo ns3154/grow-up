@@ -20,7 +20,13 @@ public class Test {
     private static final Logger logger = LoggerFactory.getLogger(Test.class);
 
     public static void main(String[] args) {
-
+        ReentrantLock lock = new ReentrantLock();
+        lock.lock();
+        try {
+            int i = 1 / 0;
+        } finally {
+            lock.unlock();
+        }
     }
 
 
