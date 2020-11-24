@@ -1,11 +1,12 @@
 package com.example.demo;
 
+import com.sun.jmx.snmp.tasks.ThreadService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.LockSupport;
-import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  * <pre>
@@ -19,18 +20,23 @@ public class Test {
 
     private static final Logger logger = LoggerFactory.getLogger(Test.class);
 
-    public static void main(String[] args) {
-        ThreadLocal<String> threadLocal = new ThreadLocal<>();
-        ThreadLocal<String> threadLocal1 = new ThreadLocal<>();
-        ThreadLocal<String> threadLocal2 = new ThreadLocal<>();
-        threadLocal1.set("111");
-        threadLocal2.set("222");
-        threadLocal.set("000");
-        ThreadLocal<String> threadLocal3 = new ThreadLocal<>();
-        threadLocal3.set("3333");
-        threadLocal3.get();
+    private static final int HASH_INCREMENT = 1640531527;
+
+    private static final ThreadLocal<String> threadLocal = new ThreadLocal<>();
+
+    public static void main(String[] args) throws InterruptedException {
+        new Thread(() -> {
+            threadLocal.set("222");
+        }).start();
+        new Thread(() -> {
+            threadLocal.set("111");
+        }).start();
+
+        Thread.sleep(100000000);
 
     }
+
+
 
 
 }
