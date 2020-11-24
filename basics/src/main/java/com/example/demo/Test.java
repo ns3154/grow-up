@@ -20,13 +20,16 @@ public class Test {
     private static final Logger logger = LoggerFactory.getLogger(Test.class);
 
     public static void main(String[] args) {
-        ReentrantLock lock = new ReentrantLock();
-        lock.lock();
-        try {
-            int i = 1 / 0;
-        } finally {
-            lock.unlock();
-        }
+        ThreadLocal<String> threadLocal = new ThreadLocal<>();
+        ThreadLocal<String> threadLocal1 = new ThreadLocal<>();
+        ThreadLocal<String> threadLocal2 = new ThreadLocal<>();
+        threadLocal1.set("111");
+        threadLocal2.set("222");
+        threadLocal.set("000");
+        ThreadLocal<String> threadLocal3 = new ThreadLocal<>();
+        threadLocal3.set("3333");
+        threadLocal3.get();
+
     }
 
 
