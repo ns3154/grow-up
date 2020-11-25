@@ -1,10 +1,13 @@
 package com.example.demo;
 
-import com.sun.jmx.snmp.tasks.ThreadService;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.SmartInitializingSingleton;
+import org.springframework.boot.CommandLineRunner;
 
-import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.Executors;
+import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
@@ -20,20 +23,12 @@ public class Test {
 
     private static final Logger logger = LoggerFactory.getLogger(Test.class);
 
-    private static final int HASH_INCREMENT = 1640531527;
 
-    private static final ThreadLocal<String> threadLocal = new ThreadLocal<>();
 
     public static void main(String[] args) throws InterruptedException {
-        new Thread(() -> {
-            threadLocal.set("222");
-        }).start();
-        new Thread(() -> {
-            threadLocal.set("111");
-        }).start();
-
-        Thread.sleep(100000000);
-
+        ThreadPoolExecutor executor = new ThreadPoolExecutor(2, 2, 60L, TimeUnit.SECONDS,
+                new LinkedBlockingDeque<>(200),Thread::new, new ThreadPoolExecutor.AbortPolicy());
+        executor.execute(() -> System.out.println(222222));
     }
 
 
