@@ -29,8 +29,13 @@ public class Test {
         ThreadPoolExecutor executor = new ThreadPoolExecutor(2, 2, 60L, TimeUnit.SECONDS,
                 new LinkedBlockingDeque<>(200),Thread::new, new ThreadPoolExecutor.AbortPolicy());
         executor.execute(() -> System.out.println(222222));
-    }
 
+        // 11100000 00000000 00000000 00000000
+        // 00011111 11111111 11111111 11111111
+        // 00000000 00000000 00000000 00000000
+        System.out.println(-1 & ~536870911);
+
+    }
 
 
 
