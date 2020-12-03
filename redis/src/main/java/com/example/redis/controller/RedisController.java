@@ -32,7 +32,7 @@ import java.util.*;
  * @date 2020/03/18 17:43
  **/
 @RestController
-@RequestMapping("redis")
+@RequestMapping("redisTemplate")
 public class RedisController {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());

@@ -13,6 +13,7 @@ spring:
         max-idle: 8
         max-wait: PT15M
         time-between-eviction-runs: PT15M
+
   datasource:
     password: ByrDKbceYvZENads
     username: baojia-db-3
