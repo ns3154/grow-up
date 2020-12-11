@@ -6,6 +6,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.SmartInitializingSingleton;
 import org.springframework.boot.CommandLineRunner;
 
+import java.lang.ref.SoftReference;
+import java.lang.ref.WeakReference;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -24,19 +26,30 @@ public class Test {
     private static final Logger logger = LoggerFactory.getLogger(Test.class);
 
 
-
     public static void main(String[] args) throws InterruptedException {
-        ThreadPoolExecutor executor = new ThreadPoolExecutor(2, 2, 60L, TimeUnit.SECONDS,
-                new LinkedBlockingDeque<>(200),Thread::new, new ThreadPoolExecutor.AbortPolicy());
-        executor.execute(() -> System.out.println(222222));
+        Object o = new Object();
+        WeakReference<Object> weakReference = new WeakReference<>(o);
+        SoftReference<Object> softReference = new SoftReference<>(o);
 
-        // 11100000 00000000 00000000 00000000
-        // 00011111 11111111 11111111 11111111
-        // 00000000 00000000 00000000 00000000
-        System.out.println(1073741823 & ~536870911);
+        System.out.println(o);
+        System.out.println(weakReference.get());
+        System.out.println(softReference.get());
+        o = null;
+        System.out.println("---------------------");
+        try {
+            byte[] bytes = new byte[2 * 1024 * 1024];
+            Thread.sleep(10000);
+            System.gc();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            System.out.println("强引用" + o);
+            System.out.println("软引用" + softReference.get());
+            System.out.println("弱引用" + weakReference.get());
+
+        }
 
     }
-
 
 
 }
