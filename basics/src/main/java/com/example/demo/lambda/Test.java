@@ -1,9 +1,10 @@
 package com.example.demo.lambda;
 
 import com.example.demo.Model;
+import com.example.demo.extend.A;
+import com.example.demo.model.*;
 import com.google.common.base.Joiner;
 import org.apache.commons.lang3.concurrent.BasicThreadFactory;
-import org.jetbrains.annotations.TestOnly;
 import org.junit.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -322,6 +323,35 @@ public class Test {
     public void testFlatMap() {
         // 这里根据上游的元素扩展出了更多的元素
         IntStream.of(1, 2, 3).flatMap(e -> IntStream.rangeClosed(0, e)).forEach(System.out::println);
+    }
+
+    @org.junit.Test
+    public void t1() {
+        Function<? super Animal, Boolean> f1 = animal -> animal.name.equals("狗");
+        Function<? super Animal, Boolean> f2 = animal -> {
+          if (animal instanceof Cat) {
+              Cat cat = (Cat) animal;
+              System.out.println(cat.cc());
+          }
+            return false;
+        };
+        List<Function<? super Animal, Boolean>> list = Arrays.asList(f1, f2);
+        for (Function< ? super Animal, Boolean > f : list) {
+            System.out.println(f.apply(new Dog()));
+            System.out.println(f.apply(new Cat()));
+            System.out.println(f.apply(new CatSun()));
+        }
+
+        List<? super Animal> supers = new ArrayList<>();
+        supers.add(new Dog());
+        supers.add(new Cat());
+        supers.add(new CatSun());
+
+        Object o = supers.get(0);
+
+
+
+
     }
 
     private long tt(long y) {
