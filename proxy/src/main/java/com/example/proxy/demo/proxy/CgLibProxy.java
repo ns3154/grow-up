@@ -27,11 +27,12 @@ public class CgLibProxy implements MethodInterceptor {
 
 //    private Object target;
 
-    public Object getInstance(Object object) {
+    public Object getInstance(Object object, Class<?> interClass) {
 //        this.target = object;
         Enhancer enhancer = new Enhancer();
 //        enhancer.setSuperclass(this.target.getClass());
         enhancer.setSuperclass(object.getClass());
+        enhancer.setInterfaces(new Class[]{interClass});
         // 设置回调方法
         enhancer.setCallback(this);
         // 创建代理对象

@@ -72,6 +72,13 @@
             <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
     
+        <!--  SPRING BOOT 启动引导类-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-loader</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    
         <!-- https://mvnrepository.com/artifact/org.openjdk.jmh/jmh-core -->
         <dependency>
             <groupId>org.openjdk.jmh</groupId>

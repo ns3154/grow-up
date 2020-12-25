@@ -78,4 +78,9 @@ public class UserPO {
             return new UserPO(this);
         }
     }
+
+    @Override
+    public String toString() {
+        return "UserPO{" + "id=" + id + ", name='" + name + '\'' + ", sex=" + sex + '}';
+    }
 }

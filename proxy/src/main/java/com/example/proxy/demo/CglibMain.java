@@ -3,6 +3,7 @@ package com.example.proxy.demo;
 import com.alibaba.fastjson.JSON;
 import com.example.proxy.demo.model.UserPO;
 import com.example.proxy.demo.proxy.CgLibProxy;
+import com.example.proxy.demo.service.UserService;
 import com.example.proxy.demo.service.impl.UserServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +22,7 @@ public class CglibMain {
 
     public static void main(String[] args) {
         CgLibProxy cgLibProxy = new CgLibProxy();
-        UserServiceImpl instance = (UserServiceImpl) cgLibProxy.getInstance(new UserServiceImpl());
+        UserServiceImpl instance = (UserServiceImpl) cgLibProxy.getInstance(new UserServiceImpl(), UserService.class);
         boolean b = instance.addUser(new UserPO.Builder().id(1L).name("杨").sex(2).build());
         UserPO user = instance.getUserById(1L);
         boolean b1 = instance.delUser(1L);

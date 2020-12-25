@@ -32,9 +32,6 @@ public class MybatisController {
     }
 
     @Resource
-    private TestMapper testMapper;
-
-    @Resource
     private UserService userService;
 
     @GetMapping("select")
