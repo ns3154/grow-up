@@ -64,16 +64,13 @@
 		</dependency>
 		
 		<!--  实体转换工具 start-->
+		<!-- https://mvnrepository.com/artifact/org.mapstruct/mapstruct -->
 		<dependency>
 			<groupId>org.mapstruct</groupId>
-			<artifactId>mapstruct-jdk8</artifactId>
-			<version>1.3.0.Final</version>
+			<artifactId>mapstruct</artifactId>
+			<version>1.4.1.Final</version>
 		</dependency>
-		<dependency>
-			<groupId>org.mapstruct</groupId>
-			<artifactId>mapstruct-processor</artifactId>
-			<version>1.3.0.Final</version>
-		</dependency>
+
 		<!--  实体转换工具  end -->
 		
 		<!-- https://mvnrepository.com/artifact/javax.annotation/javax.annotation-api -->
@@ -94,6 +91,8 @@
 			<artifactId>alipay-easysdk</artifactId>
 			<version>2.1.1</version>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.dianping.cat/cat-core -->
 
 	
 	</dependencies>
