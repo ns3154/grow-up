@@ -70,7 +70,21 @@
 			<artifactId>mapstruct</artifactId>
 			<version>1.4.1.Final</version>
 		</dependency>
-
+		
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct-jdk8</artifactId>
+			<version>1.4.1.Final</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct-processor</artifactId>
+			<version>1.4.1.Final</version>
+		</dependency>
+		
+		
+		
 		<!--  实体转换工具  end -->
 		
 		<!-- https://mvnrepository.com/artifact/javax.annotation/javax.annotation-api -->
@@ -90,6 +104,12 @@
 			<groupId>com.alipay.sdk</groupId>
 			<artifactId>alipay-easysdk</artifactId>
 			<version>2.1.1</version>
+		</dependency>
+		
+		<dependency>
+			<artifactId>javassist</artifactId>
+			<groupId>org.javassist</groupId>
+			<version>3.21.0-GA</version>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/com.dianping.cat/cat-core -->

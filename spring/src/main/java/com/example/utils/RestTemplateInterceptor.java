@@ -52,8 +52,8 @@ public class RestTemplateInterceptor implements ClientHttpRequestInterceptor {
 
         Map<Pattern, String> restUrls = new HashMap<>();
         restUrls.put(Pattern.compile("api.mch.weixin.qq.com/v3/payscore/payafter-orders/.*/complete"), "");
-        restUrls.put(Pattern.compile("api.mch.weixin.qq.com/v3/payscore/serviceorder/.*/cancel"), "");
         restUrls.put(Pattern.compile("api.mch.weixin.qq.com/v3/payscore/payafter-orders/.*/sync"), "");
+        restUrls.put(Pattern.compile("api.mch.weixin.qq.com/v3/payscore/serviceorder/.*/cancel"), "");
         restUrls.put(Pattern.compile("api.mch.weixin.qq.com/v3/payscore/serviceorder/.*/sync"), "");
         restUrls.put(Pattern.compile("api.mch.weixin.qq.com/v3/payscore/serviceorder/.*/modify"), "");
         restUrls.put(Pattern.compile("api.mch.weixin.qq.com/v3/marketing/favor/users/.*/coupons"), "");
