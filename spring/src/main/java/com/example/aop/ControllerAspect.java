@@ -72,7 +72,7 @@ public class ControllerAspect {
     /**
      * javassist 使用不当内存泄漏bug
      * @author 杨帮东
-     * @param cls1
+     * @param cls
      * @param clazzName
      * @param methodName
      * @since 1.0
