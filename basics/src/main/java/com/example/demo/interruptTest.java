@@ -22,7 +22,7 @@ public class interruptTest {
     @Test
     public void test() throws InterruptedException {
         Thread thread = new Thread(() -> {
-            while (!Thread.interrupted()) {
+            while (!Thread.currentThread().isInterrupted()) {
 
             }
             logger.error("线程被中断了");

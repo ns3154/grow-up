@@ -35,7 +35,7 @@ public class LockTest {
             lock.lock();
             logger.error("获得到锁1");
             try {
-                TimeUnit.SECONDS.sleep(200);
+                TimeUnit.SECONDS.sleep(2000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
                 logger.error("error:{}", e);
