@@ -163,4 +163,11 @@ public class Test {
         cha.forEach(System.out::println);
 
     }
+
+    @org.junit.Test
+    public void t() {
+        String b = "s" + "1";
+        String a = "s1";
+        System.out.println(a == b);
+    }
 }
