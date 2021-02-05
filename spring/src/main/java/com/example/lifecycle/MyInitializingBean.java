@@ -22,6 +22,8 @@ public class MyInitializingBean implements InitializingBean {
         logger.error("**** MyInitializingBean 实例化****");
     }
 
+
+
     @Override
     public void afterPropertiesSet() throws Exception {
         logger.error("**** MyInitializingBean InitializingBean.afterPropertiesSet 回调 ****");

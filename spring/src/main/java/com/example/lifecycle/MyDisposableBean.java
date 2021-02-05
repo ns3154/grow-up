@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
 /**
@@ -19,6 +20,7 @@ import javax.annotation.PreDestroy;
 public class MyDisposableBean implements DisposableBean {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
+
 
     @Override
     public void destroy() throws Exception {

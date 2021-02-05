@@ -28,30 +28,63 @@ import java.security.spec.InvalidParameterSpecException;
 public class WxTest {
 
     public static void main(String[] args) {
-        String appId = "wx4f4bc4dec97d474b";
-        String sessionKey = "tiihtNczf5v6AKRyjwEUhQ==";
-        String encryptedData =
-                "CiyLU1Aw2KjvrjMdj8YKliAjtP4gsMZM"+
-                        "QmRzooG2xrDcvSnxIMXFufNstNGTyaGS"+
-                        "9uT5geRa0W4oTOb1WT7fJlAC+oNPdbB+"+
-                        "3hVbJSRgv+4lGOETKUQz6OYStslQ142d"+
-                        "NCuabNPGBzlooOmB231qMM85d2/fV6Ch"+
-                        "evvXvQP8Hkue1poOFtnEtpyxVLW1zAo6"+
-                        "/1Xx1COxFvrc2d7UL/lmHInNlxuacJXw"+
-                        "u0fjpXfz/YqYzBIBzD6WUfTIF9GRHpOn"+
-                        "/Hz7saL8xz+W//FRAUid1OksQaQx4CMs"+
-                        "8LOddcQhULW4ucetDf96JcR3g0gfRK4P"+
-                        "C7E/r7Z6xNrXd2UIeorGj5Ef7b1pJAYB"+
-                        "6Y5anaHqZ9J6nKEBvB4DnNLIVWSgARns"+
-                        "/8wR2SiRS7MNACwTyrGvt9ts8p12PKFd"+
-                        "lqYTopNHR1Vf7XjfhQlVsAJdNiKdYmYV"+
-                        "oKlaRv85IfVunYzO0IKXsyl7JCUjCpoG"+
-                        "20f0a04COwfneQAGGwd5oa+T8yO5hzuy"+
-                        "Db/XcxxmK01EpqOyuxINew==";
-        String ivStr = "r7BXXKkLb8qrSNn05n0qiA==";
+        Integer[] array = {1,2,3,4,5,6,5,3,4,2,1};
+        for (int i = 0;i < array.length;i++) {
+            Integer current = array[i];
+            String binary = Integer.toBinaryString(current);
+            int b = 4 - binary.length();
+            for (int t = 0; t < b;t++) {
+                binary = "0" + binary;
+            }
+            System.out.println("数字:" + current + ",二进制位:" + binary);
+        }
 
-        System.out.println(WxCryptUtil.decrypt(sessionKey, encryptedData, ivStr));
+        System.out.println("--------------------------------------------------");
+
+        int compare = array[0];
+        for (int i = 1;i < array.length;i++) {
+            int current = array[i];
+            compare = compare ^ current;
+            String afterCompareBinary =  toBinaryString(compare);
+            System.out.println("比较:" + current + ",二进制:" + toBinaryString(current)+ ",比较后二进制:" + afterCompareBinary);
+        }
+
+        System.out.println("单个数字:" + Integer.toString(compare, 10));
     }
+
+    public static String toBinaryString(int i) {
+        String binary = Integer.toBinaryString(i);
+        int b = 4 - binary.length();
+        for (int t = 0; t < b;t++) {
+            binary = "0" + binary;
+        }
+        return binary;
+    }
+
+
+
+    public static void s(int z, int t) {
+        String s = null;
+        if (z == 1) {
+            s = "z1";
+        } else if (z == 2){
+            s = "z2";
+        }else {
+            s = "zelse";
+        }
+
+        if (t == 1) {
+            s += "t1";
+        } else if (t == 2) {
+            s += "t2";
+        } else {
+            s += "teles";
+        }
+
+        System.out.println(s);
+
+    }
+
 
 
 }

@@ -25,6 +25,10 @@ public class User implements SmartInitializingSingleton {
 
     private String desc;
 
+    public void sss() {
+
+    }
+
     private User(Builder builder) {
         logger.error("user 实例化");
         setId(builder.id);
