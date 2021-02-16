@@ -1,10 +1,16 @@
 package com.example.demo;
 
+import com.example.demo.thread.SynchronizedModel;
+import com.google.common.util.concurrent.ThreadFactoryBuilder;
+import org.openjdk.jol.info.ClassLayout;
+import org.openjdk.jol.info.GraphLayout;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.lang.ref.SoftReference;
 import java.lang.ref.WeakReference;
-import java.util.HashMap;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.function.BiFunction;
 
 /**
  * <pre>
@@ -17,11 +23,6 @@ import java.util.HashMap;
 public class Test {
 
     private static final Logger logger = LoggerFactory.getLogger(Test.class);
-
-
-    public static void main(String[] args) {
-
-    }
 
 
     @org.junit.Test
@@ -75,7 +76,146 @@ public class Test {
         map.put(k9, "k9");
         map.put(k10, "k10");
         map.put(k11, "k11");
+        map.get(k1);
+        map.remove(k1);
+        map.size();
+
+	    Iterator<Map.Entry<Key, String>> iterator = map.entrySet().iterator();
+	    while (iterator.hasNext()) {
+	    	iterator.next();
+	    }
+
+	    ConcurrentHashMap<String, Integer> map1 = new ConcurrentHashMap<>(16);
+	    map1.computeIfAbsent(
+			    "AaAa",
+			    key -> {
+				    return map1.computeIfAbsent(
+						    "BBB1B",
+						    key2 -> 42);
+			    }
+	    );
     }
+
+	@org.junit.Test
+	public void concurrentHashMap() {
+		ConcurrentHashMap<String, String> concurrentHashMap = new ConcurrentHashMap<>();
+		concurrentHashMap.put("1", "dsf222");
+		concurrentHashMap.put("2", "dsf222");
+		concurrentHashMap.put("3", "dsf222");
+		concurrentHashMap.put("4", "dsf222");
+		concurrentHashMap.put("5", "dsf222");
+		concurrentHashMap.put("6", "dsf222");
+		concurrentHashMap.put("7", "dsf222");
+		concurrentHashMap.put("8", "dsf222");
+		concurrentHashMap.put("9", "dsf222");
+		concurrentHashMap.put("10", "dsf222");
+		concurrentHashMap.put("11", "dsf222");
+		concurrentHashMap.put("12", "dsf222");
+		concurrentHashMap.put("13", "dsf222");
+		concurrentHashMap.get("a");
+		concurrentHashMap.remove("1");
+		concurrentHashMap.size();
+		concurrentHashMap.clear();
+
+
+		Iterator<Map.Entry<String, String>> iterator = concurrentHashMap.entrySet().iterator();
+		while (iterator.hasNext()) {
+			iterator.next();
+		}
+
+
+		int count = 1;
+		for (;; count++) {
+			System.out.println(count);
+			if (count > 1) {
+				break;
+
+			}
+		}
+		System.out.println(count);
+	}
+
+	@org.junit.Test
+	public void linkedHashMap() {
+		LinkedHashMap<String, String> linkedHashMap = new LinkedHashMap<>();
+		linkedHashMap.put("aa", "22");
+		linkedHashMap.get("aa");
+		linkedHashMap.remove("aa");
+		linkedHashMap.size();
+	}
+
+	@org.junit.Test
+	public void threadPool() {
+    	ThreadFactory tf = new ThreadFactoryBuilder().setDaemon(true).setNameFormat("sss-%d").build();
+		ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(2, 4, 6666, TimeUnit.SECONDS,
+				new LinkedBlockingDeque<>(), tf);
+		for (int i = 0;i < 100;i++) {
+			int finalI = i;
+			if (i == 999) {
+				threadPoolExecutor.execute(() -> {
+					int z = 1 / 0;
+				});
+				continue;
+			}
+			threadPoolExecutor.execute(() -> System.out.println(finalI));
+		}
+		threadPoolExecutor.shutdown();
+	}
+
+	@org.junit.Test
+	public void test() {
+
+		System.out.println(Integer.toBinaryString((1 << 29) - 1).length());
+	}
+
+	@org.junit.Test
+	public void thisEscape() {
+    	for (int i = 0;i < 111;i++){
+		    new ThisEscape();
+	    }
+	}
+
+	@org.junit.Test
+	public void sync() throws InterruptedException {
+		SynchronizedModel sm = new SynchronizedModel(3232323223232L, "张三", 2.3d, 'A');
+		List<Thread> list = new ArrayList<>();
+		for (int i = 0;i < 3; i++) {
+			list.add(new Thread(sm::f1));
+		}
+
+		for (Thread thread : list) {
+			thread.start();
+			Thread.sleep(1000);
+			// 查看对象内部信息
+			System.out.println(ClassLayout.parseInstance(sm).toPrintable());
+			// 查看对象外部信息
+//			System.out.println(GraphLayout.parseInstance(sm).toPrintable());
+			// 获取对象总大小
+//			System.out.println(GraphLayout.parseInstance(sm).totalSize());
+			System.out.println("------------------------------------------");
+		}
+	}
+
+	// -XX:-UseCompressedOops
+	public static void main(String[] args) throws InterruptedException {
+		SynchronizedModel sm = new SynchronizedModel(3232323223232L, "张三", 2.3d, 'A');
+		List<Thread> list = new ArrayList<>();
+		for (int i = 0;i < 1; i++) {
+			list.add(new Thread(sm::f1));
+		}
+
+		for (Thread thread : list) {
+			thread.start();
+			Thread.sleep(1000);
+			// 查看对象内部信息
+			System.out.println(ClassLayout.parseInstance(sm).toPrintable());
+			// 查看对象外部信息
+//			System.out.println(GraphLayout.parseInstance(sm).toPrintable());
+			// 获取对象总大小
+//			System.out.println(GraphLayout.parseInstance(sm).totalSize());
+			System.out.println("------------------------------------------");
+		}
+	}
 
 
     static class Key {
@@ -117,5 +257,12 @@ public class Test {
             return num != null ? num.hashCode() : 0;
         }
     }
+
+	static class MyCallable<T> implements Callable<T> {
+		@Override
+		public T call() throws Exception {
+			return null;
+		}
+	}
 
 }
