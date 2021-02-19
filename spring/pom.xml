@@ -111,7 +111,13 @@
 			<groupId>org.javassist</groupId>
 			<version>3.21.0-GA</version>
 		</dependency>
-
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>compile</scope>
+		</dependency>
+		
 		<!-- https://mvnrepository.com/artifact/com.dianping.cat/cat-core -->
 
 	

@@ -59,8 +59,4 @@ public class Spring {
         logger.error(beanDefinitionRegistrarTestStr);
     }
 
-    @Bean(initMethod = "sss")
-    public User user() {
-        return new User();
-    }
 }

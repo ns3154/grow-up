@@ -1,6 +1,6 @@
 package com.example.mybatis;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,6 +21,7 @@ public class ConnectionTest {
     private final static String DB_URL = "jdbc:mysql://10.1.11.110:3310/baojia_bike?zeroDateTimeBehavior" +
             "=convertToNull&useSSL" +
             "=false&serverTimezone=GMT%2B8";
+
 
     public Connection getConnection() {
         Connection connection = null;

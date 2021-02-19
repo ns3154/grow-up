@@ -8,7 +8,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.3.4.RELEASE</version>
+        <version>2.4.3</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     
@@ -40,7 +40,7 @@
         <apache-commons-lang3.version>3.4</apache-commons-lang3.version>
         <fastjson.version>1.2.67</fastjson.version>
         <jmh.version>1.23</jmh.version>
-        <spring-boot.version>2.3.4.RELEASE</spring-boot.version>
+        <spring-boot.version>2.4.3</spring-boot.version>
     </properties>
     
     <dependencies>
@@ -76,6 +76,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-loader</artifactId>
+            <version>2.4.2</version>
             <scope>provided</scope>
         </dependency>
     
@@ -107,5 +108,19 @@
 
         </dependencies>
     </dependencyManagement>
+    
+<!--    <repositories>-->
+<!--        <repository>-->
+<!--            <id>spring</id>-->
+<!--            <url>https://maven.aliyun.com/repository/spring</url>-->
+<!--            <releases>-->
+<!--                <enabled>true</enabled>-->
+<!--            </releases>-->
+<!--            <snapshots>-->
+<!--                <enabled>true</enabled>-->
+<!--            </snapshots>-->
+<!--        </repository>-->
+<!--    </repositories>-->
+    
 
 </project>

@@ -1,7 +1,6 @@
 package com.example.mvc.controller;
 
 import com.example.utils.RestTemplateInterceptor;
-import org.junit.Test;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
