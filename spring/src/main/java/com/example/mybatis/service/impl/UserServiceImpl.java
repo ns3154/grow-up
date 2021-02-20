@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
     @Resource
     private TestMapper testMapper;
 
-	@Transactional(rollbackFor = Exception.class, isolation = Isolation.SERIALIZABLE)
+	@Transactional(rollbackFor = Exception.class)
     @Override
     public Test create(Integer counts, Integer pNums) {
         System.out.println(name);
@@ -85,4 +85,25 @@ public class UserServiceImpl implements UserService {
         return testMapper.selectByPrimaryKey(id);
     }
 
+	@Transactional(rollbackFor = Exception.class, isolation = Isolation.READ_UNCOMMITTED, propagation = Propagation.REQUIRES_NEW)
+	public void isolationRR(int count, int pNums) {
+		System.out.println(testMapper.count());
+		Test test = new Test();
+		test.setCounts(count+1);
+		test.setpNums(pNums+1);
+		testMapper.insert(test);
+	}
+
+	@Override
+	@Transactional(rollbackFor = Exception.class, isolation = Isolation.REPEATABLE_READ)
+	public Test isolationRU(Integer counts, Integer pNums) {
+		Test test = new Test();
+		test.setCounts(counts);
+		test.setpNums(pNums);
+		testMapper.insertSelective(test);
+		UserServiceImpl userService = (UserServiceImpl) AopContext.currentProxy();
+		userService.isolationRR(counts, pNums);
+		System.out.println(testMapper.count());
+		return test;
+	}
 }

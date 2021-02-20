@@ -36,7 +36,6 @@ import javax.sql.DataSource;
 @SpringBootApplication
 @MapperScan(basePackages = "com.example.mybatis.dao")
 @MyEnable
-@EnableTransactionManagement(proxyTargetClass = true, mode = AdviceMode.ASPECTJ, order = Ordered.HIGHEST_PRECEDENCE)
 @EnableAspectJAutoProxy(exposeProxy = true)
 public class Spring {
 

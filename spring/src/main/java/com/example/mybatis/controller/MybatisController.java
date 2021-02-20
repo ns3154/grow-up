@@ -1,7 +1,6 @@
 package com.example.mybatis.controller;
 
 import com.example.model.ModelMessge;
-import com.example.mybatis.dao.TestMapper;
 import com.example.mybatis.domain.Test;
 import com.example.mybatis.service.UserService;
 import org.slf4j.Logger;
@@ -46,5 +45,13 @@ public class MybatisController {
         Test test = userService.create(counts, pNums);
         return new ModelMessge<Test>().ok(test);
     }
+
+	@PostMapping("isolationRU")
+	public ModelMessge<Test> isolation(Integer counts, Integer pNums) {
+		Test test = userService.isolationRU(counts, pNums);
+		return new ModelMessge<Test>().ok(test);
+	}
+
+
 
 }

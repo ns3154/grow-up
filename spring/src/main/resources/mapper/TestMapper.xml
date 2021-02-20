@@ -19,7 +19,10 @@
     from baojia_bike.tb_test
     where id = #{id,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <select id="count" resultType="java.lang.Integer">
+        select count(1) from baojia_bike.tb_test;
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     <!--@mbg.generated-->
     delete from baojia_bike.tb_test
     where id = #{id,jdbcType=BIGINT}

@@ -33,4 +33,6 @@ public interface UserService {
 
 	@Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
 	void insert3(int counts, int pNums);
+
+	Test isolationRU(Integer counts, Integer pNums);
 }
