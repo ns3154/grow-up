@@ -34,6 +34,7 @@ public class MybatisController {
     @Resource
     private UserService userService;
 
+
     @GetMapping("select")
     public ModelMessge<Test> select(Long id) {
         Test test = userService.select(id);
@@ -45,4 +46,5 @@ public class MybatisController {
         Test test = userService.create(counts, pNums);
         return new ModelMessge<Test>().ok(test);
     }
+
 }

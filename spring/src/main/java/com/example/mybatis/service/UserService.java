@@ -1,6 +1,8 @@
 package com.example.mybatis.service;
 
 import com.example.mybatis.domain.Test;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * <pre>
@@ -26,4 +28,9 @@ public interface UserService {
      * @return
      */
     Test select(Long id);
+
+    void insert(int counts, Integer pNums);
+
+	@Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
+	void insert3(int counts, int pNums);
 }

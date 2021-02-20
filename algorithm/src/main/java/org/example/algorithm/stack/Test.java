@@ -25,7 +25,7 @@ public class Test {
     private final Pattern pattern = Pattern.compile("^[\\d]*$");
 
 
-    @org.junit.Test
+    @org.junit.jupiter.api.Test
     public void check() {
         ArrayStack<String> arrayStack = new ArrayStack<>(10);
         arrayStack.push("a");
@@ -46,7 +46,7 @@ public class Test {
     }
 
     // 有bug 有时间再改
-    @org.junit.Test
+	@org.junit.jupiter.api.Test
     public  void math() {
 //        String content = "3+3/2*2-3-4/4*2*9";
         String content = "1+2+3*4";

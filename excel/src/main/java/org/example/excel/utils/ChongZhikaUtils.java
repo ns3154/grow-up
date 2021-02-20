@@ -1,7 +1,7 @@
 package org.example.excel.utils;
 
 import org.example.excel.model.ChongZhiKaModel;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.FileWriter;

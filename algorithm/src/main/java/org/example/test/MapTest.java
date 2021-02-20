@@ -1,11 +1,9 @@
 package org.example.test;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.TreeSet;
 
 /**
  * <pre>

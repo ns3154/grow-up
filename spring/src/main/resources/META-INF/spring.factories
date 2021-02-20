@@ -4,3 +4,5 @@ org.springframework.boot.diagnostics.FailureAnalyzer=\
 com.example.analyzer.FailureAnalyzerTest
 org.springframework.boot.env.EnvironmentPostProcessor=\
 com.example.environment.ExternalYamlEnvironmentPostProcessor
+org.springframework.boot.SpringApplicationRunListener=\
+com.example.listener.SpringApplicationRunListenerTest

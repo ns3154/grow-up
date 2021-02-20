@@ -12,8 +12,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.transaction.TransactionAutoConfiguration;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.AdviceMode;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.core.Ordered;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration;
+
+import javax.sql.DataSource;
 
 /**
  * <pre>
@@ -26,6 +36,8 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 @MapperScan(basePackages = "com.example.mybatis.dao")
 @MyEnable
+@EnableTransactionManagement(proxyTargetClass = true, mode = AdviceMode.ASPECTJ, order = Ordered.HIGHEST_PRECEDENCE)
+@EnableAspectJAutoProxy(exposeProxy = true)
 public class Spring {
 
     private static final Logger logger = LoggerFactory.getLogger(Spring.class);
@@ -58,5 +70,4 @@ public class Spring {
         logger.error(enableImportSelectorTest);
         logger.error(beanDefinitionRegistrarTestStr);
     }
-
 }

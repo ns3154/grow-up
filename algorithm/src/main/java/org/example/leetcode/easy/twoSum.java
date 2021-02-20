@@ -1,9 +1,7 @@
 package org.example.leetcode.easy;
 
-import org.junit.Test;
 
-import java.util.HashMap;
-import java.util.Map;
+import org.junit.jupiter.api.Test;
 
 /**
  * <pre>

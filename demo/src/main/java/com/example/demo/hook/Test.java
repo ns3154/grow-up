@@ -38,7 +38,6 @@ public class Test {
         map.put("a", test);
     }
 
-    @org.junit.Test
     public void test() {
         String b = "sss";
         System.out.println(System.identityHashCode(b));

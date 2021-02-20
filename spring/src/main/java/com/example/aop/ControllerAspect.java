@@ -55,7 +55,7 @@ public class ControllerAspect {
         return proceed;
     }
 
-    @Around(value = "service()")
+//    @Around(value = "service()")
     public Object serviceHandler(ProceedingJoinPoint joinPoint) {
         logger.error("***** service 切面:代码执行前 ******");
         Object proceed = null;

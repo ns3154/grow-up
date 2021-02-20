@@ -1,7 +1,6 @@
 package com.example.concurrent.pool;
 
-import org.junit.Test;
-
+import org.junit.jupiter.api.Test;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
