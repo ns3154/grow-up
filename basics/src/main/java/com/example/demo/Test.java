@@ -166,6 +166,11 @@ public class Test {
 	public void test() {
 
 		System.out.println(Integer.toBinaryString((1 << 29) - 1).length());
+		System.out.println(Integer.toBinaryString(0x7FFFFFFF));
+		System.out.println(Integer.toBinaryString(0x7FFFFFFF).length());
+		String j = "java1";
+		String s = new String("java1");
+		System.out.println(j == s.intern());
 	}
 
 	@org.junit.Test
@@ -195,6 +200,8 @@ public class Test {
 			System.out.println("------------------------------------------");
 		}
 	}
+
+
 
 	// -XX:-UseCompressedOops
 	public static void main(String[] args) throws InterruptedException {
