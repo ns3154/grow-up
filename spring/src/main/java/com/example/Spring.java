@@ -24,6 +24,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration;
 
 import javax.sql.DataSource;
+import java.net.ServerSocket;
 
 /**
  * <pre>
