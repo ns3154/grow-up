@@ -18,23 +18,20 @@ public class CountDownLatchTest {
     private final static Logger logger = LoggerFactory.getLogger(CountDownLatchTest.class);
 
     public static void main(String[] args) throws InterruptedException {
-        ThreadPoolExecutor executor = new ThreadPoolExecutor(5, 10, 60, TimeUnit.SECONDS, new SynchronousQueue<>(), new ThreadFactory() {
-            @Override
-            public Thread newThread(Runnable r) {
-                return new Thread(r, "test");
-            }
-        });
+        ThreadPoolExecutor executor = new ThreadPoolExecutor(5, 10, 60, TimeUnit.SECONDS, new SynchronousQueue<>(), r -> new Thread(r, "test"));
         CountDownLatch cdl = new CountDownLatch(5);
         logger.error("开始");
         for (int i = 0;i < 5;i++) {
             int finalI = i;
-            executor.execute(() -> {
-//                try {
-//                    Thread.sleep(2000);
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
+	        final int finalI1 = i;
+	        executor.execute(() -> {
+
+
+
                 cdl.countDown();
+		        while (finalI1 == 3) {
+			        Thread.currentThread().interrupt();
+		        }
                 logger.error("执行:{}", finalI);
 
             });
