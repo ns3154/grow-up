@@ -52,7 +52,7 @@ public class Test {
     }
 
     @org.junit.Test
-    public void hashMap() {
+    public void hashMap() throws InterruptedException {
         HashMap<Key, String> map = new HashMap<>();
         Key k1 = new Key(1);
         Key k2 = new Key(1);
@@ -94,7 +94,49 @@ public class Test {
 						    key2 -> 42);
 			    }
 	    );
-    }
+
+
+	}
+
+	@org.junit.Test
+	public void hashmapTest() throws InterruptedException {
+		HashMap<String, String> nMap = new HashMap<>(64);
+
+		new Thread(() -> {
+			int i = 0;
+			for (;;) {
+				nMap.put(String.valueOf(i), String.valueOf(i++));
+				try {
+					Thread.sleep(500);
+					System.out.println("put:" + i);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		}).start();
+
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		System.out.println("开始迭代");
+		Iterator<Map.Entry<String, String>> iterator1 = nMap.entrySet().iterator();
+		new Thread(() -> {
+			while (iterator1.hasNext()) {
+				try {
+					Thread.sleep(1000);
+					System.out.println(iterator1.next().getKey() + "," + iterator1.next().getValue());
+				} catch (InterruptedException | ConcurrentModificationException e) {
+					e.printStackTrace();
+				}
+				iterator1.remove();
+			}
+		}).start();
+
+
+		Thread.sleep(10000000);
+	}
 
 	@org.junit.Test
 	public void concurrentHashMap() {
