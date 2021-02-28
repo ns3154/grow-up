@@ -10,6 +10,7 @@ import java.lang.ref.SoftReference;
 import java.lang.ref.WeakReference;
 import java.util.*;
 import java.util.concurrent.*;
+import java.util.concurrent.locks.ReentrantLock;
 import java.util.function.BiFunction;
 
 /**
@@ -243,6 +244,26 @@ public class Test {
 		}
 	}
 
+	@org.junit.Test
+	public void ss() {
+    	ReentrantLock lock = new ReentrantLock(true);
+    	lock.lock();
+		try {
+			lock.lock();
+			try {
+				System.out.println("重入");
+			} finally {
+				lock.unlock();
+			}
+			System.out.println(111);
+		} finally {
+			lock.unlock();
+		}
+
+
+
+	}
+
 
 
 	// -XX:-UseCompressedOops
@@ -266,6 +287,107 @@ public class Test {
 		}
 	}
 
+	@org.junit.Test
+	public void isPalindrome() {
+    	int num = 1231321;
+		int t = num;
+		int z = 0;
+		while (t >= 10) {
+			z = z * 10 + t % 10;
+			t /= 10;
+		}
+		z = z * 10 + t;
+
+		System.out.println(z == num ? true : false);
+
+	}
+
+	@org.junit.Test
+	public void findMedianSortedArrays() {
+		int[] a1 = {1,3,5,7};
+		int[] a2 = {2,4,6,8};
+
+		int al1 = a1.length;
+		int al2 = a2.length;
+		int len = al1 + al2;
+		Double z = (double)len / 2;
+		int zi = z.intValue();
+		boolean b = z > 0 ? false : true;
+		int[] ns = new int[len];
+
+
+
+		int index = 0;
+		int ni = 0;
+		for (int t = 0; t < al1;t++) {
+			if (a1[t] < a2[index]) {
+				ns[ni++] = a1[t];
+				continue;
+			} else if (a1[t] == a2[index]) {
+				ns[ni++] = a1[t];
+				ns[ni++] = a2[index++];
+				continue;
+			} else {
+				do {
+					ns[ni++] = a2[index++];
+				} while (a1[t] > a2[index]);
+				ns[index++] = a1[t];
+			}
+		}
+		System.out.println(Arrays.stream(ns).toArray());
+	}
+
+	@org.junit.Test
+	public void arraySort() throws ExecutionException, InterruptedException {
+		int[] aArray = {1,3,5,7};
+		int[] bArray = {2,4,6,8};
+		System.out.println(findMedianSortedArrays(aArray, bArray));
+		ExecutorService executorService = Executors.newFixedThreadPool(1);
+		Future<Object> submit = executorService.submit(new Callable<Object>() {
+			@Override
+			public Object call() throws Exception {
+				return new Object();
+			}
+		});
+		submit.get();
+
+	}
+
+	public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+		int alen = nums1.length;
+		int blen = nums2.length;
+		int aIndex = 0;
+		int bIndex = 0;
+		int len = alen + blen;
+		int[] array = new int[len];
+
+		int z = len / 2;
+		boolean b = len % 2 == 0;
+		for (int i = 0; i <= z; i++) {
+			if (aIndex < alen && bIndex < blen) {
+				if (nums1[aIndex] <= nums2[bIndex]) {
+					array[i] = nums1[aIndex++];
+				} else {
+					array[i] = nums2[bIndex++];
+				}
+			} else if (aIndex < alen) {
+				array[i] = nums1[aIndex++];
+			} else {
+				array[i] = nums2[bIndex++];
+			}
+
+			if (b) {
+				if (i == z) {
+					return ((double) array[i - 1] + array[i]) / 2;
+				}
+			} else {
+				if (i == z) {
+					return array[i];
+				}
+			}
+		}
+		return 0;
+	}
 
     static class Key {
 

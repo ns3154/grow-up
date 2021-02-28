@@ -1,6 +1,7 @@
 package com.example.aop;
 
 import com.example.utils.TrackUtils;
+import com.google.common.util.concurrent.RateLimiter;
 import javassist.*;
 import javassist.bytecode.CodeAttribute;
 import javassist.bytecode.LocalVariableAttribute;
@@ -14,6 +15,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.Resource;
+import java.time.Duration;
 
 /**
  * <pre>
@@ -38,10 +42,13 @@ public class ControllerAspect {
     @Pointcut(value = "execution(public * com.example.mybatis.service.impl.*.*(..))")
     private void service(){};
 
+    private RateLimiter rateLimiter = RateLimiter.create(11);
+
     @Around(value = "controller()")
     public Object controllerHandler(ProceedingJoinPoint joinPoint) {
         logger.error("***** controller 切面:代码执行前 ******");
         Object proceed = null;
+        rateLimiter.tryAcquire();
         try {
             MethodSignature signature = (MethodSignature) joinPoint.getSignature();
             Class<?> clazz = joinPoint.getTarget().getClass();

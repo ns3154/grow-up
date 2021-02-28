@@ -1,5 +1,6 @@
 package com.example;
 
+import com.alibaba.druid.pool.DruidDataSource;
 import com.example.annotation.MyAutowired;
 import com.example.config.MyPropertry;
 import com.example.enable.MyEnable;
@@ -23,6 +24,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration;
 
+import javax.annotation.Resource;
 import javax.sql.DataSource;
 import java.net.ServerSocket;
 
@@ -48,7 +50,6 @@ public class Spring {
     @MyAutowired
     private User user1;
 
-
     public static void main(String[] args) {
         ConfigurableApplicationContext run = SpringApplication.run(Spring.class, args);
 
@@ -58,7 +59,8 @@ public class Spring {
         User user = beanFactory.getBean("user", User.class);
         MyPropertry propertry = beanFactory.getBean("myPropertry", MyPropertry.class);
         A a = beanFactory.getBean("a", A.class);
-        logger.error(user.toString());
+
+	    logger.error(user.toString());
         logger.error(propertry.toString());
         logger.error(a.toString());
 
@@ -69,5 +71,6 @@ public class Spring {
         logger.error(enableTestImport);
         logger.error(enableImportSelectorTest);
         logger.error(beanDefinitionRegistrarTestStr);
+
     }
 }
