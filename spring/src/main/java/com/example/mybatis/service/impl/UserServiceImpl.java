@@ -2,6 +2,7 @@ package com.example.mybatis.service.impl;
 
 import com.example.mybatis.dao.TestMapper;
 import com.example.mybatis.domain.Test;
+import com.example.mybatis.service.TestService;
 import com.example.mybatis.service.UserService;
 import org.springframework.aop.framework.AopContext;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,6 +28,9 @@ public class UserServiceImpl implements UserService {
 
     @Resource
     private TestMapper testMapper;
+
+    @Resource
+	private TestService testService;
 
 	@Transactional(rollbackFor = Exception.class)
     @Override
@@ -105,5 +109,14 @@ public class UserServiceImpl implements UserService {
 		userService.isolationRR(counts, pNums);
 		System.out.println(testMapper.count());
 		return test;
+	}
+
+	@Override
+	public void finalClass(Integer counts, Integer pNums) {
+		Test test = new Test();
+		test.setCounts(counts);
+		test.setpNums(pNums);
+		testMapper.insertSelective(test);
+		testService.create(counts, pNums);
 	}
 }

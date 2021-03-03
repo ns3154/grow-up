@@ -35,4 +35,6 @@ public interface UserService {
 	void insert3(int counts, int pNums);
 
 	Test isolationRU(Integer counts, Integer pNums);
+
+    void finalClass(Integer counts, Integer pNums);
 }
