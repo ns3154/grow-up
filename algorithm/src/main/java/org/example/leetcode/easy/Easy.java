@@ -68,6 +68,30 @@ public class Easy {
 		System.out.println(sum);
 	}
 
+	@Test
+	public void longestCommonPrefix() {
+		String[] strs = {"flower","flow","1flight"};
+		String preStr = strs[0];
+		for (int i = 1; i < strs.length;i++) {
+			preStr = longestCommonPrefix(preStr,strs[i]);
+			if (preStr.length() == 0) {
+				break;
+			}
+		}
+
+		System.out.println(preStr);
+	}
+
+	public String longestCommonPrefix(String s1, String s2) {
+    	int len = Math.min(s1.length(), s2.length());
+    	int index = 0;
+    	while (len > index && s1.charAt(index) == s2.charAt(index)) {
+    		index++;
+	    }
+		return s1.substring(0, index);
+	}
+
+
 	private int getValue(char ch) {
 		switch(ch) {
 			case 'I': return 1;
