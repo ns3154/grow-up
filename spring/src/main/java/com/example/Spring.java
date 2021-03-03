@@ -6,6 +6,7 @@ import com.example.config.MyPropertry;
 import com.example.enable.MyEnable;
 import com.example.ioc.cyclicdependency.filed.A;
 import com.example.model.bean.User;
+import com.example.mybatis.service.TestService;
 import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -73,4 +74,9 @@ public class Spring {
         logger.error(beanDefinitionRegistrarTestStr);
 
     }
+
+	@Bean
+	public TestService TestService() {
+    	return new TestService();
+	}
 }
