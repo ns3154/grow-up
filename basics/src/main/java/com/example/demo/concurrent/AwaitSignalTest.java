@@ -25,7 +25,7 @@ public class AwaitSignalTest {
 
         new Thread(() -> a.a()).start();
         try {
-            Thread.sleep(2000);
+            Thread.sleep(2000000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

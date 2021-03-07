@@ -29,7 +29,7 @@ public class LockTest {
     @Test
     public void lockTest() throws InterruptedException {
 
-        Lock lock = new ReentrantLock();
+	    ReentrantLock lock = new ReentrantLock();
         Util.executor.execute(() -> {
             logger.error("加锁1");
             lock.lock();
@@ -58,6 +58,64 @@ public class LockTest {
 
         TimeUnit.SECONDS.sleep(100);
     }
+
+	@Test
+	public void lock() {
+		ReentrantLock lock = new ReentrantLock();
+		Thread thread1 = new Thread(() -> {
+			lock.lock();
+			try {
+				int i = 0;
+				Thread.sleep(1000000L);
+			}
+			catch (InterruptedException e) {
+				e.printStackTrace();
+			} finally {
+				lock.unlock();
+			}
+		});
+		thread1.setName("a");
+		thread1.start();
+
+		try {
+			Thread.sleep(10L);
+		}
+		catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+
+		Thread thread = new Thread(() -> {
+			try {
+				lock.lockInterruptibly();
+			}
+			catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			try {
+
+				System.out.println("sddsdsfs");
+			} finally {
+				lock.unlock();
+				System.out.println("中断了");
+			}
+		});
+		thread.setName("b");
+		thread.start();
+		try {
+			Thread.sleep(10L);
+		}
+		catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+//		thread.interrupt();
+
+		try {
+			TimeUnit.SECONDS.sleep(100000);
+		}
+		catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
 
     @Test
     public void lockInterruptiblyTest() throws InterruptedException {

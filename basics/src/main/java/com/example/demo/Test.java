@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.lang.ref.SoftReference;
 import java.lang.ref.WeakReference;
+import java.lang.reflect.Field;
 import java.util.*;
 import java.util.concurrent.*;
 import java.util.concurrent.locks.ReentrantLock;
@@ -207,13 +208,31 @@ public class Test {
 
 	@org.junit.Test
 	public void test() {
+    	ConcurrentHashMap<String, String> m = new ConcurrentHashMap<>();
+    	for (int i = 0;i < 11111; i++) {
+    		m.put(i + "", "s");
+	    }
+		int hash = 211111;
+        int table = 16;
+        System.out.println("hash 二进制:" + Integer.toBinaryString(hash));
+        System.out.println("table 16 二进制:" + Integer.toBinaryString(table));
 
-		System.out.println(Integer.toBinaryString((1 << 29) - 1).length());
-		System.out.println(Integer.toBinaryString(0x7FFFFFFF));
-		System.out.println(Integer.toBinaryString(0x7FFFFFFF).length());
-		String j = "java1";
-		String s = new String("java1");
-		System.out.println(j == s.intern());
+		System.out.println(hash & table);
+		System.out.println("下标");
+		System.out.println(hash & 15);
+        System.out.println(hash & 31);
+        System.out.println(hash & 63);
+
+
+		int NCPU = Runtime.getRuntime().availableProcessors();
+		int stride = 0;
+		int n = 1024;
+		int MIN_TRANSFER_STRIDE = 16;
+		if ((stride = (NCPU > 1) ? (n >>> 3) / NCPU : n) < MIN_TRANSFER_STRIDE) {
+			stride = MIN_TRANSFER_STRIDE; // subdivide range
+		}
+		System.out.println(stride);
+		System.out.println(Integer.numberOfLeadingZeros(16));
 	}
 
 	@org.junit.Test
@@ -350,6 +369,33 @@ public class Test {
 			}
 		});
 		submit.get();
+
+	}
+
+	@org.junit.Test
+	public void string() throws NoSuchFieldException, IllegalAccessException {
+    	String s1 = "abc";
+    	String s2 = "abc";
+    	System.out.println(s1 == s2);
+
+		Field value = s1.getClass().getDeclaredField("value");
+		value.setAccessible(true);
+		System.out.println("s1 hashcode:" + s1.hashCode());
+		System.out.println("s2 hashcode:" + s2.hashCode());
+		char[] chars = (char[]) value.get(s1);
+		chars[0] = '1';
+		chars[1] = '2';
+		chars[2] = '3';
+
+		System.out.println(s1);
+    	System.out.println(s2);
+		System.out.println(s1 == s2);
+		System.out.println("s1 hashcode:" + s1.hashCode());
+		System.out.println("s2 hashcode:" + s2.hashCode());
+	}
+
+
+	public void lock() {
 
 	}
 

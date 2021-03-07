@@ -18,6 +18,6 @@ dubbo:
     accesslog: true
 
 logging:
-  config: C:\projects\demo\learn\logback.xml
+  config: /Users/yang/IdeaProjects/demo/learn/logback.xml
 
 num: 1
