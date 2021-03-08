@@ -17,7 +17,7 @@ import javax.annotation.Resource;
  * @since 1.0
  * @date 2021/03/03 11:25
  **/
-public final class TestService {
+public class TestService {
 
     @Resource
     private TestMapper testMapper;

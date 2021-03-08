@@ -52,11 +52,7 @@ public class MybatisController {
 		return new ModelMessge<Test>().ok(test);
 	}
 
-    @PostMapping("isolationRU")
-    public ModelMessge<Test> finalClass(Integer counts, Integer pNums) {
-        userService.finalClass(counts, pNums);
-        return new ModelMessge<Test>().ok(null);
-    }
+
 
 
 
