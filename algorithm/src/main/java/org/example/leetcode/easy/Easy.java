@@ -2,9 +2,7 @@ package org.example.leetcode.easy;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * <pre>
@@ -80,6 +78,69 @@ public class Easy {
 		}
 
 		System.out.println(preStr);
+	}
+
+	@Test
+	public void myAtoi() {
+
+	}
+
+	@Test
+	public void maxArea() {
+    	int[] height = {4,3,2,1,4};
+    	int l = 0;
+    	int r = height.length - 1;
+    	int max = 0;
+    	while (l < r) {
+    		int m = Math.min(height[l], height[r]) * (r - l);
+		    max = Math.max(max, m);
+			if (height[l] < height[r]) {
+				l++;
+			} else {
+				r--;
+			}
+	    }
+		System.out.println(max);
+	}
+
+	@Test
+	public void threeSum() {
+    	// -4 -1 -1 0 1 2
+		// -2 0 1 1 2
+		// 0 0 0 0
+    	int[] nums = {-2,0,1,1,2};
+    	List<List<Integer>> list = new ArrayList<>();
+    	if (null == nums || nums.length < 3) {
+    		return;
+	    }
+
+		int i = 0;
+    	int left = 1;
+    	int right = nums.length - 1;
+		Arrays.sort(nums);
+
+		while (i < right && left < right && nums[right] >= 0) {
+			int z = nums[i] + nums[left] + nums[right];
+			List<Integer> l = new ArrayList<>();
+			if(z == 0) {
+				l.add(nums[i]);
+				l.add(nums[left]);
+				l.add(nums[right]);
+				left = i + 1;
+				right--;
+				list.add(l);
+				continue;
+			}
+			if (left < right - 1) {
+				left++;
+				continue;
+			}
+			left = ++i + 1;
+		}
+
+    	System.out.println(nums);
+
+
 	}
 
 	public String longestCommonPrefix(String s1, String s2) {
