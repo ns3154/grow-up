@@ -32,8 +32,11 @@ public class Atest {
 
     @Test
     public void t1() {
-
-
-
+        ThreadLocal<String> t1 = new ThreadLocal<>();
+        ThreadLocal<String> t2 = new ThreadLocal<>();
+        t1.set("t1");
+        t2.set("t2");
+        String s = t1.get();
+        System.out.println(s);
     }
 }
