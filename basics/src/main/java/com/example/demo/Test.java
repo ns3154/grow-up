@@ -244,23 +244,25 @@ public class Test {
 
 	@org.junit.Test
 	public void sync() throws InterruptedException {
-		SynchronizedModel sm = new SynchronizedModel(3232323223232L, "张三", 2.3d, 'A');
-		List<Thread> list = new ArrayList<>();
-		for (int i = 0;i < 3; i++) {
-			list.add(new Thread(sm::f1));
-		}
-
-		for (Thread thread : list) {
-			thread.start();
-			Thread.sleep(1000);
-			// 查看对象内部信息
-			System.out.println(ClassLayout.parseInstance(sm).toPrintable());
-			// 查看对象外部信息
-//			System.out.println(GraphLayout.parseInstance(sm).toPrintable());
-			// 获取对象总大小
-//			System.out.println(GraphLayout.parseInstance(sm).totalSize());
-			System.out.println("------------------------------------------");
-		}
+//		SynchronizedModel sm = new SynchronizedModel(3232323223232L, "张三", 2.3d, 'A');
+//		List<Thread> list = new ArrayList<>();
+//		for (int i = 0;i < 3; i++) {
+//			list.add(new Thread(sm::f1));
+//		}
+//
+//		for (Thread thread : list) {
+//			thread.start();
+//			Thread.sleep(1000);
+//			// 查看对象内部信息
+//			System.out.println(ClassLayout.parseInstance(sm).toPrintable());
+//			// 查看对象外部信息
+////			System.out.println(GraphLayout.parseInstance(sm).toPrintable());
+//			// 获取对象总大小
+////			System.out.println(GraphLayout.parseInstance(sm).totalSize());
+//			System.out.println("------------------------------------------");
+//		}
+		System.out.println(ClassLayout.parseInstance(new Object()).toPrintable());
+		System.out.println(ClassLayout.parseInstance(new SynchronizedModel()).toPrintable());
 	}
 
 	@org.junit.Test
