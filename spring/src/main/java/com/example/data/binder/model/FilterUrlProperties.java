@@ -1,5 +1,7 @@
 package com.example.data.binder.model;
 
+import org.springframework.boot.context.properties.ConfigurationProperties;
+
 import java.util.HashSet;
 
 /**
@@ -19,6 +21,7 @@ import java.util.HashSet;
  * @since 1.0
  * @date 2019/10/31 14:56
  **/
+@ConfigurationProperties(prefix = "")
 public class FilterUrlProperties {
 
     /**

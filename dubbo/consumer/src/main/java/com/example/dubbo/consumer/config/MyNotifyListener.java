@@ -54,7 +54,7 @@ public class MyNotifyListener implements CommandLineRunner, NotifyListener {
                 InetAddress inetAddress = InetAddress.getLocalHost();
                 host = inetAddress.getHostAddress();
             } catch (UnknownHostException e) {
-                logger.error("*** 获取 ip地址错误:{} ***", e);
+                logger.error("*** 获取 ip地址错误:", e);
             }
             if (StringUtils.isBlank(host)) {
                 host = "127.0.0.1";
