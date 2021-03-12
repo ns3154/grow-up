@@ -31,18 +31,20 @@ public class CyclicBarrierTest {
 
         cyclic(cb, executor, threadSize);
 
-        while (integer.get() != threadSize) {
-            // noting
-        }
+        Thread.sleep(1000L);
+        cb.reset();
+//        while (integer.get() != threadSize) {
+//            // noting
+//        }
 
 
 //        cb.reset();
-//        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(3);
 //        logger.error("------------------------------------");
 //        cyclic(cb, executor, threadSize);
 //	    TimeUnit.SECONDS.sleep(3);
 //	    logger.error("------------------------------------");
-//	    cyclic(cb, executor, threadSize);
+	    cyclic(cb, executor, threadSize);
 //
 //	    TimeUnit.SECONDS.sleep(3);
 //	    logger.error("------------------------------------");
@@ -68,11 +70,12 @@ public class CyclicBarrierTest {
             int finalI = i;
             executor.execute(() -> {
                 try {
-                	if (finalI == 4) {
-                		Thread.sleep(10000000L);
-	                }
                     logger.error("执行await前:{}", finalI);
+                    if (finalI == 3) {
+                        Thread.sleep(3000);
+                    }
                     cb.await();
+
                     integer.addAndGet(1);
                 } catch (InterruptedException e) {
                     e.printStackTrace();

@@ -1,8 +1,11 @@
 package com.example.demo.concurrent;
 
+import org.junit.platform.commons.function.Try;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.*;
 
 /**
@@ -21,26 +24,55 @@ public class CountDownLatchTest {
         ThreadPoolExecutor executor = new ThreadPoolExecutor(5, 10, 60, TimeUnit.SECONDS, new SynchronousQueue<>(), r -> new Thread(r, "test"));
         CountDownLatch cdl = new CountDownLatch(5);
         logger.error("开始");
+        List<Future<?>> list = new ArrayList<>();
         for (int i = 0;i < 5;i++) {
             int finalI = i;
 	        final int finalI1 = i;
-	        executor.execute(() -> {
-
-
-
+            Future<?> submit = executor.submit(() -> {
+                try {
+                    Thread.sleep(1000L);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+//                if (finalI1 == 2 || finalI1 == 3) {
+//                    try {
+//                        Thread.sleep(5000000L);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//                if (finalI1 == 4) {
+//                    Thread.currentThread().interrupt();
+//                }
                 cdl.countDown();
-		        while (finalI1 == 3) {
-			        Thread.currentThread().interrupt();
-		        }
                 logger.error("执行:{}", finalI);
 
             });
+            list.add(submit);
+        }
+//        final Thread thread = Thread.currentThread();
+//        executor.execute(() -> {
+//            int index = 0;
+//            while (index++ < 3) {
+//                try {
+//                    Thread.sleep(1000);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//            thread.interrupt();
+//        });
+        logger.error("running -  count:{}", cdl.getCount());
+        try {
+            cdl.await();
+        } catch (InterruptedException e) {
+            logger.error("被中断唤醒");
         }
 
-        cdl.await();
+        logger.error("running count:{}", cdl.getCount());
 
-        logger.error("执行完毕...");
         executor.shutdown();
+
 
 
     }
