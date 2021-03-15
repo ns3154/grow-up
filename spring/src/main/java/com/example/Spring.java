@@ -73,6 +73,7 @@ public class Spring {
         logger.error(enableImportSelectorTest);
         logger.error(beanDefinitionRegistrarTestStr);
 
+	    logger.error(propertry.toString());
     }
 
 	@Bean

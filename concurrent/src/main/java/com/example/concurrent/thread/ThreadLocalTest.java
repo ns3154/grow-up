@@ -1,5 +1,7 @@
 package com.example.concurrent.thread;
 
+import org.junit.jupiter.api.Test;
+
 /**
  * <pre>
  *
@@ -11,12 +13,23 @@ package com.example.concurrent.thread;
  **/
 public class ThreadLocalTest {
 
-	public static void main(String[] args) {
-		ThreadLocal<Integer> threadLocal = new ThreadLocal<>();
-//		ThreadLocal<Map<String, String>> mapThreadLocal = ThreadLocal.withInitial(HashMap::new);
-		threadLocal.set(1);
-		Integer integer = threadLocal.get();
-		System.out.println(integer);
-		threadLocal.remove();
+	static ThreadLocal<Integer> threadLocal_1 = new ThreadLocal<>();
+	static ThreadLocal<Integer> threadLocal_2 = new ThreadLocal<>();
+	static ThreadLocal<Integer> threadLocal_3 = new ThreadLocal<>();
+	static ThreadLocal<Integer> threadLocal_4 = new ThreadLocal<>();
+	static ThreadLocal<Integer> threadLocal_5 = new ThreadLocal<>();
+	static ThreadLocal<Integer> threadLocal_6 = new ThreadLocal<>();
+	static ThreadLocal<Integer> threadLocal_7 = new ThreadLocal<>();
+	static ThreadLocal<Integer> threadLocal_8 = new ThreadLocal<>();
+	static ThreadLocal<Integer> threadLocal_9 = new ThreadLocal<>();
+
+	@Test
+	public void tst() {
+		new Thread(() -> {
+			threadLocal_1.set(1);
+			threadLocal_2.set(2);
+			System.out.println(threadLocal_1.get());
+			System.out.println(threadLocal_2.get());
+		}).start();
 	}
 }

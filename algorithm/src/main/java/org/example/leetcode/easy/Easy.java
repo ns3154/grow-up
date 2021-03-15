@@ -14,8 +14,97 @@ import java.util.*;
  **/
 public class Easy {
 
+	@Test
+	public void fengzhi() {
+		int[] a = {3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,7, 4};
+		System.out.println(fengzhi(a, 0, a.length - 1));
 
-    @Test
+
+	}
+
+	public int fengzhi(int[] nums, int left, int right) {
+		while (left < right) {
+			int mid = left + ((right - left) >> 1);
+			if (nums[mid + 1] > nums[mid]) {
+				left = mid + 1;
+			} else if (nums[mid + 1] == nums[mid]){
+//				int a = fengzhi(nums, left, mid - 1);
+//				int b = fengzhi(nums, mid + 1, right);
+//				return Math.max(a, b);
+				if (nums[left] < nums[right]) {
+					left++;
+				} else {
+					right--;
+				}
+			}
+			else {
+				right = mid;
+			}
+		}
+		return nums[left];
+	}
+
+	@Test
+	public void mergeArray() {
+		int[] n_n = {1,2,3,0,0,0};
+		int[] m_m = {2,5,6};
+
+		int n = 3;
+		int m = 3;
+
+		while (n > 0 && m > 0) {
+			n_n[n + m - 1] = n_n[n - 1] > m_m[m - 1] ? n_n[--n] : m_m[--m];
+		}
+
+		while (m > 0) {
+			n_n[--m] = m_m[m];
+		}
+
+		Arrays.stream(n_n).forEach(i -> System.out.print(i+ ","));
+	}
+
+	@Test
+	public void kuohao() {
+		String s = "{[}]";
+		s = "(){}}{";
+		if (null == s) {
+			return;
+		}
+		char[] chars = s.toCharArray();
+		if (chars.length % 2 == 1) {
+			return;
+		}
+
+		Map<Character, Character> map = new HashMap<>();
+		map.put(')', '(');
+		map.put('}', '{');
+		map.put(']', '[');
+		if (map.containsKey(chars[0])) {
+			return;
+		}
+		Stack<Character> stack = new Stack<>();
+		for (int i = 0; i < chars.length; i++) {
+			char c = chars[i];
+			if (map.containsKey(c)) {
+				if (stack.isEmpty()) {
+					return;
+				}
+				Character character;
+				if ((character = map.get(c)) != null && !Objects.equals(character, stack.peek())) {
+					return;
+				}
+				stack.pop();
+			} else {
+				stack.push(c);
+			}
+
+		}
+
+		System.out.println(stack.isEmpty());
+
+	}
+
+	@Test
     public void lengthOfLongestSubstring() {
         String s = "pwwkew";
         char[] chars = s.toCharArray();

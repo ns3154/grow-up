@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: prod
+    active: prod,test,dev
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     druid:
