@@ -47,10 +47,10 @@ public class Easy {
 	@Test
 	public void mergeArray() {
 		int[] n_n = {1,2,3,0,0,0};
-		int[] m_m = {2,5,6};
+		int[] m_m = {};
 
 		int n = 3;
-		int m = 3;
+		int m = 0;
 
 		while (n > 0 && m > 0) {
 			n_n[n + m - 1] = n_n[n - 1] > m_m[m - 1] ? n_n[--n] : m_m[--m];
@@ -61,6 +61,112 @@ public class Easy {
 		}
 
 		Arrays.stream(n_n).forEach(i -> System.out.print(i+ ","));
+	}
+
+	public void merge(int A[], int m, int B[], int n) {
+
+		while(m > 0 && n > 0) {
+			A[m + n - 1] = A[m - 1] > B[n - 1] ? A[--m] : B[--n];
+		}
+
+		while(n > 0) {
+			A[n--] = B[n];
+		}
+		System.out.println(n);
+	}
+
+	@Test
+	public void MySort () {
+		int[] arr = new int[]{5,2,3,1,4};
+		for(int i = 0,len = arr.length; i < len; i++) {
+			for (int j = i + 1; j < len;j++) {
+				int aj = arr[j];
+				int ai = arr[i];
+				if (ai > aj) {
+					arr[i] = aj;
+					arr[j] = ai;
+				}
+			}
+		}
+		Arrays.stream(arr).forEach(i -> System.out.println(i + ","));
+	}
+
+	@Test
+	public void mergeSort() {
+		int[] args = {8,7, 5, 11, 4, 3, 2, 1, 0};
+		mergeSort(args,0 , args.length - 1, new int[args.length]);
+	}
+
+	public void mergeSort(int[] args, int left, int right, int[] tmp) {
+		if (left < right) {
+			int mid = (right + left) / 2;
+			mergeSort(args, left, mid, tmp);
+			mergeSort(args, mid + 1, right, tmp);
+			mergeSort(left, mid, right, args, tmp);
+		}
+	}
+
+	public void mergeSort(int left, int mid,  int right, int[] args, int[] tmp) {
+		System.out.println("left:" + left + "mid:" + mid + "right:" + right);
+		int l = left;
+		int j = mid + 1;
+		int t = 0;
+		while (l <= mid && j <= right) {
+			if (args[l] < args[j]) {
+				tmp[t++] = args[l++];
+			} else {
+				tmp[t++] = args[j++];
+			}
+		}
+
+		while (l <= mid) {
+			tmp[t++] = args[l++];
+		}
+		while (j <= right) {
+			tmp[t++] = args[j++];
+		}
+		t = 0;
+		while (left <= right) {
+			args[left++] = tmp[t++];
+		}
+		System.out.println("left:" + left + "mid:" + mid + "right:" + right);
+		Arrays.stream(tmp).forEach(i -> System.out.print(i + ","));
+		System.out.println("------------");
+	}
+
+
+	@Test
+	public void quickSort() {
+		int[] arr = {1,3,5,2,2};
+		quickSort(0, arr.length - 1,  arr);
+		Arrays.stream(arr).forEach(i -> System.out.print(i + ","));
+	}
+
+	public void quickSort(int left, int right, int[] arr) {
+		if (left > right) {
+			return;
+		}
+		int key = arr[left];
+		int l = left;
+		int r = right;
+		while (l != r) {
+			while (arr[r] >= key && l < r) {
+				r--;
+			}
+			while (arr[l] <= key && l < r) {
+				l++;
+			}
+			if (l < r) {
+				int tmp = arr[l];
+				arr[l] = arr[r];
+				arr[r] = tmp;
+			}
+		}
+
+		arr[left] = arr[l];
+		arr[l] = key;
+		quickSort(left,l - 1, arr);
+		quickSort(l + 1, right, arr);
 	}
 
 	@Test
