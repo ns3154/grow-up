@@ -2,6 +2,7 @@ package org.example.leetcode.easy;
 
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 /**
@@ -19,9 +20,61 @@ public class Easy {
 		int[] a = {3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,7, 4};
 		System.out.println(fengzhi(a, 0, a.length - 1));
 
+		twoSum(new int[]{3,2,4}, 6);
+
 
 	}
 
+
+	@Test
+	public void kaifang() {
+		BigDecimal target = new BigDecimal(3);
+		BigDecimal c = new BigDecimal("0.000001");
+		BigDecimal bigDecimal = new BigDecimal(2);
+
+		BigDecimal high = target.divide(bigDecimal);
+		BigDecimal low = BigDecimal.ZERO;
+		while (target.subtract(high.multiply(high)).abs().compareTo(c) > 0) {
+			int i = high.multiply(high).compareTo(target);
+			if (i > 0) {
+				BigDecimal n = high.subtract(high.subtract(low).divide(bigDecimal));
+				int t = n.multiply(n).compareTo(target);
+				if (t > 0) {
+					high = n;
+				} else if (t < 0) {
+					low = n;
+				} else {
+					break;
+				}
+			} else if (i < 0) {
+				BigDecimal n = high.add(high.subtract(low).divide(bigDecimal));
+				if (n.multiply(n).compareTo(target) != 0) {
+					low = high;
+					high = n;
+				} else {
+					break;
+				}
+			} else {
+				break;
+			}
+		}
+		System.out.println(high.doubleValue());
+
+	}
+
+	public int[] twoSum (int[] numbers, int target) {
+		HashMap<Integer, Integer> m = new HashMap();
+		for(int i = 0; i < numbers.length; i++) {
+			int tmp = numbers[i];
+			Integer tn = m.get(target - tmp);
+			if (null != tn) {
+				return new int[] {i+1, tn+1};
+			}
+			m.put(tmp, i);
+		}
+
+		return new int[]{};
+	}
 	public int fengzhi(int[] nums, int left, int right) {
 		while (left < right) {
 			int mid = left + ((right - left) >> 1);

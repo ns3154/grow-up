@@ -1,6 +1,6 @@
 package org.example.test;
 
-import java.util.Arrays;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -43,6 +43,51 @@ public class Test {
 
         map.size();
         map.isEmpty();
+    }
+
+    @org.junit.jupiter.api.Test
+    public void listSort() {
+        ArrayList<SortTest> list = new ArrayList<>();
+	    list.size();
+        SortTest sortTest = list.get(0);
+        System.out.println(sortTest);
+
+        for (int i = 0; i < 9; i++) {
+	        list.add(new SortTest(new Random().nextInt(300), "" + i));
+        }
+
+        Collections.sort(list, (o1, o2) -> o1.getId() - o2.getId());
+        System.out.println(list);
+
+
+    }
+
+    class SortTest {
+
+	    private int id;
+
+	    private String name;
+
+        public SortTest(int id, String name) {
+            this.id = id;
+            this.name = name;
+        }
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
     }
 
 }
