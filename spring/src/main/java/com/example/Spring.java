@@ -64,7 +64,6 @@ public class Spring {
 	    logger.error(user.toString());
         logger.error(propertry.toString());
         logger.error(a.toString());
-
         // @MyEnable
         String enableTestImport = beanFactory.getBean("enableTestImport", String.class);
         String enableImportSelectorTest = beanFactory.getBean("enableImportSelectorTest", String.class);

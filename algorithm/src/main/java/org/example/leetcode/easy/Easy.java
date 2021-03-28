@@ -1,9 +1,11 @@
 package org.example.leetcode.easy;
 
 import org.junit.jupiter.api.Test;
+import org.yaml.snakeyaml.events.Event;
 
 import java.math.BigDecimal;
 import java.util.*;
+import java.util.function.BiFunction;
 
 /**
  * <pre>
@@ -23,6 +25,89 @@ public class Easy {
 		twoSum(new int[]{3,2,4}, 6);
 
 
+	}
+
+	@Test
+	public void LCS () {
+		String str1 = "1AB23456CD";
+		String str2 = "1234567";
+		char[] c1 = str1.toCharArray();
+		char[] c2 = str2.toCharArray();
+		int[][] dp = new int[c1.length][c2.length];
+		int max = 0;
+		int start = 0;
+		int end = 0;
+		dp[0][0] = c1[0] == c2[0] ? 1 : 0;
+		if (dp[0][0] > 0) {
+			max++;
+		}
+		for(int i = 1, ilen = c1.length; i < ilen; i++) {
+			for(int j = 1, jLen = c2.length; j < jLen; j++) {
+				if (c1[i] == c2[j]) {
+					dp[i][j] = dp[i - 1][j - 1] + 1;
+					if (max < dp[i][j]) {
+						max = dp[i][j];
+						end = j;
+						start = j - max + 1;
+					}
+				}
+			}
+		}
+
+		System.out.println(max);
+		System.out.println(str2.substring(start, end + 1));
+		HashSet set = new HashSet();
+		set.add(2);
+		set.contains()
+	}
+
+	@Test
+	public void longestCommonSubsequence() {
+		String text1 = "abcde";
+		String text2 = "ace";
+		int[][] dp = new int[text1.length() + 1][text2.length() + 1];
+		char[] t1 = text1.toCharArray();
+		char[] t2 = text2.toCharArray();
+		for (int i = 1; i <= t1.length; i++) {
+			for (int j = 1; j <= t2.length; j++) {
+				if (t1[i - 1] == t2[j - 1] ) {
+					dp[i][j] = dp[i - 1][j - 1] + 1;
+				} else {
+					dp[i][j] = Math.max(dp[i][j - 1], dp[i - 1][j]);
+				}
+			}
+		}
+		System.out.println(dp[text1.length()][text2.length()]);
+	}
+
+	@Test
+	public void LIS () {
+		// write code here
+		int[] arr = {2,1,5,3,6,4,8,9,2,4,5,8};
+		int[] dp = new int[arr.length];
+		int[] temp = new int[arr.length];
+		dp[0] = 1;
+		int index = 0;
+		temp[0] = arr[index];
+		for (int i = 1; i < arr.length; i++) {
+			int left = 0, right = index;
+			if (arr[i] > arr[index]) {
+				dp[i] = index + 1;
+				temp[++index] = arr[i];
+			} else {
+				while (left <= right) {
+					int mid = (left + right) / 2;
+					if (temp[mid] > arr[i]) {
+						right = mid - 1;
+					} else {
+						left = mid + 1;
+					}
+				}
+
+			}
+
+		}
+		Arrays.stream(dp).forEach(i -> System.out.print(i + ","));
 	}
 
 

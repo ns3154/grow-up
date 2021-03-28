@@ -2,7 +2,11 @@ package com.example.mvc.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.MethodParameter;
+import org.springframework.web.bind.support.WebDataBinderFactory;
+import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
+import org.springframework.web.method.support.ModelAndViewContainer;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -40,6 +44,18 @@ public class MvcConfig implements WebMvcConfigurer {
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
         resolvers.add(new HeaderResolver());
         resolvers.add(new SecretResolver());
+        resolvers.add(new HandlerMethodArgumentResolver() {
+	        @Override
+	        public boolean supportsParameter(MethodParameter parameter) {
+		        return false;
+	        }
+
+	        @Override
+	        public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
+	        	System.out.println("测试使用");
+		        return null;
+	        }
+        });
     }
 
 

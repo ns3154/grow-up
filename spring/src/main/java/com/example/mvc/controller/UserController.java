@@ -1,4 +1,5 @@
 package com.example.mvc.controller;
+import com.example.data.binder.model.User;
 import com.example.mvc.annotation.Secret;
 import com.example.model.ModelMessge;
 import com.example.model.dto.UserDTO;
@@ -32,5 +33,10 @@ public class UserController {
     public ModelMessge<UserDTO> adviceGetTest(UserDTO userDTO) {
         return new ModelMessge<UserDTO>().ok(userDTO);
     }
+
+	@GetMapping("argument")
+	public ModelMessge<UserDTO> argument(UserDTO dto, User user) {
+    	return new ModelMessge<UserDTO>().ok(dto.setAge(33));
+	}
 
 }

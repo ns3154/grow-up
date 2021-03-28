@@ -39,8 +39,9 @@ public class UserDTO {
         return age;
     }
 
-    public void setAge(Integer age) {
+    public UserDTO setAge(Integer age) {
         this.age = age;
+        return this;
     }
 
     public Integer getSex() {
