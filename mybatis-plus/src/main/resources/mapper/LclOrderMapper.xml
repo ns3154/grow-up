@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mybatisplus.dao.LclOrderMapper">
+  <resultMap id="BaseResultMap" type="com.example.mybatisplus.po.LclOrder">
+    <!--@mbg.generated-->
+    <!--@Table lcl_order-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="system_id" jdbcType="INTEGER" property="systemId" />
+    <result column="platform_id" jdbcType="INTEGER" property="platformId" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="audit_status" jdbcType="INTEGER" property="auditStatus" />
+    <result column="delivery_status" jdbcType="INTEGER" property="deliveryStatus" />
+    <result column="global_order_no" jdbcType="BIGINT" property="globalOrderNo" />
+    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="company_id" jdbcType="INTEGER" property="companyId" />
+    <result column="send_cargo_terminal_id" jdbcType="INTEGER" property="sendCargoTerminalId" />
+    <result column="receive_cargo_terminal_id" jdbcType="INTEGER" property="receiveCargoTerminalId" />
+    <result column="routing_id" jdbcType="INTEGER" property="routingId" />
+    <result column="sender_province" jdbcType="INTEGER" property="senderProvince" />
+    <result column="sender_city" jdbcType="INTEGER" property="senderCity" />
+    <result column="sender_county" jdbcType="INTEGER" property="senderCounty" />
+    <result column="sender_addr" jdbcType="VARCHAR" property="senderAddr" />
+    <result column="sender_name" jdbcType="VARCHAR" property="senderName" />
+    <result column="sender_phone" jdbcType="VARCHAR" property="senderPhone" />
+    <result column="receiver_province" jdbcType="INTEGER" property="receiverProvince" />
+    <result column="receiver_city" jdbcType="INTEGER" property="receiverCity" />
+    <result column="receiver_county" jdbcType="INTEGER" property="receiverCounty" />
+    <result column="receiver_addr" jdbcType="VARCHAR" property="receiverAddr" />
+    <result column="receiver_name" jdbcType="VARCHAR" property="receiverName" />
+    <result column="receiver_phone" jdbcType="VARCHAR" property="receiverPhone" />
+    <result column="ex_type" jdbcType="TINYINT" property="exType" />
+    <result column="delivery_type" jdbcType="TINYINT" property="deliveryType" />
+    <result column="delivery_man_id" jdbcType="INTEGER" property="deliveryManId" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_user" jdbcType="BIGINT" property="createUser" />
+    <result column="update_user" jdbcType="BIGINT" property="updateUser" />
+    <result column="confirm_time" jdbcType="TIMESTAMP" property="confirmTime" />
+    <result column="first_load_time" jdbcType="TIMESTAMP" property="firstLoadTime" />
+    <result column="final_arrive_time" jdbcType="TIMESTAMP" property="finalArriveTime" />
+    <result column="assign_time" jdbcType="TIMESTAMP" property="assignTime" />
+    <result column="accept_time" jdbcType="TIMESTAMP" property="acceptTime" />
+    <result column="receive_time" jdbcType="TIMESTAMP" property="receiveTime" />
+    <result column="finish_time" jdbcType="TIMESTAMP" property="finishTime" />
+    <result column="cancel_time" jdbcType="TIMESTAMP" property="cancelTime" />
+    <result column="settlement_time" jdbcType="TIMESTAMP" property="settlementTime" />
+    <result column="pre_fee" jdbcType="BIGINT" property="preFee" />
+    <result column="sign_fee" jdbcType="BIGINT" property="signFee" />
+    <result column="back_fee" jdbcType="BIGINT" property="backFee" />
+    <result column="monthly_fee" jdbcType="BIGINT" property="monthlyFee" />
+    <result column="goods_fee" jdbcType="BIGINT" property="goodsFee" />
+    <result column="has_goods_fee" jdbcType="TINYINT" property="hasGoodsFee" />
+    <result column="total_weight" jdbcType="BIGINT" property="totalWeight" />
+    <result column="total_volume" jdbcType="BIGINT" property="totalVolume" />
+    <result column="total_quantity" jdbcType="INTEGER" property="totalQuantity" />
+    <result column="total_freight" jdbcType="BIGINT" property="totalFreight" />
+    <result column="del_flag" jdbcType="TINYINT" property="delFlag" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="fixed_fee_version" jdbcType="INTEGER" property="fixedFeeVersion" />
+    <result column="change_fee_version" jdbcType="INTEGER" property="changeFeeVersion" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, system_id, platform_id, `status`, audit_status, delivery_status, global_order_no, 
+    order_no, company_id, send_cargo_terminal_id, receive_cargo_terminal_id, routing_id, 
+    sender_province, sender_city, sender_county, sender_addr, sender_name, sender_phone, 
+    receiver_province, receiver_city, receiver_county, receiver_addr, receiver_name, 
+    receiver_phone, ex_type, delivery_type, delivery_man_id, remark, create_user, update_user, 
+    confirm_time, first_load_time, final_arrive_time, assign_time, accept_time, receive_time, 
+    finish_time, cancel_time, settlement_time, pre_fee, sign_fee, back_fee, monthly_fee, 
+    goods_fee, has_goods_fee, total_weight, total_volume, total_quantity, total_freight, 
+    del_flag, create_time, update_time, version, fixed_fee_version, change_fee_version
+  </sql>
+</mapper>

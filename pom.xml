@@ -32,6 +32,7 @@
 	    <module>excel</module>
         <module>wx</module>
 	    <module>leetcode</module>
+        <module>mybatis-plus</module>
     </modules>
 
     <properties>
@@ -40,20 +41,63 @@
         <apache-commons-lang3.version>3.4</apache-commons-lang3.version>
         <fastjson.version>1.2.67</fastjson.version>
         <jmh.version>1.23</jmh.version>
-        <spring-boot.version>2.4.3</spring-boot.version>
+        <mybaits-plus.version>3.4.2</mybaits-plus.version>
+        <lombok.version>1.18.16</lombok.version>
+        <p6spy.version>3.9.1</p6spy.version>
+        <spring.boot.version>2.4.3</spring.boot.version>
     </properties>
-    
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+        </dependency>
+    
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+        
+        <!--  SPRING BOOT 启动引导类-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-loader</artifactId>
+        </dependency>
+        
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>${google.guava.version}</version>
         </dependency>
-    
+        
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>${apache-commons-lang3.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
         </dependency>
     
         <dependency>
@@ -62,72 +106,65 @@
             <version>${fastjson.version}</version>
         </dependency>
     
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-        </dependency>
-    
-        <!--  SPRING BOOT 启动引导类-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-loader</artifactId>
-            <version>2.4.2</version>
-            <scope>provided</scope>
-        </dependency>
-    
-        <!-- https://mvnrepository.com/artifact/org.openjdk.jmh/jmh-core -->
-        <dependency>
-            <groupId>org.openjdk.jmh</groupId>
-            <artifactId>jmh-core</artifactId>
-            <version>${jmh.version}</version>
-        </dependency>
-    
-        <dependency>
-            <groupId>org.openjdk.jmh</groupId>
-            <artifactId>jmh-generator-annprocess</artifactId>
-            <version>${jmh.version}</version>
-            <scope>provided</scope>
-        </dependency>
-
-
-        <dependency>
-            <groupId>com.cwbase</groupId>
-            <artifactId>logback-redis-appender</artifactId>
-            <version>1.1.6</version>
-        </dependency>
-    
-<!--        <dependency>-->
-<!--            <groupId>com.dianping.cat</groupId>-->
-<!--            <artifactId>cat-client</artifactId>-->
-<!--            <version>2.0.0</version>-->
-<!--        </dependency>-->
-
+   
     </dependencies>
-
-    <dependencyManagement>
     
+    <dependencyManagement>
         <dependencies>
-
+            <!-- https://mvnrepository.com/artifact/org.openjdk.jmh/jmh-core -->
+            <dependency>
+                <groupId>org.openjdk.jmh</groupId>
+                <artifactId>jmh-core</artifactId>
+                <version>${jmh.version}</version>
+                <optional>true</optional>
+            </dependency>
+    
+            <dependency>
+                <groupId>org.openjdk.jmh</groupId>
+                <artifactId>jmh-generator-annprocess</artifactId>
+                <version>${jmh.version}</version>
+                <optional>true</optional>
+            </dependency>
+    
+            <dependency>
+                <groupId>com.cwbase</groupId>
+                <artifactId>logback-redis-appender</artifactId>
+                <version>1.1.6</version>
+                <optional>true</optional>
+            </dependency>
+    
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybaits-plus.version}</version>
+            </dependency>
+            <!-- SQL 分析打印-->
+            <dependency>
+                <groupId>p6spy</groupId>
+                <artifactId>p6spy</artifactId>
+                <version>${p6spy.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
+
     
-<!--    <repositories>-->
-<!--        <repository>-->
-<!--            <id>spring</id>-->
-<!--            <url>https://maven.aliyun.com/repository/spring</url>-->
-<!--            <releases>-->
-<!--                <enabled>true</enabled>-->
-<!--            </releases>-->
-<!--            <snapshots>-->
-<!--                <enabled>true</enabled>-->
-<!--            </snapshots>-->
-<!--        </repository>-->
-<!--    </repositories>-->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.springframework.boot</groupId>
+                            <artifactId>spring-boot-configuration-processor</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    
     
 
 </project>

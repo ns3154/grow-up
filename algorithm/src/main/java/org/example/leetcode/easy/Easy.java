@@ -58,7 +58,7 @@ public class Easy {
 		System.out.println(str2.substring(start, end + 1));
 		HashSet set = new HashSet();
 		set.add(2);
-		set.contains()
+//		set.contains()
 	}
 
 	@Test

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mybatisplus.dao.LclOrderPaymentHistoryMapper">
+  <resultMap id="BaseResultMap" type="com.example.mybatisplus.po.LclOrderPaymentHistory">
+    <!--@mbg.generated-->
+    <!--@Table lcl_order_payment_history-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="global_order_no" jdbcType="BIGINT" property="globalOrderNo" />
+    <result column="pay_order_no" jdbcType="INTEGER" property="payOrderNo" />
+    <result column="pay_no" jdbcType="INTEGER" property="payNo" />
+    <result column="payment_fee" jdbcType="BIGINT" property="paymentFee" />
+    <result column="payment_mode" jdbcType="INTEGER" property="paymentMode" />
+    <result column="payment_way" jdbcType="INTEGER" property="paymentWay" />
+    <result column="payment_status" jdbcType="INTEGER" property="paymentStatus" />
+    <result column="payment_type" jdbcType="INTEGER" property="paymentType" />
+    <result column="shop_id" jdbcType="INTEGER" property="shopId" />
+    <result column="pay_time" jdbcType="TIMESTAMP" property="payTime" />
+    <result column="del_flag" jdbcType="TINYINT" property="delFlag" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, order_no, global_order_no, pay_order_no, pay_no, payment_fee, payment_mode, payment_way, 
+    payment_status, payment_type, shop_id, pay_time, del_flag, version, update_time, 
+    create_time
+  </sql>
+</mapper>

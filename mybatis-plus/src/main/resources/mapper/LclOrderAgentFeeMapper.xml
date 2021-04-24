@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mybatisplus.dao.LclOrderAgentFeeMapper">
+  <resultMap id="BaseResultMap" type="com.example.mybatisplus.po.LclOrderAgentFee">
+    <!--@mbg.generated-->
+    <!--@Table urumqi_order.lcl_order_agent_fee-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="global_order_no" jdbcType="BIGINT" property="globalOrderNo" />
+    <result column="pay_order_no" jdbcType="INTEGER" property="payOrderNo" />
+    <result column="total_fee" jdbcType="BIGINT" property="totalFee" />
+    <result column="customer_fee" jdbcType="BIGINT" property="customerFee" />
+    <result column="service_fee" jdbcType="BIGINT" property="serviceFee" />
+    <result column="agent_fee_version" jdbcType="INTEGER" property="agentFeeVersion" />
+    <result column="agent_account" jdbcType="VARCHAR" property="agentAccount" />
+    <result column="agent_identity" jdbcType="VARCHAR" property="agentIdentity" />
+    <result column="agent_bank" jdbcType="VARCHAR" property="agentBank" />
+    <result column="agent_card_no" jdbcType="VARCHAR" property="agentCardNo" />
+    <result column="phone_num" jdbcType="VARCHAR" property="phoneNum" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="del_flag" jdbcType="TINYINT" property="delFlag" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, order_no, global_order_no, pay_order_no, total_fee, customer_fee, service_fee, 
+    agent_fee_version, agent_account, agent_identity, agent_bank, agent_card_no, phone_num, 
+    `status`, del_flag, version, create_time, update_time
+  </sql>
+</mapper>

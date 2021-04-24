@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mybatisplus.dao.LclOrderOperationTraceMapper">
+  <resultMap id="BaseResultMap" type="com.example.mybatisplus.po.LclOrderOperationTrace">
+    <!--@mbg.generated-->
+    <!--@Table lcl_order_operation_trace-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="relation_version" jdbcType="INTEGER" property="relationVersion" />
+    <result column="cargo_terminal_id" jdbcType="INTEGER" property="cargoTerminalId" />
+    <result column="operation_type" jdbcType="INTEGER" property="operationType" />
+    <result column="operation_name" jdbcType="VARCHAR" property="operationName" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="del_flag" jdbcType="TINYINT" property="delFlag" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, order_no, relation_version, cargo_terminal_id, operation_type, operation_name, 
+    remark, url, del_flag, create_time
+  </sql>
+</mapper>

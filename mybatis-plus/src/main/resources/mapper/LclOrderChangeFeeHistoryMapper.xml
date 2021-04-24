@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mybatisplus.dao.LclOrderChangeFeeHistoryMapper">
+  <resultMap id="BaseResultMap" type="com.example.mybatisplus.po.LclOrderChangeFeeHistory">
+    <!--@mbg.generated-->
+    <!--@Table lcl_order_change_fee_history-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="line_order_no" jdbcType="VARCHAR" property="lineOrderNo" />
+    <result column="global_order_no" jdbcType="BIGINT" property="globalOrderNo" />
+    <result column="category_key" jdbcType="VARCHAR" property="categoryKey" />
+    <result column="category_val" jdbcType="VARCHAR" property="categoryVal" />
+    <result column="category_fee" jdbcType="BIGINT" property="categoryFee" />
+    <result column="cargo_terminal_id" jdbcType="INTEGER" property="cargoTerminalId" />
+    <result column="cargo_terminal_type" jdbcType="INTEGER" property="cargoTerminalType" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="del_flag" jdbcType="TINYINT" property="delFlag" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, order_no, line_order_no, global_order_no, category_key, category_val, category_fee, 
+    cargo_terminal_id, cargo_terminal_type, version, del_flag, create_time, update_time
+  </sql>
+</mapper>

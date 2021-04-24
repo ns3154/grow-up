@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mybatisplus.dao.LclOrderLineFeeHistoryMapper">
+  <resultMap id="BaseResultMap" type="com.example.mybatisplus.po.LclOrderLineFeeHistory">
+    <!--@mbg.generated-->
+    <!--@Table lcl_order_line_fee_history-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="global_order_no" jdbcType="BIGINT" property="globalOrderNo" />
+    <result column="line_order_no" jdbcType="INTEGER" property="lineOrderNo" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="line_id" jdbcType="INTEGER" property="lineId" />
+    <result column="line_version" jdbcType="INTEGER" property="lineVersion" />
+    <result column="send_cargo_terminal_id" jdbcType="INTEGER" property="sendCargoTerminalId" />
+    <result column="send_cargo_comp_id" jdbcType="INTEGER" property="sendCargoCompId" />
+    <result column="receive_cargo_terminal_id" jdbcType="INTEGER" property="receiveCargoTerminalId" />
+    <result column="receive_cargo_comp_id" jdbcType="INTEGER" property="receiveCargoCompId" />
+    <result column="line_total_fee" jdbcType="BIGINT" property="lineTotalFee" />
+    <result column="comp_fee" jdbcType="BIGINT" property="compFee" />
+    <result column="comp_percent" jdbcType="DECIMAL" property="compPercent" />
+    <result column="send_cargo_terminal_fee" jdbcType="BIGINT" property="sendCargoTerminalFee" />
+    <result column="receive_cargo_terminal_fee" jdbcType="BIGINT" property="receiveCargoTerminalFee" />
+    <result column="send_cargo_terminal_percent" jdbcType="DECIMAL" property="sendCargoTerminalPercent" />
+    <result column="send_cargo_terminal_type" jdbcType="TINYINT" property="sendCargoTerminalType" />
+    <result column="receive_cargo_terminal_percent" jdbcType="DECIMAL" property="receiveCargoTerminalPercent" />
+    <result column="receive_cargo_terminal_type" jdbcType="TINYINT" property="receiveCargoTerminalType" />
+    <result column="load_time" jdbcType="TIMESTAMP" property="loadTime" />
+    <result column="load_marks" jdbcType="VARCHAR" property="loadMarks" />
+    <result column="seq" jdbcType="INTEGER" property="seq" />
+    <result column="del_flag" jdbcType="TINYINT" property="delFlag" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_user" jdbcType="BIGINT" property="createUser" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_user" jdbcType="BIGINT" property="updateUser" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, order_no, global_order_no, line_order_no, `status`, line_id, line_version, send_cargo_terminal_id, 
+    send_cargo_comp_id, receive_cargo_terminal_id, receive_cargo_comp_id, line_total_fee, 
+    comp_fee, comp_percent, send_cargo_terminal_fee, receive_cargo_terminal_fee, send_cargo_terminal_percent, 
+    send_cargo_terminal_type, receive_cargo_terminal_percent, receive_cargo_terminal_type, 
+    load_time, load_marks, seq, del_flag, create_time, create_user, update_time, update_user, 
+    version
+  </sql>
+</mapper>

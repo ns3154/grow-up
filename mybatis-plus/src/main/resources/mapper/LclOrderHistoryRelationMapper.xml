@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mybatisplus.dao.LclOrderHistoryRelationMapper">
+  <resultMap id="BaseResultMap" type="com.example.mybatisplus.po.LclOrderHistoryRelation">
+    <!--@mbg.generated-->
+    <!--@Table lcl_order_history_relation-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="table_name" jdbcType="VARCHAR" property="tableName" />
+    <result column="snapshot_ref_id" jdbcType="INTEGER" property="snapshotRefId" />
+    <result column="modify_ref_id" jdbcType="INTEGER" property="modifyRefId" />
+    <result column="del_flag" jdbcType="TINYINT" property="delFlag" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, order_no, `table_name`, snapshot_ref_id, modify_ref_id, del_flag, version, update_time, 
+    create_time
+  </sql>
+</mapper>
