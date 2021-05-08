@@ -8,12 +8,12 @@ dubbo:
     name: consumer-demo
     id: consumer-demo
   registry:
-    address: zookeeper://10.1.11.147:2888
-#    address: zookeeper://127.0.0.1:2181
+#    address: zookeeper://10.1.11.147:2888
+    address: zookeeper://127.0.0.1:2181
   consumer:
     check: false
     timeout: 100000
     retries: 0
 #    filter: -myFilter
 logging:
-  config: /Users/yang/IdeaProjects/demo/learn/logback.xml
+  config: C:\projects\demo\learn\logback.xml
