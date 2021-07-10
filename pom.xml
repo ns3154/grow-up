@@ -33,6 +33,7 @@
         <module>wx</module>
 	    <module>leetcode</module>
         <module>mybatis-plus</module>
+        <module>wallpaper</module>
     </modules>
 
     <properties>
