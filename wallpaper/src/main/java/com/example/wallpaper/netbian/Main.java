@@ -3,13 +3,13 @@ package com.example.wallpaper.netbian;
 import com.google.common.base.Joiner;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.concurrent.BasicThreadFactory;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
@@ -21,7 +21,6 @@ import org.springframework.web.client.RestClientException;
 import javax.imageio.stream.FileImageOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.*;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -35,9 +34,9 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @date 2021/07/10 00:48
  **/
 @Slf4j
-public class main {
+public class Main {
 
-    private static Logger logger = LoggerFactory.getLogger(main.class);
+    private static Logger logger = LoggerFactory.getLogger(Main.class);
 
     private final static String PAGE_URL = "http://pic.netbian.com/";
 
@@ -54,15 +53,12 @@ public class main {
 
     private static List<String> than4mImg = new CopyOnWriteArrayList<>();
 
-    private static AtomicInteger threadSize = new AtomicInteger(10);
-
     private static AtomicInteger imgs = new AtomicInteger(0);
 
 
     static AtomicInteger integer = new AtomicInteger(0);
 
     static AtomicInteger timeOut = new AtomicInteger(0);
-    static AtomicInteger errorCount = new AtomicInteger(0);
 
     static CopyOnWriteArrayList<String> errors = new CopyOnWriteArrayList<>();
 
@@ -188,11 +184,16 @@ public class main {
             }
 
             if (null != exchange && null != exchange.getBody() && exchange.getStatusCode() == HttpStatus.OK) {
-                int realSize = exchange.getBody().length / 1024;
+
+                int realSize = 0;
+                byte[] bodyByte = exchange.getBody();
+                if (ArrayUtils.isNotEmpty(bodyByte)) {
+                    realSize = bodyByte.length / 1024;
+                }
                 if(realSize < 10) {
-                    errors.add(new String(exchange.getBody(), "gb2312") + ",url:" + downUrl + ",page:" + pageNums);
-                    logger.info("********** {} 无法下载, 被限流了 , result:{}************", newImgName, new String(exchange.getBody(), "gb2312"));
-                    errorCount.incrementAndGet();
+                    String body = new String(bodyByte, "gb2312");
+                    errors.add(body + ",url:" + downUrl + ",page:" + pageNums);
+                    logger.info("********** {} 无法下载 , reason:{}************", newImgName, body);
                     return;
                 }
                 logger.info("*** 开始写入文件:{} *****", newImgName);
@@ -221,17 +222,17 @@ public class main {
 
         assert files != null;
         Arrays.stream(files).forEach(f -> localFileNames.add(f.getName()));
-        int start = 10;
+        int start = 22;
         int end = start + 3;
         for (int z = start; z < end; z++) {
             down(z);
         }
 
-        logger.error("** 线程池执行完毕:图片总数:{} 下载数:{}, 重复数:{}, 小于512K数量:{}, 超时失败数量:{}, 其他失败数量:{}",
+        logger.error("** 执行完毕:图片总数:{} 下载数:{}, 重复数:{}, 小于512K数量:{}, 超时失败数量:{}, 其他失败数量:{}",
                 imgs.get(),
                 downInteger.get(),
                 repeatInteger.get(), than4mImg.size(),
-                timeOut.get(), errorCount.get());
+                timeOut.get(), errors.size());
         errors.forEach(e -> log.error("失败原因:{}", e));
         logger.info("next page:{}", end);
     }
