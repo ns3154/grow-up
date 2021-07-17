@@ -217,12 +217,16 @@ public class Main {
 
     // 179
     public static void main(String[] args) throws InterruptedException {
+        System.setProperty("proxyPort", "51.68.141.31");
+        System.setProperty("proxyHost", "8080");
+        System.setProperty("proxySet", "true");
+
         File file = new File(LOCAL_FILE_PATH);
         File[] files = file.listFiles();
 
         assert files != null;
         Arrays.stream(files).forEach(f -> localFileNames.add(f.getName()));
-        int start = 52;
+        int start = 61;
         int end = start + 3;
         for (int z = start; z < end; z++) {
             down(z);
