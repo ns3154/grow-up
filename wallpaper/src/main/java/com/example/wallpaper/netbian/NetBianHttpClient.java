@@ -1,5 +1,6 @@
 package com.example.wallpaper.netbian;
 
+import org.apache.http.HttpHost;
 import org.apache.http.impl.client.BasicCookieStore;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
@@ -49,7 +50,7 @@ public class NetBianHttpClient {
                     BasicClientCookie[] cookies =  {new BasicClientCookie("__yjs_duid",
                             "1_11338b8881b5c8d5131098a936b3f4f91622823144171"),
                                                     new BasicClientCookie("Hm_lvt_526caf4e20c21f06a4e9209712d6a20e",
-                                                            "1625845052"),
+                                                            "1626509489,1626532436,1626538779,1626704350"),
                                                     new BasicClientCookie("PHPSESSID", "5icv9a47n5r6s05tl8clnrjvg4"),
                                                     new BasicClientCookie("zkhanmlusername", "MoonLight"),
                                                     new BasicClientCookie("zkhanmluserid", "154993"),
@@ -64,6 +65,7 @@ public class NetBianHttpClient {
                             HttpClientBuilder.create()
                                     .setRedirectStrategy(new LaxRedirectStrategy())
                                     .setDefaultCookieStore(cookieStore)
+//                                    .setProxy(host())
                                     .build();
                     factory.setHttpClient(httpClient);
                     restTemplate.setRequestFactory(factory);
@@ -83,6 +85,7 @@ public class NetBianHttpClient {
         CloseableHttpClient httpClient =
                 HttpClientBuilder.create()
                         .setRedirectStrategy(new LaxRedirectStrategy())
+//                        .setProxy(host())
                         .build();
         factory.setHttpClient(httpClient);
         rest.setRequestFactory(factory);
@@ -91,19 +94,27 @@ public class NetBianHttpClient {
         return rest;
     }
 
+    public static HttpHost host() {
+        return new HttpHost("112.65.166.69", 3128);
+//        return null;
+    }
+
     public static HttpHeaders getHttpHeaders (String id) {
         HttpHeaders headers = new HttpHeaders();
-        String cookie =
-                "__yjs_duid=1_11338b8881b5c8d5131098a936b3f4f91622823144171;" +
-                        "Hm_lvt_526caf4e20c21f06a4e9209712d6a20e=1625845052;" +
-                        "PHPSESSID=5icv9a47n5r6s05tl8clnrjvg4;" +
-                        "zkhanmlusername=MoonLight;" +
-                        "zkhanmluserid=154993;" +
-                        "zkhanmlgroupid=3;" +
-                        "zkhanmlrnd=0E59JUcrOTgoZlwLkyPD;" +
-                        "zkhanmlauth=a9e87c9e8f2ce9d9d4a241db1edaacf8;" +
-                        "zkhanecookieclassrecord=%2C53%2C;" +
-                        "Hm_lpvt_526caf4e20c21f06a4e9209712d6a20e=1625853326";
+        String cookie = "__yjs_duid=1_11338b8881b5c8d5131098a936b3f4f91622823144171; " +
+                "yjs_js_security_passport=bda95479c2a7aa709913b492f2f1efb3d3366557_1626704348_js; " +
+                "Hm_lvt_526caf4e20c21f06a4e9209712d6a20e=1626509489,1626532436,1626538779,1626704350; " +
+                "PHPSESSID=snncfc4u5bhh5qejlvp8bhc7v0; zkhanmlusername=MoonLight; zkhanmluserid=154993; " +
+                "zkhanmlgroupid=3;" +
+                " zkhanmlrnd=Be0gEzXkWhj2vjTdZvdP; " +
+                "zkhanmlauth=c25052f40becad5cf1641dd57ee18762;" +
+                " zkhanecookieclassrecord=%2C53%2C; " +
+                "Hm_lpvt_526caf4e20c21f06a4e9209712d6a20e=1626704397" +
+                "zkhandownid" + id + "=1;" +
+                "HMVT=428b9db8f1c962a748953bc0b3a8c56c|1626704335|;" +
+                "HMACCOUNT_BFESS=2535BF93037DC5A0;" +
+                "PHPSESSID=snncfc4u5bhh5qejlvp8bhc7v0;" +
+                "";
 
         headers.put("accept",
                 Arrays.asList("text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9"));

@@ -72,8 +72,10 @@ public class Main {
             url += "index_"+ pageNums +".html";
         }
         logger.info(url);
-        ResponseEntity<String> entity = NetBianHttpClient.restTemplate()
-                .getForEntity(url, String.class);
+//        ResponseEntity<String> entity = NetBianHttpClient.restTemplate()
+//                .getForEntity(url, new HttpEntity<String>(NetBianHttpClient.getHttpHeaders(null)), String.class);
+        ResponseEntity<String> entity = NetBianHttpClient.rest().exchange(url, HttpMethod.GET,
+                new HttpEntity<String>(NetBianHttpClient.getHttpHeaders("1")), String.class);
 
         if(HttpStatus.OK == entity.getStatusCode()) {
             return entity.getBody();
@@ -110,8 +112,10 @@ public class Main {
     }
 
     private static String getHtml(String url) {
-        ResponseEntity<String> forEntity = NetBianHttpClient.restTemplate()
-                .getForEntity(url, String.class);
+//        ResponseEntity<String> forEntity = NetBianHttpClient.restTemplate()
+//                .getForEntity(url, String.class);
+        ResponseEntity<String> forEntity = NetBianHttpClient.rest().exchange(url, HttpMethod.GET,
+                new HttpEntity<String>(NetBianHttpClient.getHttpHeaders("1")), String.class);
         if(forEntity.getStatusCode() == HttpStatus.OK) {
             return forEntity.getBody();
         }
@@ -217,16 +221,12 @@ public class Main {
 
     // 179
     public static void main(String[] args) throws InterruptedException {
-        System.setProperty("proxyPort", "51.68.141.31");
-        System.setProperty("proxyHost", "8080");
-        System.setProperty("proxySet", "true");
-
         File file = new File(LOCAL_FILE_PATH);
         File[] files = file.listFiles();
 
         assert files != null;
         Arrays.stream(files).forEach(f -> localFileNames.add(f.getName()));
-        int start = 61;
+        int start = 73;
         int end = start + 3;
         for (int z = start; z < end; z++) {
             down(z);
