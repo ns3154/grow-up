@@ -72,11 +72,8 @@ public class Main {
             url += "index_"+ pageNums +".html";
         }
         logger.info(url);
-//        ResponseEntity<String> entity = NetBianHttpClient.restTemplate()
-//                .getForEntity(url, new HttpEntity<String>(NetBianHttpClient.getHttpHeaders(null)), String.class);
         ResponseEntity<String> entity = NetBianHttpClient.rest().exchange(url, HttpMethod.GET,
                 new HttpEntity<String>(NetBianHttpClient.getHttpHeaders("1")), String.class);
-
         if(HttpStatus.OK == entity.getStatusCode()) {
             return entity.getBody();
         }
@@ -112,10 +109,10 @@ public class Main {
     }
 
     private static String getHtml(String url) {
-//        ResponseEntity<String> forEntity = NetBianHttpClient.restTemplate()
-//                .getForEntity(url, String.class);
-        ResponseEntity<String> forEntity = NetBianHttpClient.rest().exchange(url, HttpMethod.GET,
-                new HttpEntity<String>(NetBianHttpClient.getHttpHeaders("1")), String.class);
+        ResponseEntity<String> forEntity = NetBianHttpClient.restTemplate()
+                .getForEntity(url, String.class);
+//        ResponseEntity<String> forEntity = NetBianHttpClient.rest().exchange(url, HttpMethod.GET,
+//                new HttpEntity<String>(NetBianHttpClient.getHttpHeaders("1")), String.class);
         if(forEntity.getStatusCode() == HttpStatus.OK) {
             return forEntity.getBody();
         }
@@ -226,8 +223,8 @@ public class Main {
 
         assert files != null;
         Arrays.stream(files).forEach(f -> localFileNames.add(f.getName()));
-        int start = 90;
-        int end = start + 5;
+        int start = 111;
+        int end = start + 3;
         for (int z = start; z < end; z++) {
             down(z);
         }

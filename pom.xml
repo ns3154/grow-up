@@ -46,6 +46,7 @@
         <lombok.version>1.18.16</lombok.version>
         <p6spy.version>3.9.1</p6spy.version>
         <spring.boot.version>2.4.3</spring.boot.version>
+        <commons-io.version>2.11.0</commons-io.version>
     </properties>
     <dependencies>
         <dependency>
@@ -145,6 +146,13 @@
                 <artifactId>p6spy</artifactId>
                 <version>${p6spy.version}</version>
             </dependency>
+    
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons-io.version}</version>
+            </dependency>
+            
         </dependencies>
     </dependencyManagement>
 
