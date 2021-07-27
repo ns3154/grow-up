@@ -19,8 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestClientException;
 
 import javax.imageio.stream.FileImageOutputStream;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -38,15 +37,15 @@ public class Main {
 
     private static Logger logger = LoggerFactory.getLogger(Main.class);
 
-    private final static String PAGE_URL = "http://pic.netbian.com/";
+    private final static String PAGE_URL = "https://pic.netbian.com/";
 
     private final static String CATALOG = PAGE_URL + "4kfengjing/";
 
-    private final static String DOWN_URL = "http://pic.netbian.com/downpic.php?id={id}&classid=53";
+    private final static String DOWN_URL = "https://pic.netbian.com/downpic.php?id={id}&classid=53";
 
     private final static String LOCAL_FILE_PATH = "/Users/yang/Pictures/4K/风景/";
 
-    private static HashSet<String> localFileNames = new HashSet<>(1000);
+    private static Set<String> localFileNames = new HashSet<>(1000);
 
     private static AtomicInteger downInteger = new AtomicInteger(0);
     private static AtomicInteger repeatInteger = new AtomicInteger(0);
@@ -62,6 +61,8 @@ public class Main {
 
     static CopyOnWriteArrayList<String> errors = new CopyOnWriteArrayList<>();
 
+    static final String IMGS_NAME = LOCAL_FILE_PATH + "names.txt";
+
 
 
 
@@ -73,7 +74,7 @@ public class Main {
         }
         logger.info(url);
         ResponseEntity<String> entity = NetBianHttpClient.rest().exchange(url, HttpMethod.GET,
-                new HttpEntity<String>(NetBianHttpClient.getHttpHeaders("1")), String.class);
+                new HttpEntity<String>(NetBianHttpClient.getHttpHeaders(pageNums + "")), String.class);
         if(HttpStatus.OK == entity.getStatusCode()) {
             return entity.getBody();
         }
@@ -205,6 +206,7 @@ public class Main {
                 catch (IOException e1) {
                     e1.printStackTrace();
                 }
+                appendNameToTxt(newImgName);
                 logger.info("*** 文件写入完成:{}, {}, pageNums:{}, 文件大小:{}kb, 真实大小:{}kb *****", LOCAL_FILE_PATH,
                         integer.addAndGet(1),
                         pageNums, size, realSize);
@@ -216,15 +218,11 @@ public class Main {
         }
     }
 
-    // 179
-    public static void main(String[] args) throws InterruptedException {
-        File file = new File(LOCAL_FILE_PATH);
-        File[] files = file.listFiles();
+    private static void down() {
+        localFileNames = names();
 
-        assert files != null;
-        Arrays.stream(files).forEach(f -> localFileNames.add(f.getName()));
-        int start = 111;
-        int end = start + 3;
+        int start = 131;
+        int end = start + 5;
         for (int z = start; z < end; z++) {
             down(z);
         }
@@ -236,6 +234,40 @@ public class Main {
                 timeOut.get(), errors.size());
         errors.forEach(e -> log.error("失败原因:{}", e));
         logger.info("next page:{}", end);
+    }
+
+    private static void  appendNameToTxt(String name) {
+        name = name + "\n";
+        try (FileWriter fileWriter = new FileWriter(IMGS_NAME, true)) {
+            File file = new File(IMGS_NAME);
+            if (!file.exists() && !file.createNewFile()) {
+                return;
+            }
+            fileWriter.write(name);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    static Set<String> names() {
+        Set<String> set = new HashSet<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(IMGS_NAME))){
+            String name = null;
+            while (null != (name = br.readLine())) {
+                set.add(name);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return set;
+    }
+
+    // 179
+    public static void main(String[] args) throws InterruptedException {
+        down();
     }
 
 

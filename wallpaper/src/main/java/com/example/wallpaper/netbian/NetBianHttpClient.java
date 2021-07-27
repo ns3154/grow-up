@@ -80,8 +80,8 @@ public class NetBianHttpClient {
     public static RestTemplate rest() {
         RestTemplate rest = new RestTemplate();
         HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory();
-        factory.setConnectTimeout(2000);
-        factory.setReadTimeout(10000);
+        factory.setConnectTimeout(200000);
+        factory.setReadTimeout(100000);
         CloseableHttpClient httpClient =
                 HttpClientBuilder.create()
                         .setRedirectStrategy(new LaxRedirectStrategy())
@@ -89,7 +89,6 @@ public class NetBianHttpClient {
                         .build();
         factory.setHttpClient(httpClient);
         rest.setRequestFactory(factory);
-        rest.getMessageConverters().set(1, new StringHttpMessageConverter(Charset.forName("gbk")));
         rest.getMessageConverters().set(1, new StringHttpMessageConverter(Charset.forName("gbk")));
         return rest;
     }
@@ -126,11 +125,15 @@ public class NetBianHttpClient {
         cookies.add("zkhanmlauth");
 
         headers.put("cookie", Arrays.asList(cookie));
-        headers.put("Host", Arrays.asList("pic.netbian.com"));
-        headers.put("referer", Arrays.asList(PRE_URL + id + ".html"));
+//        headers.put("Host", Arrays.asList("pic.netbian.com"));
+        if (null == id) {
+            headers.put("referer", Arrays.asList("https://pic.netbian.com/"));
+        } else {
+            headers.put("referer", Arrays.asList(PRE_URL + id + ".html"));
+        }
         headers.put("sec-fetch-site",  Arrays.asList("same-origin"));
         headers.put("Upgrade-Insecure-Requests", Arrays.asList("1"));
-        headers.put("User-Agent", Arrays.asList("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36"));
+        headers.put("User-Agent", Arrays.asList("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36"));
         headers.put("authority", Arrays.asList("pic.netbian.com"));
 
 
