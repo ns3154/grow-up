@@ -219,7 +219,7 @@ public class Main {
     }
 
     private static void down() {
-        localFileNames = names();
+        localFileNames = localImgNames();
 
         int start = 131;
         int end = start + 5;
@@ -250,7 +250,7 @@ public class Main {
 
     }
 
-    static Set<String> names() {
+    static Set<String> localImgNames () {
         Set<String> set = new HashSet<>();
         try (BufferedReader br = new BufferedReader(new FileReader(IMGS_NAME))){
             String name = null;
