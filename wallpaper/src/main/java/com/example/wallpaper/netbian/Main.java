@@ -45,7 +45,7 @@ public class Main {
 
     private final static String LOCAL_FILE_PATH = "/Users/yang/Pictures/4K/风景/";
 
-    private static Set<String> localFileNames = new HashSet<>(1000);
+    private static Set<String> localFileNames = new CopyOnWriteArraySet<>();
 
     private static AtomicInteger downInteger = new AtomicInteger(0);
     private static AtomicInteger repeatInteger = new AtomicInteger(0);
@@ -206,7 +206,10 @@ public class Main {
                 catch (IOException e1) {
                     e1.printStackTrace();
                 }
-                appendNameToTxt(newImgName);
+                synchronized (Main.class) {
+                    appendNameToTxt(newImgName);
+                }
+                localFileNames.add(newImgName);
                 logger.info("*** 文件写入完成:{}, {}, pageNums:{}, 文件大小:{}kb, 真实大小:{}kb *****", LOCAL_FILE_PATH,
                         integer.addAndGet(1),
                         pageNums, size, realSize);
@@ -221,7 +224,7 @@ public class Main {
     private static void down() {
         localFileNames = localImgNames();
 
-        int start = 131;
+        int start = 151;
         int end = start + 5;
         for (int z = start; z < end; z++) {
             down(z);
