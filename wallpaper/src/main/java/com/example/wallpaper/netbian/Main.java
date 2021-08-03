@@ -39,11 +39,11 @@ public class Main {
 
     private final static String PAGE_URL = "https://pic.netbian.com/";
 
-    private final static String CATALOG = PAGE_URL + "4kfengjing/";
+    private final static String CATALOG = PAGE_URL + "4kmeinv/";
 
     private final static String DOWN_URL = "https://pic.netbian.com/downpic.php?id={id}&classid=53";
 
-    private final static String LOCAL_FILE_PATH = "/Users/yang/Pictures/4K/风景/";
+    private final static String LOCAL_FILE_PATH = "/Users/yang/Pictures/4K/美女/";
 
     private static Set<String> localFileNames = new CopyOnWriteArraySet<>();
 
@@ -224,7 +224,7 @@ public class Main {
     private static void down() {
         localFileNames = localImgNames();
 
-        int start = 201;
+        int start = 1;
         int end = start + 4;
         for (int z = start; z < end; z++) {
             down(z);
