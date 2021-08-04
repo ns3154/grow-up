@@ -224,8 +224,8 @@ public class Main {
     private static void down() {
         localFileNames = localImgNames();
 
-        int start = 1;
-        int end = start + 4;
+        int start = 13;
+        int end = start + 5;
         for (int z = start; z < end; z++) {
             down(z);
         }
