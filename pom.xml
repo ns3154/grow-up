@@ -34,6 +34,7 @@
 	    <module>leetcode</module>
         <module>mybatis-plus</module>
         <module>wallpaper</module>
+        <module>spring-cloud/gateway</module>
     </modules>
 
     <properties>
