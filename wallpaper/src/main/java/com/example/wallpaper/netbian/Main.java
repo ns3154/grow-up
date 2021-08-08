@@ -244,7 +244,7 @@ public class Main {
     private static void down(String type) {
         localFileNames = localImgNames(type);
 
-        int start = 33;
+        int start = 53;
         int end = start + 5;
         for (int z = start; z < end; z++) {
             down(z, type);
