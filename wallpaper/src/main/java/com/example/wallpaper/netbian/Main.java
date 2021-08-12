@@ -244,7 +244,7 @@ public class Main {
     private static void down(String type) {
         localFileNames = localImgNames(type);
 
-        int start = 73;
+        int start = 83;
         int end = start + 5;
         for (int z = start; z < end; z++) {
             down(z, type);
@@ -256,7 +256,7 @@ public class Main {
                 repeatInteger.get(), than4mImg.size(),
                 timeOut.get(), errors.size());
         errors.forEach(e -> log.error("失败原因:{}", e));
-        logger.info("next page:{}, maxPage:{}", end, maxPage(BASE_MAP.get(type).getUri()));
+        logger.info("next page:{}", end);
     }
 
     private static void  appendNameToTxt(String name, String type) {
