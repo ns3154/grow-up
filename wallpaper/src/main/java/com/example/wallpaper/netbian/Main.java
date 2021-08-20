@@ -9,7 +9,6 @@ import org.apache.commons.lang3.concurrent.BasicThreadFactory;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.jsoup.nodes.Node;
 import org.jsoup.nodes.TextNode;
 import org.jsoup.select.Elements;
 import org.slf4j.Logger;
@@ -67,6 +66,7 @@ public class Main {
     static {
         BASE_MAP.put("fengjing", new Base(PAGE_URL + "4kfengjing/", BASE_FILE_PATH + "风景/"));
         BASE_MAP.put("4kmeinv", new Base(PAGE_URL + "4kmeinv/", BASE_FILE_PATH + "美女/"));
+        BASE_MAP.put("4kyouxi", new Base(PAGE_URL + "4kyouxi/", BASE_FILE_PATH + "游戏/"));
 
     }
 
@@ -241,11 +241,8 @@ public class Main {
         }
     }
 
-    private static void down(String type) {
+    private static void down(String type, int start, int end) {
         localFileNames = localImgNames(type);
-
-        int start = 133;
-        int end = start + 5;
         for (int z = start; z < end; z++) {
             down(z, type);
         }
@@ -257,6 +254,12 @@ public class Main {
                 timeOut.get(), errors.size());
         errors.forEach(e -> log.error("失败原因:{}", e));
         logger.info("next page:{}", end);
+    }
+
+    private static void down(String type) {
+        int start = 1;
+        int end = maxPage(BASE_MAP.get(type).getUri());
+        down(type, start, end);
     }
 
     private static void  appendNameToTxt(String name, String type) {
@@ -275,10 +278,20 @@ public class Main {
     }
 
     static Set<String> localImgNames (String type) {
+        String path = BASE_MAP.get(type).getWriteLocalPath();
+        File pathFile = new File(path);
+        if (!pathFile.exists()) {
+            pathFile.mkdir();
+        }
+
         String fileName = BASE_MAP.get(type).getImgNameTxt();
         File file = new File(fileName);
         if (!file.exists()) {
-            file.mkdir();
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         Set<String> set = new HashSet<>();
         try (BufferedReader br = new BufferedReader(new FileReader(file))){
@@ -296,7 +309,10 @@ public class Main {
 
     // 179
     public static void main(String[] args) throws InterruptedException {
-        down("4kmeinv");
+
+        int start = 11;
+        int end = start + 5;
+        down("4kyouxi", start, end);
     }
 
 
