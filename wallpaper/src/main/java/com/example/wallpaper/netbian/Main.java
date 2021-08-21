@@ -310,7 +310,7 @@ public class Main {
     // 179
     public static void main(String[] args) throws InterruptedException {
 
-        int start = 11;
+        int start = 21;
         int end = start + 5;
         down("4kyouxi", start, end);
     }
