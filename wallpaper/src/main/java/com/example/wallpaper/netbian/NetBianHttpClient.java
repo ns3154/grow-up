@@ -133,7 +133,7 @@ public class NetBianHttpClient {
         }
         headers.put("sec-fetch-site",  Arrays.asList("same-origin"));
         headers.put("Upgrade-Insecure-Requests", Arrays.asList("1"));
-        headers.put("User-Agent", Arrays.asList("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36"));
+        headers.put("User-Agent", Arrays.asList("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36"));
         headers.put("authority", Arrays.asList("pic.netbian.com"));
 
 
