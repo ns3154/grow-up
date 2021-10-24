@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * <pre>
- *
+ *   二分查找
  * </pre>
  * @author 杨帮东
  * @since 1.0
@@ -16,7 +16,7 @@ public class BinarySearch {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
-    private final int[] array = {9,9,9,9,9,9,9,13,15};
+    private final int[] array = {1,2,3,4,5,6,7,8,9,10};
 
     @Test
     public void search() {
@@ -35,6 +35,36 @@ public class BinarySearch {
         p = searchFirst_1(array, searchNum, 0, array.length - 1);
         logger.error("searchFirst_1下标:{}", p);
     }
+
+    @Test
+    public void search1() {
+        for (int i : array) {
+            logger.info("目标数:{}, 索引下标为:{}, 数组:{}", i, searchLoop(array, 0, array.length, i), array);
+        }
+        logger.info("目标数:{}, 索引下标为:{}, 数组:{}", 11, searchLoop(array, 0, array.length, 11), array);
+        logger.info("目标数:{}, 索引下标为:{}, 数组:{}", 0, searchLoop(array, 0, array.length, 0), array);
+    }
+
+    public int searchLoop(int[] array, int left, int right, int target) {
+        if (left > right - 1) {
+            return -1;
+        }
+        int mid = (left + right) / 2;
+        if (array[mid] == target) {
+            return mid;
+        }
+
+        if(array[mid] > target) {
+            return searchLoop(array, left, mid - 1, target);
+        }
+
+        if (array[mid] < target) {
+            return searchLoop(array, mid + 1, right, target);
+        }
+
+        return -1;
+    }
+
 
     private int searchByLoop(int[] array, int searchNum) {
         int left = 0;

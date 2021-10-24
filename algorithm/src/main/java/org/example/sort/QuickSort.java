@@ -1,5 +1,6 @@
 package org.example.sort;
 
+import com.google.common.collect.PeekingIterator;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,7 +33,6 @@ public class QuickSort {
         logger.error("{}", args);
         logger.error("循环次数:{}, 交换次数:{}", loopCount.get(), changeCount.get());
     }
-
     private void quickSort(int[] args, int l, int r, String source, AtomicInteger counts) {
         logger.error("当前source:{}, left:{}, right:{}, lenght:{}, counts:{}", source, l, r, args.length,
                 counts.getAndIncrement());
@@ -78,6 +78,26 @@ public class QuickSort {
         changeCount.addAndGet(2);
         return start;
     }
+
+    @Test
+    public void sort1() {
+        quickSort1(args, 0, args.length - 1);
+    }
+
+
+    public void quickSort1(int[] arrs, int left, int right) {
+        int mid = left + (int) (Math.random() * (right - left + 1));
+        partition(arrs, left, mid -1);
+
+    }
+
+    private void partition(int[] args, int left, int right) {
+
+    }
+
+
+
+
 
 
 }

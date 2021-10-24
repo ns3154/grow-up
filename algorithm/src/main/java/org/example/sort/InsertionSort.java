@@ -74,5 +74,22 @@ public class InsertionSort {
         logger.error("交换次数:{}", changeCount);
     }
 
+    @Test
+    public void sort() {
+
+        for (int i = 1; i < args.length; i++) {
+            int j = i;
+            while (j > 0 && args[j] < args[j - 1]) {
+                args[j] = args[j] ^ args[j - 1];
+                args[j - 1] = args[j] ^ args[j - 1];
+                args[j] = args[j] ^ args[j - 1];
+                j--;
+            }
+        }
+        logger.error("排序后:{}", args);
+
+
+    }
+
 
 }
