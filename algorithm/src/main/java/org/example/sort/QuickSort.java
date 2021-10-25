@@ -99,6 +99,17 @@ public class QuickSort {
 
         while (left < right) {
 
+            while (args[right] > tmp) {
+                right--;
+            }
+
+            while (args[left] < tmp) {
+                left++;
+            }
+
+            int t = args[right];
+            args[left]
+
         }
 
 
