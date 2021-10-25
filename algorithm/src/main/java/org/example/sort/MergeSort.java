@@ -25,17 +25,14 @@ public class MergeSort {
 
     @Test
     public void mergeSort() {
-
         int[] tmp = new int[args.length];
         sort(args, tmp);
         logger.error("{}", tmp);
     }
 
-
     private void sort(int[] args, int[] tmp) {
         sort(0, args.length - 1, args, tmp, "首次触发");
     }
-
 
     private void sort(int left, int right, int[] args, int[] tmp, String source) {
         if (left < right) {
@@ -77,6 +74,54 @@ public class MergeSort {
 
 
 
+    }
+
+    @Test
+    public void merge1() {
+        int[] tmp = new int[args.length];
+        sort1(args, tmp);
+    }
+
+    private void sort1(int[] args, int[] tmp) {
+        sort1(args, 0, args.length - 1, tmp);
+    }
+
+    private void sort1 (int[] args, int left, int right, int[] tmp) {
+        if (left < right) {
+            int mid = (left + right) / 2;
+            sort1(args, left, mid, tmp);
+            sort1(args, mid + 1, right, tmp);
+            merge1(args, left, mid, right, tmp);
+            System.out.println("left:" + left + "mid:"+ mid + "right:" + right);
+            logger.info("tmp:{}", tmp);
+        }
+
+    }
+
+    private void merge1 (int[] args, int left, int mid, int right, int[] tmp) {
+        int l = left;
+        int r = mid + 1;
+        int t = 0;
+
+        while (l <= mid && r <= right) {
+            if (args[l] <= args[r]) {
+                tmp[t++] = args[l++];
+            } else {
+                tmp[t++] = args[r++];
+            }
+        }
+
+        while (l <= mid) {
+            tmp[t++] = args[l++];
+        }
+        while (r <= right) {
+            tmp[t++] = args[r++];
+        }
+
+        t = 0;
+        while(left <= right){
+            args[left++] = tmp[t++];
+        }
     }
 
 

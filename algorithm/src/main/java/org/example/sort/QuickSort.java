@@ -45,7 +45,6 @@ public class QuickSort {
             quickSort(args, start + 1, r, "right", counts);
         }
     }
-
     private int partition(int[] args, int l, int r, String source) {
         logger.warn("处理:{}", source);
         int start = l;
@@ -86,13 +85,24 @@ public class QuickSort {
 
 
     public void quickSort1(int[] arrs, int left, int right) {
-        int mid = left + (int) (Math.random() * (right - left + 1));
-        partition(arrs, left, mid -1);
+        int index = left + (int) (Math.random() * (right - left + 1));
+        int finalP = partition(args, left, right, index);
+        quickSort1(arrs, left, finalP);
+        quickSort1(arrs, finalP + 1, right);
 
     }
 
-    private void partition(int[] args, int left, int right) {
+    private int partition(int[] args, int left, int right, int index) {
+        int tmp = args[index];
+        args[index] = args[right];
+        args[right] = tmp;
 
+        while (left < right) {
+
+        }
+
+
+        return 0;
     }
 
 
