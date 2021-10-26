@@ -108,7 +108,6 @@ public class QuickSort {
             }
 
             int t = args[right];
-            args[left]
 
         }
 
