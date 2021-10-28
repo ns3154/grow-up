@@ -4,6 +4,8 @@ package org.example.sort;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.function.Supplier;
+
 /**
  * <pre>
  *      堆
@@ -22,55 +24,112 @@ public class HeapSort {
     // 非堆数组
     private static final int[] NO_HEAP_ARGS = {1, 2, 3, 4, 5, 6, 7, 8, 9};
 
-    public static void main(String[] args) {
-        int heapSize = 0;
-        int[] arr = new int[NO_HEAP_ARGS.length];
+    public static void main (String[] args) {
+        Heap heap = new Heap(NO_HEAP_ARGS.length);
         for (int noHeapArg : NO_HEAP_ARGS) {
-            arr[heapSize++] = noHeapArg;
-            heapInsert(arr,  heapSize - 1);
+            heap.append(noHeapArg);
         }
-
-        logger.info("args:{}", arr);
-        removeHeadNode(arr);
-        logger.info("args:{}", arr);
-
-    }
-
-    // 上浮
-    private static void heapInsert (int[] args, int index) {
-        int parentIndex = (index - 1) / 2;
-
-        while (index > 0 && args[parentIndex] < args[index]) {
-            swap(args, parentIndex, index);
-            heapInsert(args, parentIndex);
-        }
-    }
-
-    private static void down(int[] args, int index, int heapSize) {
-        if (index > heapSize) {
-            return;
-        }
-        int left = index * 2 + 1;
-        int right = left + 1;
-        int lag = right > heapSize ? left : right;
-        if (lag < heapSize && args[index] < args[lag]) {
-            swap(args, index, lag);
-            down(args, lag, heapSize);
-        }
-
-    }
-
-    private static void removeHeadNode(int[] args) {
-        // 收尾互换
-        swap(args, 0, args.length - 1);
-        down(args, 0, args.length - 2);
+        logger.info("args:{}, count:{}", heap.arr, heap.count);
+        heap.sort();
+        logger.info("args:{}, count:{}", heap.arr, heap.count);
     }
 
 
-    private static void swap(int[] args, int j, int k) {
-        int t = args[j];
-        args[j] = args[k];
-        args[k] = t;
+    static class Heap {
+
+        private int[] arr;
+
+        private int count;
+
+        public Heap() {
+            this.count = 0;
+        }
+
+        public Heap(int size) {
+            this();
+            arr = new int[size];
+        }
+
+        public int[] arr () {
+            return arr;
+        }
+
+        public int count() {
+            return count;
+        }
+
+        public  void append (int param) {
+            arr[count++] = param;
+            shiftUp(count - 1);
+        }
+
+        public int maxNumber() {
+            return arr[0];
+        }
+
+        public int[] sort() {
+            int c = count;
+            while (c > 0) {
+                swap(0, --c);
+                heapify(0, c);
+            }
+            return arr;
+        }
+
+        private void swap(int j, int k) {
+            int tmp = arr[j];
+            arr[j] = arr[k];
+            arr[k] = tmp;
+        }
+
+        /**
+         * 上浮
+         *
+         * @param index 指数
+         */
+        private  void shiftUp(int index) {
+            if (index == 0) {
+                return;
+            }
+
+            int parentIndex = parentIndex(index);
+            while (arr[index] > arr[parentIndex]) {
+                swap(index, parentIndex);
+                shiftUp(parentIndex);
+            }
+        }
+
+        /**
+         * 堆化/下浮
+         *
+         * @param index 指数
+         */
+        private void heapify(int index, int c) {
+            int left = childLeft(index);
+            while (left < c) {
+                int largest = left + 1 < c && arr[left] < arr[left + 1] ? left + 1 : left;
+                largest = arr[index] < arr[largest] ? largest : index;
+                if (largest == index) {
+                    return;
+                }
+                swap(index, largest);
+                heapify(largest, c);
+            }
+        }
+
+
+        private int childLeft(int index) {
+            return 2 * index + 1;
+        }
+
+        private int childRight(int index) {
+            return childLeft(index) + 1;
+        }
+
+        private int parentIndex(int index) {
+            return (index - 1) / 2;
+        }
+
     }
 
 }

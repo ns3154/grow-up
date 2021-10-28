@@ -81,38 +81,48 @@ public class QuickSort {
     @Test
     public void sort1() {
         quickSort1(args, 0, args.length - 1);
+        logger.info("sort:{}", args);
     }
 
 
     public void quickSort1(int[] arrs, int left, int right) {
         int index = left + (int) (Math.random() * (right - left + 1));
-        int finalP = partition(args, left, right, index);
-        quickSort1(arrs, left, finalP);
-        quickSort1(arrs, finalP + 1, right);
-
-    }
-
-    private int partition(int[] args, int left, int right, int index) {
-        int tmp = args[index];
-        args[index] = args[right];
-        args[right] = tmp;
-
-        while (left < right) {
-
-            while (args[right] > tmp) {
-                right--;
-            }
-
-            while (args[left] < tmp) {
-                left++;
-            }
-
-            int t = args[right];
-
+        int finalP = partition1(args, left, right, index);
+        if (left < finalP - 1) {
+            quickSort1(arrs, left, finalP - 1);
+        }
+        if (finalP + 1 < right) {
+            quickSort1(arrs, finalP + 1, right);
         }
 
 
-        return 0;
+
+    }
+
+    private int partition1(int[] args, int left, int right, int index) {
+        int tmp = args[index];
+        args[index] = args[right];
+        args[right] = tmp;
+        int l = left;
+        int r = right;
+        while (l < r) {
+
+            while (args[r] >= tmp && r > l) {
+                r--;
+            }
+
+            while (args[l] <= tmp && r > l) {
+                l++;
+            }
+
+            int t = args[r];
+            args[r] = args[l];
+            args[l] = t;
+        }
+
+        args[right] = args[l];
+        args[l] = tmp;
+        return left;
     }
 
 
