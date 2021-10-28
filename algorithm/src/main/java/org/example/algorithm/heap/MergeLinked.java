@@ -15,7 +15,7 @@ public class MergeLinked {
 
     public static void main(String[] args) {
         ListNode[] lists = build();
-        ListNode listNode = mergeKLists(lists);
+        ListNode listNode = merge(lists[0], lists[1]);
 
         while (null != listNode) {
             System.out.println(listNode.val);
@@ -34,7 +34,7 @@ public class MergeLinked {
     }
 
     public static ListNode mergeKList(ListNode[] lists, int left, int right) {
-
+        return null;
     }
 
 
@@ -46,43 +46,13 @@ public class MergeLinked {
             return n1;
         }
 
-        ListNode node = new ListNode();
         if (n1.val <= n2.val) {
-            node.val = n1.val;
-            n1 = n1.next;
+            n1.next = merge(n1.next, n2);
+            return n1;
+        } else {
+            n2.next = merge(n1, n2.next);
+            return n2;
         }
-
-
-        ListNode tmp = node;
-
-        while (null != n1 && null != n2) {
-            int v = 0;
-            if (n1.val <= n2.val) {
-                v = n1.val;
-                n1 = n1.next;
-            } else {
-                v = n2.val;
-                n2 = n2.next;
-            }
-
-            tmp.next = new ListNode(v);
-            tmp = tmp.next;
-        }
-
-        while (null != n1) {
-            tmp.next = new ListNode(n1.val);
-            n1 = n1.next;
-            tmp = tmp.next;
-        }
-
-        while (null != n2) {
-            tmp.next = new ListNode(n2.val);
-            n2 = n2.next;
-            tmp = tmp.next;
-        }
-
-
-        return node;
     }
 
     public static ListNode mergeToList(ListNode n1, ListNode n2) {
@@ -95,9 +65,9 @@ public class MergeLinked {
         }
 
         if (n1.val <= n2.val) {
-            n1.next =
+//            n1.next =
         }
-
+        return null;
 
 
 
