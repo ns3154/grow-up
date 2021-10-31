@@ -1,6 +1,7 @@
 package org.example.algorithm.heap;
 
 import com.sun.corba.se.impl.protocol.giopmsgheaders.LocateReplyMessage_1_0;
+import org.example.algorithm.leecode.model.ListNode;
 
 /**
  * <p>
@@ -91,11 +92,5 @@ public class MergeLinked {
     }
 
 
-    public static class ListNode {
-        int val;
-        ListNode next;
-        ListNode() {}
-        ListNode(int val) { this.val = val; }
-        ListNode(int val, ListNode next) { this.val = val; this.next = next; }
-    }
+  
 }
