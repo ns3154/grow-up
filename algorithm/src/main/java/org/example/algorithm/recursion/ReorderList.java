@@ -22,7 +22,7 @@ public class ReorderList {
 	public void test () {
 		ListNode build = ListNode.build(new int[]{1, 2, 3, 4, 5});
 		build.print();
-		reorderList1(build);
+		reorderList2(build);
 		build.print();
 	}
 	
@@ -58,10 +58,23 @@ public class ReorderList {
 	}
 	
 	public ListNode reorderList2Sub (ListNode head, int len) {
-	
-		
-		
-		return null;
+		if (len == 1) {
+			ListNode outTail = head.next;
+			head.next = null;
+			return outTail;
+		}
+		if (len == 2) {
+			ListNode outTail = head.next.next;
+			head.next.next = null;
+			return outTail;
+		}
+		//得到对应的尾节点，并且将头结点和尾节点之间的链表通过递归处理
+		ListNode tail = reorderList2Sub(head.next, len - 2);
+		ListNode subHead = head.next;//中间链表的头结点
+		head.next = tail;
+		ListNode outTail = tail.next;  //上一层 head 对应的 tail
+		tail.next = subHead;
+		return outTail;
 	}
 	
 }
