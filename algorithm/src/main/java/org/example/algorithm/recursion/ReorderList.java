@@ -53,8 +53,6 @@ public class ReorderList {
 
         }
         nodes = list.get(0);
-        System.out.println(list);
-
     }
 
 }
