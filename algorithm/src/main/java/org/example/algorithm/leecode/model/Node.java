@@ -1,5 +1,8 @@
 package org.example.algorithm.leecode.model;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+
 /**
  * <p>
  *     desc
@@ -33,5 +36,6 @@ public class Node {
         node.next = cur;
         return cur;
     }
+
 
 }

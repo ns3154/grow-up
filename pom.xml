@@ -35,12 +35,12 @@
         <module>mybatis-plus</module>
         <module>wallpaper</module>
         <module>spring-cloud/gateway</module>
+        <module>mvc</module>
     </modules>
 
     <properties>
         <java.version>1.8</java.version>
         <google.guava.version>20.0</google.guava.version>
-        <apache-commons-lang3.version>3.4</apache-commons-lang3.version>
         <fastjson.version>1.2.67</fastjson.version>
         <jmh.version>1.23</jmh.version>
         <mybaits-plus.version>3.4.2</mybaits-plus.version>
@@ -48,6 +48,9 @@
         <p6spy.version>3.9.1</p6spy.version>
         <spring.boot.version>2.4.3</spring.boot.version>
         <commons-io.version>2.11.0</commons-io.version>
+        <commons-fileupload.version>1.4</commons-fileupload.version>
+        <apache-commons-lang3.version>3.4</apache-commons-lang3.version>
+
     </properties>
     <dependencies>
         <dependency>
@@ -107,6 +110,12 @@
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>${fastjson.version}</version>
+        </dependency>
+    
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>${commons-fileupload.version}</version>
         </dependency>
     
    

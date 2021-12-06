@@ -3,7 +3,7 @@
 <mapper namespace="com.example.mybatis.dao.TestMapper">
   <resultMap id="BaseResultMap" type="com.example.mybatis.domain.Test">
     <!--@mbg.generated-->
-    <!--@Table baojia_bike.tb_test-->
+    <!--@Table test.test -->
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="counts" jdbcType="INTEGER" property="counts" />
     <result column="p_nums" jdbcType="INTEGER" property="pNums" />
@@ -16,25 +16,25 @@
     <!--@mbg.generated-->
     select 
     <include refid="Base_Column_List" />
-    from baojia_bike.tb_test
+    from test.test
     where id = #{id,jdbcType=BIGINT}
   </select>
     <select id="count" resultType="java.lang.Integer">
-        select count(1) from baojia_bike.tb_test;
+        select count(1) from test.test;
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     <!--@mbg.generated-->
-    delete from baojia_bike.tb_test
+    delete from test.test
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.example.mybatis.domain.Test" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into baojia_bike.tb_test (counts, p_nums)
+    insert into test.test (counts, p_nums)
     values (#{counts,jdbcType=INTEGER}, #{pNums,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.example.mybatis.domain.Test" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into baojia_bike.tb_test
+    insert into test.test
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="counts != null">
         counts,
@@ -54,7 +54,7 @@
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.example.mybatis.domain.Test">
     <!--@mbg.generated-->
-    update baojia_bike.tb_test
+    update test.test
     <set>
       <if test="counts != null">
         counts = #{counts,jdbcType=INTEGER},
@@ -67,7 +67,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.example.mybatis.domain.Test">
     <!--@mbg.generated-->
-    update baojia_bike.tb_test
+    update test.test
     set counts = #{counts,jdbcType=INTEGER},
       p_nums = #{pNums,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}
