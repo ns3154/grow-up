@@ -54,6 +54,7 @@
         <io.netty.all.version>4.1.19.Final</io.netty.all.version>
         <org.openjdk.jol.jol-core.version>0.9</org.openjdk.jol.jol-core.version>
         <com.google.guava.version>28.0-jre</com.google.guava.version>
+        <logback-redis-appender.version>1.1.6</logback-redis-appender.version>
     </properties>
     <dependencies>
         <dependency>
@@ -136,7 +137,7 @@
             <dependency>
                 <groupId>com.cwbase</groupId>
                 <artifactId>logback-redis-appender</artifactId>
-                <version>1.1.6</version>
+                <version>${logback-redis-appender.version}</version>
                 <optional>true</optional>
             </dependency>
     
