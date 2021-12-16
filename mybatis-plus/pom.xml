@@ -24,7 +24,6 @@
 		<dependency>
 			<groupId>com.baomidou</groupId>
 			<artifactId>mybatis-plus-boot-starter</artifactId>
-			<version>${mybaits-plus.version}</version>
 		</dependency>
 		<!-- SQL 分析打印-->
 		<dependency>
