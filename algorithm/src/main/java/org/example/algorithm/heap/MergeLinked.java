@@ -16,7 +16,9 @@ public class MergeLinked {
 
     public static void main(String[] args) {
         ListNode[] lists = build();
-        ListNode listNode = merge(lists[0], lists[1]);
+
+        ListNode listNode = mergeKLists(lists);
+//        ListNode listNode = merge(lists[0], lists[1]);
 
         while (null != listNode) {
             System.out.println(listNode.val);

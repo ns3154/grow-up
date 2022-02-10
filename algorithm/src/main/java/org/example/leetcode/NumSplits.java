@@ -3,13 +3,10 @@ package org.example.leetcode;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.function.BiFunction;
 
 /**
  * 字符串分割
- *  https://leetcode-cn.com/problems/number-of-good-ways-to-split-a-string/
+ * https://leetcode-cn.com/problems/number-of-good-ways-to-split-a-string/
  *
  * @author 杨帮东
  * @date 2022-01-12
@@ -18,8 +15,7 @@ public class NumSplits {
 
 
     @Test
-    public void test () {
-        // 4
+    public void test() {
         String str = "acaba";
         System.out.println(numSplitsV1(str));
         System.out.println(numSplitsV2(str));
@@ -27,7 +23,8 @@ public class NumSplits {
     }
 
     /**
-     * 滑动窗口 第一个版本
+     * 第一个版本
+     * 滑动窗口
      *
      * @param s 年代
      * @return int
@@ -65,7 +62,8 @@ public class NumSplits {
     }
 
     /**
-     * 滑动窗口 V2版本
+     * V2版本
+     * 滑动窗口
      *
      * @param s
      * @return int
@@ -98,4 +96,5 @@ public class NumSplits {
         }
         return res;
     }
+
 }
