@@ -32,6 +32,7 @@ public class Tsss {
         c.start();
         b.start();
         a.start();
+        String xx = s;
     }
 
     public void print(String str) {
@@ -76,6 +77,10 @@ public class Tsss {
             lock.unlock();
         }
 
+    }
+
+
+    public static void sss () {
     }
 
 

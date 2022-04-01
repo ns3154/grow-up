@@ -3,6 +3,7 @@ package com.example.demo.collection;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * <pre>
@@ -13,6 +14,19 @@ import java.util.List;
  * @date 2020/08/06 09:21
  **/
 public class ListTest {
+
+    private Integer z = 3;
+
+
+    @Test
+    public void copyOnWriteList () {
+        CopyOnWriteArrayList<Integer> list = new CopyOnWriteArrayList<>();
+        list.add(1);
+        list.add(1);
+        list.add(1, 1);
+        list.remove(new Integer(1));
+        list.addIfAbsent(new Integer(3));
+    }
 
 
 
