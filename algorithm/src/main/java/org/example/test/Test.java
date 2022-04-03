@@ -59,7 +59,6 @@ public class Test {
         Collections.sort(list, (o1, o2) -> o1.getId() - o2.getId());
         System.out.println(list);
 
-
     }
 
     class SortTest {
