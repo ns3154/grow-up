@@ -1,6 +1,11 @@
 package com.example.concurrent.thread;
 
+import jdk.internal.dynalink.beans.StaticClass;
 import org.junit.jupiter.api.Test;
+
+import java.lang.ref.WeakReference;
+import java.util.Objects;
+import java.util.function.Supplier;
 
 /**
  * <pre>
@@ -13,23 +18,43 @@ import org.junit.jupiter.api.Test;
  **/
 public class ThreadLocalTest {
 
-	static ThreadLocal<Integer> threadLocal_1 = new ThreadLocal<>();
-	static ThreadLocal<Integer> threadLocal_2 = new ThreadLocal<>();
-	static ThreadLocal<Integer> threadLocal_3 = new ThreadLocal<>();
-	static ThreadLocal<Integer> threadLocal_4 = new ThreadLocal<>();
-	static ThreadLocal<Integer> threadLocal_5 = new ThreadLocal<>();
-	static ThreadLocal<Integer> threadLocal_6 = new ThreadLocal<>();
-	static ThreadLocal<Integer> threadLocal_7 = new ThreadLocal<>();
-	static ThreadLocal<Integer> threadLocal_8 = new ThreadLocal<>();
-	static ThreadLocal<Integer> threadLocal_9 = new ThreadLocal<>();
+	static final ThreadLocal<Integer> THREAD_LOCAL = ThreadLocal.withInitial(() -> -1);
+
+
 
 	@Test
-	public void tst() {
+	public void test() throws InterruptedException {
+
 		new Thread(() -> {
-			threadLocal_1.set(1);
-			threadLocal_2.set(2);
-			System.out.println(threadLocal_1.get());
-			System.out.println(threadLocal_2.get());
+			System.out.println("threadLocal.withInitial: " + THREAD_LOCAL.get());
+
+			THREAD_LOCAL.set(1);
+			System.out.println("threadLocal.get: " + THREAD_LOCAL.get());
+			THREAD_LOCAL.remove();
+			System.out.println("threadLocal.remove: " + THREAD_LOCAL.get());
+
+			THREAD_LOCAL.set(333);
+			System.out.println("threadLocal.get: " + THREAD_LOCAL.get());
+
+			System.gc();
+			System.out.println("System.gc() " + THREAD_LOCAL.get());
+
+			try {
+				Thread.sleep(10000);
+			} catch (InterruptedException e) {
+				throw new RuntimeException(e);
+			}
+			System.out.println("System.gc() " + THREAD_LOCAL.get());
+			System.out.println(0x61c88647);
 		}).start();
+
+		Thread.sleep(1000000L);
+
+
+
+
 	}
+
+
+
 }
