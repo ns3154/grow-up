@@ -31,6 +31,10 @@ public class Controller {
     public void upload(MultipartFile[] file) {
         log.info("入参: {}", file);
     }
+    @GetMapping("get")
+    public String get () {
+        return "get";
+    }
 
 
 

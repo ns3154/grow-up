@@ -27,13 +27,13 @@ public class A {
         System.out.println(db);
     }
 
-    public static interface sss {
+    public interface sss {
 
         static int sssst = 33;
 
     }
 
-    public static interface sssF {
+    public interface sssF {
 
     }
 }

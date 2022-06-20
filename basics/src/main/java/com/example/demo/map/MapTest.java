@@ -26,6 +26,10 @@ public class MapTest {
         map.put("bang", "ssds");
         map.put("cang", "ssds");
         map.put("dang", "ssds");
+        map.get("sdfsf");
+        map.remove("asdfasf");
+
+
 
         map.forEach((k, v) -> System.out.println(k + ":" + v));
 
@@ -71,6 +75,12 @@ public class MapTest {
         for (int i = 0; i <10;i++) {
             chm.put("a" + i, (long) i);
         }
+
+        System.out.println(chm.size());
+        System.out.println(chm.get("sdfs"));
+        System.out.println(chm.remove("sdfs"));
+
+
         // 无锁执行 forkjoin 线程池
         Long aLong = chm.reduceValues(1L, Long::max);
         Long search = chm.search(Long.MAX_VALUE, (s, aLong1) -> {
