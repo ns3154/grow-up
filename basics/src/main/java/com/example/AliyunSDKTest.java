@@ -41,7 +41,7 @@ public class AliyunSDKTest {
     final Cache cache = new Cache();
 
     static {
-        DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", "LTAI5tRGw9mFWiJRy92mjJQ4", "SyJPhV7KCfiQ7F11l76J9otENNrlRK");
+        DefaultProfile profile = DefaultProfile.getProfile("cn-xxxxx", "xxxxx", "xxxx");
         HttpClientConfig clientConfig = HttpClientConfig.getDefault();
         clientConfig.setMaxRequestsPerHost(6);
         clientConfig.setConnectionTimeoutMillis(3000L);
@@ -78,7 +78,7 @@ public class AliyunSDKTest {
         request.setVersion("2015-04-01");
         request.setMethod(MethodType.POST);
         request.setProtocol(ProtocolType.HTTPS);
-        request.setRoleArn("acs:ram::1565030500873103:role/aliyunosstokengeneratorrole");
+        request.setRoleArn("acs:ram::xxx:role/xxxx");
         request.setRoleSessionName("alice-001");
         request.setPolicy(null);
         request.setDurationSeconds(DURATION_SECONDS);

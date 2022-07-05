@@ -15,6 +15,10 @@ import java.util.Map;
  **/
 public class MapTest {
 
+    @Test
+    public void ss () {
+        System.out.println(0x7fffffff);
+    }
 
     @Test
     public void linkedHashMapTest() {
