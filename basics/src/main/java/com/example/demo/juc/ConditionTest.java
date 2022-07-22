@@ -52,4 +52,23 @@ public class ConditionTest {
 
     }
 
+    @Test
+    public void noLockError () {
+
+        try {
+            condition.await();
+            System.out.println("await.......");
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } finally {
+            condition.signal();
+        }
+
+
+
+
+
+
+    }
+
 }

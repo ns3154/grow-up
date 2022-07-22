@@ -25,7 +25,7 @@ public class interruptTest {
             while (!Thread.currentThread().isInterrupted()) {
 
             }
-            logger.error("线程被中断了");
+            logger.error("线程被中F断了");
         });
         thread.start();
         TimeUnit.SECONDS.sleep(5);

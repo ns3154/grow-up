@@ -14,6 +14,27 @@ import java.util.concurrent.CopyOnWriteArrayList;
  **/
 public class Test {
 
+    @org.junit.jupiter.api.Test
+    public void tet () {
+        int a = 1; // 月卡
+        int b = 2; // 骑行卡
+        int c = 4; // 白菜卡
+        int d = 8; // 半价车
+        int e = 16; // 优惠网点
+        int f = 32;// 优惠券
+
+        int user = a | d;
+        int all = a | b | c | d | e | f;
+
+        System.out.println((a & user)==a);
+        System.out.println((b & user)==b);
+        System.out.println((c & user)==c);
+        System.out.println((d & user)==d);
+        System.out.println((e & user)==e);
+        System.out.println((f & user)==f);
+
+    }
+
 	@org.junit.jupiter.api.Test
     public void arrayTest() {
         String[] s = new String[0];

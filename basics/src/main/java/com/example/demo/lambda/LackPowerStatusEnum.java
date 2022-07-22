@@ -15,6 +15,7 @@ public enum LackPowerStatusEnum {
     LackPowerStatusEnum(Integer code, String desc) {
         this.code = code;
         this.desc = desc;
+
     }
 
     private Integer code;
