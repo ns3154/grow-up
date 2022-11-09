@@ -34,16 +34,19 @@ public class LockTest {
             lock.lock();
             logger.error("获得到锁1");
             try {
-                TimeUnit.SECONDS.sleep(2000);
-            } catch (InterruptedException e) {
+                TimeUnit.SECONDS.sleep(2);
+            } catch (Exception e) {
                 e.printStackTrace();
                 logger.error("error:{}", e);
             } finally {
+                logger.info("释放锁1");
                 lock.unlock();
             }
 
         });
 
+
+        Thread.sleep(3);
 
         Util.executor.execute(() -> {
             logger.error("准备加锁2");
@@ -54,8 +57,26 @@ public class LockTest {
 
         });
 
+        Util.executor.execute(() -> {
+            logger.error("准备加锁2");
+            lock.lock();
+            logger.error("获得到锁2");
+            lock.unlock();
+            logger.error("释放锁2");
 
-        TimeUnit.SECONDS.sleep(100);
+        });
+
+        Util.executor.execute(() -> {
+            logger.error("准备加锁3");
+            lock.lock();
+            logger.error("获得到锁3");
+            lock.unlock();
+            logger.error("释放锁4");
+
+        });
+
+
+        TimeUnit.SECONDS.sleep(100000);
     }
 
 	@Test

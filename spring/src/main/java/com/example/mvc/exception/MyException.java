@@ -2,6 +2,7 @@ package com.example.mvc.exception;
 
 
 import com.example.utils.Constants;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
  * <pre>
