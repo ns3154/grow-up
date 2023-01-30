@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    // 品牌
+    var data = $('.J_valueList li');
+    var obj = [];
+    var t = 0;
+    $(data).each(function (i, item) {
+        console.log(item)
+        var json = {};
+        json.name = item.children[0].title;
+        json.pinyin = item.dataset.initial;
+        json.type = '手机'
+        if (item.children.length > 0 && item.children[0].children.length > 1) {
+            json.logo = item.children.length && item.children[0].children.length && item.children[0].children[1].currentSrc;
+            if (json.logo && json.name && json.pinyin) {
+                obj[t++] = json;
+            }
+        }
+
+    })
+    console.log(obj);
+</script>
+
+<script>
+    var data = $('.JS_navCtn li')
+    var obj = '';
+    $(data).each(function (i, item) {
+        var children = item.children;
+        $(children).each(function (i, c) {
+            if ('/' !== c.innerText) {
+                obj += c.innerText + ',';
+            }
+        })
+    })
+    console.log(obj)
+</script>
+
+<script>
+
+    var arr = []
+    $('#cate_item1 dl').each(function () {
+        var lever2 = $(this).find('dt').text()
+        var j2 = {};
+        j2.key = lever2.substr(0, lever2.length - 1);
+        j2.level = 2;
+        var aj = []
+        $(this).find('dd a').each(function () {
+            var t = {};
+            t.key = $(this).text();
+            t.level = 3;
+            aj.push(t)
+        })
+        j2.c = aj;
+        // arr[lever2] = aj.join(',')
+        arr.push(j2);
+    })
+    console.log(arr)
+
+</script>
+</html>
