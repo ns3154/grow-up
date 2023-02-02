@@ -31,9 +31,18 @@ public class SnowFlake {
 
     /**
      * 每一部分向左的位移
+     * 12
      */
     private final static long MACHINE_LEFT = SEQUENCE_BIT;
+
+    /**
+     * 17
+     */
     private final static long DATACENTER_LEFT = SEQUENCE_BIT + MACHINE_BIT;
+
+    /**
+     * 22
+     */
     private final static long TIMESTMP_LEFT = DATACENTER_LEFT + DATACENTER_BIT;
 
     private long datacenterId;  //数据中心
@@ -104,6 +113,7 @@ public class SnowFlake {
         }
 
         System.out.println(System.currentTimeMillis() - start);
+
 
     }
 }

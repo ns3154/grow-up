@@ -18,7 +18,6 @@ import java.sql.SQLException;
 public class ClassLoadTest {
 
     public static void main(String[] args) {
-        System.out.println(A.sss.sssst);
     }
 
     @Test
