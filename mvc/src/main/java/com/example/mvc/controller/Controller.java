@@ -1,7 +1,10 @@
 package com.example.mvc.controller;
 
+import com.example.mvc.config.TrackUtils;
 import com.example.mvc.model.UserDTO;
+import javax.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -21,6 +24,12 @@ import javax.validation.Valid;
 @Slf4j
 public class Controller {
 
+    @Resource
+    private ConfigurableApplicationContext context;
+
+    public Controller() {
+        TrackUtils.printTrack("controller....");
+    }
 
     @PostMapping("post")
     public void postMethod (@RequestBody @Valid UserDTO dto) {
@@ -31,8 +40,16 @@ public class Controller {
     public void upload(MultipartFile[] file) {
         log.info("入参: {}", file);
     }
+
+
+    @GetMapping("close")
+    public void close() {
+        context.close();;
+    }
+
     @GetMapping("get")
-    public String get () {
+    public String get () throws InterruptedException {
+        Thread.sleep(100000L);
         return "get";
     }
 

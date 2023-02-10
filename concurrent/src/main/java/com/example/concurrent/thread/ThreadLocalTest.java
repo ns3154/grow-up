@@ -20,6 +20,8 @@ public class ThreadLocalTest {
 
 	static final ThreadLocal<Integer> THREAD_LOCAL = ThreadLocal.withInitial(() -> -1);
 
+	static final InheritableThreadLocal<Integer> I_THREAD_LOCAL = new InheritableThreadLocal<>();
+
 
 
 	@Test
@@ -38,7 +40,8 @@ public class ThreadLocalTest {
 
 			System.gc();
 			System.out.println("System.gc() " + THREAD_LOCAL.get());
-
+			I_THREAD_LOCAL.set(33);
+			I_THREAD_LOCAL.get();
 			try {
 				Thread.sleep(10000);
 			} catch (InterruptedException e) {

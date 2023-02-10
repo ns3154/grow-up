@@ -43,6 +43,38 @@ public class ConditionTest {
         new Thread(() -> {
             lock.lock();
             try {
+                System.out.println("加锁....1");
+            } finally {
+                lock.unlock();
+            }
+        }).start();
+
+        Thread.sleep(1000);
+
+        new Thread(() -> {
+            lock.lock();
+            try {
+                System.out.println("加锁....2");
+            } finally {
+                lock.unlock();
+            }
+        }).start();
+
+
+
+        new Thread(() -> {
+
+            lock.lock();
+            try {
+                System.out.println("加锁....3");
+            } finally {
+                lock.unlock();
+            }
+        }).start();
+
+        new Thread(() -> {
+            lock.lock();
+            try {
                 System.out.println("signal");
                 condition.signal();
             } finally {
@@ -50,6 +82,8 @@ public class ConditionTest {
             }
         }).start();
 
+
+        Thread.sleep(100000000L);
     }
 
     @Test

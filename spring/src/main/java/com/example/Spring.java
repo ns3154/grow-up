@@ -55,6 +55,7 @@ public class Spring {
         ConfigurableApplicationContext run = SpringApplication.run(Spring.class, args);
 
         ConfigurableListableBeanFactory beanFactory = run.getBeanFactory();
+
         Spring bean = beanFactory.getBean(Spring.class);
         System.out.println(bean.user == bean.user1);
         User user = beanFactory.getBean("user", User.class);
