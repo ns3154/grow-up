@@ -1,5 +1,6 @@
 package com.example.demo.juc;
 
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,6 +20,7 @@ public class CyclicBarrierTest {
     private final static Logger logger = LoggerFactory.getLogger(CyclicBarrierTest.class);
 
     static AtomicInteger integer = new AtomicInteger(0);
+
 
     public static void main(String[] args) throws InterruptedException {
         ThreadPoolExecutor executor = new ThreadPoolExecutor(5, 10, 60,
@@ -85,5 +87,15 @@ public class CyclicBarrierTest {
                 logger.error("执行完成:{}", finalI);
             });
         }
+    }
+
+    @Test
+    public void test() throws InterruptedException {
+        CountDownLatch latch = new CountDownLatch(1);
+        latch.await();
+        latch.countDown();
+        System.err.println(222);
+        latch.await();
+        System.err.println(33);
     }
 }

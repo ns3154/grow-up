@@ -22,7 +22,7 @@ public class ThreadPoolExecutorTest {
     private final static Logger logger = LoggerFactory.getLogger(ThreadPoolExecutorTest.class);
 
     @Test
-    public void test() {
+    public void test() throws ExecutionException, InterruptedException {
         ExecutorService executorService = Executors.newCachedThreadPool();
         ThreadPoolExecutor executor = new ThreadPoolExecutor(2, 5, 1000, TimeUnit.SECONDS,
                 new SynchronousQueue<>(),
@@ -89,6 +89,9 @@ public class ThreadPoolExecutorTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
+        Future<Object> submit = executor.submit((Callable<Object>) () -> 1);
+        Object o = submit.get();
 //        int i = 0;
 //        for (;;) {
 //            executor.execute(() -> {
