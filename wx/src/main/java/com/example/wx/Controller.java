@@ -37,6 +37,7 @@ public class Controller {
 	public WxAuthCode2SessionVO code(String code) {
 		WxAuthCode2SessionVO wxAuthCode2SessionVO = wxSupport.wxAuthCodeToSession(APP_ID, SECRET, code);
 		if (null != wxAuthCode2SessionVO) {
+
 			M.put(wxAuthCode2SessionVO.getOpenid(), wxAuthCode2SessionVO.getSession_key());
 		}
 		wxAuthCode2SessionVO.setSession_key("******");

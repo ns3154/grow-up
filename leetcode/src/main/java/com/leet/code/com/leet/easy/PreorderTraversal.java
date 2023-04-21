@@ -36,6 +36,7 @@ public class PreorderTraversal {
         if (null == node) {
             return;
         }
+        
 
         rest.add(node.val);
         left(rest, node.left);

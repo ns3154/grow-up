@@ -4,11 +4,14 @@ import com.example.mvc.config.TrackUtils;
 import com.example.mvc.model.UserDTO;
 import javax.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -38,8 +41,26 @@ public class Controller {
 
     @PostMapping("upload")
     public void upload(MultipartFile[] file) {
-        log.info("入参: {}", file);
+        List<String> fileNames = new ArrayList<>();
+        // 获取file文件的名称 ,并且将名称放入fileNames中,如果名称为空则跳过
+        for (MultipartFile multipartFile : file) {
+            String fileName = multipartFile.getOriginalFilename();
+            if (StringUtils.isEmpty(fileName)) {
+                continue;
+            }
+            fileNames.add(fileName);
+        }
+
+        // 逐行遍历 fileNames,并且输出到控制台
+        for (String fileName : fileNames) {
+            log.info("文件名: {}", fileName);
+        }
     }
+
+
+
+
+
 
 
     @GetMapping("close")

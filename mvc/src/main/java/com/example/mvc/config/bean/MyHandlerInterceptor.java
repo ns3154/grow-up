@@ -22,6 +22,7 @@ public class MyHandlerInterceptor implements HandlerInterceptor {
     public boolean preHandle (HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
         log.info("MyHandlerInterceptor : preHander");
+
         return HandlerInterceptor.super.preHandle(request, response, handler);
     }
 

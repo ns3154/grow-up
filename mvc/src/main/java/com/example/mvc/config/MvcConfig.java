@@ -26,7 +26,10 @@ public class MvcConfig implements WebMvcConfigurer, Destroyable {
     public void addInterceptors (InterceptorRegistry registry) {
         WebMvcConfigurer.super.addInterceptors(registry);
         String[] include = {"/upload"};
+
         MappedInterceptor interceptor = new MappedInterceptor(include, null, new MyHandlerInterceptor());
+        // 增加一个 数据转换
+
 //        registry.addInterceptor(interceptor);
     }
 
