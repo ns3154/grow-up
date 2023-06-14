@@ -22,15 +22,21 @@ import org.springframework.web.servlet.handler.MappedInterceptor;
 @Configuration
 public class MvcConfig implements WebMvcConfigurer, Destroyable {
 
+    //
     @Override
     public void addInterceptors (InterceptorRegistry registry) {
         WebMvcConfigurer.super.addInterceptors(registry);
         String[] include = {"/upload"};
+        // q: 解释下下面的代码
 
         MappedInterceptor interceptor = new MappedInterceptor(include, null, new MyHandlerInterceptor());
         // 增加一个 数据转换
+        registry.addInterceptor(interceptor);
+
 
 //        registry.addInterceptor(interceptor);
     }
+
+
 
 }

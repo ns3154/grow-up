@@ -24,6 +24,9 @@ public class Controller {
 
     @GetMapping("select")
     public Object select() {
+        // 将lclOrderMapper.selectById(1);翻译成sql
+
+
         return lclOrderMapper.selectById(1);
     }
 
