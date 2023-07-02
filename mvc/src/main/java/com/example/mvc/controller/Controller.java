@@ -35,8 +35,9 @@ public class Controller {
     }
 
     @PostMapping("post")
-    public void postMethod (@RequestBody @Valid UserDTO dto) {
+    public UserDTO postMethod (@RequestBody @Valid UserDTO dto) {
         log.info("入参: {}", dto);
+        return dto;
     }
 
     @PostMapping("upload")
