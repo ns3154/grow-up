@@ -1,5 +1,7 @@
 package com.example.mvc.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.example.mvc.config.MapConfiguration;
 import com.example.mvc.config.TrackUtils;
 import com.example.mvc.model.UserDTO;
 import javax.annotation.Resource;
@@ -30,8 +32,16 @@ public class Controller {
     @Resource
     private ConfigurableApplicationContext context;
 
+    @Resource
+    private MapConfiguration mapConfiguration;
+
     public Controller() {
         TrackUtils.printTrack("controller....");
+    }
+
+    @GetMapping("getMap")
+    public Object getMapConfiguration() {
+        return JSON.toJSONString(mapConfiguration);
     }
 
     @PostMapping("post")

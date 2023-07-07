@@ -1,0 +1,16 @@
+server:
+  shutdown:
+    graceful
+spring:
+  lifecycle:
+    timeout-per-shutdown-phase: 60s
+logging:
+  level:
+    root: debug
+
+map-configuration:
+  map:
+    "test":
+      - g
+      - h
+      - i
