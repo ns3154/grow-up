@@ -36,6 +36,7 @@
         <module>wallpaper</module>
         <module>spring-cloud/gateway</module>
         <module>mvc</module>
+        <module>config-center</module>
     </modules>
 
     <properties>
@@ -45,10 +46,10 @@
         <google.guava.version>31.0.1-jre</google.guava.version>
         <fastjson.version>1.2.78</fastjson.version>
         <jmh.version>1.23</jmh.version>
-        <mybaits-plus.version>3.4.2</mybaits-plus.version>
+        <mybaits.plus.version>3.0.2</mybaits.plus.version>
         <lombok.version>1.18.22</lombok.version>
         <p6spy.version>3.9.1</p6spy.version>
-        <spring.boot.version>2.4.3</spring.boot.version>
+        <spring.boot.version>2.5.2</spring.boot.version>
         <commons-io.version>2.11.0</commons-io.version>
         <commons-fileupload.version>1.4</commons-fileupload.version>
         <apache-commons-lang3.version>3.12.0</apache-commons-lang3.version>
@@ -57,7 +58,8 @@
         <org.openjdk.jol.jol-core.version>0.9</org.openjdk.jol.jol-core.version>
         <com.google.guava.version>28.0-jre</com.google.guava.version>
         <logback-redis-appender.version>1.1.6</logback-redis-appender.version>
-        <spring-boot.version>2.4.3</spring-boot.version>
+        <druid.spring.boot.starter.version>1.1.20</druid.spring.boot.starter.version>
+        <nacos.config.spring.boot.starter.version>0.2.12</nacos.config.spring.boot.starter.version>
     </properties>
     <dependencies>
         <dependency>
@@ -121,16 +123,12 @@
     </dependencies>
 
     <dependencyManagement>
-
-
-
         <dependencies>
-
 
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring-boot.version}</version>
+                <version>${spring.boot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -160,7 +158,7 @@
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
-                <version>${mybaits-plus.version}</version>
+                <version>${mybaits.plus.version}</version>
             </dependency>
             <!-- SQL 分析打印-->
             <dependency>
@@ -204,6 +202,18 @@
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <version>${com.google.guava.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybaits.plus.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid.spring.boot.starter.version}</version>
             </dependency>
 
         </dependencies>

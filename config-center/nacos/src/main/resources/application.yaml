@@ -1,0 +1,22 @@
+
+spring:
+  application:
+    name: nacos-config-client
+  profiles:
+    active: dev
+nacos:
+  config.server-addr: localhost:8848
+  config:
+    namespace: 9e28ea18-1dd4-46c0-b169-f90feef8a8c9
+    auto-refresh: true
+    username: nacos
+    password: nacos
+    data-id: test
+    bootstrap:
+      enable: true
+      log-enable: true
+    type: yaml
+
+logging:
+  level:
+    root: debug
