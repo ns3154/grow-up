@@ -11,14 +11,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 public class MvcApplication {
 
     public static void main(String[] args) {
-        ConfigurableApplicationContext context = SpringApplication.run(MvcApplication.class, args);
-        ConfigurableListableBeanFactory factory = context.getBeanFactory();
-        String[] as = factory.getDependentBeans("testA");
-
-        String[] bs = factory.getDependentBeans("testB");
-        factory.getDependenciesForBean("testB");
-        System.out.println(as);
-
+        SpringApplication.run(MvcApplication.class, args);
     }
 
 }
