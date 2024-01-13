@@ -68,12 +68,6 @@ public class Controller {
         }
     }
 
-
-
-
-
-
-
     @GetMapping("close")
     public void close() {
         context.close();;
