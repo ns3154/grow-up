@@ -1,0 +1,11 @@
+version: '3'
+services:
+  zookeeper:
+    container_name: zookeeper
+    image: 'arm64v8/zookeeper:3.9-jre-17'
+    ports:
+      - '2181:2181'
+    volumes:
+      - /Users/yang/home/opt/docker/zookeeper/data:/data
+      - /Users/yang/home/opt/docker/zookeeper/datalog:/datalog
+      - /Users/yang/home/opt/docker/zookeeper/logs:/logs

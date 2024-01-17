@@ -11,6 +11,7 @@ services:
       - /Users/yang/home/opt/docker/mongo/logs:/var/log/mongodb
       - /Users/yang/home/opt/docker/mongo/db:/data/db
   mongo-express:
+    container_name: mongo-express
     image: mongo-express
     restart: always
     ports:
