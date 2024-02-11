@@ -9,7 +9,6 @@ services:
     volumes:
       - /Users/yang/home/opt/docker/rocketmq/namesrvlogs:/root/logs
       - /Users/yang/home/opt/docker/rocketmq/namesrv:/root/store
-    restart: always
     networks:
       - rocketmq-network
   broker1:
@@ -26,7 +25,6 @@ services:
       - /Users/yang/home/opt/docker/rocketmq/broker1:/root/store
     depends_on:
       - namesrv
-    restart: always
     networks:
       - rocketmq-network
   broker2:
@@ -43,7 +41,6 @@ services:
       - /Users/yang/home/opt/docker/rocketmq/broker2:/root/store
     depends_on:
       - namesrv
-    restart: always
     networks:
       - rocketmq-network
   broker3:
@@ -60,7 +57,6 @@ services:
       - /Users/yang/home/opt/docker/rocketmq/broker3:/root/store
     depends_on:
       - namesrv
-    restart: always
     networks:
       - rocketmq-network
 
@@ -73,7 +69,6 @@ services:
       - "8080:8080"
     environment:
       - NAMESRV_ADDR=namesrv:9876
-    restart: always
     networks:
       - rocketmq-network
 networks:
