@@ -14,7 +14,7 @@
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     <!--@mbg.generated-->
-    select 
+    select
     <include refid="Base_Column_List" />
     from test.test
     where id = #{id,jdbcType=BIGINT}
@@ -54,7 +54,7 @@
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.example.mybatis.domain.Test">
     <!--@mbg.generated-->
-    update test.test
+    update test
     <set>
       <if test="counts != null">
         counts = #{counts,jdbcType=INTEGER},

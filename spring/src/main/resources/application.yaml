@@ -4,9 +4,9 @@ spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     druid:
-      url: jdbc:mysql://localhost:3306/test?zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=GMT%2B8
+      url: jdbc:mysql://localhost:3306/local?zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=GMT%2B8
       username: root
-      password: root
+      password: rootroot
       initial-size: 1
       min-idle: 1
       max-active: 20

@@ -5,6 +5,7 @@ import com.example.mybatis.domain.Test;
 import com.example.mybatis.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,6 +36,7 @@ public class MybatisController {
 
 
     @GetMapping("select")
+    @Transactional
     public ModelMessge<Test> select(Long id) {
         Test test = userService.select(id);
         return new ModelMessge<Test>().ok(test);
