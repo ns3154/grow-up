@@ -12,22 +12,20 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
-import java.util.function.BiConsumer;
+
 
 /**
- * <pre>
+ * 我过滤器
  *
- * </pre>
- * @author 杨帮东
- * @since 1.0
- * @date 2020/03/31 14:31
- **/
+ * @author yang
+ * @date 2024/09/22
+ */
 @Activate(group = {CommonConstants.CONSUMER})
 public class MyFilter implements Filter {
 
-    private Logger logger = LoggerFactory.getLogger(getClass());
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
-    private ExecutorService executorService =  new ThreadPoolExecutor(5, 30,
+    private final ExecutorService executorService =  new ThreadPoolExecutor(5, 30,
             60, TimeUnit.SECONDS,
             new LinkedBlockingDeque<>(200),
             new BasicThreadFactory.Builder()
