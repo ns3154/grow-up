@@ -14,6 +14,7 @@ public interface TransactionService {
 
     int createWithSimpleTransaction();
 
+    @Operation(summary = "update", description = "update description", method = "PUT", requestBody = @RequestBody(content = {@Content(schema = @Schema(implementation = Dto.class))}), responses = @ApiResponse(responseCode = "200", description = "Ok", content = {@Content(schema = @Schema(implementation = ResponseDto.class))}))
     int createWithTransaction();
 
     String tranSaction();

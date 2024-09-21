@@ -41,6 +41,13 @@ public class RedisController {
     @Resource
     private TestService testService;
 
+    /**
+     * 集
+     *
+     * @param key   关键
+     * @param value 价值
+     * @return {@link Object }
+     */
     @GetMapping("set")
     public Object set(String key, String value) {
         return redisTemplate.execute(connection ->
