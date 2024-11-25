@@ -7,7 +7,6 @@ import java.util.List;
 
 public class ComplexLeaveManagement {
 
-
     private List<LeavePeriod> leavePeriods;
 
     public ComplexLeaveManagement() {
@@ -79,38 +78,26 @@ public class ComplexLeaveManagement {
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-        // 第一次请假及销假
+        // 模拟添加请假及销假记录
         try {
+            // 第一次请假及多个销假单
             Date firstLeaveStart = sdf.parse("2024-11-21 00:00:00");
             Date firstLeaveEnd = sdf.parse("2024-11-21 23:59:59");
             leaveManager.addLeavePeriod(firstLeaveStart, firstLeaveEnd);
-            Date firstCancellationStart = sdf.parse("2024-11-21 10:00:00");
-            Date firstCancellationEnd = sdf.parse("2024-11-21 15:00:00");
-            leaveManager.addCancellationForLastLeavePeriod(firstCancellationStart, firstCancellationEnd);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
-        // 第二次请假及销假
-        try {
-            Date secondLeaveStart = sdf.parse("2024-11-21 00:00:00");
-            Date secondLeaveEnd = sdf.parse("2024-11-21 23:59:59");
+            Date firstCancellation1Start = sdf.parse("2024-11-21 10:00:00");
+            Date firstCancellation1End = sdf.parse("2024-11-21 12:00:00");
+            leaveManager.addCancellationForLastLeavePeriod(firstCancellation1Start, firstCancellation1End);
+
+            Date firstCancellation2Start = sdf.parse("2024-11-21 14:00:00");
+            Date firstCancellation2End = sdf.parse("2024-11-21 16:00:00");
+            leaveManager.addCancellationForLastLeavePeriod(firstCancellation2Start, firstCancellation2End);
+
+            // 第二次请假及多个销假单
+            Date secondLeaveStart = sdf.parse("2024-11-21 14:00:00");
+            Date secondLeaveEnd = sdf.parse("2024-11-21 16:00:00");
             leaveManager.addLeavePeriod(secondLeaveStart, secondLeaveEnd);
-            Date secondCancellationStart = sdf.parse("2024-11-21 16:00:00");
-            Date secondCancellationEnd = sdf.parse("2024-11-21 20:00:00");
-            leaveManager.addCancellationForLastLeavePeriod(secondCancellationStart, secondCancellationEnd);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
-        // 第三次请假及销假（只请下午假）
-        try {
-            Date thirdLeaveStart = sdf.parse("2024-11-21 12:00:00");
-            Date thirdLeaveEnd = sdf.parse("2024-11-21 18:00:00");
-            leaveManager.addLeavePeriod(thirdLeaveStart, thirdLeaveEnd);
-            Date thirdCancellationStart = sdf.parse("2024-11-21 14:00:00");
-            Date thirdCancellationEnd = sdf.parse("2024-11-21 16:00:00");
-            leaveManager.addCancellationForLastLeavePeriod(thirdCancellationStart, thirdCancellationEnd);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -118,13 +105,11 @@ public class ComplexLeaveManagement {
         Date checkTime;
         try {
             checkTime = sdf.parse("2024-11-21 15:00:00");
-            boolean result = leaveManager.isTimeInLeaveRange(checkTime);
-            if (result) {
+            if (leaveManager.isTimeInLeaveRange(checkTime)) {
                 System.out.println("该时间在请假（或销假）时间范围内。");
-            } else {
-                System.out.println("该时间不在请假（或销价）时间范围内。");
             }
         } catch (Exception e) {
+            System.out.println("输入的时间格式不正确，请重新输入。");
             e.printStackTrace();
         }
     }
