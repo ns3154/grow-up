@@ -14,11 +14,11 @@ public class LeaveChecker {
 
         // 遍历所有请假记录
         for (LeaveRequest leaveRequest : leaveRequests) {
-            if (!checkTime.before(leaveRequest.getStartTime()) && !checkTime.after(leaveRequest.getEndTime())) {
+            if (isWithinRange(checkTime, leaveRequest.getStartTime(), leaveRequest.getEndTime())) {
                 onLeave = true; // 在某个请假时间段内
                 // 检查是否有销假记录覆盖了这个时间点
                 for (RevokeLeaveRequest revokeRequest : revokeRequests) {
-                    if (!checkTime.before(revokeRequest.getStartTime()) && !checkTime.after(revokeRequest.getEndTime())) {
+                    if (isWithinRange(checkTime, revokeRequest.getStartTime(), revokeRequest.getEndTime())) {
                         onLeave = false; // 如果在销假期间，则不在请假状态
                         break;
                     }
@@ -32,6 +32,10 @@ public class LeaveChecker {
         return onLeave;
     }
 
+    // 新增方法：检查时间是否在指定范围内
+    private static boolean isWithinRange(Date time, Date startTime, Date endTime) {
+        return !time.before(startTime) && !time.after(endTime);
+    }
 
     public static void main(String[] args) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
@@ -39,7 +43,6 @@ public class LeaveChecker {
         // 创建请假请求
         List<LeaveRequest> leaveRequests = new ArrayList<>();
         leaveRequests.add(new LeaveRequest(sdf.parse("2024-11-21 00:00"), sdf.parse("2024-11-21 23:59"))); // 第一次请假
-        leaveRequests.add(new LeaveRequest(sdf.parse("2024-11-21 00:00"), sdf.parse("2024-11-21 23:59"))); // 第二次请假
         leaveRequests.add(new LeaveRequest(sdf.parse("2024-11-21 12:00"), sdf.parse("2024-11-21 23:59"))); // 第三次请假
 
         // 创建销假请求

@@ -1,23 +1,19 @@
 package org.example.leave;
 
+import lombok.Getter;
+
 import java.util.Date;
 
+@Getter
 public class RevokeLeaveRequest {
 
-    private Date startTime;
+    private final Date startTime;
 
-    private Date endTime;
+    private final Date endTime;
 
     public RevokeLeaveRequest(Date startTime, Date endTime) {
         this.startTime = startTime;
         this.endTime = endTime;
     }
 
-    public Date getStartTime() {
-        return startTime;
-    }
-
-    public Date getEndTime() {
-        return endTime;
-    }
 }
