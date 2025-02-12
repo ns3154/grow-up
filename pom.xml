@@ -1,242 +1,33 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
-<!--    <parent>-->
-<!--        <groupId>org.springframework.boot</groupId>-->
-<!--        <artifactId>spring-boot-starter-parent</artifactId>-->
-<!--        <version>2.4.3</version>-->
-<!--        <relativePath/> &lt;!&ndash; lookup parent from repository &ndash;&gt;-->
-<!--    </parent>-->
-<!--    -->
-    <packaging>pom</packaging>
-
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.0.0</version> <!-- 更新Spring Boot版本 -->
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
     <groupId>org.example</groupId>
-    <artifactId>learn</artifactId>
-    <version>1.0-SNAPSHOT</version>
-
-    <modules>
-        <module>redis</module>
-	    <module>async</module>
-	    <module>proxy</module>
-        <module>basics</module>
-        <module>concurrent</module>
-	    <module>dubbo</module>
-        <module>demo</module>
-	    <module>spring</module>
-	    <module>design</module>
-	    <module>algorithm</module>
-	    <module>excel</module>
-        <module>wx</module>
-	    <module>leetcode</module>
-        <module>mybatis-plus</module>
-        <module>wallpaper</module>
-        <module>spring-cloud/gateway</module>
-        <module>mvc</module>
-        <module>config-center</module>
-    </modules>
-
+    <artifactId>leave</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>leave</name>
+    <description>Demo project for Spring Boot</description>
     <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <java.version>1.8</java.version>
-        <google.guava.version>31.0.1-jre</google.guava.version>
-        <fastjson.version>1.2.78</fastjson.version>
-        <jmh.version>1.23</jmh.version>
-        <mybaits.plus.version>3.0.2</mybaits.plus.version>
-        <lombok.version>1.18.22</lombok.version>
-        <p6spy.version>3.9.1</p6spy.version>
-        <spring.boot.version>2.5.2</spring.boot.version>
-        <commons-io.version>2.11.0</commons-io.version>
-        <commons-fileupload.version>1.4</commons-fileupload.version>
-        <apache-commons-lang3.version>3.12.0</apache-commons-lang3.version>
-        <org.jetbrains.annotations.version>17.0.0</org.jetbrains.annotations.version>
-        <io.netty.all.version>4.1.19.Final</io.netty.all.version>
-        <org.openjdk.jol.jol-core.version>0.9</org.openjdk.jol.jol-core.version>
-        <com.google.guava.version>28.0-jre</com.google.guava.version>
-        <logback-redis-appender.version>1.1.6</logback-redis-appender.version>
-        <druid.spring.boot.starter.version>1.1.20</druid.spring.boot.starter.version>
-        <nacos.config.spring.boot.starter.version>0.2.12</nacos.config.spring.boot.starter.version>
+        <java.version>17</java.version> <!-- 确保Java版本与Spring Boot 3.0兼容 -->
     </properties>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-autoconfigure</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-configuration-processor</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-aop</artifactId>
-        </dependency>
-
-        <!--  SPRING BOOT 启动引导类-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-loader</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>${google.guava.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>${apache-commons-lang3.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>${fastjson.version}</version>
-        </dependency>
-
-
-
-
+        <!-- 其他依赖项 -->
     </dependencies>
-
-    <dependencyManagement>
-        <dependencies>
-
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring.boot.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
-            <!-- https://mvnrepository.com/artifact/org.openjdk.jmh/jmh-core -->
-            <dependency>
-                <groupId>org.openjdk.jmh</groupId>
-                <artifactId>jmh-core</artifactId>
-                <version>${jmh.version}</version>
-                <optional>true</optional>
-            </dependency>
-
-            <dependency>
-                <groupId>org.openjdk.jmh</groupId>
-                <artifactId>jmh-generator-annprocess</artifactId>
-                <version>${jmh.version}</version>
-                <optional>true</optional>
-            </dependency>
-
-            <dependency>
-                <groupId>com.cwbase</groupId>
-                <artifactId>logback-redis-appender</artifactId>
-                <version>${logback-redis-appender.version}</version>
-                <optional>true</optional>
-            </dependency>
-
-            <dependency>
-                <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-boot-starter</artifactId>
-                <version>${mybaits.plus.version}</version>
-            </dependency>
-            <!-- SQL 分析打印-->
-            <dependency>
-                <groupId>p6spy</groupId>
-                <artifactId>p6spy</artifactId>
-                <version>${p6spy.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>commons-io</groupId>
-                <artifactId>commons-io</artifactId>
-                <version>${commons-io.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>commons-fileupload</groupId>
-                <artifactId>commons-fileupload</artifactId>
-                <version>${commons-fileupload.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.jetbrains</groupId>
-                <artifactId>annotations</artifactId>
-                <version>${org.jetbrains.annotations.version}</version>
-                <scope>compile</scope>
-            </dependency>
-
-            <dependency>
-                <groupId>io.netty</groupId>
-                <artifactId>netty-all</artifactId>
-                <version>${io.netty.all.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.openjdk.jol</groupId>
-                <artifactId>jol-core</artifactId>
-                <version>${org.openjdk.jol.jol-core.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.google.guava</groupId>
-                <artifactId>guava</artifactId>
-                <version>${com.google.guava.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.mybatis.spring.boot</groupId>
-                <artifactId>mybatis-spring-boot-starter</artifactId>
-                <version>${mybaits.plus.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>druid-spring-boot-starter</artifactId>
-                <version>${druid.spring.boot.starter.version}</version>
-            </dependency>
-
-        </dependencies>
-    </dependencyManagement>
-
-
     <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <excludes>
-                        <exclude>
-                            <groupId>org.springframework.boot</groupId>
-                            <artifactId>spring-boot-configuration-processor</artifactId>
-                        </exclude>
-                    </excludes>
-                </configuration>
             </plugin>
         </plugins>
     </build>
-
-
-
 </project>
