@@ -10,6 +10,11 @@
 	<modelVersion>4.0.0</modelVersion>
 	
 	<artifactId>spring</artifactId>
+
+	<properties>
+		<spring.boot.version>3.0.0</spring.boot.version>
+		
+	</properties>
 	
 	<dependencies>
 		
