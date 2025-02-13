@@ -12,24 +12,23 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>mybatis-plus</name>
 	<description>Demo project for Spring Boot</description>
-	<properties>
-		<java.version>1.8</java.version>
-	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
+			<version>8.0.33</version>
 		</dependency>
 		<dependency>
 			<groupId>com.baomidou</groupId>
 			<artifactId>mybatis-plus-boot-starter</artifactId>
+			<version>3.5.5.1</version>
 		</dependency>
 		<!-- SQL 分析打印-->
 		<dependency>
 			<groupId>p6spy</groupId>
 			<artifactId>p6spy</artifactId>
-			<version>${p6spy.version}</version>
+			<version>3.9.1</version>
 		</dependency>
 	</dependencies>
 	

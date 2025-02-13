@@ -22,7 +22,7 @@
 			<dependency>
 				<groupId>com.alibaba.boot</groupId>
 				<artifactId>nacos-config-spring-boot-starter</artifactId>
-				<version>${nacos.config.spring.boot.starter.version}</version>
+				<version>0.2.10</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
