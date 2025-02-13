@@ -8,13 +8,30 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>org.example</groupId>
-    <artifactId>leave</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>leave</name>
+    <artifactId>learn</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>learn</name>
     <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>17</java.version> <!-- 确保Java版本与Spring Boot 3.0兼容 -->
     </properties>
+    <modules>
+        <module>mvc</module>
+        <module>spring</module>
+        <module>proxy</module>
+        <module>redis</module>
+        <module>spring-cloud</module>
+        <module>algorithm</module>
+        <module>async</module>
+        <module>basics</module>
+        <module>concurrent</module>
+        <module>config-center</module>
+        <module>demo</module>
+        <module>design</module>
+        <module>dubbo</module>
+        <module>mybatis-plus</module>
+        <module>leetcode</module>
+    </modules>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -33,31 +50,4 @@
     </build>
 
 
-    	<repositories>
-		<repository>
-			<id>aliyunmaven</id>
-			<name>aliyun maven</name>
-			<url>https://maven.aliyun.com/repository/public</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
-
-	<pluginRepositories>
-		<pluginRepository>
-			<id>aliyunmaven</id>
-			<name>aliyun maven</name>
-			<url>https://maven.aliyun.com/repository/public</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</pluginRepository>
-	</pluginRepositories>
 </project>
