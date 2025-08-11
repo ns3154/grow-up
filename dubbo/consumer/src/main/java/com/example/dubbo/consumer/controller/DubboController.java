@@ -107,7 +107,7 @@ public class DubboController {
     public ModelMessage<UserDTO> getUserByAsyncForMyThread(Long userId) throws ExecutionException, InterruptedException {
         CompletableFuture<ModelMessage<UserDTO>> userByAsyncForMyThread =
                 asyncDubboServiceTestApi.getUserByAsyncForMyThread(userId);
-        logger.error("*** getUserByAsyncForMyThread consumer start");
+        logger.error("*** getUserByAsyncForMyThread consumer start,userId:{}", userId);
         return userByAsyncForMyThread.get();
     }
 
