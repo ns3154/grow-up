@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql8
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root  # 请修改为强密码
+      TZ: Asia/Shanghai                 # 设置时区
+    ports:
+      - "3306:3306"                     # 主机端口:容器端口
+    volumes:
+      # 使用绝对路径挂载
+      - /Users/yang/ops/docker/mysql/data:/var/lib/mysql
+      - /Users/yang/ops/docker/mysql/config/my.cnf:/etc/mysql/conf.d/my.cnf
+      - /Users/yang/ops/docker/mysql/init:/docker-entrypoint-initdb.d
+      - /Users/yang/ops/docker/mysql/backup:/backup
+      - /Users/yang/ops/docker/mysql/logs:/var/log/mysql
+    networks:
+      - mysql-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    command:
+      --default-authentication-plugin=mysql_native_password
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
+      --max_connections=1000
+      --innodb_buffer_pool_size=512M
+
+networks:
+  mysql-network:
+    driver: bridge
