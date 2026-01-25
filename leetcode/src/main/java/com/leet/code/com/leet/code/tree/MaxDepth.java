@@ -1,7 +1,6 @@
 package com.leet.code.com.leet.code.tree;
 
 import com.leet.code.com.leet.model.TreeNode;
-import org.junit.jupiter.api.Test;
 
 import java.util.Deque;
 import java.util.LinkedList;
@@ -18,7 +17,6 @@ import java.util.LinkedList;
 public class MaxDepth {
 
 
-    @Test
     public void run () {
         TreeNode node = new TreeNode(1);
         node.left = new TreeNode(2);

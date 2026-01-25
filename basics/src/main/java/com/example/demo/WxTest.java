@@ -1,7 +1,6 @@
 package com.example.demo;
 
 import org.apache.commons.codec.binary.Base64;
-import sun.misc.BASE64Decoder;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;

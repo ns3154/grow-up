@@ -1,7 +1,6 @@
 package com.leet.code.com.leet.code.tree;
 
 import com.leet.code.com.leet.model.TreeNode;
-import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 
@@ -17,7 +16,6 @@ import java.util.HashMap;
 public class HasPathSum {
 
 
-    @Test
     public void run() {
 
         TreeNode root = TreeNode.arrayBuild(new Integer[]{5, 4, 8, 11, null, 13, 4, 7, 2, null, null, null, 1});

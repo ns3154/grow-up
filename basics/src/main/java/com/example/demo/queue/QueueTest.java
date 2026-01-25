@@ -1,6 +1,5 @@
 package com.example.demo.queue;
 
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,7 +19,6 @@ public class QueueTest {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
-    @Test
     public void linked() {
         LinkedBlockingQueue<String> queue = new LinkedBlockingQueue<>(10);
         queue.add("a");
@@ -39,7 +37,6 @@ public class QueueTest {
         }
     }
 
-    @Test
     public void LinkedTranferQueue() {
         LinkedTransferQueue<String> queue = new LinkedTransferQueue<>();
         for (int i = 0; i < 10;i++) {

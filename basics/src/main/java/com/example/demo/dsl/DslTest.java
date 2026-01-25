@@ -1,6 +1,5 @@
 package com.example.demo.dsl;
 
-import org.junit.Test;
 
 /**
  * <pre>
@@ -12,7 +11,6 @@ import org.junit.Test;
  **/
 public class DslTest {
 
-    @Test
     public void firstVersion() {
         Order order = new Order();
         order.setCustomer("BigBank");
@@ -46,7 +44,6 @@ public class DslTest {
         System.out.println(order.getCustomer());
     }
 
-    @Test
     public void methodChaining() {
         Order order = MethodChainingOrderBuidler
                 .forCusomer("BigBank")

@@ -50,8 +50,8 @@ public class RegexTest {
 
     public static HttpRequest request = new HttpRequest() {
         @Override
-        public String getMethodValue() {
-            return HttpMethod.GET.name();
+        public HttpMethod getMethod() {
+            return HttpMethod.GET;
         }
 
         @Override
@@ -62,6 +62,11 @@ public class RegexTest {
         @Override
         public HttpHeaders getHeaders() {
             return null;
+        }
+
+        @Override
+        public java.util.Map<String, Object> getAttributes() {
+            return new java.util.HashMap<>();
         }
     };
 

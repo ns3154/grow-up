@@ -1,7 +1,7 @@
 package com.example.mvc.config;
 
 import com.example.mvc.config.bean.MyHandlerInterceptor;
-import javax.annotation.PreDestroy;
+import jakarta.annotation.PreDestroy;
 import javax.security.auth.DestroyFailedException;
 import javax.security.auth.Destroyable;
 import org.springframework.context.SmartLifecycle;

@@ -1,7 +1,6 @@
 package com.leet.code.com.leet.code;
 
 import java.util.HashMap;
-import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +17,6 @@ import java.util.List;
 public class LexicalOrder {
 
 
-    @Test
     public void run () {
 
         List<Integer> ss = lexicalOrder(34);

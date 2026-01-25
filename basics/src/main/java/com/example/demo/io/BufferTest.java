@@ -2,7 +2,6 @@ package com.example.demo.io;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
-import org.junit.Test;
 import java.nio.ByteBuffer;
 
 /**
@@ -15,7 +14,6 @@ import java.nio.ByteBuffer;
  **/
 public class BufferTest {
 
-    @Test
     public void api() {
         // 初始化
 //        ByteBuffer buffer = ByteBuffer.allocate(8);

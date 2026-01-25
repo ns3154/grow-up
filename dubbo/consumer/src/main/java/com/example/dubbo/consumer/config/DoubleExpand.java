@@ -3,9 +3,7 @@ package com.example.dubbo.consumer.config;
 import com.example.dubbo.consumer.model.DubboNode;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.dubbo.common.URL;
-import org.apache.dubbo.config.AbstractConfig;
 import org.apache.dubbo.config.ReferenceConfig;
-import org.apache.dubbo.config.utils.ReferenceConfigCache;
 import org.apache.dubbo.rpc.service.GenericService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,13 +47,15 @@ public class DoubleExpand {
     private static final Object LOCK = new Object();
 
 
-    public static <T> T getInterface(String group, Class<T> clz) {
-        return getInterface(group, "3.0.0", clz);
-    }
+    // Dubbo 3.3 已更改 ReferenceConfigCache API，暂时注释掉
+    // public static <T> T getInterface(String group, Class<T> clz) {
+    //     return getInterface(group, "3.0.0", clz);
+    // }
 
     /**
      * 文档:http://dubbo.apache.org/zh-cn/docs/user/demos/reference-config-cache.html
      * 基于cache 实现dubbo 动态分组功能
+     * Dubbo 3.3 已更改 ReferenceConfigCache API，暂时注释掉
      *
      * @param group 接口所在分组
      * @param clz   class
@@ -64,34 +64,35 @@ public class DoubleExpand {
      * @date 2020/1/10 13:04
      * @since 1.0
      */
-    @SuppressWarnings("unchecked")
-    public static <T> T getInterface(String group, String version, Class<T> clz) {
-        if (StringUtils.isBlank(group) || StringUtils.isBlank(version) || null == clz) {
-            throw new IllegalArgumentException("该方法所有参数均为必要参数");
-        }
-        String key = group + "." + clz.getName();
-        Object object = DUBBO_INTERFACE.get(key);
-        if (null == object) {
-            ReferenceConfig<T> reference = new ReferenceConfig<>();
-            reference.setGroup(group);
-            reference.setInterface(clz);
-            reference.setVersion(version);
-            reference.get();
-            ReferenceConfigCache cache = ReferenceConfigCache.getCache();
-            T o = cache.get(reference);
-            DUBBO_INTERFACE.putIfAbsent(key, o);
-            return o;
-        }
-        return (T) object;
-    }
+    // @SuppressWarnings("unchecked")
+    // public static <T> T getInterface(String group, String version, Class<T> clz) {
+    //     if (StringUtils.isBlank(group) || StringUtils.isBlank(version) || null == clz) {
+    //         throw new IllegalArgumentException("该方法所有参数均为必要参数");
+    //     }
+    //     String key = group + "." + clz.getName();
+    //     Object object = DUBBO_INTERFACE.get(key);
+    //     if (null == object) {
+    //         ReferenceConfig<T> reference = new ReferenceConfig<>();
+    //         reference.setGroup(group);
+    //         reference.setInterface(clz);
+    //         reference.setVersion(version);
+    //         reference.get();
+    //         ReferenceConfigCache cache = ReferenceConfigCache.getCache();
+    //         T o = cache.get(reference);
+    //         DUBBO_INTERFACE.putIfAbsent(key, o);
+    //         return o;
+    //     }
+    //     return (T) object;
+    // }
 
 
-    public static final ReferenceConfigCache.KeyGenerator KEY_GENERATOR = AbstractConfig::getId;
+    // public static final ReferenceConfigCache.KeyGenerator KEY_GENERATOR = AbstractConfig::getId;
 
     /**
      * 泛化通用类  获取GenericService 泛化
      * 文档:http://dubbo.apache.org/zh-cn/docs/user/demos/generic-reference.html
      * 可通过此方法 动态使用不同group的相同接口
+     * Dubbo 3.3 已更改 ReferenceConfigCache API，暂时注释掉
      *
      * @param group 组名
      * @param clz   被泛化的dubbo接口
@@ -101,20 +102,20 @@ public class DoubleExpand {
      * @date 2020/1/10 10:59
      * @since 1.0
      */
-    public static GenericService genericService(String group, Class<?> clz) {
-        String key = group + "." + clz.getName();
-        GenericService cs = GENERIC_SERVICE.get(key);
-        if (null == cs) {
-            ReferenceConfig<GenericService> reference = new ReferenceConfig<>();
-            reference.setGroup(group);
-            reference.setInterface(clz);
-            reference.setGeneric(true);
-            ReferenceConfigCache cache = ReferenceConfigCache.getCache();
-            cs = cache.get(reference);
-            GENERIC_SERVICE.putIfAbsent(key, cs);
-        }
-        return cs;
-    }
+    // public static GenericService genericService(String group, Class<?> clz) {
+    //     String key = group + "." + clz.getName();
+    //     GenericService cs = GENERIC_SERVICE.get(key);
+    //     if (null == cs) {
+    //         ReferenceConfig<GenericService> reference = new ReferenceConfig<>();
+    //         reference.setGroup(group);
+    //         reference.setInterface(clz);
+    //         reference.setGeneric(true);
+    //         ReferenceConfigCache cache = ReferenceConfigCache.getCache();
+    //         cs = cache.get(reference);
+    //         GENERIC_SERVICE.putIfAbsent(key, cs);
+    //     }
+    //     return cs;
+    // }
 
 
 
@@ -152,6 +153,7 @@ public class DoubleExpand {
 
     /**
      * dubbo 指定地址调用
+     * Dubbo 3.3 已更改 ReferenceConfigCache API，暂时注释掉
      * @author 杨帮东
      * @param remoteAddress dubbo远程地址 例如:172.16.1.57:28083
      * @param clz 要掉用的接口
@@ -160,47 +162,47 @@ public class DoubleExpand {
      * @return T
      * @throws
      */
-    @SuppressWarnings("unchecked")
-    public static <T> T getPtpInterFace(String remoteAddress, Class<T> clz) {
-        String interfaceName = clz.getName();
-        String mKey = remoteAddress + ":" + interfaceName;
-        Map<String, ReferenceConfig<?>> map = DUBBO_URL_INTERFACE.get(interfaceName);
-        Object o = null;
-        URL url;
-        ReferenceConfig<?> referenceConfig;
-        if (CollectionUtils.isEmpty(map) && null != (url = getUrlByRemoteAddressAndInterFaceName(remoteAddress,
-                interfaceName))) {
-            referenceConfig = new ReferenceConfig<>();
-            ReferenceConfigCache cache = getReferenceConfigCache(clz, mKey, url, referenceConfig);
-            o = cache.get(referenceConfig);
-            Map<String, ReferenceConfig<?>> m = new HashMap<>();
-            m.put(mKey, referenceConfig);
-            DUBBO_URL_INTERFACE.put(interfaceName, m);
-        } else {
-            if (null != (referenceConfig = map.get(mKey))) {
-                ReferenceConfigCache cache = ReferenceConfigCache.getCache(ReferenceConfigCache.DEFAULT_NAME, KEY_GENERATOR);
-                o = cache.get(referenceConfig);
-            } else {
-                if (null != (url = getUrlByRemoteAddressAndInterFaceName(remoteAddress, interfaceName))) {
-                    ReferenceConfig<T> reference = new ReferenceConfig<>();
-                    ReferenceConfigCache cache = getReferenceConfigCache(clz, mKey, url, reference);
-                    o = cache.get(reference);
-                    map.put(mKey, reference);
-                }
-            }
-        }
+    // @SuppressWarnings("unchecked")
+    // public static <T> T getPtpInterFace(String remoteAddress, Class<T> clz) {
+    //     String interfaceName = clz.getName();
+    //     String mKey = remoteAddress + ":" + interfaceName;
+    //     Map<String, ReferenceConfig<?>> map = DUBBO_URL_INTERFACE.get(interfaceName);
+    //     Object o = null;
+    //     URL url;
+    //     ReferenceConfig<?> referenceConfig;
+    //     if (CollectionUtils.isEmpty(map) && null != (url = getUrlByRemoteAddressAndInterFaceName(remoteAddress,
+    //             interfaceName))) {
+    //         referenceConfig = new ReferenceConfig<>();
+    //         ReferenceConfigCache cache = getReferenceConfigCache(clz, mKey, url, referenceConfig);
+    //         o = cache.get(referenceConfig);
+    //         Map<String, ReferenceConfig<?>> m = new HashMap<>();
+    //         m.put(mKey, referenceConfig);
+    //         DUBBO_URL_INTERFACE.put(interfaceName, m);
+    //     } else {
+    //         if (null != (referenceConfig = map.get(mKey))) {
+    //             ReferenceConfigCache cache = ReferenceConfigCache.getCache(ReferenceConfigCache.DEFAULT_NAME, KEY_GENERATOR);
+    //             o = cache.get(referenceConfig);
+    //         } else {
+    //             if (null != (url = getUrlByRemoteAddressAndInterFaceName(remoteAddress, interfaceName))) {
+    //                 ReferenceConfig<T> reference = new ReferenceConfig<>();
+    //                 ReferenceConfigCache cache = getReferenceConfigCache(clz, mKey, url, reference);
+    //                 o = cache.get(reference);
+    //                 map.put(mKey, reference);
+    //             }
+    //         }
+    //     }
+    //
+    //     return (T) o;
+    // }
 
-        return (T) o;
-    }
-
-    private static ReferenceConfigCache getReferenceConfigCache(Class<?> clz, String mKey, URL url,
-                                                                ReferenceConfig<?> reference) {
-        reference.setInterface(clz);
-        reference.setUrl(url.toFullString());
-        reference.setId(mKey);
-        reference.setParameters(url.getParameters());
-        return ReferenceConfigCache.getCache(ReferenceConfigCache.DEFAULT_NAME, KEY_GENERATOR);
-    }
+    // private static ReferenceConfigCache getReferenceConfigCache(Class<?> clz, String mKey, URL url,
+    //                                                             ReferenceConfig<?> reference) {
+    //     reference.setInterface(clz);
+    //     reference.setUrl(url.toFullString());
+    //     reference.setId(mKey);
+    //     reference.setParameters(url.getParameters());
+    //     return ReferenceConfigCache.getCache(ReferenceConfigCache.DEFAULT_NAME, KEY_GENERATOR);
+    // }
 
     /**
      * 根据 远程地址和接口获取URL
@@ -282,8 +284,9 @@ public class DoubleExpand {
                 Map.Entry<String, ReferenceConfig<?>> next = iterator.next();
                 if (!mKey.contains(next.getKey())) {
                     logger.error("** 释放实例:{} *** ", next.getKey());
-                    ReferenceConfigCache cache = ReferenceConfigCache.getCache();
-                    cache.destroy(next.getValue());
+                    // Dubbo 3.3 已更改 ReferenceConfigCache API，暂时注释掉
+                    // ReferenceConfigCache cache = ReferenceConfigCache.getCache();
+                    // cache.destroy(next.getValue());
                     iterator.remove();
                 }
             }

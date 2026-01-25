@@ -1,6 +1,5 @@
 package com.example.demo.thread;
 
-import org.junit.Test;
 
 /**
  * <pre>
@@ -14,7 +13,6 @@ public class Base {
 
     Object lock = new Object();
 
-    @Test
     public void interruptTest() {
         Thread t = new Thread(() -> {
             boolean b = true;
@@ -45,7 +43,6 @@ public class Base {
         }
     }
 
-    @Test
     public void synchronizedTest() {
         SynchronizedModel m = new SynchronizedModel();
         SynchronizedModel m1 = new SynchronizedModel();

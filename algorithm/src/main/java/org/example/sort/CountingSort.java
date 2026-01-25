@@ -1,6 +1,5 @@
 package org.example.sort;
 
-import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,7 +19,6 @@ public class CountingSort {
     private final int[] args = {2, 5, 3, 0, 2, 3, 0, 3};
 
 
-    @Test
     public void sort() {
         int max = args[0];
         int length = args.length;

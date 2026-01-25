@@ -1,13 +1,11 @@
 package com.leet.code.com.leet.easy;
 
-import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class MajorityElement {
 
-    @Test
     public void run() {
         int[] nums = new int[] {6, 5, 5};
         System.err.println(majorityElementV2(nums));

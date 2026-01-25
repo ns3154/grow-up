@@ -1,14 +1,12 @@
 package org.example.linked;
 
 import org.example.algorithm.leecode.model.ListNode;
-import org.junit.jupiter.api.Test;
 
 public class MiddleNode {
 
 
 
 
-    @Test
     public void test () {
         ListNode node = new ListNode(1);
         ListNode node1 = new ListNode(2);

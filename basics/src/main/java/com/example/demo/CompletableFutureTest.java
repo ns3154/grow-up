@@ -2,7 +2,6 @@ package com.example.demo;
 
 import com.google.common.base.Joiner;
 import org.apache.commons.lang3.concurrent.BasicThreadFactory;
-import org.junit.Test;
 
 import java.util.Random;
 import java.util.concurrent.*;
@@ -32,7 +31,6 @@ public class CompletableFutureTest {
      * whenCompleteAsync：是执行把 whenCompleteAsync 这个任务继续提交给线程池来进行执行。
      * @throws InterruptedException
      */
-    @Test
     public void whenCompleteVoidTest() throws InterruptedException {
         CompletableFuture<Void> future = CompletableFuture.runAsync(() -> {
             try {
@@ -75,7 +73,6 @@ public class CompletableFutureTest {
     }
 
 
-    @Test
     public void whenCompleteReturnTest() throws InterruptedException {
         CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> {
             try {
@@ -99,7 +96,6 @@ public class CompletableFutureTest {
      * @throws ExecutionException
      * @throws InterruptedException
      */
-    @Test
     public void thenApplyTest() throws ExecutionException, InterruptedException {
         CompletableFuture<Long> future = CompletableFuture.supplyAsync(() -> {
             long result = new Random().nextInt(100);
@@ -128,7 +124,6 @@ public class CompletableFutureTest {
      * @throws ExecutionException
      * @throws InterruptedException
      */
-    @Test
     public void handleTest() throws ExecutionException, InterruptedException {
         CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> {
             try {
@@ -155,7 +150,6 @@ public class CompletableFutureTest {
      * @throws ExecutionException
      * @throws InterruptedException
      */
-    @Test
     public void thenAcceptTest() throws ExecutionException, InterruptedException {
         CompletableFuture<Void> future = CompletableFuture
                 .supplyAsync(() -> new Random().nextInt(10))
@@ -176,7 +170,6 @@ public class CompletableFutureTest {
      * @throws ExecutionException
      * @throws InterruptedException
      */
-    @Test
     public void thenRunTest() throws ExecutionException, InterruptedException {
         CompletableFuture<Void> future = CompletableFuture
                 .supplyAsync(() -> new Random().nextInt(10))
@@ -192,7 +185,6 @@ public class CompletableFutureTest {
      * @throws ExecutionException
      * @throws InterruptedException
      */
-    @Test
     public void thenCombineTest() throws ExecutionException, InterruptedException {
         CompletableFuture<String> future1 = CompletableFuture.supplyAsync(() -> "hello");
         CompletableFuture<String> future2 = CompletableFuture.supplyAsync(() -> "hello");
@@ -204,7 +196,6 @@ public class CompletableFutureTest {
      * 当两个CompletionStage都执行完成后，把结果一块交给thenAcceptBoth来进行消耗
      * @throws InterruptedException
      */
-    @Test
     public void thenAcceptBothTest() throws InterruptedException {
         CompletableFuture<Integer> f1 = CompletableFuture.supplyAsync(() -> {
             int t = new Random().nextInt(3);
@@ -238,7 +229,6 @@ public class CompletableFutureTest {
      * @throws ExecutionException
      * @throws InterruptedException
      */
-    @Test
     public void applyToEitherTest() throws ExecutionException, InterruptedException {
         CompletableFuture<Integer> f1 = CompletableFuture.supplyAsync(new Supplier<Integer>() {
             @Override
@@ -282,7 +272,6 @@ public class CompletableFutureTest {
      * 两个CompletionStage，谁执行返回的结果快，
      * 我就用那个CompletionStage的结果进行下一步的消耗操作。
      */
-    @Test
     public void acceptEitherTest() {
         CompletableFuture<Integer> f1 = CompletableFuture.supplyAsync(() -> {
             int t = new Random().nextInt(3);
@@ -311,7 +300,6 @@ public class CompletableFutureTest {
     /**
      * 两个CompletionStage，任何一个完成了都会执行下一步的操作（Runnable）
      */
-    @Test
     public void runAfterEitherTest() {
         CompletableFuture<Integer> f1 = CompletableFuture.supplyAsync(() -> {
             int t = new Random().nextInt(3);
@@ -341,7 +329,6 @@ public class CompletableFutureTest {
      * 两个CompletionStage，都完成了计算才会执行下一步的操作（Runnable）
      * @throws InterruptedException
      */
-    @Test
     public void runAfterBothTest() throws InterruptedException {
         CompletableFuture<Integer> f1 = CompletableFuture.supplyAsync(() -> {
             int t = new Random().nextInt(3);
@@ -374,7 +361,6 @@ public class CompletableFutureTest {
      * @throws ExecutionException
      * @throws InterruptedException
      */
-    @Test
     public void thenComposeTest() throws ExecutionException, InterruptedException {
         CompletableFuture<Integer> f = CompletableFuture.supplyAsync(new Supplier<Integer>() {
             @Override
@@ -391,7 +377,6 @@ public class CompletableFutureTest {
         System.out.println("thenCompose result : "+f.get());
     }
 
-    @Test
     public void completeTest() throws ExecutionException, InterruptedException {
         CompletableFuture<Long> future = CompletableFuture.supplyAsync(new Supplier<Long>() {
             @Override

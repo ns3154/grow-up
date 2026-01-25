@@ -1,10 +1,8 @@
 package com.leet.code.com.leet.easy;
 
-import org.junit.jupiter.api.Test;
 
 public class MaxProfit {
 
-    @Test
     public void run () {
         int[] nums = new int[] {7,1,5,3,6,4};
         System.out.println(maxProfitV2(nums));

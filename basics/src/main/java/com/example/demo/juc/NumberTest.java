@@ -1,6 +1,5 @@
 package com.example.demo.juc;
 
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,7 +23,6 @@ public class NumberTest {
 
     ExecutorService executor = Executors.newFixedThreadPool(10);
 
-    @Test
     public void longTest() throws InterruptedException {
         LongAccumulator la = new LongAccumulator(Long::sum, 0);
         AtomicLong al = new AtomicLong(0);

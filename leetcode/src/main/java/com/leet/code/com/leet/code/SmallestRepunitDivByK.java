@@ -1,6 +1,5 @@
 package com.leet.code.com.leet.code;
 
-import org.junit.jupiter.api.Test;
 
 /**
  * <p>
@@ -21,7 +20,6 @@ import org.junit.jupiter.api.Test;
  **/
 public class SmallestRepunitDivByK {
 
-    @Test
     public void run () {
         int k = 23;
         int len = smallestRepunitDivByK(k);

@@ -1,6 +1,5 @@
 package com.example.demo.juc;
 
-import org.junit.Test;
 
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
@@ -21,7 +20,6 @@ public class ConditionTest {
 
     static Condition condition = lock.newCondition();
 
-    @Test
     public void simple() throws InterruptedException {
 
         new Thread(() -> {
@@ -86,7 +84,6 @@ public class ConditionTest {
         Thread.sleep(100000000L);
     }
 
-    @Test
     public void noLockError () {
 
         try {

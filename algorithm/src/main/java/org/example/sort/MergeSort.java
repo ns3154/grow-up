@@ -1,12 +1,11 @@
 package org.example.sort;
 
-import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
  * <pre>
- *   归并排序 --- 我的智商收到了极大地侮辱  一天没写出来
+ *   归并排序
  * </pre>
  * @author 杨帮东
  * @since 1.0
@@ -23,7 +22,6 @@ public class MergeSort {
     int changeCount = 0;
 
 
-    @Test
     public void mergeSort() {
         int[] tmp = new int[args.length];
         sort(args, tmp);
@@ -76,7 +74,6 @@ public class MergeSort {
 
     }
 
-    @Test
     public void merge1() {
         int[] tmp = new int[args.length];
         sort1(args, tmp);

@@ -1,6 +1,5 @@
 package com.example.demo.juc;
 
-import org.junit.Test;
 
 import java.util.Objects;
 import java.util.concurrent.locks.Condition;
@@ -23,7 +22,6 @@ public class Tsss {
 
     private volatile String s;
 
-    @Test
     public void print() {
         Thread a = new Thread(() ->  print("a"));
         Thread b = new Thread(() -> print("b"));

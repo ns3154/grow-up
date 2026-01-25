@@ -1,7 +1,6 @@
 package com.example.demo;
 
 import com.google.common.collect.Lists;
-import org.junit.Test;
 
 import java.nio.charset.StandardCharsets;
 import java.time.*;
@@ -26,7 +25,6 @@ public class JDK8_features {
     /**
      * 1.Lambda表达式
      */
-    @Test
     public void testLambda() {
         list.forEach(System.out::println);
         list.forEach(e -> System.out.println("方式二：" + e));
@@ -35,7 +33,6 @@ public class JDK8_features {
     /**
      * 2.Stream函数式操作流元素集合
      */
-    @Test
     public void testStream() {
         List<Integer> nums = Lists.newArrayList(1, 1, null, 2, 3, 4, null, 5, 6, 7, 8, 9, 10);
         System.out.println("求和：" + nums.stream()//转成Stream
@@ -53,7 +50,6 @@ public class JDK8_features {
      *  default 接口默认实现方法是为了让集合类默认实现这些函数式处理，而不用修改现有代码
      *  （List继承于Iterable<T>，接口默认方法不必须实现default forEach方法）
      */
-    @Test
     public void testDefaultFunctionInterface() {
         //可以直接使用接口名.静态方法来访问接口中的静态方法
         JDK8Interface1.staticMethod();
@@ -84,7 +80,6 @@ public class JDK8_features {
     /**
      * 4.方法引用,与Lambda表达式联合使用
      */
-    @Test
     public void testMethodReference() {
         //构造器引用。语法是Class::new，或者更一般的Class< T >::new，要求构造器方法是没有参数；
         final Car car = Car.create(Car::new);
@@ -123,7 +118,6 @@ public class JDK8_features {
      *
      * Java 8在编译器层做了优化，相同注解会以集合的方式保存，因此底层的原理并没有变化。
      */
-    @Test
     public void RepeatingAnnotations() {
         RepeatingAnnotations.main(null);
     }
@@ -133,7 +127,6 @@ public class JDK8_features {
      * 新增类型注解:ElementType.TYPE_USE 和ElementType.TYPE_PARAMETER（在Target上）
      *
      */
-    @Test
     public void ElementType() {
         Annotations.main(null);
     }
@@ -141,7 +134,6 @@ public class JDK8_features {
     /**
      * 7.最新的Date/Time API (JSR 310)
      */
-    @Test
     public void DateTime() {
         //1.Clock
         final Clock clock = Clock.systemUTC();
@@ -190,7 +182,6 @@ public class JDK8_features {
     /**
      * 8.新增base64加解密API
      */
-    @Test
     public void testBase64() {
         final String text = "就是要测试加解密！！abjdkhdkuasu!!@@@@";
         String encoded = Base64.getEncoder().encodeToString(text.getBytes(StandardCharsets.UTF_8));
@@ -203,7 +194,6 @@ public class JDK8_features {
     /**
      * 9.数组并行（parallel）操作
      */
-    @Test
     public void testParallel() {
         long[] arrayOfLong = new long[20000];
         //1.给数组随机赋值
@@ -221,7 +211,6 @@ public class JDK8_features {
     /**
      * 10.JVM的PermGen空间被移除：取代它的是Metaspace（JEP 122）元空间
      */
-    @Test
     public void testMetaspace() {
         //-XX:MetaspaceSize初始空间大小，达到该值就会触发垃圾收集进行类型卸载，同时GC会对该值进行调整
         //-XX:MaxMetaspaceSize最大空间，默认是没有限制

@@ -1,11 +1,9 @@
 package com.leet.code.com.leet.easy;
 
 import com.leet.code.com.leet.model.ListNode;
-import org.junit.jupiter.api.Test;
 
 public class DeleteDuplicates {
 
-    @Test
     public void run() {
 
     }

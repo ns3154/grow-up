@@ -1,6 +1,5 @@
 package org.example.sort;
 
-import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,7 +22,6 @@ public class ShellSort {
     int changeCount = 0;
 
     // 32 18
-    @Test
     public void sort() {
         // 4 2 1
         int length = args.length;

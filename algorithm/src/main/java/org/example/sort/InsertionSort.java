@@ -1,6 +1,5 @@
 package org.example.sort;
 
-import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,7 +22,6 @@ public class InsertionSort {
     int changeCount = 0;
 
     // 44 33
-    @Test
     public void sortFor() {
         int length = args.length;
         for (int i = 1; i < length; i++) {
@@ -49,7 +47,6 @@ public class InsertionSort {
         logger.error("交换次数:{}", changeCount);
     }
 
-    @Test
     public void sortWhile() {
         int length = args.length;
         for (int x = 1; x < length; x++) {
@@ -74,7 +71,6 @@ public class InsertionSort {
         logger.error("交换次数:{}", changeCount);
     }
 
-    @Test
     public void sort() {
 
         for (int i = 1; i < args.length; i++) {

@@ -1,7 +1,5 @@
 package com.example.concurrent.thread;
 
-import jdk.internal.dynalink.beans.StaticClass;
-import org.junit.jupiter.api.Test;
 
 import java.lang.ref.WeakReference;
 import java.util.Objects;
@@ -24,7 +22,6 @@ public class ThreadLocalTest {
 
 
 
-	@Test
 	public void test() throws InterruptedException {
 
 		new Thread(() -> {

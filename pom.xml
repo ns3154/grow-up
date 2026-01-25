@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.1.0</version> <!-- 更新Spring Boot版本 -->
+        <version>3.4.1</version> <!-- 更新到最新 Spring Boot 版本 -->
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>org.example</groupId>
@@ -14,7 +14,30 @@
     <packaging>pom</packaging>
     <description>Demo project for Spring Boot</description>
     <properties>
-        <java.version>8</java.version> <!-- 确保Java版本与Spring Boot 3.0兼容 -->
+        <java.version>21</java.version> <!-- 升级到 JDK 21 -->
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <!-- 通用依赖版本管理 -->
+        <guava.version>32.1.3-jre</guava.version>
+        <commons-lang3.version>3.14.0</commons-lang3.version>
+        <fastjson2.version>2.0.53</fastjson2.version>
+        <mysql.version>8.0.33</mysql.version>
+        <hutool.version>5.8.22</hutool.version>
+        <assertj.version>3.24.2</assertj.version>
+        <mybatis-plus.version>3.5.5</mybatis-plus.version>
+        <p6spy.version>3.9.1</p6spy.version>
+        <nacos.version>0.2.12</nacos.version>
+        <dubbo.version>3.3.0</dubbo.version>
+        <curator.version>5.6.0</curator.version>
+        <zookeeper.version>3.8.4</zookeeper.version>
+        <jedis.version>3.2.0</jedis.version>
+        <redisson.version>3.20.0</redisson.version>
+        <druid.version>1.2.16</druid.version>
+        <cglib.version>3.3.0</cglib.version>
+        <javassist.version>3.30.2-GA</javassist.version>
+        <jol.version>0.16</jol.version>
+        <jmh.version>1.36</jmh.version>
+        <aliyun-sdk.version>4.4.9</aliyun-sdk.version>
     </properties>
     <modules>
         <module>mvc</module>
@@ -45,11 +68,144 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-dependencies</artifactId>
-            <version>3.1.0</version> <!-- 确保版本与父项目的Spring Boot版本一致 -->
+            <version>3.4.1</version> <!-- 确保版本与父项目的Spring Boot版本一致 -->
             <type>pom</type>
             <scope>import</scope>
         </dependency>
-        <!-- 其他全局管理的依赖 -->
+
+        <!-- 通用依赖版本管理 -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba.fastjson2</groupId>
+            <artifactId>fastjson2</artifactId>
+            <version>${fastjson2.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson2.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>${hutool.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertj.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>${mybatis-plus.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>p6spy</groupId>
+            <artifactId>p6spy</artifactId>
+            <version>${p6spy.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba.boot</groupId>
+            <artifactId>nacos-config-spring-boot-starter</artifactId>
+            <version>${nacos.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo</artifactId>
+            <version>${dubbo.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo-spring-boot-starter</artifactId>
+            <version>${dubbo.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-recipes</artifactId>
+            <version>${curator.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.zookeeper</groupId>
+            <artifactId>zookeeper</artifactId>
+            <version>${zookeeper.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>${jedis.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson-spring-boot-starter</artifactId>
+            <version>${redisson.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+            <version>${druid.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>${cglib.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.javassist</groupId>
+            <artifactId>javassist</artifactId>
+            <version>${javassist.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.openjdk.jol</groupId>
+            <artifactId>jol-core</artifactId>
+            <version>${jol.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.openjdk.jmh</groupId>
+            <artifactId>jmh-core</artifactId>
+            <version>${jmh.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.aliyun</groupId>
+            <artifactId>aliyun-java-sdk-core</artifactId>
+            <version>${aliyun-sdk.version}</version>
+        </dependency>
+
     </dependencies>
 </dependencyManagement>
     <build>
@@ -62,10 +218,10 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
+                <version>3.12.1</version>
                 <configuration>
-                    <source>17</source>
-                    <target>17</target>
+                    <source>21</source>
+                    <target>21</target>
                 </configuration>
             </plugin>
         </plugins>

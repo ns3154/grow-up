@@ -1,10 +1,8 @@
 package com.leet.code.com.leet.easy;
 
-import org.junit.jupiter.api.Test;
 
 public class RemoveDuplicates {
 
-    @Test
     public void run() {
         int[] nums = {0,0,1,1,1,2,2,3,3,4};
 

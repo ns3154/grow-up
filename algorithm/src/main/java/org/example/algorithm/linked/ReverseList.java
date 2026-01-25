@@ -1,7 +1,6 @@
 package org.example.algorithm.linked;
 
 import org.example.algorithm.leecode.model.ListNode;
-import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
@@ -16,7 +15,6 @@ import java.util.List;
  **/
 public class ReverseList {
 	
-	@Test
 	public void test () {
 		ListNode node = ListNode.build(new int[] {1, 2, 3, 4, 5});
 		ListNode listNode = reverseList(node);

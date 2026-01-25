@@ -1,6 +1,5 @@
 package com.example.demo.juc;
 
-import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -89,7 +88,6 @@ public class CyclicBarrierTest {
         }
     }
 
-    @Test
     public void test() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
         latch.await();

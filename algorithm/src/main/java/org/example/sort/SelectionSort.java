@@ -1,6 +1,5 @@
 package org.example.sort;
 
-import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,7 +22,6 @@ public class SelectionSort {
     int changeCount = 0;
 
     //45 18
-    @Test
     public void sort() {
         for (int i = 0, size = args.length; i < size; i++) {
             loopCount++;

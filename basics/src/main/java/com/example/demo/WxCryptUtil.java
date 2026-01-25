@@ -1,7 +1,6 @@
 package com.example.demo;
 
 import org.apache.commons.codec.binary.Base64;
-import sun.misc.BASE64Decoder;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
@@ -46,10 +45,8 @@ public class WxCryptUtil {
             AlgorithmParameters params = AlgorithmParameters.getInstance("AES");
             params.init(new IvParameterSpec(Base64.decodeBase64(ivStr)));
             Cipher cipher = Cipher.getInstance("AES/CBC/NoPadding");
-            BASE64Decoder base64Decoder = new BASE64Decoder();
-            byte[] bytes = base64Decoder.decodeBuffer(sessionKey);
-            cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(bytes, "AES"), params);
-            return new String(decode(cipher.doFinal(base64Decoder.decodeBuffer(encryptedData))), CHARSET);
+            cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(Base64.decodeBase64(sessionKey), "AES"), params);
+            return new String(decode(cipher.doFinal(Base64.decodeBase64(encryptedData))), CHARSET);
         } catch (Exception e) {
             throw new RuntimeException("AES 解密失败", e);
         }

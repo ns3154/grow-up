@@ -1,7 +1,6 @@
 package com.leet.code.com.leet.code.tree;
 
 import com.leet.code.com.leet.model.TreeNode;
-import org.junit.jupiter.api.Test;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -18,7 +17,6 @@ import java.util.Stack;
  **/
 public class MinDepth {
 
-    @Test
     public void run () {
         TreeNode root = TreeNode.build();
 

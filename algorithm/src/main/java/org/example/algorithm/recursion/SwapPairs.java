@@ -1,7 +1,6 @@
 package org.example.algorithm.recursion;
 
 import org.example.algorithm.leecode.model.ListNode;
-import org.junit.jupiter.api.Test;
 
 /**
  * <pre>
@@ -14,7 +13,6 @@ import org.junit.jupiter.api.Test;
  **/
 public class SwapPairs {
 	
-	@Test
 	public void test() {
 		ListNode listNode = swapPairs(ListNode.build(new int[]{1, 2, 3, 4, 5}));
 		listNode.print();

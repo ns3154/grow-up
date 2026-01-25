@@ -1,6 +1,5 @@
 package com.example.mybatis;
 
-import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,7 +35,6 @@ public class ConnectionTest {
     }
 
 
-    @Test
     public void query() throws SQLException {
         String sql = "select * from tb_test";
         Connection connection = getConnection();

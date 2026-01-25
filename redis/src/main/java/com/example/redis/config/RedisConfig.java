@@ -3,39 +3,18 @@ package com.example.redis.config;
 import com.google.common.collect.Sets;
 import org.redisson.api.HostNatMapper;
 import org.redisson.config.ReadMode;
-import org.redisson.connection.balancer.LoadBalancer;
 import org.redisson.config.SubscriptionMode;
-import com.google.common.collect.Maps;
-import org.redisson.api.NatMapper;
-import org.redisson.config.SslProvider;
-
-import java.net.URL;
-
-import io.netty.channel.EventLoopGroup;
-import org.redisson.client.codec.Codec;
 import org.redisson.config.*;
-import org.redisson.client.NettyHook;
-
-import java.util.ArrayList;
-import java.util.concurrent.ExecutorService;
-
-import org.redisson.connection.AddressResolverGroupFactory;
-
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
 import org.redisson.connection.balancer.RoundRobinLoadBalancer;
-import org.springframework.beans.factory.annotation.Configurable;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.TransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;

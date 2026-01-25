@@ -2,7 +2,6 @@ package org.example.linked;
 
 import org.assertj.core.data.Index;
 import org.example.algorithm.leecode.model.ListNode;
-import org.junit.jupiter.api.Test;
 
 /**
  * https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/
@@ -12,7 +11,6 @@ import org.junit.jupiter.api.Test;
  */
 public class RemoveNthFromEnd {
 
-    @Test
     public void test () {
         ListNode node = ListNode.buildDefault();
         node.print();

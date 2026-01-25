@@ -4,7 +4,6 @@ import com.alipay.easysdk.factory.Factory;
 import com.alipay.easysdk.kernel.Config;
 import com.alipay.easysdk.payment.common.models.AlipayTradeQueryResponse;
 import com.alipay.easysdk.payment.common.models.AlipayTradeRefundResponse;
-import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -51,7 +50,6 @@ public class AliPay {
 
     private final static String PATH = "C:\\Users\\Ns\\Desktop\\alipay\\";
 
-    @Test
     public void t() throws Exception {
 
         Factory.setOptions(getOptions());

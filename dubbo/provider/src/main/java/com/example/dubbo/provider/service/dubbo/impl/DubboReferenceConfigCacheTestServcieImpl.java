@@ -6,7 +6,7 @@ import com.example.common.model.ModelMessage;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.apache.dubbo.config.spring.ServiceBean;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 /**
  * <pre>

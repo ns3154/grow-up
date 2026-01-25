@@ -1,6 +1,5 @@
 package org.example.sort;
 
-import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,7 +19,6 @@ public class RadixSort {
 
     private final int bucket_size = 10;
 
-    @Test
     public void sort() {
         int[] array = args;
         logger.error("原数组:{}", array);
@@ -96,7 +94,6 @@ public class RadixSort {
         return index;
     }
 
-    @Test
     public void text() {
         System.out.println(getBucketIndex(12345, 1));
         System.out.println(getBucketIndex(12345, 2));

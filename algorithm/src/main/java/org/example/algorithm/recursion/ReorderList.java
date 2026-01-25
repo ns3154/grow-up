@@ -1,7 +1,6 @@
 package org.example.algorithm.recursion;
 
 import org.example.algorithm.leecode.model.ListNode;
-import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +16,6 @@ import java.util.List;
  **/
 public class ReorderList {
 
-    @Test
     public void test () {
         ListNode build = ListNode.build(new int[]{1, 2, 3, 4, 5, 6, 7});
         build.print();

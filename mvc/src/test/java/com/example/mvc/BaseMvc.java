@@ -9,7 +9,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.*;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 @SpringBootTest(properties = "my.property=value")
 @TestPropertySource(properties = {

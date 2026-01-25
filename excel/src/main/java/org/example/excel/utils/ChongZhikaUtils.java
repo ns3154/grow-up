@@ -1,7 +1,6 @@
 package org.example.excel.utils;
 
 import org.example.excel.model.ChongZhiKaModel;
-import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -57,7 +56,6 @@ public class ChongZhikaUtils {
 
     static String outPath = prePath + EXCEL_NAME;
 
-    @Test
     public void chognzhika() throws IOException {
         Date date = new Date();
         SimpleDateFormat yyyyMM = new SimpleDateFormat("yyyyMM");

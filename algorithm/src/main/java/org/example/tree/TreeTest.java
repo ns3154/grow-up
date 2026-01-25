@@ -1,6 +1,5 @@
 package org.example.tree;
 
-import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;
 import java.util.Random;
@@ -15,7 +14,6 @@ import java.util.Random;
  **/
 public class TreeTest {
 
-    @Test
     public void BinarySearchTreeTest() {
         BinarySearchTree tree = new BinarySearchTree(500);
         Random random = new Random();

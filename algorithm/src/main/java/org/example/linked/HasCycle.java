@@ -1,7 +1,6 @@
 package org.example.linked;
 
 import org.example.algorithm.leecode.model.ListNode;
-import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
 
@@ -14,7 +13,6 @@ import java.util.Optional;
 public class HasCycle {
 
 
-    @Test
     public void test () {
         ListNode node = new ListNode(3);
         ListNode node1 = new ListNode(2);

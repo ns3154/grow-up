@@ -1,6 +1,5 @@
 package com.example.demo;
 
-import org.junit.jupiter.api.Test;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -30,7 +29,6 @@ public class Atest {
 
     private boolean b = true;
 
-    @Test
     public void t1() {
         ThreadLocal<String> t1 = new ThreadLocal<>();
         ThreadLocal<String> t2 = new ThreadLocal<>();

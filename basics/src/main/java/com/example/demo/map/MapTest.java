@@ -1,6 +1,5 @@
 package com.example.demo.map;
 
-import org.junit.Test;
 
 import java.util.Comparator;
 import java.util.HashMap;
@@ -19,7 +18,6 @@ import java.util.function.BiFunction;
  **/
 public class MapTest {
 
-    @Test
     public void mapTest() {
         Map<String, String> map = new HashMap<>();
         map.put("aang", "ssds");
@@ -37,7 +35,6 @@ public class MapTest {
         map.entrySet().stream().sorted(Map.Entry.comparingByKey(Comparator.reverseOrder())).forEachOrdered(System.out::println);
     }
 
-    @Test
     public void merge() {
         Map<String, String> one = new HashMap<>();
         one.put("a", "1");
@@ -68,7 +65,6 @@ public class MapTest {
     }
 
 
-    @Test
     public void coc() {
         ConcurrentHashMap<String, Long> chm = new ConcurrentHashMap<>();
 

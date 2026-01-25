@@ -1,7 +1,6 @@
 package org.example.sort;
 
 import com.google.common.collect.PeekingIterator;
-import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,7 +24,6 @@ public class QuickSort {
 
     AtomicInteger changeCount = new AtomicInteger(0);
 
-    @Test
     public void sort() {
         int length = args.length;
         AtomicInteger counts = new AtomicInteger(0);
@@ -78,7 +76,6 @@ public class QuickSort {
         return start;
     }
 
-    @Test
     public void sort1() {
         quickSort1(args, 0, args.length - 1);
         logger.info("sort:{}", args);

@@ -1,6 +1,5 @@
 package com.example.demo.atomic;
 
-import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.LongAdder;
@@ -15,7 +14,6 @@ import java.util.concurrent.atomic.LongAdder;
  **/
 public class LongTest {
 
-    @Test
     public void test () {
         AtomicLong al = new AtomicLong(1);
         LongAdder la = new LongAdder();

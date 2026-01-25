@@ -1,10 +1,8 @@
 package com.leet.code.com.leet.easy;
 
-import org.junit.jupiter.api.Test;
 
 public class Merge {
 
-    @Test
     public void run() {
         int[] nums1 = new int[] {0};
         int m = 0;

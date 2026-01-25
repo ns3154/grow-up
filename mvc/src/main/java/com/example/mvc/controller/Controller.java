@@ -4,14 +4,14 @@ import com.alibaba.fastjson.JSON;
 import com.example.mvc.config.MapConfiguration;
 import com.example.mvc.config.TrackUtils;
 import com.example.mvc.model.UserDTO;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -9,7 +9,6 @@ import com.aliyuncs.http.HttpClientConfig;
 import com.aliyuncs.http.MethodType;
 import com.aliyuncs.http.ProtocolType;
 import com.aliyuncs.profile.DefaultProfile;
-import org.junit.Test;
 
 
 /**
@@ -52,7 +51,6 @@ public class AliyunSDKTest {
     }
 
 
-    @Test
     public void test() {
         for (int i = 0;i < 10;i++) {
             System.out.println(JSON.toJSONString(response()));

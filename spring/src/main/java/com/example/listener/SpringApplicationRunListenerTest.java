@@ -45,18 +45,8 @@ public class SpringApplicationRunListenerTest implements SpringApplicationRunLis
 	}
 
 	@Override
-	public void starting() {
-		logger.error("****** starting **************");
-	}
-
-	@Override
 	public void environmentPrepared(ConfigurableBootstrapContext bootstrapContext, ConfigurableEnvironment environment) {
-		logger.error("****** environmentPrepared **************");
-	}
-
-	@Override
-	public void environmentPrepared(ConfigurableEnvironment environment) {
-		logger.error("****** environmentPrepared:{} **************", environment.toString());
+		logger.error("****** environmentPrepared:{}, **************", environment.toString());
 	}
 
 	@Override
@@ -70,17 +60,17 @@ public class SpringApplicationRunListenerTest implements SpringApplicationRunLis
 	}
 
 	@Override
-	public void started(ConfigurableApplicationContext context) {
-		logger.error("****** started:{} **************", context.toString());
+	public void started(ConfigurableApplicationContext context, java.time.Duration timeTaken) {
+		logger.error("****** started:{}, timeTaken:{} **************", context.toString(), timeTaken.toMillis());
 	}
 
 	@Override
-	public void running(ConfigurableApplicationContext context) {
-		logger.error("****** running:{} **************", context.toString());
+	public void ready(ConfigurableApplicationContext context, java.time.Duration timeTaken) {
+		logger.error("****** ready:{}, timeTaken:{} **************", context.toString(), timeTaken.toMillis());
 	}
 
 	@Override
 	public void failed(ConfigurableApplicationContext context, Throwable exception) {
-		logger.error("****** failed:{} **************", context.toString());
+		logger.error("****** failed:{}, exception:{} **************", context.toString(), exception.getMessage());
 	}
 }

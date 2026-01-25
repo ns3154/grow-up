@@ -7,8 +7,6 @@ import java.util.List;
 import java.util.Set;
 
 import com.leet.code.com.leet.model.ListNode;
-import org.apache.tomcat.jni.User;
-import org.junit.jupiter.api.Test;
 
 /**
  * <p>
@@ -24,7 +22,6 @@ public class GetRow {
 
 
 
-    @Test
     public void run () {
         getRow(1);
     }

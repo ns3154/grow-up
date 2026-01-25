@@ -1,6 +1,5 @@
 package com.example.demo.date;
 
-import org.junit.Test;
 
 import java.time.*;
 import java.util.Date;
@@ -16,7 +15,6 @@ import java.util.Date;
 public class DateTest {
 
 
-    @Test
     public void test() {
         LocalDate date = LocalDate.now(ZoneId.systemDefault());
         System.out.println(date.getYear());
@@ -32,13 +30,11 @@ public class DateTest {
         System.out.println(l * 24 * 60 * 60);
     }
 
-    @Test
     public void period() {
         Period between = Period.between(LocalDate.of(2020, 8, 30), LocalDate.of(2020, 8, 31));
         System.out.println(between.getDays());
     }
 
-    @Test
     public void convert() {
         Date date = new Date();
         LocalDateTime localDateTime = LocalDateTime.ofInstant(date.toInstant(), ZoneId.systemDefault());

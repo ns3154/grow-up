@@ -1,6 +1,5 @@
 package org.example.leetcode;
 
-import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 
@@ -14,7 +13,6 @@ import java.util.HashMap;
 public class NumSplits {
 
 
-    @Test
     public void test() {
         String str = "acaba";
         System.out.println(numSplitsV1(str));

@@ -1,6 +1,5 @@
 package org.example.leetcode.lcp;
 
-import org.junit.jupiter.api.Test;
 
 /**
  * https://leetcode-cn.com/problems/ccw6C7/
@@ -11,7 +10,6 @@ import org.junit.jupiter.api.Test;
  */
 public class PaintingPlan {
 
-    @Test
     public void paintingPlan() {
 //        System.out.println("n = 2, k = 2, 结果应为: 4, 程序输出: " + paintingPlan(2, 2));
 //        System.out.println("n = 2, k = 1, 结果应为: 0, 程序输出:" + paintingPlan(2, 1));

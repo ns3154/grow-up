@@ -1,10 +1,8 @@
 package com.leet.code.com.leet.easy;
 
-import org.junit.jupiter.api.Test;
 
 public class ClimbStairs {
 
-    @Test
     public void run () {
         System.out.println(climbStairs(4));
     }

@@ -1,6 +1,5 @@
 package org.example.leetcode;
 
-import org.junit.jupiter.api.Test;
 import java.util.*;
 
 /**
@@ -13,7 +12,6 @@ public class CombinationSum {
 
     int count = 0;
 
-    @Test
     public void test() {
         int[] candidates = {2, 3, 6, 7};
         int target = 7;

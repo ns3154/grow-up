@@ -1,6 +1,5 @@
 package com.example.demo.jvm;
 
-import org.junit.jupiter.api.Test;
 
 public class Stack {
 
@@ -14,7 +13,6 @@ public class Stack {
     }
 
 
-    @Test
     public void test() {
         Integer a = new Integer(2);
         param(a);

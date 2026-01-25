@@ -4,7 +4,7 @@ import org.redisson.api.RedissonClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 /**
  * <pre>

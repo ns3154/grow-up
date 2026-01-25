@@ -1,10 +1,8 @@
 package com.leet.code.com.leet.easy;
 
-import org.junit.jupiter.api.Test;
 
 public class RemoveElement {
 
-    @Test
     public void run () {
         int[] nums = new int[] {3, 3};
         int value = 5;

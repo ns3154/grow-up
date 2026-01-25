@@ -1,7 +1,6 @@
 package org.example.leetcode;
 
 
-import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -23,7 +22,6 @@ import java.util.Map;
  **/
 public class twoSum {
 
-    @Test
     public void test() {
 		int[] nums = {3,2,4};
 		int target = 6;

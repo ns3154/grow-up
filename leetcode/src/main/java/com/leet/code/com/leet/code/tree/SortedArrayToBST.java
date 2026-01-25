@@ -1,7 +1,6 @@
 package com.leet.code.com.leet.code.tree;
 
 import com.leet.code.com.leet.model.TreeNode;
-import org.junit.jupiter.api.Test;
 
 /**
  * <p>
@@ -14,7 +13,6 @@ import org.junit.jupiter.api.Test;
  **/
 public class SortedArrayToBST {
 
-    @Test
     public void run() {
         int[] numbs = new int[] {-10,-3,0,5,9};
         TreeNode treeNode = sortedArrayToBST(numbs);

@@ -1,8 +1,5 @@
 package com.example.inject;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.GenericApplicationContext;
-import org.springframework.jca.context.ResourceAdapterApplicationContext;
 
 /**
  * <pre>

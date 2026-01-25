@@ -1,10 +1,8 @@
 package com.leet.code.com.leet.easy;
 
-import org.junit.jupiter.api.Test;
 
 public class IsPalindrome {
 
-    @Test
     public void run() {
         String s = "0P";
         System.err.println(isPalindrome(s));

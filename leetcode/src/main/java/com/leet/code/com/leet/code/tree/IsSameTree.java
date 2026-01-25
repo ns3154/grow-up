@@ -1,9 +1,7 @@
 package com.leet.code.com.leet.code.tree;
 
 import com.leet.code.com.leet.model.TreeNode;
-import org.junit.jupiter.api.Test;
 
-import javax.management.remote.rmi._RMIConnection_Stub;
 import java.util.Deque;
 import java.util.LinkedList;
 
@@ -19,7 +17,6 @@ import java.util.LinkedList;
 public class IsSameTree {
 
 
-    @Test
     public void run () {
         TreeNode p = new TreeNode(1);
         p.left = new TreeNode(2);

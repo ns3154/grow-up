@@ -14,7 +14,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
  **/
 public class Test {
 
-    @org.junit.jupiter.api.Test
     public void tet () {
         int a = 1; // 月卡
         int b = 2; // 骑行卡
@@ -35,7 +34,6 @@ public class Test {
 
     }
 
-	@org.junit.jupiter.api.Test
     public void arrayTest() {
         String[] s = new String[0];
         String[] strings = Arrays.copyOf(s, 2);
@@ -47,7 +45,6 @@ public class Test {
         }
     }
 
-	@org.junit.jupiter.api.Test
     public void CopyOnWriteArrayListTest() {
         CopyOnWriteArrayList<Integer> list = new CopyOnWriteArrayList<>();
         list.add(1);
@@ -55,7 +52,6 @@ public class Test {
         list.get(1);
     }
 
-	@org.junit.jupiter.api.Test
     public void concurrentHashMap() {
         ConcurrentHashMap<String, String> map = new ConcurrentHashMap<>(16);
         map.put("aa", "aa");
@@ -66,7 +62,6 @@ public class Test {
         map.isEmpty();
     }
 
-    @org.junit.jupiter.api.Test
     public void listSort() {
         ArrayList<SortTest> list = new ArrayList<>();
 	    list.size();

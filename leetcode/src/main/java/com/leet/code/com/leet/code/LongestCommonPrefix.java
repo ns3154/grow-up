@@ -1,6 +1,5 @@
 package com.leet.code.com.leet.code;
 
-import org.junit.jupiter.api.Test;
 
 /**
  * <p>
@@ -13,7 +12,6 @@ import org.junit.jupiter.api.Test;
  **/
 public class LongestCommonPrefix {
 
-    @Test
     public void run () {
         String[] a = new String[] {"flower","flow","flight"};
         System.out.println(longestCommonPrefix(a));

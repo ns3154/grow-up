@@ -1,10 +1,8 @@
 package com.leet.code.com.leet.easy;
 
-import org.junit.jupiter.api.Test;
 
 public class MinMaxDifference {
 
-    @Test
     public void run () {
 
         System.out.println(minMaxDifference(11891));

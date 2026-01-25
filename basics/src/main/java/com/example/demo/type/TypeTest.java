@@ -1,6 +1,5 @@
 package com.example.demo.type;
 
-import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,7 +15,6 @@ import java.util.List;
  **/
 public class TypeTest {
 
-    @Test
     public void extendsTest() {
         // 上界<? extends T>不能往里存，只能往外取
         List<? extends Father> list = extendsList();
@@ -35,7 +33,6 @@ public class TypeTest {
         return list;
     }
 
-    @Test
     public void superTest() {
         //super只能添加Father和Father的子类，不能添加Father的父类,读取出来的东西只能存放在Object类里
         List<? super Father> list = new ArrayList<>();

@@ -1,6 +1,5 @@
 package com.example.concurrent.pool;
 
-import org.junit.jupiter.api.Test;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -15,7 +14,6 @@ import java.util.concurrent.TimeUnit;
  **/
 public class ScheduledTest {
 
-    @Test
     public void test() throws InterruptedException {
         ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(3);
         scheduledExecutorService.scheduleAtFixedRate(new MyThread("scheduleAtFixedRate"), 5, 1, TimeUnit.SECONDS);

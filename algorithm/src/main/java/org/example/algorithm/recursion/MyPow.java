@@ -1,6 +1,5 @@
 package org.example.algorithm.recursion;
 
-import org.junit.jupiter.api.Test;
 
 /**
  * <pre>
@@ -12,7 +11,6 @@ import org.junit.jupiter.api.Test;
  **/
 public class MyPow {
 	
-	@Test
 	public void test () {
 		System.out.println(myPow(2, -2147483648));
 		System.out.println(myPow1(2, -2147483648));

@@ -1,7 +1,6 @@
 package com.example.utils;
 
 import org.junit.Before;
-import org.junit.Test;
 import org.springframework.http.*;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -27,13 +26,11 @@ public class RestTemplateInterceptorTest {
         restTemplate.getInterceptors().add(new RestTemplateInterceptor());
     }
 
-    @Test
     public void urlParamAppend() {
         String u = url + "?id=323&nae=sdfs";
         String forObject = restTemplate.getForObject(u, String.class);
     }
 
-    @Test
     public void urlParamHttpEntity() {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.MULTIPART_FORM_DATA);
@@ -51,14 +48,12 @@ public class RestTemplateInterceptorTest {
         ResponseEntity<String> exchange = restTemplate.exchange(url, HttpMethod.POST, requestEntity, String.class);
     }
 
-    @Test
     public void urlRest() {
         String u = url + "/ssdfs/3232";
         String forObject = restTemplate.getForObject(u, String.class);
 
     }
 
-    @Test
     public void p() {
         String sss = "https://api.weixin.qq.com/wxa/getwxacodeunlimit/.*/.*/cannel";
         Pattern pattern = Pattern.compile(sss);

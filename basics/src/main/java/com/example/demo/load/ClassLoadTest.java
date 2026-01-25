@@ -1,7 +1,5 @@
 package com.example.demo.load;
 
-import org.junit.Test;
-import sun.reflect.Reflection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -20,7 +18,6 @@ public class ClassLoadTest {
     public static void main(String[] args) {
     }
 
-    @Test
     public void druidTest () throws ClassNotFoundException, SQLException {
         //Class.forName("com.mysql.jdbc.Driver");
         //2.连接到数据"库"上去

@@ -1,6 +1,5 @@
 package org.example.search;
 
-import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,7 +17,6 @@ public class BinarySearch {
 
     private final int[] array = {1,2,3,4,5,6,7,8,9,10};
 
-    @Test
     public void search() {
         int searchNum = 9;
         logger.error("待查找数组:{}, 目标数:{}", array, searchNum);
@@ -36,7 +34,6 @@ public class BinarySearch {
         logger.error("searchFirst_1下标:{}", p);
     }
 
-    @Test
     public void search1() {
         for (int i : array) {
             logger.info("目标数:{}, 索引下标为:{}, 数组:{}", i, searchLoop(array, 0, array.length, i), array);

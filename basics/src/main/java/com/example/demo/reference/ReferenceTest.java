@@ -1,6 +1,5 @@
 package com.example.demo.reference;
 
-import org.junit.Test;
 
 import java.lang.ref.WeakReference;
 import java.util.HashMap;
@@ -33,7 +32,6 @@ public class ReferenceTest {
      * 来源：简书
      * 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
      */
-    @Test
     public void weak () throws InterruptedException {
         // 1.如果弱引用的引用对象实在jvm缓存中或在常量池,那么弱引用的引用对象就不会被回收
         // 2.比如integer [-128, 127]是不会被回收的

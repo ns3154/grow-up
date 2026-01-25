@@ -1,7 +1,6 @@
 package com.example.concurrent.thread;
 
 
-import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.*;
 
@@ -27,7 +26,6 @@ public class ThreadTest {
      * @return void
      * @throws
      */
-    @Test
     public void test() throws ExecutionException, InterruptedException {
         // 实现 Runnable 接口
         Thread thread = new Thread(() -> System.out.println("runnable()"));
@@ -51,7 +49,6 @@ public class ThreadTest {
         }
     }
 
-    @Test
     public void executor() {
         Executor executor = Executors.newSingleThreadExecutor();
     }

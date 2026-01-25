@@ -1,7 +1,6 @@
 package com.example.demo.juc;
 
 import com.example.demo.Util;
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,7 +24,6 @@ public class LockTest {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
-    @Test
     public void lockTest() throws InterruptedException {
 
 	    ReentrantLock lock = new ReentrantLock();
@@ -79,7 +77,6 @@ public class LockTest {
         TimeUnit.SECONDS.sleep(100000);
     }
 
-	@Test
 	public void lockInterruptibly() {
 		ReentrantLock lock = new ReentrantLock();
 
@@ -157,7 +154,6 @@ public class LockTest {
 		}
 	}
 
-    @Test
     public void lockInterruptiblyTest() throws InterruptedException {
         Lock lock = new ReentrantLock();
 
@@ -206,7 +202,6 @@ public class LockTest {
         TimeUnit.SECONDS.sleep(100);
     }
 
-    @Test
     public void tryLockTest() throws InterruptedException {
         ReentrantLock lock = new ReentrantLock();
 
@@ -253,7 +248,6 @@ public class LockTest {
     }
 
 
-    @Test
     public void lockShared() throws InterruptedException {
         ReadWriteLock lock = new ReentrantReadWriteLock();
         Lock read = lock.readLock();

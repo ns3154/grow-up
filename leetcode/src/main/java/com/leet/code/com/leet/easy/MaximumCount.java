@@ -1,10 +1,8 @@
 package com.leet.code.com.leet.easy;
 
-import org.junit.jupiter.api.Test;
 
 public class MaximumCount {
 
-    @Test
     public void run() {
         int[] nums = new int[] {-2,-1,-1, 0, 0,1, 1,2,3};
         System.out.println(maximumCount(nums));

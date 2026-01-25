@@ -1,6 +1,5 @@
 package com.example.demo;
 
-import org.junit.Test;
 
 /**
  * <p>
@@ -13,7 +12,6 @@ import org.junit.Test;
  **/
 public class Slot {
 
-    @Test
     public void test () {
 
         long heap = Runtime.getRuntime().totalMemory() / 1024 / 1024;

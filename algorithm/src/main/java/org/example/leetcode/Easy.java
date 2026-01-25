@@ -1,6 +1,5 @@
 package org.example.leetcode;
 
-import org.junit.jupiter.api.Test;
 import org.yaml.snakeyaml.events.Event;
 
 import java.math.BigDecimal;
@@ -18,7 +17,6 @@ import java.util.function.BiFunction;
  **/
 public class Easy {
 
-    @Test
     public void fengzhi() {
         int[] a = {3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 7, 4};
         System.out.println(fengzhi(a, 0, a.length - 1));
@@ -28,7 +26,6 @@ public class Easy {
 
     }
 
-    @Test
     public void LCS() {
         String str1 = "1AB23456CD";
         String str2 = "1234567";
@@ -62,7 +59,6 @@ public class Easy {
 //		set.contains()
     }
 
-    @Test
     public void longestCommonSubsequence() {
         String text1 = "abcde";
         String text2 = "ace";
@@ -81,7 +77,6 @@ public class Easy {
         System.out.println(dp[text1.length()][text2.length()]);
     }
 
-    @Test
     public void LIS() {
         // write code here
         int[] arr = {2, 1, 5, 3, 6, 4, 8, 9, 2, 4, 5, 8};
@@ -112,7 +107,6 @@ public class Easy {
     }
 
 
-    @Test
     public void kaifang() {
         BigDecimal target = new BigDecimal(3);
         BigDecimal c = new BigDecimal("0.000001");
@@ -183,7 +177,6 @@ public class Easy {
         return nums[left];
     }
 
-    @Test
     public void mergeArray() {
         int[] n_n = {1, 2, 3, 0, 0, 0};
         int[] m_m = {};
@@ -214,7 +207,6 @@ public class Easy {
         System.out.println(n);
     }
 
-    @Test
     public void MySort() {
         int[] arr = new int[]{5, 2, 3, 1, 4};
         for (int i = 0, len = arr.length; i < len; i++) {
@@ -230,7 +222,6 @@ public class Easy {
         Arrays.stream(arr).forEach(i -> System.out.println(i + ","));
     }
 
-    @Test
     public void mergeSort() {
         int[] args = {8, 7, 5, 11, 4, 3, 2, 1, 0};
         mergeSort(args, 0, args.length - 1, new int[args.length]);
@@ -274,7 +265,6 @@ public class Easy {
     }
 
 
-    @Test
     public void quickSort() {
         int[] arr = {1, 3, 5, 2, 2};
         quickSort(0, arr.length - 1, arr);
@@ -308,7 +298,6 @@ public class Easy {
         quickSort(l + 1, right, arr);
     }
 
-    @Test
     public void kuohao() {
         String s = "{[}]";
         s = "(){}}{";
@@ -349,7 +338,6 @@ public class Easy {
 
     }
 
-    @Test
     public void lengthOfLongestSubstring() {
         String s = "pwwkew";
         char[] chars = s.toCharArray();
@@ -367,7 +355,6 @@ public class Easy {
         System.out.println(max);
     }
 
-    @Test
     public void lengthOfLongestSubstring1() {
         String s = "pwwkew";
         char[] chars = s.toCharArray();
@@ -382,7 +369,6 @@ public class Easy {
         System.out.println(max);
     }
 
-    @Test
     public void romanToInt() {
         String s = "MCMXCIV";
         int sum = 0;
@@ -400,7 +386,6 @@ public class Easy {
         System.out.println(sum);
     }
 
-    @Test
     public void longestCommonPrefix() {
         String[] strs = {"flower", "flow", "1flight"};
         String preStr = strs[0];
@@ -414,12 +399,10 @@ public class Easy {
         System.out.println(preStr);
     }
 
-    @Test
     public void myAtoi() {
 
     }
 
-    @Test
     public void maxArea() {
         int[] height = {4, 3, 2, 1, 4};
         int l = 0;
@@ -437,7 +420,6 @@ public class Easy {
         System.out.println(max);
     }
 
-    @Test
     public void threeSum() {
         // -4 -1 -1 0 1 2
         // -2 0 1 1 2

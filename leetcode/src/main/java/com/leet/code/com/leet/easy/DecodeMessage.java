@@ -2,11 +2,9 @@ package com.leet.code.com.leet.easy;
 
 import java.util.HashMap;
 import java.util.Map;
-import org.junit.jupiter.api.Test;
 
 public class DecodeMessage {
 
-    @Test
     public void run () {
         String key = "the quick brown fox jumps over the lazy dog";
         String message = "vkbs bs t suepuv";

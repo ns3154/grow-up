@@ -1,7 +1,6 @@
 package org.example.algorithm.linked;
 
 import org.example.algorithm.leecode.model.ListNode;
-import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +15,6 @@ import java.util.List;
  **/
 public class RemoveNthFromEnd {
 
-    @Test
     public void test () {
         ListNode listNode = ListNode.buildDefault();
         listNode.print();

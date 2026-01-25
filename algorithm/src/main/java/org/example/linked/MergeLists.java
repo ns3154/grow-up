@@ -1,13 +1,11 @@
 package org.example.linked;
 
 import org.example.algorithm.leecode.model.ListNode;
-import org.junit.jupiter.api.Test;
 
 public class MergeLists {
 
 
 
-    @Test
     public void test() {
         ListNode node = ListNode.buildDefault();
         ListNode node1 = ListNode.buildDefault();

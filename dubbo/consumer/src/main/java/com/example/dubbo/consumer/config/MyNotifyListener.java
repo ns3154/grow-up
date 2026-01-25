@@ -6,7 +6,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.concurrent.BasicThreadFactory;
 import org.apache.dubbo.common.URL;
 import org.apache.dubbo.registry.NotifyListener;
-import org.apache.dubbo.registry.dubbo.DubboRegistryFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -61,14 +60,15 @@ public class MyNotifyListener implements CommandLineRunner, NotifyListener {
             }
         }
         logger.error("**** proxyProtocol host:{} ****", host);
-        DubboRegistryFactory.getRegistries().iterator().next().subscribe(createUrl(host), this);
+        // Dubbo 3.3 已移除 DubboRegistryFactory，需要使用其他方式
+        // DubboRegistryFactory.getRegistries().iterator().next().subscribe(createUrl(host), this);
     }
 
-    private URL createUrl(String host) {
-        return new URL("proxyProtocol", host, 0, "",
-                "interface", DubboTestServiceApi.class.getName(), "group", "*", "version", "*",
-                "category", "providers",
-                "check", "false");
-    }
+    // private URL createUrl(String host) {
+    //     return new URL("proxyProtocol", host, 0, "",
+    //             "interface", DubboTestServiceApi.class.getName(), "group", "*", "version", "*",
+    //             "category", "providers",
+    //             "check", "false");
+    // }
 
 }

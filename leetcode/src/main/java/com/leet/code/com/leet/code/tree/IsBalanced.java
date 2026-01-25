@@ -1,7 +1,6 @@
 package com.leet.code.com.leet.code.tree;
 
 import com.leet.code.com.leet.model.TreeNode;
-import org.junit.jupiter.api.Test;
 
 /**
  * <p>
@@ -14,7 +13,6 @@ import org.junit.jupiter.api.Test;
  **/
 public class IsBalanced {
 
-    @Test
     public void run() {
         TreeNode node = new TreeNode(1);
         node.left = new TreeNode(2);

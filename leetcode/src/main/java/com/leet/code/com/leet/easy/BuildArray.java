@@ -1,7 +1,6 @@
 package com.leet.code.com.leet.easy;
 
 import java.util.Arrays;
-import org.junit.jupiter.api.Test;
 
 /**
  *
@@ -11,7 +10,6 @@ import org.junit.jupiter.api.Test;
  */
 public class BuildArray {
 
-    @Test
     public void run() {
         int[] nums = new int[] {0,2,1,5,3,4};
         Arrays.stream(buildArray(nums)).forEach(i -> System.out.print(i + ","));

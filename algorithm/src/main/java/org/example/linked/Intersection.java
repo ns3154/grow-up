@@ -1,13 +1,11 @@
 package org.example.linked;
 
 import org.example.algorithm.leecode.model.ListNode;
-import org.junit.jupiter.api.Test;
 
 public class Intersection {
 
 
 
-    @Test
     public void test () {
 
     }

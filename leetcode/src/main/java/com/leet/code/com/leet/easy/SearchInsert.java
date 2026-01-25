@@ -1,10 +1,8 @@
 package com.leet.code.com.leet.easy;
 
-import org.junit.jupiter.api.Test;
 
 public class SearchInsert {
 
-    @Test
     public void run() {
         int[] nums = new int[] {1,3,5,6};
         int target = 2;

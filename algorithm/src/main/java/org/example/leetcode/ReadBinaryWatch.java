@@ -1,6 +1,5 @@
 package org.example.leetcode;
 
-import org.junit.jupiter.api.Test;
 
 import java.util.*;
 
@@ -13,7 +12,6 @@ import java.util.*;
 public class ReadBinaryWatch {
 
 
-    @Test
     public void test() {
         List<String> strings = readBinaryWatchV1(3);
         strings.stream().forEach(System.out::println);

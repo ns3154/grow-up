@@ -9,7 +9,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.web.client.AsyncRestTemplate;
 import org.springframework.web.client.RestOperations;
 import org.springframework.web.client.RestTemplate;
 
@@ -43,16 +42,6 @@ public class RestTemplateConfig {
         return factory;
     }
 
-    @Bean
-    public AsyncRestTemplate asyncRestTemplate(ClientHttpRequestFactory factory) {
-        SimpleClientHttpRequestFactory simpleClientHttpRequestFactory = (SimpleClientHttpRequestFactory)factory;
-        //设置链接超时时间
-        simpleClientHttpRequestFactory.setConnectTimeout(3000);
-        //3000
-        simpleClientHttpRequestFactory.setReadTimeout(3000);
-        //设置异步任务（线程不会重用，每次调用时都会重新启动一个新的线程）
-        simpleClientHttpRequestFactory.setTaskExecutor(new SimpleAsyncTaskExecutor());
-        return new AsyncRestTemplate(simpleClientHttpRequestFactory);
-    }
+
 
 }

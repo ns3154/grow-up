@@ -1,6 +1,5 @@
 package com.example.demo.juc;
 
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,7 +18,6 @@ public class ExchangerTest {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
-    @Test
     public void test() throws InterruptedException {
         Exchanger<String> exchanger = new Exchanger<>();
         Test1 test1 = new Test1(exchanger, "test1");

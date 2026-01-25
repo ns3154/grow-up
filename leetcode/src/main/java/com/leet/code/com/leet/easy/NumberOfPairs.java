@@ -7,7 +7,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import org.junit.jupiter.api.Test;
 
 /**
  * <p>
@@ -20,7 +19,6 @@ import org.junit.jupiter.api.Test;
  **/
 public class NumberOfPairs {
 
-    @Test
     public void run () {
         int[] nums = {1,3,2,1,3,2,2};
         int[] ints = numberOfPairsV2(nums);

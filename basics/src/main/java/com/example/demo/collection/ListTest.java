@@ -1,6 +1,5 @@
 package com.example.demo.collection;
 
-import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -18,7 +17,6 @@ public class ListTest {
     private Integer z = 3;
 
 
-    @Test
     public void copyOnWriteList () {
         CopyOnWriteArrayList<Integer> list = new CopyOnWriteArrayList<>();
         list.add(1);
@@ -30,7 +28,6 @@ public class ListTest {
 
 
 
-    @Test
     public void remove() {
         List<String> list = new ArrayList<>();
         list.add("a");
@@ -46,7 +43,6 @@ public class ListTest {
         list.forEach(System.out::println);
     }
 
-    @Test
     public void replaceAll() {
         List<String> list = new ArrayList<>();
         list.add("a");

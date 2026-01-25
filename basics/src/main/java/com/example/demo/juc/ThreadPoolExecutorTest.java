@@ -3,7 +3,6 @@ package com.example.demo.juc;
 import com.google.common.base.Joiner;
 import org.apache.commons.lang3.concurrent.BasicThreadFactory;
 import org.jetbrains.annotations.NotNull;
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,7 +20,6 @@ public class ThreadPoolExecutorTest {
 
     private final static Logger logger = LoggerFactory.getLogger(ThreadPoolExecutorTest.class);
 
-    @Test
     public void test() throws ExecutionException, InterruptedException {
         ExecutorService executorService = Executors.newCachedThreadPool();
         ThreadPoolExecutor executor = new ThreadPoolExecutor(2, 5, 1000, TimeUnit.SECONDS,
@@ -112,7 +110,6 @@ public class ThreadPoolExecutorTest {
     }
 
 
-    @Test
     public void addWorkerNullRunnable () {
         ExecutorService executorService = Executors.newFixedThreadPool(10);
         executorService.execute(new Runnable() {
@@ -124,7 +121,6 @@ public class ThreadPoolExecutorTest {
         });
     }
 
-    @Test
     public void newFixedThreadPool () {
         ExecutorService executorService = Executors.newFixedThreadPool(1);
         executorService.execute(() -> System.out.println(1));
@@ -133,7 +129,6 @@ public class ThreadPoolExecutorTest {
         executorService.execute(() -> System.out.println(4));
     }
 
-    @Test
     public void newSingleThreadExecutor () {
         ExecutorService executorService = Executors.newSingleThreadExecutor(new BasicThreadFactory.Builder()
                 .namingPattern(Joiner.on("-")
@@ -145,7 +140,6 @@ public class ThreadPoolExecutorTest {
         executorService.execute(() -> System.out.println(4));
 
     }
-    @Test
     public void newCachedThreadPool () {
         ExecutorService executorService = Executors.newCachedThreadPool();
         executorService.execute(() -> System.out.println(1));
@@ -154,7 +148,6 @@ public class ThreadPoolExecutorTest {
         executorService.execute(() -> System.out.println(4));
     }
 
-    @Test
     public void newScheduledThreadPool () throws InterruptedException {
         ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
         scheduledExecutorService.schedule(() -> System.out.println(1), 10, TimeUnit.SECONDS);
@@ -165,7 +158,6 @@ public class ThreadPoolExecutorTest {
         Thread.sleep(10000L);
     }
 
-    @Test
     public void bit () {
         int COUNT_BITS = Integer.SIZE - 3;
         System.out.println(2 << COUNT_BITS | 0);

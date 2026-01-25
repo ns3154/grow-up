@@ -1,6 +1,5 @@
 package com.leet.code.com.leet.code;
 
-import org.junit.jupiter.api.Test;
 
 import java.util.*;
 
@@ -26,7 +25,6 @@ public class Ms {
     }
 
 
-    @Test
     public void run () {
         test(23);
     }

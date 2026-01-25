@@ -1,7 +1,6 @@
 package com.example.demo;
 
 import com.example.demo.extend.A;
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,7 +18,6 @@ public class interruptTest {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
-    @Test
     public void test() throws InterruptedException {
         Thread thread = new Thread(() -> {
             while (!Thread.currentThread().isInterrupted()) {

@@ -1,7 +1,6 @@
 package org.example.linked;
 
 import org.example.algorithm.leecode.model.ListNode;
-import org.junit.jupiter.api.Test;
 
 /**
  * 反转链表
@@ -12,7 +11,6 @@ import org.junit.jupiter.api.Test;
 public class ReverseList {
 
 
-    @Test
     public void test () {
         ListNode build = ListNode.build(new int[]{1, 2, 3, 4, 5, 6, 7});
         build.print();
@@ -83,7 +81,6 @@ public class ReverseList {
     }
 
 
-    @Test
     public void testKGroup () {
         ListNode build = ListNode.build(new int[]{1, 2, 3, 4, 5});
         build.print();

@@ -1,6 +1,6 @@
 package com.example.mvc.config.bean;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Component;
 
 /**

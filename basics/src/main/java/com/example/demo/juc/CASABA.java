@@ -1,6 +1,5 @@
 package com.example.demo.juc;
 
-import org.junit.Test;
 
 import java.util.concurrent.atomic.AtomicStampedReference;
 
@@ -16,7 +15,6 @@ import java.util.concurrent.atomic.AtomicStampedReference;
 public class CASABA {
 
 
-    @Test
     public void atomicStampedReferenceTest () {
 
         Aba a1 = new Aba("张三", 1);

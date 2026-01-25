@@ -1,6 +1,5 @@
 package org.example.sort;
 
-import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -54,7 +53,6 @@ public class BubbleSort {
      * @return void
      */
     // 45 66
-    @Test
     public void maoPao() {
         int i1 = manYiYouXuDu();
         int i2 = youxudu();

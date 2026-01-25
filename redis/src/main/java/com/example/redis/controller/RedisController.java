@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import redis.clients.jedis.Protocol;
 import redis.clients.jedis.util.SafeEncoder;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 

@@ -1,7 +1,6 @@
 package org.example.algorithm.linked;
 
 import org.example.algorithm.leecode.model.Node;
-import org.junit.jupiter.api.Test;
 
 /**
  * <p>
@@ -13,7 +12,6 @@ import org.junit.jupiter.api.Test;
  **/
 public class Insert {
 
-    @Test
     public void test () {
         Node node = Node.build(new int[] {1,3,5});
         Node insert = insert(node, 2);

@@ -1,6 +1,5 @@
 package com.example.demo.pool;
 
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,7 +28,6 @@ public class ForkJion {
     }, false);
 
 
-    @Test
     public void test() {
         long[] numbers = LongStream.rangeClosed(1, 10000000).toArray();
         Long invoke = forkJoinPool.invoke(new SumTask(numbers, 0, numbers.length - 1));

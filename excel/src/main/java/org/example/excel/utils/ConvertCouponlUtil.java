@@ -8,7 +8,6 @@ import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.VerticalAlignment;
 import org.example.excel.model.RenRen;
-import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -48,7 +47,6 @@ public class ConvertCouponlUtil {
     // TODO 优惠券批次号 必填项
     private static final  String PACKAGE_ID = "4";
 
-    @Test
     public void create() {
         WriteCellStyle headWriteCellStyle = new WriteCellStyle();
         headWriteCellStyle.setFillForegroundColor(IndexedColors.WHITE.getIndex());

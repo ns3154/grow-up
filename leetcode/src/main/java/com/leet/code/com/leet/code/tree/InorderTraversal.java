@@ -1,7 +1,6 @@
 package com.leet.code.com.leet.code.tree;
 
 import com.leet.code.com.leet.model.TreeNode;
-import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.WildcardType;
 import java.util.*;
@@ -19,7 +18,6 @@ public class InorderTraversal {
 
 
 
-    @Test
     public void run () {
         TreeNode node = new TreeNode(1);
         node.left = new TreeNode(2);
