@@ -68,7 +68,16 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-dependencies</artifactId>
-            <version>3.4.1</version> <!-- 确保版本与父项目的Spring Boot版本一致 -->
+            <version>3.4.1</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+
+        <!-- 强制指定 Spring Framework 版本，避免被 Dubbo BOM 覆盖 -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-framework-bom</artifactId>
+            <version>6.2.1</version>
             <type>pom</type>
             <scope>import</scope>
         </dependency>
@@ -149,6 +158,12 @@
         <dependency>
             <groupId>org.apache.curator</groupId>
             <artifactId>curator-recipes</artifactId>
+            <version>${curator.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-x-discovery</artifactId>
             <version>${curator.version}</version>
         </dependency>
 

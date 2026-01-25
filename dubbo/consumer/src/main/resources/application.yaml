@@ -17,3 +17,5 @@ dubbo:
 #    filter: -myFilter
 logging:
   config: logback.xml
+server:
+  port: 8082

@@ -1,0 +1,83 @@
+version: '3.8'
+
+services:
+  zookeeper:
+    image: zookeeper:3.8
+    container_name: zookeeper
+    restart: unless-stopped
+    environment:
+      ZOO_MY_ID: 1
+      ZOO_PORT: 2181
+      ZOO_SERVERS: server.1=zookeeper:2888:3888;2181
+      ZOO_TICK_TIME: 2000
+      ZOO_INIT_LIMIT: 5
+      ZOO_SYNC_LIMIT: 2
+      ZOO_AUTOPURGE_INTERVAL: 0
+      ZOO_AUTOPURGE_RETAIN_COUNT: 3
+      ZOO_MAX_CLIENT_CNXNS: 60
+      ZOO_STANDALONE_ENABLED: true
+      ZOO_ADMINSERVER_ENABLED: true
+      ZOO_4LW_COMMANDS_WHITELIST: "*"
+      ZOO_LOG_DIR: /datalog
+      TZ: Asia/Shanghai
+    ports:
+      - "2181:2181"   # 客户端连接端口
+      - "2888:2888"   # 集群间数据同步端口
+      - "3888:3888"   # 集群选举端口
+      - "8080:8080"   # AdminServer 端口
+    volumes:
+      # 数据目录（快照文件）
+      - /Users/yang/ops/docker/zk/data:/data
+      # 事务日志目录
+      - /Users/yang/ops/docker/zk/datalog:/datalog
+      # 配置文件
+      - /Users/yang/ops/docker/zk/conf:/conf
+      # 日志目录
+      - /Users/yang/ops/docker/zk/logs:/logs
+      # 初始化脚本
+      - /Users/yang/ops/docker/zk/init:/init
+      # 备份目录
+      - /Users/yang/ops/docker/zk/backup:/backup
+    networks:
+      - zk-network
+    healthcheck:
+      test: ["CMD-SHELL", "echo ruok | nc localhost 2181 | grep imok"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
+    sysctls:
+      - net.core.somaxconn=1024
+    mem_limit: 512m
+    mem_reservation: 256m
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+        reservations:
+          memory: 256M
+
+  zkui:
+    image: registry.cn-hangzhou.aliyuncs.com/wkaca7114/zkui  # 国内镜像
+    # image: qnib/zkui  # 或使用此镜像
+    container_name: zkui
+    ports:
+      - "9090:9090"
+    depends_on:
+      - zookeeper
+    environment:
+      ZK_SERVER: "zookeeper:2181"  # 指向 Zookeeper 服务名
+      ZKUI_USER: "admin"      # 可选，设置用户名
+      ZKUI_PASS: "admin"    # 可选，设置密码
+
+networks:
+  zk-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.30.0.0/16
+          gateway: 172.30.0.1

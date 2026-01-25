@@ -1,6 +1,8 @@
 spring:
   application:
     name: dubbo-provider
+server:
+  port: 8081
 dubbo:
   application:
     name: provider-demo

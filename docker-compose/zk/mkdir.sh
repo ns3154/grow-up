@@ -1,0 +1,1 @@
+mkdir -p /Users/yang/ops/docker/zk/{data,datalog,conf,logs,backup,init}
