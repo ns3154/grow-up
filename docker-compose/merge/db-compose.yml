@@ -1,0 +1,77 @@
+# 文件位置: /Users/yang/project/java/grow-up/docker-compose/docker-compose.yml
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql8
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      TZ: Asia/Shanghai
+    ports:
+      - "3306:3306"
+    volumes:
+      # 使用绝对路径挂载
+      - /Users/yang/ops/docker/mysql/data:/var/lib/mysql
+      - /Users/yang/ops/docker/mysql/config/my.cnf:/etc/mysql/conf.d/my.cnf
+      - /Users/yang/ops/docker/mysql/init:/docker-entrypoint-initdb.d
+      - /Users/yang/ops/docker/mysql/backup:/backup
+      - /Users/yang/ops/docker/mysql/logs:/var/log/mysql
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    command:
+      --default-authentication-plugin=mysql_native_password
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
+      --max_connections=1000
+      --innodb_buffer_pool_size=512M
+
+  redis:
+    image: redis:6.0.20
+    container_name: redis
+    restart: unless-stopped
+    command: >
+      redis-server 
+      /etc/redis/redis.conf 
+      --appendonly yes 
+      --dir /data 
+      --logfile /logs/redis.log 
+      --pidfile /run/redis/redis-server.pid
+      --daemonize no
+    user: "1000:1000"  # 使用宿主机的用户ID，避免权限问题
+    volumes:
+      # 配置文件
+      - /Users/yang/ops/docker/redis/conf/redis.conf:/etc/redis/redis.conf
+      # 数据目录（持久化文件：dump.rdb, appendonly.aof）
+      - /Users/yang/ops/docker/redis/data:/data
+      # 日志目录
+      - /Users/yang/ops/docker/redis/logs:/logs
+      # 工作目录
+      - /Users/yang/ops/docker/redis/work:/var/lib/redis
+      # PID 文件目录
+      - /Users/yang/ops/docker/redis/pid:/run/redis
+      # 临时文件
+      - /Users/yang/ops/docker/redis/tmp:/tmp
+    ports:
+      - "6379:6379"
+    environment:
+      - TZ=Asia/Shanghai
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    sysctls:
+      - net.core.somaxconn=511
+
+networks:
+  app-network:
+    driver: bridge
