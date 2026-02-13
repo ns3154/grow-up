@@ -1,0 +1,23 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: spring-ai-mcp-demo
+
+  ai:
+    mcp:
+      server:
+        # SYNC 同步服务器，使用注解扫描 @McpTool 等
+        type: SYNC
+        # 使用 WebMVC Streamable-HTTP 协议
+        protocol: STREAMABLE
+        annotation-scanner:
+          enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
