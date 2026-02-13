@@ -55,6 +55,7 @@
         <module>dubbo</module>
         <module>mybatis-plus</module>
         <module>leetcode</module>
+        <module>spring-ai-mcp</module>
     </modules>
     <dependencies>
         <dependency>

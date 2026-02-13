@@ -1,0 +1,16 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: spring-ai-mcp-server
+
+# Spring AI MCP Server Configuration
+spring.ai.mcp.server:
+  name: spring-ai-mcp-server
+  version: 1.0.0
+
+logging:
+  level:
+    com.example.mcp: DEBUG
+    org.springframework.ai: DEBUG
