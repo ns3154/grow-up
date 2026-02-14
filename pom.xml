@@ -4,8 +4,8 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.4.1</version> <!-- 更新到最新 Spring Boot 版本 -->
-        <relativePath/> <!-- lookup parent from repository -->
+        <version>3.5.2</version>
+        <relativePath/>
     </parent>
     <groupId>org.example</groupId>
     <artifactId>learn</artifactId>
@@ -14,30 +14,35 @@
     <packaging>pom</packaging>
     <description>Demo project for Spring Boot</description>
     <properties>
-        <java.version>21</java.version> <!-- 升级到 JDK 21 -->
+        <java.version>21</java.version>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
-        <!-- 通用依赖版本管理 -->
-        <guava.version>32.1.3-jre</guava.version>
-        <commons-lang3.version>3.14.0</commons-lang3.version>
-        <fastjson2.version>2.0.53</fastjson2.version>
-        <mysql.version>8.0.33</mysql.version>
-        <hutool.version>5.8.22</hutool.version>
-        <assertj.version>3.24.2</assertj.version>
-        <mybatis-plus.version>3.5.5</mybatis-plus.version>
+        <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
+        <spring-boot.version>3.5.2</spring-boot.version>
+        <spring-framework.version>6.2.8</spring-framework.version>
+        <spring-ai.version>1.1.2</spring-ai.version>
+        <lombok.version>1.18.36</lombok.version>
+        <guava.version>33.4.0-jre</guava.version>
+        <commons-lang3.version>3.17.0</commons-lang3.version>
+        <fastjson2.version>2.0.56</fastjson2.version>
+        <mysql.version>9.2.0</mysql.version>
+        <mysql-legacy.version>8.0.33</mysql-legacy.version>
+        <hutool.version>5.8.40</hutool.version>
+        <assertj.version>3.27.3</assertj.version>
+        <mybatis-plus.version>3.5.15</mybatis-plus.version>
         <p6spy.version>3.9.1</p6spy.version>
         <nacos.version>0.2.12</nacos.version>
-        <dubbo.version>3.3.0</dubbo.version>
-        <curator.version>5.6.0</curator.version>
-        <zookeeper.version>3.8.4</zookeeper.version>
-        <jedis.version>3.2.0</jedis.version>
-        <redisson.version>3.20.0</redisson.version>
-        <druid.version>1.2.16</druid.version>
+        <dubbo.version>3.3.4</dubbo.version>
+        <curator.version>5.8.0</curator.version>
+        <zookeeper.version>3.9.3</zookeeper.version>
+        <jedis.version>5.2.0</jedis.version>
+        <redisson.version>3.52.0</redisson.version>
+        <druid.version>1.2.24</druid.version>
         <cglib.version>3.3.0</cglib.version>
         <javassist.version>3.30.2-GA</javassist.version>
-        <jol.version>0.16</jol.version>
-        <jmh.version>1.36</jmh.version>
-        <aliyun-sdk.version>4.4.9</aliyun-sdk.version>
+        <jol.version>0.17</jol.version>
+        <jmh.version>1.37</jmh.version>
+        <aliyun-sdk.version>4.6.0</aliyun-sdk.version>
     </properties>
     <modules>
         <module>mvc</module>
@@ -69,16 +74,15 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-dependencies</artifactId>
-            <version>3.4.1</version>
+            <version>${spring-boot.version}</version>
             <type>pom</type>
             <scope>import</scope>
         </dependency>
 
-        <!-- 强制指定 Spring Framework 版本，避免被 Dubbo BOM 覆盖 -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-framework-bom</artifactId>
-            <version>6.2.1</version>
+            <version>${spring-framework.version}</version>
             <type>pom</type>
             <scope>import</scope>
         </dependency>
@@ -109,9 +113,15 @@
         </dependency>
 
         <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>${mysql.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>${mysql.version}</version>
+            <version>${mysql-legacy.version}</version>
         </dependency>
 
         <dependency>
@@ -222,6 +232,12 @@
             <version>${aliyun-sdk.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+        </dependency>
+
     </dependencies>
 </dependencyManagement>
     <build>
@@ -234,10 +250,30 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.12.1</version>
+                <version>${maven-compiler-plugin.version}</version>
                 <configuration>
                     <source>21</source>
                     <target>21</target>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                    <fork>true</fork>
+                    <compilerArgs>
+                        <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED</arg>
+                        <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED</arg>
+                        <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED</arg>
+                        <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.main=ALL-UNNAMED</arg>
+                        <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.model=ALL-UNNAMED</arg>
+                        <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED</arg>
+                        <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED</arg>
+                        <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED</arg>
+                        <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED</arg>
+                        <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.jvm=ALL-UNNAMED</arg>
+                    </compilerArgs>
                 </configuration>
             </plugin>
         </plugins>

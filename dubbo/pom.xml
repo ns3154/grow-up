@@ -18,10 +18,10 @@
 	</modules>
 
 	<properties>
-		<dubbo.version>3.3.0</dubbo.version>
-		<dubbo-spring-boot-starter>3.3.0</dubbo-spring-boot-starter>
-		<zookeeper.version>3.8.4</zookeeper.version>
-		<curator.version>5.6.0</curator.version>
+		<dubbo.version>3.3.4</dubbo.version>
+		<dubbo-spring-boot-starter>3.3.4</dubbo-spring-boot-starter>
+		<zookeeper.version>3.9.3</zookeeper.version>
+		<curator.version>5.8.0</curator.version>
 	</properties>
 
 	<dependencies>

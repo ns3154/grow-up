@@ -13,4 +13,17 @@ spring.ai.mcp.server:
 logging:
   level:
     com.example.mcp: DEBUG
+    com.example.mcp.filter: INFO
     org.springframework.ai: DEBUG
+    org.springframework.web: DEBUG
+  
+  # 日志格式配置
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+  
+  # 日志文件配置
+  file:
+    name: logs/mcp-server.log
+    max-size: 10MB
+    max-history: 30
