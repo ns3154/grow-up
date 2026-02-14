@@ -96,10 +96,9 @@ public class WxSupport {
             AlgorithmParameters params = AlgorithmParameters.getInstance("AES");
             params.init(new IvParameterSpec(Base64.decodeBase64(ivStr)));
             Cipher cipher = Cipher.getInstance("AES/CBC/NoPadding");
-            BASE64Decoder base64Decoder = new BASE64Decoder();
-            byte[] bytes = base64Decoder.decodeBuffer(sessionKey);
+            byte[] bytes = Base64.decodeBase64(sessionKey);
             cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(bytes, "AES"), params);
-            return new String(decode(cipher.doFinal(base64Decoder.decodeBuffer(encryptedData))), CHARSET);
+            return new String(decode(cipher.doFinal(Base64.decodeBase64(encryptedData))), CHARSET);
         } catch (Exception e) {
             throw new RuntimeException("AES 解密失败", e);
         }

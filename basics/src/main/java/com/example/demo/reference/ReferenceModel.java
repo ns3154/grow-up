@@ -47,6 +47,11 @@ public class ReferenceModel {
                 '}';
     }
 
+    /**
+     * Note: finalize() is deprecated in Java 9+ and removed in Java 21
+     * This is kept for demonstration purposes only.
+     */
+    @Deprecated(forRemoval = true)
     @Override
     protected void finalize() throws Throwable {
         super.finalize();

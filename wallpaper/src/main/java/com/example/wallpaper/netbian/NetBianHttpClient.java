@@ -61,13 +61,13 @@ public class NetBianHttpClient {
                                                     new BasicClientCookie("zkhanecookieclassrecord", "%2C53%2C"),
                                                     new BasicClientCookie("Hm_lpvt_526caf4e20c21f06a4e9209712d6a20e", "1625853326")};
                     cookieStore.addCookies(cookies);
-                    CloseableHttpClient httpClient =
-                            HttpClientBuilder.create()
-                                    .setRedirectStrategy(new LaxRedirectStrategy())
-                                    .setDefaultCookieStore(cookieStore)
+//                    CloseableHttpClient httpClient =
+//                            HttpClientBuilder.create()
+//                                    .setRedirectStrategy(new LaxRedirectStrategy())
+//                                    .setDefaultCookieStore(cookieStore)
 //                                    .setProxy(host())
-                                    .build();
-                    factory.setHttpClient(httpClient);
+//                                    .build();
+//                    factory.setHttpClient(httpClient);
                     restTemplate.setRequestFactory(factory);
                     restTemplate.getMessageConverters().set(1, new StringHttpMessageConverter(Charset.forName("gbk")));
                     restTemplate.getMessageConverters().set(1, new StringHttpMessageConverter(Charset.forName("gbk")));
@@ -82,12 +82,12 @@ public class NetBianHttpClient {
         HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory();
         factory.setConnectTimeout(200000);
         factory.setReadTimeout(100000);
-        CloseableHttpClient httpClient =
-                HttpClientBuilder.create()
-                        .setRedirectStrategy(new LaxRedirectStrategy())
+//        CloseableHttpClient httpClient =
+//                HttpClientBuilder.create()
+//                        .setRedirectStrategy(new LaxRedirectStrategy())
 //                        .setProxy(host())
-                        .build();
-        factory.setHttpClient(httpClient);
+//                        .build();
+//        factory.setHttpClient(httpClient);
         rest.setRequestFactory(factory);
         rest.getMessageConverters().set(1, new StringHttpMessageConverter(Charset.forName("gbk")));
         return rest;

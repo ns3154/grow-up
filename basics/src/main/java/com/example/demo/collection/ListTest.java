@@ -22,8 +22,8 @@ public class ListTest {
         list.add(1);
         list.add(1);
         list.add(1, 1);
-        list.remove(new Integer(1));
-        list.addIfAbsent(new Integer(3));
+        list.remove(Integer.valueOf(1));
+        list.addIfAbsent(Integer.valueOf(3));
     }
 
 

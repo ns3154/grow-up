@@ -34,11 +34,11 @@ public class Main {
     public static void main (String[] args) {
         RestTemplate rest = new RestTemplate();
         HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory();
-        CloseableHttpClient httpClient =
-                HttpClientBuilder.create()
-                        .setRedirectStrategy(new LaxRedirectStrategy())
-                        .build();
-        factory.setHttpClient(httpClient);
+//        CloseableHttpClient httpClient =
+//                HttpClientBuilder.create()
+//                        .setRedirectStrategy(new LaxRedirectStrategy())
+//                        .build();
+//        factory.setHttpClient(httpClient);
         rest.setRequestFactory(factory);
         String url = "https://www.lrts.me/ajax/playlist/2/5622/24";
         ResponseEntity<String> entity = rest.exchange(url, HttpMethod.GET,

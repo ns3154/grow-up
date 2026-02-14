@@ -403,7 +403,7 @@ public class MibiToJiangLiJIn {
                                         GlobalConfiguration globalConfiguration) {
             String value = cellData.getStringValue();
             if (StringUtils.isEmpty(value)) {
-                value = DECIMAL_FORMAT.format(cellData.getDoubleValue());
+                value = DECIMAL_FORMAT.format(cellData.getData());
             }
 
             return value;

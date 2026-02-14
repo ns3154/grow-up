@@ -26,12 +26,12 @@ public interface UserConverter {
     @Mappings({
             @Mapping(target = "userId", constant = "1234L"),
             @Mapping(target = "balance", constant = "12.3"),
-//            @Mapping(target = "bd", constant = "12.32"),
-//            @Mapping(target = "s", constant = ""),
-//            @Mapping(target = "c", constant = "ss"),
             @Mapping(source = "name", target = "userName", defaultValue = "测试默认值"),
             @Mapping(target = "sex", expression = "java(SexConverter.getSexEnumByCode(dto.getSex()).getStr())"),
-            @Mapping(source = "createTime", target = "createTime", dateFormat = "yyyy-MM-dd HH:mm")
+            @Mapping(source = "createTime", target = "createTime", dateFormat = "yyyy-MM-dd HH:mm"),
+            @Mapping(target = "bdd", ignore = true),
+            @Mapping(target = "ss", ignore = true),
+            @Mapping(target = "ccc", ignore = true)
     })
     UserVO dtoToVo(UserDTO dto);
 
@@ -45,7 +45,7 @@ public interface UserConverter {
             @Mapping(source = "bo.balance",target = "balance", defaultValue = "23.1"),
             @Mapping(source = "bo.bd",target = "bdd", defaultValue = "23.2"),
             @Mapping(source = "bo.s",target = "ss", defaultValue = "1"),
-            @Mapping(source = "bo.c",target = "ccc", defaultValue = "'a'"),
+            @Mapping(source = "bo.c",target = "ccc", defaultValue = "'a'")
     })
     UserVO monyToOne(UserDTO dto, UserBO bo);
 
