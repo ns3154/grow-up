@@ -31,7 +31,7 @@
         <assertj.version>3.27.3</assertj.version>
         <mybatis-plus.version>3.5.15</mybatis-plus.version>
         <p6spy.version>3.9.1</p6spy.version>
-        <nacos.version>0.2.12</nacos.version>
+        <nacos.version>2023.0.3.2</nacos.version>
         <dubbo.version>3.3.4</dubbo.version>
         <curator.version>5.8.0</curator.version>
         <zookeeper.version>3.9.3</zookeeper.version>
@@ -65,7 +65,6 @@
         <module>algorithm</module>
         <module>async</module>
         <module>basics</module>
-        <module>config-center</module>
         <module>demo</module>
         <module>design</module>
         <module>dubbo</module>
@@ -162,8 +161,8 @@
         </dependency>
 
         <dependency>
-            <groupId>com.alibaba.boot</groupId>
-            <artifactId>nacos-config-spring-boot-starter</artifactId>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-alibaba-nacos-config</artifactId>
             <version>${nacos.version}</version>
         </dependency>
 
