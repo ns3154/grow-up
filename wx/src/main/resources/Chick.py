@@ -900,10 +900,17 @@ if __name__ == "__main__":
     print("="*60)
 
     MY_PROXY = "http://127.0.0.1:7890"
-    SLEEP_MIN = 5
-    SLEEP_MAX = 30
+    SLEEP_MIN = 50
+    SLEEP_MAX = 60
 
     count = 0
+
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    tokens_dir = os.path.join(script_dir, "tokens")
+    os.makedirs(tokens_dir, exist_ok=True)
+    
+    run_time_str = datetime.now().strftime("%Y%m%d%H%M%S")
+    file_name = os.path.join(tokens_dir, f"{run_time_str}.json")
 
     while True:
         count += 1
@@ -918,20 +925,23 @@ if __name__ == "__main__":
             if token_json:
                 try:
                     t_data = json.loads(token_json)
-                    fname_email = t_data.get("email", "unknown").replace("@", "_")
-                except Exception:
-                    fname_email = "unknown"
+                    
+                    existing_data = []
+                    if os.path.exists(file_name):
+                        with open(file_name, "r", encoding="utf-8") as f:
+                            try:
+                                existing_data = json.load(f)
+                            except json.JSONDecodeError:
+                                existing_data = []
+                                
+                    existing_data.append(t_data)
 
-                script_dir = os.path.dirname(os.path.abspath(__file__))
-                tokens_dir = os.path.join(script_dir, "tokens")
-                os.makedirs(tokens_dir, exist_ok=True)
+                    with open(file_name, "w", encoding="utf-8") as f:
+                        json.dump(existing_data, f, ensure_ascii=False, indent=2)
 
-                file_name = os.path.join(tokens_dir, f"token_{fname_email}_{int(time.time())}.json")
-
-                with open(file_name, "w", encoding="utf-8") as f:
-                    f.write(token_json)
-
-                print(f"\n[+] Token 已保存至: {file_name}")
+                    print(f"\n[+] Token 已追加保存至: {file_name}")
+                except Exception as e:
+                    print(f"\n[-] 保存 Token 失败: {e}")
             else:
                 print("\n[-] 本次注册失败")
 
