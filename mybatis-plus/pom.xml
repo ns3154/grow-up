@@ -20,7 +20,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.baomidou</groupId>
-			<artifactId>mybatis-plus-boot-starter</artifactId>
+			<artifactId>mybatis-plus-spring-boot4-starter</artifactId>
 		</dependency>
 		<!-- SQL 分析打印-->
 		<dependency>

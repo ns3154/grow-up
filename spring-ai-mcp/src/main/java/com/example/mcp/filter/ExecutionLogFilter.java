@@ -55,7 +55,7 @@ public class ExecutionLogFilter extends OncePerRequestFilter {
         long startTime = System.currentTimeMillis();
         
         // 包装请求和响应以便能够多次读取内容
-        ContentCachingRequestWrapper requestWrapper = new ContentCachingRequestWrapper(request);
+        ContentCachingRequestWrapper requestWrapper = new ContentCachingRequestWrapper(request, 1048576);
         ContentCachingResponseWrapper responseWrapper = new ContentCachingResponseWrapper(response);
         
         try {

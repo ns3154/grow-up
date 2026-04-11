@@ -43,7 +43,7 @@ public class NetBianHttpClient {
             synchronized (NetBianHttpClient.class) {
                 if (null == restTemplate) {
                     restTemplate = new RestTemplate();
-                    HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory();
+                    SimpleClientHttpRequestFactory factory = new SimpleClientHttpRequestFactory();
                     factory.setConnectTimeout(2000);
                     factory.setReadTimeout(10000);
                     BasicCookieStore cookieStore = new BasicCookieStore();
@@ -79,7 +79,7 @@ public class NetBianHttpClient {
 
     public static RestTemplate rest() {
         RestTemplate rest = new RestTemplate();
-        HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory();
+        SimpleClientHttpRequestFactory factory = new SimpleClientHttpRequestFactory();
         factory.setConnectTimeout(200000);
         factory.setReadTimeout(100000);
 //        CloseableHttpClient httpClient =

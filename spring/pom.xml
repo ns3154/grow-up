@@ -12,7 +12,6 @@
 	<artifactId>spring</artifactId>
 
 	<properties>
-		<spring.boot.version>3.4.1</spring.boot.version>
 	</properties>
 	
 	<dependencies>
@@ -45,12 +44,12 @@
 
 		<dependency>
 			<groupId>com.alibaba</groupId>
-			<artifactId>druid-spring-boot-starter</artifactId>
+			<artifactId>druid-spring-boot-4-starter</artifactId>
 		</dependency>
 		
 		<dependency>
 			<groupId>com.baomidou</groupId>
-			<artifactId>mybatis-plus-boot-starter</artifactId>
+			<artifactId>mybatis-plus-spring-boot4-starter</artifactId>
 		</dependency>
 		
 		<dependency>
@@ -133,7 +132,7 @@
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-aop</artifactId>
+            <artifactId>spring-boot-starter-aspectj</artifactId>
         </dependency>
 
         <dependency>

@@ -1,7 +1,7 @@
 package com.example.redis.config;
 
 import com.google.common.collect.Sets;
-import org.redisson.api.HostNatMapper;
+import org.redisson.config.HostNatMapper;
 import org.redisson.config.ReadMode;
 import org.redisson.config.SubscriptionMode;
 import org.redisson.config.*;
